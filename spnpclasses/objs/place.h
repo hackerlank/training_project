@@ -15,11 +15,9 @@ public:
     virtual void fromXML(XMLNode *xml);
 
     double getTokensOrInitValue() const;
-    std::string getName() const;
     Label* getLabel() const;
 private:
     double tokens;
-    std::string name;
 
     Label* label;
     virtual std::string getClassNodeName();

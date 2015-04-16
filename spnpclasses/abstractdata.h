@@ -10,7 +10,7 @@ namespace spnp
     {
     public:
         AbstractData();
-        AbstractData(int id);
+        AbstractData(int id, std::string name);
         virtual ~AbstractData();
 
         virtual XMLNode* toXML();

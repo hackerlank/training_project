@@ -25,28 +25,24 @@ public:
     void add(Place* p);
     void add(Transition* t);
     void add(Arc* a);
-    /*
-        void removePlace(int id);
-        void removeTransition(int id);
-        void removeArc(int id);
 
-        Place* getPlace(int id);
-        Transition* getTransition(int id);
-        Arc* getArc(int id);
-    */
-
+    void removePlace(int id);
+    void removeTransition(int id);
+    void removeArc(int id);
+/*
+    Place* getPlace(int id);
+    Transition* getTransition(int id);
+    Arc* getArc(int id);
+*/
     std::vector<Place*> * getPlaces() const;
     std::vector<Transition*> *getTransitions() const;
     std::vector<Arc*> *getArcs() const;
-
-    std::string getName() const;
 
 private:
     std::vector<Place* > *places;
     std::vector<Transition* > *transitions;
     std::vector<Arc* > *arcs;
 
-    std::string name;
     virtual std::string getClassNodeName();
 };
 }

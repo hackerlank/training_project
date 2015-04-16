@@ -1,0 +1,11 @@
+<RCC>
+    <qresource prefix="/">
+        <file>net.ico</file>
+        <file>proj.ico</file>
+        <file>arc.ico</file>
+        <file>fplace.ico</file>
+        <file>imtrans.ico</file>
+        <file>place.ico</file>
+        <file>ttrans.ico</file>
+    </qresource>
+</RCC>

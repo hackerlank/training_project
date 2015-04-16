@@ -2,12 +2,10 @@
 
 spnp::Label::Label():AbstractVisualData()
 {
-    this->text = "name";
 }
 
-spnp::Label::Label(int id, std::string text, int x, int y):AbstractVisualData(id, x, y)
+spnp::Label::Label(int id, std::string name, int x, int y):AbstractVisualData(id, name, x, y)
 {
-    this->text = text;
 }
 
 spnp::Label::~Label()
@@ -18,7 +16,6 @@ spnp::Label::~Label()
 XMLNode *spnp::Label::toXML()
 {
     XMLNode* n = AbstractVisualData::toXML();
-    n->setAttribute("text", this->text);
 
     return n;
 }
@@ -26,7 +23,6 @@ XMLNode *spnp::Label::toXML()
 void spnp::Label::fromXML(XMLNode *xml)
 {
     AbstractVisualData::fromXML(xml);
-    this->text = xml->getAttributeS("text");
 }
 
 std::string spnp::Label::getClassNodeName()

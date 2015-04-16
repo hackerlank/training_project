@@ -16,7 +16,7 @@ public:
     };
 
     Transition();
-    Transition(int id, std::string priority, int x=0, int y=0);
+    Transition(int id, std::string name, std::string priority, int x=0, int y=0);
     virtual ~Transition();
     virtual XMLNode* toXML();
     virtual void fromXML(XMLNode *xml);

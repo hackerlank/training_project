@@ -6,9 +6,8 @@ spnp::Project::Project(std::string name):AbstractData()
     this->name = name;
 }
 
-spnp::Project::Project(int id, std::string name, std::vector<Net *> *nets):AbstractData(id)
+spnp::Project::Project(int id, std::string name, std::vector<Net *> *nets):AbstractData(id, name)
 {
-    this->name = name;
     this->nets = nets;
 }
 
@@ -60,7 +59,6 @@ std::string spnp::Project::getName() const
 XMLNode *spnp::Project::toXML()
 {
     XMLNode* node = AbstractData::toXML();
-    node->setAttribute("name", this->name);
     node->setAttribute("owner", this->owner);
     node->setAttribute("commentary", this->commentary);
     for(auto it = nets->begin(); it != nets->end(); ++it)
@@ -74,7 +72,6 @@ XMLNode *spnp::Project::toXML()
 void spnp::Project::fromXML(XMLNode *xml)
 {
     AbstractData::fromXML(xml);
-    this->name = xml->getAttributeS("name");
     this->owner = xml->getAttributeS("owner");
     this->commentary = xml->getAttributeS("commentary");
     std::vector<XMLNode*> *v = xml->getChildrenByName("net");

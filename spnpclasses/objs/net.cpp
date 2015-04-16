@@ -5,15 +5,14 @@ spnp::Net::Net():AbstractData()
     this->places = new std::vector<Place*>();
     this->transitions = new std::vector<Transition*>();
     this->arcs = new std::vector<Arc*>();
-    this->name = "net 1";
 }
 
-spnp::Net::Net(int id, std::string name, std::vector<Place *> *places, std::vector<Transition *> *transitions, std::vector<Arc *> *arcs):AbstractData(id)
+spnp::Net::Net(int id, std::string name, std::vector<Place *> *places,
+               std::vector<Transition *> *transitions, std::vector<Arc *> *arcs):AbstractData(id, name)
 {
     this->places = places;
     this->transitions = transitions;
     this->arcs = arcs;
-    this->name = name;
 }
 
 spnp::Net::~Net()
@@ -35,7 +34,6 @@ spnp::Net::~Net()
 XMLNode *spnp::Net::toXML()
 {
     XMLNode* node = AbstractData::toXML();
-    node->setAttribute("name", this->name);
     for(auto it = places->begin(); it != places->end(); ++it)
     {
         node->addChild((*it)->toXML());
@@ -55,7 +53,6 @@ XMLNode *spnp::Net::toXML()
 void spnp::Net::fromXML(XMLNode *xml)
 {
     AbstractData::fromXML(xml);
-    this->name = xml->getAttributeS("name");
     std::vector<XMLNode*> *v = xml->getChildrenByName("place");
     for(auto it = v->begin(); it != v->end(); ++it)
     {
@@ -121,7 +118,7 @@ void spnp::Net::add(Arc *a)
 {
     this->arcs->push_back(a);
 }
-/*
+
 void spnp::Net::removePlace(int id)
 {
     for(unsigned int i=0, total = this->places->size(); i<total; ++i)
@@ -157,7 +154,7 @@ void spnp::Net::removeArc(int id)
         }
     }
 }
-
+/*
 spnp::Place *spnp::Net::getPlace(int id)
 {
     for(auto &it : this->places)
@@ -201,11 +198,6 @@ std::vector<spnp::Transition *> *spnp::Net::getTransitions() const
 std::vector<spnp::Arc *> *spnp::Net::getArcs() const
 {
     return this->arcs;
-}
-
-std::string spnp::Net::getName() const
-{
-    return this->name;
 }
 
 std::string spnp::Net::getClassNodeName()

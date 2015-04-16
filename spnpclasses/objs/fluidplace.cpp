@@ -12,7 +12,8 @@ spnp::FluidPlace::~FluidPlace()
 }
 
 spnp::FluidPlace::FluidPlace(int id, std::string name, double tokens, spnp::Label *label,
-                             std::string boundValue, std::string breakValue, int x, int y):Place(id, name, tokens, label, x, y)
+                             std::string boundValue, std::string breakValue, int x, int y)
+    :Place(id, name, tokens, label, x, y)
 {
     this->boundValue = boundValue;
     this->breakValue = breakValue;
@@ -23,6 +24,8 @@ XMLNode *spnp::FluidPlace::toXML()
     XMLNode* n = Place::toXML();
     n->setAttribute("bound", this->boundValue);
     n->setAttribute("break", this->breakValue);
+
+    return n;
 }
 
 void spnp::FluidPlace::fromXML(XMLNode *xml)

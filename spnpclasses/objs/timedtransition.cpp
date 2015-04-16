@@ -9,10 +9,10 @@ spnp::TimedTransition::TimedTransition():Transition()
     this->affected = Affected::PRS;
 }
 
-spnp::TimedTransition::TimedTransition(int id, std::string priority, std::string rate,
+spnp::TimedTransition::TimedTransition(int id, std::string name, std::string priority, std::string rate,
                                        Distribution distribution, std::string distValue,
                                        Policy policy, Affected affected, int x, int y)
-    :Transition(id, priority, x, y)
+    :Transition(id, name, priority, x, y)
 {
     this->rate = rate;
     this->distribution = distribution;

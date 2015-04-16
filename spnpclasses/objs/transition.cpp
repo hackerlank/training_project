@@ -5,7 +5,8 @@ spnp::Transition::Transition():AbstractVisualData()
     this->priority = "1";
 }
 
-spnp::Transition::Transition(int id, std::string value, int x, int y):AbstractVisualData(id, x, y)
+spnp::Transition::Transition(int id, std::string name,
+                             std::string value, int x, int y):AbstractVisualData(id, name, x, y)
 {
     this->priority = value;
 }

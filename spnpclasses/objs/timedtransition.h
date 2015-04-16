@@ -37,7 +37,8 @@ public:
     };
 
     TimedTransition();
-    TimedTransition(int id, std::string priority, std::string rate="0.25",
+    TimedTransition(int id, std::string name,
+                    std::string priority, std::string rate="0.25",
                     Distribution distribution = Distribution::Exponential,
                     std::string distValue="", Policy policy = Policy::PreemptiveRepeatDifferent,
                     Affected affected = Affected::PRS, int x=0, int y=0);

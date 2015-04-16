@@ -25,7 +25,6 @@ private:
     virtual std::string getClassNodeName();
 
     std::vector<Net*> *nets;
-    std::string name;
     std::string owner;
     std::string commentary;
 

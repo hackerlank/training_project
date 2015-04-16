@@ -9,7 +9,7 @@ namespace spnp
     {
     public:
         AbstractVisualData();
-        AbstractVisualData(int id, int x=0, int y=0);
+        AbstractVisualData(int id, std::string name, int x=0, int y=0);
         virtual ~AbstractVisualData();
 
         int x;

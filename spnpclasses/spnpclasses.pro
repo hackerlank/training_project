@@ -1,64 +1,58 @@
 #-------------------------------------------------
 #
-# Project created by QtCreator 2015-04-08T11:57:26
+# Project created by QtCreator 2015-04-16T16:48:52
 #
 #-------------------------------------------------
 
 QT       -= core gui
-CONFIG	-= qt
 
+CONFIG	-= qt
 CONFIG	+= c++14
 
-TARGET = SPNPdb
-TEMPLATE = lib
-
-TARGET = spnpclasses
+TARGET = SPNPClasses
 TEMPLATE = lib
 
 DEFINES += SPNPCLASSES_LIBRARY
 
 SOURCES += \
+    objs/arc.cpp \
+    objs/fluidarc.cpp \
+    objs/fluidplace.cpp \
+    objs/label.cpp \
     objs/net.cpp \
     objs/place.cpp \
-    objs/transition.cpp \
-    objs/arc.cpp \
-    abstractdata.cpp \
-    abstractvisualdata.cpp \
-    objs/label.cpp \
     objs/project.cpp \
     objs/timedtransition.cpp \
-    objs/fluidplace.cpp \
-    objs/fluidarc.cpp
+    objs/transition.cpp \
+    abstractdata.cpp \
+    abstractvisualdata.cpp
 
 HEADERS +=\
         spnpclasses_global.h \
+    objs/arc.h \
+    objs/fluidarc.h \
+    objs/fluidplace.h \
+    objs/label.h \
     objs/net.h \
     objs/place.h \
-    objs/transition.h \
-    objs/arc.h \
-    abstractdata.h \
-    abstractvisualdata.h \
-    idata.h \
-    objs/label.h \
     objs/project.h \
     objs/timedtransition.h \
-    objs/fluidplace.h \
-    objs/fluidarc.h
+    objs/transition.h \
+    abstractdata.h \
+    abstractvisualdata.h \
+    idata.h
 
 unix {
     target.path = /usr/lib
     INSTALLS += target
+    DEFINES+=LINUX
+
+    LIBS += -L$$OUT_PWD/../XMLParser/ -lXMLParser
 }
 
 win32{
-    DEFINES+=WINDOWS
-}
-unix{
-    DEFINES+=LINUX
+    DEFINES += WINDOWS
 }
 
-win32:CONFIG(release, debug|release): LIBS += -L$$PWD/../build-SPNPdb-Desktop_Qt_5_4_1_MinGW_32bit-Debug/release/ -lSPNPdb
-else:win32:CONFIG(debug, debug|release): LIBS += -L$$PWD/../build-SPNPdb-Desktop_Qt_5_4_1_MinGW_32bit-Debug/debug/ -lSPNPdb
-
-INCLUDEPATH += $$PWD/../SPNPdb
-DEPENDPATH += $$PWD/../SPNPdb
+INCLUDEPATH += $$PWD/../XMLParser
+DEPENDPATH += $$PWD/../XMLParser

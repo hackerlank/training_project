@@ -2,7 +2,7 @@
 #define IDATA_H
 
 #include "spnpclasses_global.h"
-#include "xmlnode.h"
+#include "xmlparser.h"
 
 namespace spnp
 {
@@ -15,7 +15,12 @@ namespace spnp
         virtual XMLNode* toXML()=0;
         virtual void fromXML(XMLNode *xml)=0;
 
+        virtual std::string getName() const { return this->name; }
+        virtual void setName(std::string name) { this->name = name; }
+
         int id;
+    protected:
+        std::string name;
     };
 }
 
