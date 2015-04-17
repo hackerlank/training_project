@@ -6,7 +6,6 @@
 
 #include "highlighter.h"
 
-
 namespace Ui {
 class MainWindow;
 }

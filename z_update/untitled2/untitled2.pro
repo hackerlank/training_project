@@ -14,35 +14,46 @@ TEMPLATE = app
 
 
 SOURCES += main.cpp\
-        mainwindow.cpp
+	mainwindow.cpp
 
 HEADERS  += mainwindow.h
 
 FORMS    += mainwindow.ui
 
-unix{
-    DEFINES += LINUX
-}
-
-unix:!macx: LIBS += -L$$PWD/../../build-spnp_projects-Desktop_Qt_5_4_1_GCC_64bit-Debug/HighLighter/ -lHighlighter
-
-INCLUDEPATH += $$PWD/../../spnp_projects/HighLighter
-DEPENDPATH += $$PWD/../../spnp_projects/HighLighter
-
-unix:!macx: LIBS += -L$$PWD/../../build-spnp_projects-Desktop_Qt_5_4_1_GCC_64bit-Debug/SPNPClasses/ -lSPNPClasses
-
-INCLUDEPATH += $$PWD/../../spnp_projects/SPNPClasses
-DEPENDPATH += $$PWD/../../spnp_projects/SPNPClasses
-
-unix:!macx: LIBS += -L$$PWD/../../build-spnp_projects-Desktop_Qt_5_4_1_GCC_64bit-Debug/XMLParser/ -lXMLParser
-
-INCLUDEPATH += $$PWD/../../spnp_projects/XMLParser
-DEPENDPATH += $$PWD/../../spnp_projects/XMLParser
-
-unix:!macx: LIBS += -L$$PWD/../../build-spnp_projects-Desktop_Qt_5_4_1_GCC_64bit-Debug/PetriWidget/ -lPetriWidget
-
-INCLUDEPATH += $$PWD/../../spnp_projects/PetriWidget
-DEPENDPATH += $$PWD/../../spnp_projects/PetriWidget
-
 RESOURCES += \
     icons.qrc
+
+unix{
+    DEFINES += LINUX
+    LIBS += -L$$PWD/../../build-spnp_projects-Desktop_Qt_5_4_1_GCC_64bit-Debug/HighLighter/ -lHighlighter
+    LIBS += -L$$PWD/../../build-spnp_projects-Desktop_Qt_5_4_1_GCC_64bit-Debug/SPNPClasses/ -lSPNPClasses
+    LIBS += -L$$PWD/../../build-spnp_projects-Desktop_Qt_5_4_1_GCC_64bit-Debug/XMLParser/ -lXMLParser
+    LIBS += -L$$PWD/../../build-spnp_projects-Desktop_Qt_5_4_1_GCC_64bit-Debug/PetriWidget/ -lPetriWidget
+}
+
+win32{
+    DEFINES += WINDOWS
+    CONFIG(release, debug|release): LIBS += -L$$PWD/../../../build-spnp_projects-Desktop_Qt_5_4_1_MinGW_32bit-Release/HighLighter/release/ -lHighlighter
+    else:CONFIG(debug, debug|release): LIBS += -L$$PWD/../../../build-spnp_projects-Desktop_Qt_5_4_1_MinGW_32bit-Debug/HighLighter/debug/ -lHighlighter
+
+    CONFIG(release, debug|release): LIBS += -L$$PWD/../../../build-spnp_projects-Desktop_Qt_5_4_1_MinGW_32bit-Release/SPNPClasses/release/ -lSPNPClasses
+    else:CONFIG(debug, debug|release): LIBS += -L$$PWD/../../../build-spnp_projects-Desktop_Qt_5_4_1_MinGW_32bit-Debug/SPNPClasses/debug/ -lSPNPClasses
+
+    CONFIG(release, debug|release): LIBS += -L$$PWD/../../../build-spnp_projects-Desktop_Qt_5_4_1_MinGW_32bit-Release/XMLParser/release/ -lXMLParser
+    else:CONFIG(debug, debug|release): LIBS += -L$$PWD/../../../build-spnp_projects-Desktop_Qt_5_4_1_MinGW_32bit-Debug/XMLParser/debug/ -lXMLParser
+
+    CONFIG(release, debug|release): LIBS += -L$$PWD/../../../build-spnp_projects-Desktop_Qt_5_4_1_MinGW_32bit-Release/PetriWidget/release/ -lPetriWidget
+    else:CONFIG(debug, debug|release): LIBS += -L$$PWD/../../../build-spnp_projects-Desktop_Qt_5_4_1_MinGW_32bit-Debug/PetriWidget/debug/ -lPetriWidget
+}
+
+INCLUDEPATH += $$PWD/../../HighLighter
+DEPENDPATH += $$PWD/../../HighLighter
+
+INCLUDEPATH += $$PWD/../../SPNPClasses
+DEPENDPATH += $$PWD/../../SPNPClasses
+
+INCLUDEPATH += $$PWD/../../XMLParser
+DEPENDPATH += $$PWD/../../XMLParser
+
+INCLUDEPATH += $$PWD/../../PetriWidget
+DEPENDPATH += $$PWD/../../PetriWidget

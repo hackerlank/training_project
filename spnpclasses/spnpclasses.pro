@@ -28,7 +28,7 @@ SOURCES += \
     abstractvisualdata.cpp
 
 HEADERS +=\
-        spnpclasses_global.h \
+	spnpclasses_global.h \
     objs/arc.h \
     objs/fluidarc.h \
     objs/fluidplace.h \
@@ -52,6 +52,8 @@ unix {
 
 win32{
     DEFINES += WINDOWS
+    CONFIG(release, debug|release): LIBS += -L$$OUT_PWD/../XMLParser/release/ -lXMLParser
+    else:CONFIG(debug, debug|release): LIBS += -L$$OUT_PWD/../XMLParser/debug/ -lXMLParser
 }
 
 INCLUDEPATH += $$PWD/../XMLParser

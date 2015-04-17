@@ -18,7 +18,7 @@ SOURCES += petriwidget.cpp \
     placeview.cpp
 
 HEADERS += petriwidget.h\
-        petriwidget_global.h \
+	petriwidget_global.h \
     placeview.h
 
 unix {
@@ -31,6 +31,12 @@ unix {
 
 win32{
     DEFINES += WINDOWS
+
+    CONFIG(release, debug|release): LIBS += -L$$OUT_PWD/../XMLParser/release/ -lXMLParser
+    else:CONFIG(debug, debug|release): LIBS += -L$$OUT_PWD/../XMLParser/debug/ -lXMLParser
+
+    CONFIG(release, debug|release): LIBS += -L$$OUT_PWD/../SPNPClasses/release/ -lSPNPClasses
+    else:CONFIG(debug, debug|release): LIBS += -L$$OUT_PWD/../SPNPClasses/debug/ -lSPNPClasses
 }
 
 INCLUDEPATH += $$PWD/../SPNPClasses
