@@ -8,5 +8,6 @@
         <file>proj.ico</file>
         <file>ttrans.ico</file>
         <file>cursor.ico</file>
+        <file>inhibitor.ico</file>
     </qresource>
 </RCC>

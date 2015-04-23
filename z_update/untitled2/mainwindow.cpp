@@ -20,6 +20,9 @@ MainWindow::MainWindow(QWidget *parent) :
     group->addButton(this->ui->pb_arrow);
     group->addButton(this->ui->pb_fplace);
     group->addButton(this->ui->pb_place);
+    group->addButton(this->ui->pb_inhibitor);
+    group->addButton(this->ui->pb_immediate);
+    group->addButton(this->ui->pb_timed);
 }
 
 MainWindow::~MainWindow()

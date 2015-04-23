@@ -25,10 +25,10 @@ RESOURCES += \
 
 unix{
     DEFINES += LINUX
-    LIBS += -L$$PWD/../../build-spnp_projects-Desktop_Qt_5_4_1_GCC_64bit-Debug/HighLighter/ -lHighlighter
-    LIBS += -L$$PWD/../../build-spnp_projects-Desktop_Qt_5_4_1_GCC_64bit-Debug/SPNPClasses/ -lSPNPClasses
-    LIBS += -L$$PWD/../../build-spnp_projects-Desktop_Qt_5_4_1_GCC_64bit-Debug/XMLParser/ -lXMLParser
-    LIBS += -L$$PWD/../../build-spnp_projects-Desktop_Qt_5_4_1_GCC_64bit-Debug/PetriWidget/ -lPetriWidget
+    LIBS += -L$$PWD/../../../build-spnp_projects-Desktop_Qt_5_4_1_GCC_64bit-Debug/HighLighter/ -lHighlighter
+    LIBS += -L$$PWD/../../../build-spnp_projects-Desktop_Qt_5_4_1_GCC_64bit-Debug/SPNPClasses/ -lSPNPClasses
+    LIBS += -L$$PWD/../../../build-spnp_projects-Desktop_Qt_5_4_1_GCC_64bit-Debug/XMLParser/ -lXMLParser
+    LIBS += -L$$PWD/../../../build-spnp_projects-Desktop_Qt_5_4_1_GCC_64bit-Debug/PetriWidget/ -lPetriWidget
 }
 
 win32{
