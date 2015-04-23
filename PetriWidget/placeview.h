@@ -26,7 +26,7 @@ protected:
     void mouseReleaseEvent(QGraphicsSceneMouseEvent *event) Q_DECL_OVERRIDE;
 
 private:
-    PetriWidget *graph;
+    PetriWidget *parentGraph;
 
     static const int RADIUS;
 };

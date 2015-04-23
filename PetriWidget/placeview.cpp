@@ -3,7 +3,7 @@
 #include <QPainter>
 #include <QStyleOption>
 
-PlaceView::PlaceView(PetriWidget *pWidget):graph(pWidget)
+PlaceView::PlaceView(PetriWidget *pWidget):parentGraph(pWidget)
 {
     setFlag(ItemIsMovable);
     setFlag(ItemSendsGeometryChanges);

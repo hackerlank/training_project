@@ -13,7 +13,7 @@ PetriWidget::PetriWidget(QWidget *parent) :
 
     QGraphicsScene *scene = new QGraphicsScene(this);
     scene->setItemIndexMethod(QGraphicsScene::NoIndex);
-    scene->setSceneRect(-200, -200, 400, 400);
+    //scene->setSceneRect(-200, -200, 400, 400);
     setScene(scene);
     setCacheMode(CacheBackground);
     setViewportUpdateMode(BoundingRectViewportUpdate);
@@ -22,11 +22,15 @@ PetriWidget::PetriWidget(QWidget *parent) :
 
     //scale(qreal(0.8), qreal(0.8));
 
-    setMinimumSize(400, 400);
     setWindowTitle(tr("Elastic Nodes"));
 
     PlaceView* pv = new PlaceView(this);
     scene->addItem(pv);
+
+    PlaceView* pv2 = new PlaceView(this);
+    pv2->setX(22);
+    pv2->setY(40);
+    scene->addItem(pv2);
 }
 
 PetriWidget::~PetriWidget()
@@ -42,6 +46,7 @@ void PetriWidget::createPlace(int x, int y)
                                      new spnp::Label(id, placeName, x, y),
                                      x, y);
     this->netData.add(p);
+
 }
 
 void PetriWidget::createTransition(int x, int y)
