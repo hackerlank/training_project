@@ -1,7 +1,7 @@
 #include "petriwidget.h"
 
-
 #include "placeview.h"
+#include "transitionview.h"
 
 PetriWidget::PetriWidget(QWidget *parent) :
     QGraphicsView(parent)
@@ -13,16 +13,13 @@ PetriWidget::PetriWidget(QWidget *parent) :
 
     QGraphicsScene *scene = new QGraphicsScene(this);
     scene->setItemIndexMethod(QGraphicsScene::NoIndex);
-    //scene->setSceneRect(-200, -200, 400, 400);
     setScene(scene);
     setCacheMode(CacheBackground);
     setViewportUpdateMode(BoundingRectViewportUpdate);
     setRenderHint(QPainter::Antialiasing);
     setTransformationAnchor(AnchorUnderMouse);
 
-    //scale(qreal(0.8), qreal(0.8));
-
-    setWindowTitle(tr("Elastic Nodes"));
+    //setWindowTitle(tr("Elastic Nodes"));
 
     PlaceView* pv = new PlaceView(this);
     scene->addItem(pv);
@@ -31,6 +28,11 @@ PetriWidget::PetriWidget(QWidget *parent) :
     pv2->setX(22);
     pv2->setY(40);
     scene->addItem(pv2);
+
+    TransitionView *tv = new TransitionView(this);
+    tv->setX(10);
+    tv->setY(20);
+    scene->addItem(tv);
 }
 
 PetriWidget::~PetriWidget()

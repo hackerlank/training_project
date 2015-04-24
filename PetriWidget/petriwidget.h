@@ -11,7 +11,6 @@ class PETRIWIDGET_PUBLIC PetriWidget: public QGraphicsView
     Q_OBJECT
 public:
     PetriWidget(QWidget *parent);
-
     ~PetriWidget();
 
     void createPlace(int x, int y);
