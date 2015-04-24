@@ -1,11 +1,9 @@
 #ifndef PLACEVIEW_H
 #define PLACEVIEW_H
 
-#include <QGraphicsItem>
-#include <QGraphicsWidget>
+#include "moveable.h"
 
-class PetriWidget;
-class PlaceView : public QGraphicsItem
+class PlaceView : public Moveable
 {
 public:
     PlaceView(PetriWidget *pWidget);
@@ -13,22 +11,12 @@ public:
 
     enum { Type = UserType + 1 };
 
-    int type() const Q_DECL_OVERRIDE { return Type; }
+    int type() const override { return Type; }
 
-    QRectF boundingRect() const Q_DECL_OVERRIDE;
-    QPainterPath shape() const Q_DECL_OVERRIDE;
-    void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) Q_DECL_OVERRIDE;
+    QPainterPath shape() const override;
 
 protected:
-    QVariant itemChange(GraphicsItemChange change, const QVariant &value) Q_DECL_OVERRIDE;
-
-    void mousePressEvent(QGraphicsSceneMouseEvent *event) Q_DECL_OVERRIDE;
-    void mouseReleaseEvent(QGraphicsSceneMouseEvent *event) Q_DECL_OVERRIDE;
-
-private:
-    PetriWidget *parentGraph;
-
-    static const int RADIUS;
+    virtual void paintDraw(QPainter *painter) override;
 };
 
 #endif // PLACEVIEW_H
