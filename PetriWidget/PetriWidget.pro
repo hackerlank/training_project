@@ -14,18 +14,18 @@ TEMPLATE = lib
 
 DEFINES += PETRIWIDGET_LIBRARY
 
-SOURCES += transitionview.cpp \
-    petriwidget.cpp \
-    placeview.cpp \
-    moveable.cpp \
+SOURCES += petriwidget.cpp \
+    view/moveable.cpp \
+    view/placeview.cpp \
+    view/transitionview.cpp
 
 
 HEADERS += \
     petriwidget.h\
     petriwidget_global.h \
-    placeview.h \
-    moveable.h \
-    transitionview.h
+    view/moveable.h \
+    view/placeview.h \
+    view/transitionview.h
 
 unix {
     target.path = /usr/lib

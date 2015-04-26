@@ -10,6 +10,18 @@ class PETRIWIDGET_PUBLIC PetriWidget: public QGraphicsView
 {
     Q_OBJECT
 public:
+    enum InputState
+    {
+        Select,
+        Place,
+        FluidPlace,
+        ImmediateTransition,
+        TimedTransition,
+        Arc,
+        FluidArc,
+        Inhibitor
+    };
+
     PetriWidget(QWidget *parent);
     ~PetriWidget();
 
@@ -23,6 +35,11 @@ public:
 
     void itemMoved();
 
+    void clear();
+
+    InputState getCurrentState();
+    void setCurrentState(InputState state);
+
 public slots:
     void zoomIn();
     void zoomOut();
@@ -33,6 +50,8 @@ protected:
     void wheelEvent(QWheelEvent *event) Q_DECL_OVERRIDE;
 #endif
     void scaleView(qreal scaleFactor);
+
+    InputState currentState;
 
 private:
     spnp::Net netData;

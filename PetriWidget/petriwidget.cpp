@@ -1,7 +1,7 @@
 #include "petriwidget.h"
 
-#include "placeview.h"
-#include "transitionview.h"
+#include "view/placeview.h"
+#include "view/transitionview.h"
 
 PetriWidget::PetriWidget(QWidget *parent) :
     QGraphicsView(parent)
@@ -87,6 +87,21 @@ void PetriWidget::removeTransition(int id)
 void PetriWidget::itemMoved()
 {
     //atualizar posição dos arcos
+}
+
+void PetriWidget::clear()
+{
+    this->scene()->clear();
+}
+
+PetriWidget::InputState PetriWidget::getCurrentState()
+{
+    return this->currentState;
+}
+
+void PetriWidget::setCurrentState(PetriWidget::InputState state)
+{
+    this->currentState = state;
 }
 
 void PetriWidget::zoomIn()
