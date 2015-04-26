@@ -17,7 +17,8 @@ DEFINES += PETRIWIDGET_LIBRARY
 SOURCES += petriwidget.cpp \
     view/moveable.cpp \
     view/placeview.cpp \
-    view/transitionview.cpp
+    view/transitionview.cpp \
+    model/facade.cpp
 
 
 HEADERS += \
@@ -25,7 +26,8 @@ HEADERS += \
     petriwidget_global.h \
     view/moveable.h \
     view/placeview.h \
-    view/transitionview.h
+    view/transitionview.h \
+    model/facade.h
 
 unix {
     target.path = /usr/lib
