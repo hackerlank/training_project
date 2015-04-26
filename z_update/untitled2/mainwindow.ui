@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>719</width>
-    <height>429</height>
+    <height>475</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -17,7 +17,7 @@
    <widget class="QWidget" name="layoutWidget">
     <property name="geometry">
      <rect>
-      <x>10</x>
+      <x>440</x>
       <y>10</y>
       <width>258</width>
       <height>171</height>
@@ -35,16 +35,6 @@
       <widget class="QTextEdit" name="textEdit"/>
      </item>
     </layout>
-   </widget>
-   <widget class="PetriWidget" name="widget" native="true">
-    <property name="geometry">
-     <rect>
-      <x>280</x>
-      <y>20</y>
-      <width>331</width>
-      <height>271</height>
-     </rect>
-    </property>
    </widget>
    <widget class="QGroupBox" name="groupBox">
     <property name="geometry">
@@ -239,7 +229,63 @@ QGroupBox::title {
      </item>
     </layout>
    </widget>
+   <widget class="PetriWidget" name="widget" native="true">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>30</y>
+      <width>371</width>
+      <height>291</height>
+     </rect>
+    </property>
+   </widget>
   </widget>
+  <widget class="QMenuBar" name="menuBar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>719</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menuArquivo">
+    <property name="title">
+     <string>&amp;arquivo</string>
+    </property>
+    <widget class="QMenu" name="menu_novo">
+     <property name="title">
+      <string>&amp;novo</string>
+     </property>
+     <addaction name="action_projeto"/>
+     <addaction name="action_rede"/>
+    </widget>
+    <addaction name="menu_novo"/>
+   </widget>
+   <addaction name="menuArquivo"/>
+  </widget>
+  <widget class="QToolBar" name="toolBar">
+   <property name="windowTitle">
+    <string>toolBar</string>
+   </property>
+   <attribute name="toolBarArea">
+    <enum>TopToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak">
+    <bool>false</bool>
+   </attribute>
+  </widget>
+  <widget class="QStatusBar" name="statusBar"/>
+  <action name="action_projeto">
+   <property name="text">
+    <string>&amp;projeto</string>
+   </property>
+  </action>
+  <action name="action_rede">
+   <property name="text">
+    <string>&amp;rede</string>
+   </property>
+  </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <customwidgets>
