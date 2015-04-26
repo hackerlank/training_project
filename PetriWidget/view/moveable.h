@@ -3,9 +3,10 @@
 
 #include <QGraphicsItem>
 #include <QGraphicsWidget>
+#include "petriwidget_global.h"
 
 class PetriWidget;
-class Moveable : public QGraphicsItem
+class PETRIWIDGET_PUBLIC Moveable : public QGraphicsItem
 {
 public:
     Moveable(PetriWidget *pWidget);

@@ -3,7 +3,7 @@
 
 #include "moveable.h"
 
-class PlaceView : public Moveable
+class PETRIWIDGET_PUBLIC PlaceView : public Moveable
 {
 public:
     PlaceView(PetriWidget *pWidget);

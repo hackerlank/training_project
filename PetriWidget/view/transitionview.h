@@ -3,7 +3,7 @@
 
 #include "moveable.h"
 
-class TransitionView : public Moveable
+class PETRIWIDGET_PUBLIC TransitionView : public Moveable
 {
 public:
     TransitionView(PetriWidget *pWidget);
