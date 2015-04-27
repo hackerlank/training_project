@@ -34,7 +34,7 @@ bool Facade::removeProject(int id, std::string name)
     for(int i=0; i<size; ++i)
     {
         spnp::Project* p = this->projects->at(i);
-        if(p->id == id && p->getName() == name())
+        if(p->id == id && p->getName() == name)
         {
             this->projects->erase(this->projects->begin()+1);
             return true;
@@ -43,13 +43,13 @@ bool Facade::removeProject(int id, std::string name)
     return false;
 }
 
-spnp::Project Facade::getProject(int id, std::string name)
+spnp::Project* Facade::getProject(int id, std::string name)
 {
     int size = this->projects->size();
     for(int i=0; i<size; ++i)
     {
         spnp::Project* p = this->projects->at(i);
-        if(p->id == id && p->getName() == name())
+        if(p->id == id && p->getName() == name)
         {
             return p;
         }

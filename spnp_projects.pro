@@ -5,4 +5,5 @@ SUBDIRS += \
     SPNPClasses \
     HighLighter \
     SaveLoadFile \
-    PetriWidget
+    PetriWidget \
+    SPNP-NewGui

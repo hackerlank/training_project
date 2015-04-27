@@ -13,7 +13,7 @@ public:
 
     bool addProject(spnp::Project* p);
     bool removeProject(int id, std::string name);
-    spnp::Project getProject(int id, std::string name);
+    spnp::Project* getProject(int id, std::string name);
     bool updateProject(spnp::Project* p);
 
 private:
