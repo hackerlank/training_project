@@ -6,7 +6,7 @@
 #include "petriwidget_global.h"
 
 class PetriWidget;
-class PETRIWIDGET_PUBLIC Moveable : public QGraphicsItem
+class PW_PUBLIC Moveable : public QGraphicsItem
 {
 public:
     Moveable(PetriWidget *pWidget);

@@ -89,19 +89,10 @@ void PetriWidget::itemMoved()
     //atualizar posição dos arcos
 }
 
-void PetriWidget::clear()
+void PetriWidget::reset()
 {
-    this->scene()->clear();
-}
-
-PetriWidget::InputState PetriWidget::getCurrentState()
-{
-    return this->currentState;
-}
-
-void PetriWidget::setCurrentState(PetriWidget::InputState state)
-{
-    this->currentState = state;
+    this->clear();
+    this->updateIds();
 }
 
 void PetriWidget::zoomIn()
@@ -189,4 +180,9 @@ int PetriWidget::getNextTransition()
 int PetriWidget::getNextArc()
 {
     return this->idArc++;
+}
+
+void PetriWidget::clear()
+{
+    this->scene()->clear();
 }

@@ -5,13 +5,13 @@
 
 #ifdef WINDOWS
     #ifdef PETRIWIDGET_LIBRARY
-        #define PETRIWIDGET_PUBLIC __declspec(dllexport)
+        #define PW_PUBLIC __declspec(dllexport)
     #else
-        #define PETRIWIDGET_PUBLIC __declspec(dllimport)
+        #define PW_PUBLIC __declspec(dllimport)
     #endif
     #define DEPRECATED(func) __declspec(deprecated) func
 #elif LINUX
-    #define PETRIWIDGET_PUBLIC
+    #define PW_PUBLIC
     #define DEPRECATED(func) func __attribute__ ((deprecated))
 #endif
 

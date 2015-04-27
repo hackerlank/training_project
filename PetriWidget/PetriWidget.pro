@@ -18,7 +18,8 @@ SOURCES += petriwidget.cpp \
     view/moveable.cpp \
     view/placeview.cpp \
     view/transitionview.cpp \
-    model/facade.cpp
+    petributtons.cpp \
+    petrieditor.cpp
 
 
 HEADERS += \
@@ -27,7 +28,8 @@ HEADERS += \
     view/moveable.h \
     view/placeview.h \
     view/transitionview.h \
-    model/facade.h
+    petributtons.h \
+    petrieditor.h
 
 unix {
     target.path = /usr/lib
@@ -52,3 +54,10 @@ DEPENDPATH += $$PWD/../SPNPClasses
 
 INCLUDEPATH += $$PWD/../XMLParser
 DEPENDPATH += $$PWD/../XMLParser
+
+FORMS += \
+    petributtons.ui \
+    petrieditor.ui
+
+RESOURCES += \
+    imgs.qrc

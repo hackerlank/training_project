@@ -6,22 +6,10 @@
 #include "petriwidget_global.h"
 #include "objs/net.h"
 
-class PETRIWIDGET_PUBLIC PetriWidget: public QGraphicsView
+class PW_PUBLIC PetriWidget: public QGraphicsView
 {
     Q_OBJECT
 public:
-    enum InputState
-    {
-        Select,
-        Place,
-        FluidPlace,
-        ImmediateTransition,
-        TimedTransition,
-        Arc,
-        FluidArc,
-        Inhibitor
-    };
-
     PetriWidget(QWidget *parent);
     ~PetriWidget();
 
@@ -35,11 +23,7 @@ public:
 
     void itemMoved();
 
-    void clear();
-
-    InputState getCurrentState();
-    void setCurrentState(InputState state);
-
+    void reset();
 public slots:
     void zoomIn();
     void zoomOut();
@@ -50,8 +34,6 @@ protected:
     void wheelEvent(QWheelEvent *event) Q_DECL_OVERRIDE;
 #endif
     void scaleView(qreal scaleFactor);
-
-    InputState currentState;
 
 private:
     spnp::Net netData;
@@ -65,6 +47,8 @@ private:
     int getNextPlace();
     int getNextTransition();
     int getNextArc();
+
+    void clear();
 };
 
 #endif // PETRIWIDGET_H
