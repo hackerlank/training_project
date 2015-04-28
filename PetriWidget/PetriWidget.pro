@@ -17,7 +17,8 @@ DEFINES += PETRIWIDGET_LIBRARY
 SOURCES += petriwidget.cpp \
     view/moveable.cpp \
     view/placeview.cpp \
-    view/transitionview.cpp
+    view/transitionview.cpp \
+    petributtons.cpp
 
 
 HEADERS += \
@@ -25,7 +26,8 @@ HEADERS += \
     petriwidget_global.h \
     view/moveable.h \
     view/placeview.h \
-    view/transitionview.h
+    view/transitionview.h \
+    petributtons.h
 
 unix {
     target.path = /usr/lib
@@ -50,8 +52,6 @@ DEPENDPATH += $$PWD/../SPNPClasses
 
 INCLUDEPATH += $$PWD/../XMLParser
 DEPENDPATH += $$PWD/../XMLParser
-
-FORMS +=
 
 RESOURCES += \
     imgs.qrc
