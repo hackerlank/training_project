@@ -12,10 +12,3 @@ MainWindow::~MainWindow()
 {
     delete ui;
 }
-
-void MainWindow::on_actionSa_ir_triggered()
-{
-    //TODO verificar se salvou
-
-    exit(EXIT_SUCCESS);
-}

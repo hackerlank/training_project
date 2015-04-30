@@ -6,38 +6,24 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>775</width>
-    <height>493</height>
+    <width>535</width>
+    <height>300</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
-  <widget class="QWidget" name="centralWidget">
-   <widget class="PetriButtons" name="groupBox">
-    <property name="geometry">
-     <rect>
-      <x>300</x>
-      <y>250</y>
-      <width>120</width>
-      <height>80</height>
-     </rect>
-    </property>
-    <property name="title">
-     <string>GroupBox</string>
-    </property>
-   </widget>
-  </widget>
+  <widget class="QWidget" name="centralWidget"/>
   <widget class="QMenuBar" name="menuBar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>775</width>
-     <height>21</height>
+     <width>535</width>
+     <height>27</height>
     </rect>
    </property>
-   <widget class="QMenu" name="menuArquivo">
+   <widget class="QMenu" name="menu_arquivo">
     <property name="title">
      <string>&amp;arquivo</string>
     </property>
@@ -55,50 +41,43 @@
      <addaction name="action_rede_2"/>
      <addaction name="action_projeto_2"/>
     </widget>
-    <widget class="QMenu" name="menuIm_primir">
+    <widget class="QMenu" name="menu_salvar_rede">
      <property name="title">
-      <string>im&amp;primir</string>
+      <string>&amp;salvar</string>
      </property>
      <addaction name="action_rede_3"/>
      <addaction name="action_projeto_3"/>
     </widget>
+    <widget class="QMenu" name="menuSalvar_como">
+     <property name="title">
+      <string>salvar ... &amp;como</string>
+     </property>
+     <addaction name="action_rede_4"/>
+     <addaction name="action_projeto_4"/>
+    </widget>
     <addaction name="menu_novo"/>
     <addaction name="menu_abrir"/>
-    <addaction name="actionSalvar"/>
-    <addaction name="actionSalvar_como"/>
+    <addaction name="menu_salvar_rede"/>
+    <addaction name="menuSalvar_como"/>
     <addaction name="separator"/>
-    <addaction name="actionFechar_rede"/>
-    <addaction name="actionFechar_projeto"/>
+    <addaction name="actionFechar"/>
     <addaction name="separator"/>
-    <addaction name="menuIm_primir"/>
+    <addaction name="action_propriedades"/>
     <addaction name="separator"/>
-    <addaction name="actionSa_ir"/>
+    <addaction name="action_sair"/>
    </widget>
-   <widget class="QMenu" name="menuEdita">
+   <widget class="QMenu" name="menuAaa">
     <property name="title">
-     <string>a&amp;nálise</string>
+     <string>aaa</string>
     </property>
    </widget>
    <widget class="QMenu" name="menuSobre">
     <property name="title">
-     <string>a&amp;juda</string>
+     <string>sobre</string>
     </property>
-    <addaction name="action_como_usar"/>
-    <addaction name="separator"/>
-    <addaction name="actionSobre_spnp"/>
-    <addaction name="actionS_obre_spnp_new_gui"/>
    </widget>
-   <widget class="QMenu" name="menu_editar">
-    <property name="title">
-     <string>&amp;editar</string>
-    </property>
-    <addaction name="action_configura_es"/>
-    <addaction name="separator"/>
-    <addaction name="action_vari_veis"/>
-   </widget>
-   <addaction name="menuArquivo"/>
-   <addaction name="menu_editar"/>
-   <addaction name="menuEdita"/>
+   <addaction name="menu_arquivo"/>
+   <addaction name="menuAaa"/>
    <addaction name="menuSobre"/>
   </widget>
   <widget class="QToolBar" name="mainToolBar">
@@ -130,26 +109,6 @@
     <string>&amp;projeto</string>
    </property>
   </action>
-  <action name="actionFechar_rede">
-   <property name="text">
-    <string>fechar &amp;rede</string>
-   </property>
-  </action>
-  <action name="actionFechar_projeto">
-   <property name="text">
-    <string>f&amp;echar projeto</string>
-   </property>
-  </action>
-  <action name="actionSalvar">
-   <property name="text">
-    <string>&amp;salvar</string>
-   </property>
-  </action>
-  <action name="actionSalvar_como">
-   <property name="text">
-    <string>salvar &amp;como</string>
-   </property>
-  </action>
   <action name="action_rede_3">
    <property name="text">
     <string>&amp;rede</string>
@@ -160,46 +119,33 @@
     <string>&amp;projeto</string>
    </property>
   </action>
-  <action name="action_como_usar">
+  <action name="action_rede_4">
    <property name="text">
-    <string>&amp;como usar</string>
+    <string>&amp;rede</string>
    </property>
   </action>
-  <action name="actionSobre_spnp">
+  <action name="action_projeto_4">
    <property name="text">
-    <string>&amp;sobre spnp</string>
+    <string>&amp;projeto</string>
    </property>
   </action>
-  <action name="actionS_obre_spnp_new_gui">
+  <action name="actionFechar">
    <property name="text">
-    <string>s&amp;obre spnp - new gui</string>
+    <string>&amp;fechar</string>
    </property>
   </action>
-  <action name="actionSa_ir">
+  <action name="action_propriedades">
    <property name="text">
-    <string>sa&amp;ir</string>
+    <string>&amp;propriedades</string>
    </property>
   </action>
-  <action name="action_configura_es">
+  <action name="action_sair">
    <property name="text">
-    <string>&amp;configurações</string>
-   </property>
-  </action>
-  <action name="action_vari_veis">
-   <property name="text">
-    <string>&amp;variáveis</string>
+    <string>&amp;sair</string>
    </property>
   </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
- <customwidgets>
-  <customwidget>
-   <class>PetriButtons</class>
-   <extends>QGroupBox</extends>
-   <header>petributtons.h</header>
-   <container>1</container>
-  </customwidget>
- </customwidgets>
  <resources/>
  <connections/>
 </ui>

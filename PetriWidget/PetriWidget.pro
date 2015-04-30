@@ -20,7 +20,6 @@ SOURCES += petriwidget.cpp \
     view/transitionview.cpp \
     petributtons.cpp
 
-
 HEADERS += \
     petriwidget.h\
     petriwidget_global.h \
@@ -33,8 +32,8 @@ unix {
     target.path = /usr/lib
     INSTALLS += target
     DEFINES += LINUX
-    LIBS += -L$$OUT_PWD/../SPNPClasses/ -lSPNPClasses
     LIBS += -L$$OUT_PWD/../XMLParser/ -lXMLParser
+    LIBS += -L$$OUT_PWD/../SPNPClasses/ -lSPNPClasses
 }
 
 win32{

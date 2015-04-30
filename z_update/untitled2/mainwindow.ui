@@ -229,13 +229,23 @@ QGroupBox::title {
      </item>
     </layout>
    </widget>
-   <widget class="PetriWidget" name="widget" native="true">
+   <widget class="PetriWidget" name="widget">
     <property name="geometry">
      <rect>
       <x>30</x>
       <y>30</y>
       <width>371</width>
       <height>291</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="PetriButtons" name="groupBox_2">
+    <property name="geometry">
+     <rect>
+      <x>470</x>
+      <y>230</y>
+      <width>120</width>
+      <height>80</height>
      </rect>
     </property>
    </widget>
@@ -246,7 +256,7 @@ QGroupBox::title {
      <x>0</x>
      <y>0</y>
      <width>719</width>
-     <height>21</height>
+     <height>27</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuArquivo">
@@ -290,8 +300,14 @@ QGroupBox::title {
  <layoutdefault spacing="6" margin="11"/>
  <customwidgets>
   <customwidget>
+   <class>PetriButtons</class>
+   <extends>QGroupBox</extends>
+   <header>petributtons.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
    <class>PetriWidget</class>
-   <extends>QWidget</extends>
+   <extends>QGraphicsView</extends>
    <header>petriwidget.h</header>
    <container>1</container>
   </customwidget>
