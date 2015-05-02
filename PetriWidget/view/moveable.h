@@ -17,6 +17,7 @@ public:
 
     QRectF boundingRect() const override;
     QPainterPath shape() const override = 0;
+    virtual std::string getTypeName() const = 0;
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) override;
 
 protected:

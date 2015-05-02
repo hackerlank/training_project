@@ -3,13 +3,15 @@
 #include "view/placeview.h"
 #include "view/transitionview.h"
 
+#include <QMenu>
+
 PetriWidget::PetriWidget(QWidget *parent) :
     QGraphicsView(parent)
 {
     //ui->setupUi(this);
     updateIds();
 
-    this->createPlace(0,0);
+    //this->createPlace(0,0);
 
     QGraphicsScene *scene = new QGraphicsScene(this);
     scene->setItemIndexMethod(QGraphicsScene::NoIndex);
@@ -33,6 +35,12 @@ PetriWidget::PetriWidget(QWidget *parent) :
     tv->setX(10);
     tv->setY(20);
     scene->addItem(tv);
+
+    this->currentState = spnp::CurrentState::ARROW;
+
+    this->setContextMenuPolicy(Qt::CustomContextMenu);
+    connect(this, SIGNAL(customContextMenuRequested(const QPoint&)),
+            this, SLOT(showContextMenu(const QPoint&)));
 }
 
 PetriWidget::~PetriWidget()
@@ -40,33 +48,48 @@ PetriWidget::~PetriWidget()
     //delete ui;
 }
 
-void PetriWidget::createPlace(int x, int y)
+void PetriWidget::createPlace(QMouseEvent *evt)
 {
-    int id = getNextPlace();
+    /*int id = getNextPlace();
     std::string placeName = "p_"+std::to_string(id);
     spnp::Place *p = new spnp::Place(id, placeName, 0,
-                                     new spnp::Label(id, placeName, x, y),
-                                     x, y);
-    this->netData.add(p);
+                                     new spnp::Label(id, placeName, evt, y),
+                                     evt, y);
+    this->netData.add(p);*/
 
 }
 
-void PetriWidget::createTransition(int x, int y)
+void PetriWidget::createFluidPlace(QMouseEvent *evt)
 {
-    int id = getNextTransition();
+
+}
+
+void PetriWidget::createTimedTransition(QMouseEvent *evt)
+{
+    /*int id = getNextTransition();
     std::string transitionName = "t_"+std::to_string(id);
-    spnp::Transition *t = new spnp::Transition(id, transitionName,"1", x, y);
+    spnp::Transition *t = new spnp::Transition(id, transitionName,"1", evt, y);
 
-    this->netData.add(t);
+    this->netData.add(t);*/
 }
 
-void PetriWidget::createArc(int idP, int idT, bool fromPtoT)
+void PetriWidget::createImmediateTransition(QMouseEvent *evt)
 {
-    int id = getNextArc();
-    std::string arcName = "a_"+std::to_string(id);
-    spnp::Arc *a = new spnp::Arc(id, arcName, idP, idT, fromPtoT);
 
-    this->netData.add(a);
+}
+
+void PetriWidget::createArc(QMouseEvent *evt)
+{
+    /*int id = getNextArc();
+    std::string arcName = "a_"+std::to_string(id);
+    spnp::Arc *a = new spnp::Arc(id, arcName, evt, idT, fromPtoT);
+
+    this->netData.add(a);*/
+}
+
+void PetriWidget::createInhibitor(QMouseEvent *evt)
+{
+
 }
 
 void PetriWidget::removePlace(int id)
@@ -105,6 +128,29 @@ void PetriWidget::zoomOut()
     scaleView(1 / qreal(1.2));
 }
 
+void PetriWidget::showContextMenu(const QPoint &pos)
+{
+    // for most widgets
+    QPoint globalPos = this->mapToGlobal(pos);
+    // for QAbstractScrollArea and derived classes you would use:
+    // QPoint globalPos = myWidget->viewport()->mapToGlobal(pos);
+
+    QMenu myMenu;
+    myMenu.addAction(tr("Menu Item 1"));
+    myMenu.addAction(tr("Menu Item 2"));
+    myMenu.addAction(tr("Menu Item 3"));
+
+    QAction* selectedItem = myMenu.exec(globalPos);
+    if (selectedItem)
+    {
+        // something was chosen, do stuff
+    }
+    else
+    {
+        // nothing was chosen
+    }
+}
+
 void PetriWidget::keyPressEvent(QKeyEvent *event)
 {
     switch (event->key())
@@ -117,6 +163,70 @@ void PetriWidget::keyPressEvent(QKeyEvent *event)
         break;
     default:
         QGraphicsView::keyPressEvent(event);
+    }
+}
+
+//http://www.qtcentre.org/threads/15004-QGraphicsView-Mouse-Events
+void PetriWidget::mousePressEvent(QMouseEvent *event)
+{
+    Moveable* moveable = static_cast<Moveable*>(this->itemAt(event->pos()));
+    if(moveable == nullptr) return;
+    std::string type = moveable->getTypeName();
+
+    if(event->button() == Qt::LeftButton)
+    {
+        switch(this->currentState)
+        {
+        case spnp::CurrentState::ARC:
+
+            break;
+        case spnp::CurrentState::INHIBITOR:
+
+            break;
+        case spnp::CurrentState::ARROW:
+            QGraphicsView::mousePressEvent(event);
+            break;
+
+        }
+    }
+}
+
+void PetriWidget::mouseReleaseEvent(QMouseEvent *event)
+{
+    Moveable* moveable = static_cast<Moveable*>(this->itemAt(event->pos()));
+    if(moveable == nullptr) return;
+    std::string type = moveable->getTypeName();
+
+    if(event->button() == Qt::LeftButton)
+    {
+        switch(this->currentState)
+        {
+        case spnp::CurrentState::ARC:
+
+            break;
+        case spnp::CurrentState::ARROW:
+            QGraphicsView::mousePressEvent(event);
+            break;
+        case spnp::CurrentState::FPLACE:
+
+            break;
+        case spnp::CurrentState::INHIBITOR:
+
+            break;
+        case spnp::CurrentState::ITRANS:
+
+            break;
+        case spnp::CurrentState::PLACE:
+
+            break;
+        case spnp::CurrentState::TTRANS:
+            this->createTimedTransition(event);
+            break;
+        }
+    }
+    else if(event->button() == Qt::RightButton)
+    {
+
     }
 }
 
@@ -185,4 +295,9 @@ int PetriWidget::getNextArc()
 void PetriWidget::clear()
 {
     this->scene()->clear();
+}
+
+void PetriWidget::setCurrentState(spnp::CurrentState state)
+{
+    this->currentState = state;
 }

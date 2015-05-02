@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>PetriEditor</class>
+ <widget class="QWidget" name="PetriEditor">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>562</width>
+    <height>389</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <layout class="QGridLayout" name="gridLayout">
+   <item row="1" column="0">
+    <widget class="PetriButtons" name="petri_buttons" native="true">
+     <property name="minimumSize">
+      <size>
+       <width>388</width>
+       <height>88</height>
+      </size>
+     </property>
+     <property name="maximumSize">
+      <size>
+       <width>388</width>
+       <height>88</height>
+      </size>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="0">
+    <widget class="PetriWidget" name="petri_view"/>
+   </item>
+  </layout>
+ </widget>
+ <customwidgets>
+  <customwidget>
+   <class>PetriButtons</class>
+   <extends>QWidget</extends>
+   <header>petributtons.h</header>
+   <container>1</container>
+   <slots>
+    <signal>arrow()</signal>
+    <signal>place()</signal>
+    <signal>fplace()</signal>
+    <signal>arc()</signal>
+    <signal>ttrans()</signal>
+    <signal>itrans()</signal>
+    <signal>inhibitor()</signal>
+   </slots>
+  </customwidget>
+  <customwidget>
+   <class>PetriWidget</class>
+   <extends>QGraphicsView</extends>
+   <header>petriwidget.h</header>
+  </customwidget>
+ </customwidgets>
+ <resources/>
+ <connections/>
+</ui>

@@ -5,6 +5,7 @@
 
 #include "petriwidget_global.h"
 #include "objs/net.h"
+#include "states.h"
 
 class PW_PUBLIC PetriWidget: public QGraphicsView
 {
@@ -13,9 +14,12 @@ public:
     PetriWidget(QWidget *parent);
     ~PetriWidget();
 
-    void createPlace(int x, int y);
-    void createTransition(int x, int y);
-    void createArc(int idP, int idT, bool fromPtoT);
+    void createPlace(QMouseEvent* evt);
+    void createFluidPlace(QMouseEvent* evt);
+    void createTimedTransition(QMouseEvent *evt);
+    void createImmediateTransition(QMouseEvent *evt);
+    void createArc(QMouseEvent *evt);
+    void createInhibitor(QMouseEvent *evt);
 
     void removePlace(int id);
     void removeArc(int id);
@@ -24,12 +28,18 @@ public:
     void itemMoved();
 
     void reset();
+
+    void setCurrentState(spnp::CurrentState state);
 public slots:
     void zoomIn();
     void zoomOut();
+    void showContextMenu(const QPoint& pos);
 
 protected:
     void keyPressEvent(QKeyEvent *event) Q_DECL_OVERRIDE;
+    void mousePressEvent(QMouseEvent *event) Q_DECL_OVERRIDE;
+    void mouseReleaseEvent(QMouseEvent *event) Q_DECL_OVERRIDE;
+
 #ifndef QT_NO_WHEELEVENT
     void wheelEvent(QWheelEvent *event) Q_DECL_OVERRIDE;
 #endif
@@ -49,6 +59,8 @@ private:
     int getNextArc();
 
     void clear();
+
+    spnp::CurrentState currentState;
 };
 
 #endif // PETRIWIDGET_H

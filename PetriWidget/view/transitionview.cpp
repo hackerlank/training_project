@@ -20,6 +20,11 @@ QPainterPath TransitionView::shape() const
     return path;
 }
 
+std::string TransitionView::getTypeName() const
+{
+    return "timed_trans";
+}
+
 void TransitionView::paintDraw(QPainter *painter)
 {
     QRect r(-_W_/2, -_H_/2, _W_, _H_);
