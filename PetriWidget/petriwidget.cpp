@@ -205,7 +205,7 @@ void PetriWidget::mouseReleaseEvent(QMouseEvent *event)
 
             break;
         case spnp::CurrentState::ARROW:
-            QGraphicsView::mousePressEvent(event);
+            QGraphicsView::mouseReleaseEvent(event);
             break;
         case spnp::CurrentState::FPLACE:
 
