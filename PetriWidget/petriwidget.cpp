@@ -186,7 +186,14 @@ void PetriWidget::mousePressEvent(QMouseEvent *event)
         case spnp::CurrentState::ARROW:
             QGraphicsView::mousePressEvent(event);
             break;
-
+        case spnp::CurrentState::FPLACE:
+        case spnp::CurrentState::ITRANS:
+        case spnp::CurrentState::PLACE:
+        case spnp::CurrentState::TTRANS:
+            //do nothing
+            break;
+        default:
+            throw std::runtime_error("mouse press < petriwidget.cpp");
         }
     }
 }
@@ -222,6 +229,8 @@ void PetriWidget::mouseReleaseEvent(QMouseEvent *event)
         case spnp::CurrentState::TTRANS:
             this->createTimedTransition(event);
             break;
+        default:
+            throw std::runtime_error("mouse release < petriwidget.cpp");
         }
     }
     else if(event->button() == Qt::RightButton)
