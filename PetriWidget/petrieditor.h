@@ -10,7 +10,6 @@ class PetriEditor;
 
 class PW_PUBLIC PetriEditor : public QWidget
 {
-
     Q_OBJECT
 
 public:

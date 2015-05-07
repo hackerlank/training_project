@@ -8,6 +8,7 @@
 PetriWidget::PetriWidget(QWidget *parent) :
     QGraphicsView(parent)
 {
+    if(this->netData == nullptr) this->netData = new spnp::Net();
     //ui->setupUi(this);
     updateIds();
 
@@ -20,16 +21,6 @@ PetriWidget::PetriWidget(QWidget *parent) :
     setViewportUpdateMode(BoundingRectViewportUpdate);
     setRenderHint(QPainter::Antialiasing);
     setTransformationAnchor(AnchorUnderMouse);
-
-    //setWindowTitle(tr("Elastic Nodes"));
-
-    PlaceView* pv = new PlaceView(this);
-    scene->addItem(pv);
-
-    PlaceView* pv2 = new PlaceView(this);
-    pv2->setX(22);
-    pv2->setY(40);
-    scene->addItem(pv2);
 
     TransitionView *tv = new TransitionView(this);
     tv->setX(10);
@@ -50,18 +41,24 @@ PetriWidget::~PetriWidget()
 
 void PetriWidget::createPlace(QMouseEvent *evt)
 {
-    /*int id = getNextPlace();
+    int id = getNextPlace();
     std::string placeName = "p_"+std::to_string(id);
+    QPointF point = mapToScene(evt->pos());
     spnp::Place *p = new spnp::Place(id, placeName, 0,
-                                     new spnp::Label(id, placeName, evt, y),
-                                     evt, y);
-    this->netData.add(p);*/
+                                     new spnp::Label(id, placeName, point.x(), point.y()),
+                                     point.x(), point.y());
+    //this->netData.add(p);
+
+    PlaceView* pv = new PlaceView(this, p);
+    pv->setPos(point);
+
+    this->scene()->addItem(pv);
 
 }
 
 void PetriWidget::createFluidPlace(QMouseEvent *evt)
 {
-
+    (void)evt;
 }
 
 void PetriWidget::createTimedTransition(QMouseEvent *evt)
@@ -71,6 +68,7 @@ void PetriWidget::createTimedTransition(QMouseEvent *evt)
     spnp::Transition *t = new spnp::Transition(id, transitionName,"1", evt, y);
 
     this->netData.add(t);*/
+    (void)evt;
 }
 
 void PetriWidget::createImmediateTransition(QMouseEvent *evt)
@@ -89,22 +87,25 @@ void PetriWidget::createArc(QMouseEvent *evt)
 
 void PetriWidget::createInhibitor(QMouseEvent *evt)
 {
-
+    (void)evt;
 }
 
 void PetriWidget::removePlace(int id)
 {
-    this->netData.removePlace(id);
+    (void)id;
+    //this->netData.removePlace(id);
 }
 
 void PetriWidget::removeArc(int id)
 {
-    this->netData.removeArc(id);
+    (void)id;
+    //this->netData.removeArc(id);
 }
 
 void PetriWidget::removeTransition(int id)
 {
-    this->netData.removeTransition(id);
+    (void)id;
+    //this->netData.removeTransition(id);
 }
 
 void PetriWidget::itemMoved()
@@ -200,9 +201,10 @@ void PetriWidget::mousePressEvent(QMouseEvent *event)
 
 void PetriWidget::mouseReleaseEvent(QMouseEvent *event)
 {
-    Moveable* moveable = static_cast<Moveable*>(this->itemAt(event->pos()));
-    if(moveable == nullptr) return;
-    std::string type = moveable->getTypeName();
+    //Moveable* moveable = static_cast<Moveable*>(this->itemAt(event->pos()));
+    //if(moveable == nullptr) return;
+    /*std::string type = "";
+    if(moveable != nullptr) type = moveable->getTypeName();*/
 
     if(event->button() == Qt::LeftButton)
     {
@@ -224,7 +226,7 @@ void PetriWidget::mouseReleaseEvent(QMouseEvent *event)
 
             break;
         case spnp::CurrentState::PLACE:
-
+            this->createPlace(event);
             break;
         case spnp::CurrentState::TTRANS:
             this->createTimedTransition(event);
@@ -255,7 +257,7 @@ void PetriWidget::scaleView(qreal scaleFactor)
 
 void PetriWidget::updateIds()
 {
-    std::vector<spnp::Place*> *places = this->netData.getPlaces();
+    std::vector<spnp::Place*> *places = this->netData->getPlaces();
     int size = places->size();
     int maxId = 0;
     for(int i=0; i<size; ++i)
@@ -265,7 +267,7 @@ void PetriWidget::updateIds()
     }
     this->idPlace = maxId+1;
 
-    std::vector<spnp::Transition*> *transitions = this->netData.getTransitions();
+    std::vector<spnp::Transition*> *transitions = this->netData->getTransitions();
     size = transitions->size();
     maxId = 0;
     for(int i=0; i<size; ++i)
@@ -275,7 +277,7 @@ void PetriWidget::updateIds()
     }
     this->idTransition = maxId+1;
 
-    std::vector<spnp::Arc*> *arcs = this->netData.getArcs();
+    std::vector<spnp::Arc*> *arcs = this->netData->getArcs();
     size = arcs->size();
     maxId = 0;
     for(int i=0; i<size; ++i)

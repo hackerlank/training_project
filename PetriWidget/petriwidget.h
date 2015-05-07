@@ -46,7 +46,7 @@ protected:
     void scaleView(qreal scaleFactor);
 
 private:
-    spnp::Net netData;
+    spnp::Net* netData;
 
     int idPlace = 0;
     int idArc = 0;

@@ -2,14 +2,14 @@
 
 #include <QPainter>
 
-PlaceView::PlaceView(PetriWidget *pWidget):Moveable(pWidget)
+PlaceView::PlaceView(PetriWidget *pWidget, spnp::Place *place):Moveable(pWidget)
 {
-
+    this->place = place;
 }
 
 PlaceView::~PlaceView()
 {
-    //remover lugar
+    delete this->place;
 }
 
 QPainterPath PlaceView::shape() const
