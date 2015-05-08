@@ -4,15 +4,14 @@
 #include "view/immediatetransitionview.h"
 
 #include <QMenu>
+#include <QTimeLine>
 
 PetriWidget::PetriWidget(QWidget *parent) :
     QGraphicsView(parent)
 {
-    if(this->netData == nullptr) this->netData = new spnp::Net();
+    this->netData = new spnp::Net();
     //ui->setupUi(this);
     updateIds();
-
-    //this->createPlace(0,0);
 
     QGraphicsScene *scene = new QGraphicsScene(this);
     scene->setItemIndexMethod(QGraphicsScene::NoIndex);
@@ -22,12 +21,9 @@ PetriWidget::PetriWidget(QWidget *parent) :
     setRenderHint(QPainter::Antialiasing);
     setTransformationAnchor(AnchorUnderMouse);
 
-    /*ImmediateTransitionView *tv = new ImmediateTransitionView(this);
-    tv->setX(10);
-    tv->setY(20);
-    scene->addItem(tv);*/
 
     this->currentState = spnp::CurrentState::ARROW;
+    this->_numScheduledScalings = 0;
 
     this->setContextMenuPolicy(Qt::CustomContextMenu);
     connect(this, SIGNAL(customContextMenuRequested(const QPoint&)),
@@ -36,7 +32,7 @@ PetriWidget::PetriWidget(QWidget *parent) :
 
 PetriWidget::~PetriWidget()
 {
-    //delete ui;
+
 }
 
 void PetriWidget::createPlace(QMouseEvent *evt)
@@ -62,11 +58,6 @@ void PetriWidget::createFluidPlace(QMouseEvent *evt)
 
 void PetriWidget::createTimedTransition(QMouseEvent *evt)
 {
-    /*int id = getNextTransition();
-    std::string transitionName = "t_"+std::to_string(id);
-    spnp::Transition *t = new spnp::Transition(id, transitionName,"1", evt, y);
-
-    this->netData.add(t);*/
     (void)evt;
 }
 
@@ -89,11 +80,7 @@ void PetriWidget::createImmediateTransition(QMouseEvent *evt)
 
 void PetriWidget::createArc(QMouseEvent *evt)
 {
-    /*int id = getNextArc();
-    std::string arcName = "a_"+std::to_string(id);
-    spnp::Arc *a = new spnp::Arc(id, arcName, evt, idT, fromPtoT);
-
-    this->netData.add(a);*/
+    (void)evt;
 }
 
 void PetriWidget::createInhibitor(QMouseEvent *evt)
@@ -130,16 +117,6 @@ void PetriWidget::reset()
     this->updateIds();
 }
 
-void PetriWidget::zoomIn()
-{
-    scaleView(qreal(1.2));
-}
-
-void PetriWidget::zoomOut()
-{
-    scaleView(1 / qreal(1.2));
-}
-
 void PetriWidget::showContextMenu(const QPoint &pos)
 {
     // for most widgets
@@ -163,20 +140,35 @@ void PetriWidget::showContextMenu(const QPoint &pos)
     }
 }
 
-void PetriWidget::keyPressEvent(QKeyEvent *event)
+void PetriWidget::scalingTime(qreal x)
+{
+    qreal factor = 1.0+ qreal(_numScheduledScalings) / 300.0;
+    scale(factor, factor);
+}
+
+void PetriWidget::animFinished()
+{
+    if (_numScheduledScalings > 0)
+        _numScheduledScalings--;
+    else
+        _numScheduledScalings++;
+    sender()->~QObject();
+}
+
+/*void PetriWidget::keyPressEvent(QKeyEvent *event)
 {
     switch (event->key())
     {
     case Qt::Key_Plus:
-        zoomIn();
+        //zoomIn();
         break;
     case Qt::Key_Minus:
-        zoomOut();
+        //zoomOut();
         break;
     default:
         QGraphicsView::keyPressEvent(event);
     }
-}
+}*/
 
 //http://www.qtcentre.org/threads/15004-QGraphicsView-Mouse-Events
 void PetriWidget::mousePressEvent(QMouseEvent *event)
@@ -254,16 +246,20 @@ void PetriWidget::mouseReleaseEvent(QMouseEvent *event)
 
 void PetriWidget::wheelEvent(QWheelEvent *event)
 {
-    scaleView(pow((double)2, -event->delta() / 240.0));
-}
+    //scaleView(pow((double)2, -event->delta() / 240.0));
 
-void PetriWidget::scaleView(qreal scaleFactor)
-{
-    qreal factor = transform().scale(scaleFactor, scaleFactor).mapRect(QRectF(0, 0, 1, 1)).width();
-    if (factor < 0.07 || factor > 100)
-        return;
+    int numDegrees = event->delta() / 8;
+    int numSteps = numDegrees / 15; // see QWheelEvent documentation
+    _numScheduledScalings += numSteps;
+    if (_numScheduledScalings * numSteps < 0)
+        _numScheduledScalings = numSteps;
 
-    scale(scaleFactor, scaleFactor);
+    QTimeLine *anim = new QTimeLine(350, this);
+    anim->setUpdateInterval(20);
+
+    connect(anim, SIGNAL (valueChanged(qreal)), SLOT (scalingTime(qreal)));
+    connect(anim, SIGNAL (finished()), SLOT (animFinished()));
+    anim->start();
 }
 
 void PetriWidget::updateIds()

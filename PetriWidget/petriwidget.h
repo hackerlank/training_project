@@ -31,19 +31,18 @@ public:
 
     void setCurrentState(spnp::CurrentState state);
 public slots:
-    void zoomIn();
-    void zoomOut();
     void showContextMenu(const QPoint& pos);
+    void scalingTime(qreal x);
+    void animFinished();
 
 protected:
-    void keyPressEvent(QKeyEvent *event) Q_DECL_OVERRIDE;
+    //void keyPressEvent(QKeyEvent *event) Q_DECL_OVERRIDE;
     void mousePressEvent(QMouseEvent *event) Q_DECL_OVERRIDE;
     void mouseReleaseEvent(QMouseEvent *event) Q_DECL_OVERRIDE;
 
 #ifndef QT_NO_WHEELEVENT
     void wheelEvent(QWheelEvent *event) Q_DECL_OVERRIDE;
 #endif
-    void scaleView(qreal scaleFactor);
 
 private:
     spnp::Net* netData;
@@ -61,6 +60,8 @@ private:
     void clear();
 
     spnp::CurrentState currentState;
+
+    int _numScheduledScalings;
 };
 
 #endif // PETRIWIDGET_H

@@ -35,6 +35,9 @@ protected:
     QColor color_white;
 
     PetriWidget *parentGraph;
+
+private:
+    bool selected;
 };
 
 #endif // MOVEABLE_H

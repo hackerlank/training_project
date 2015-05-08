@@ -13,6 +13,7 @@ Moveable::Moveable(PetriWidget *pWidget):
 
     this->color_black = QColor(0,0,0,255);
     this->color_white = QColor(255, 255, 255, 255);
+    this->selected = false;
 }
 
 Moveable::~Moveable()
