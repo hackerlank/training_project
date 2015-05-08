@@ -2,12 +2,13 @@
 #define TRANSITIONVIEW_H
 
 #include "moveable.h"
+#include "objs/transition.h"
 
-class PW_PUBLIC TransitionView : public Moveable
+class PW_PUBLIC ImmediateTransitionView : public Moveable
 {
 public:
-    TransitionView(PetriWidget *pWidget);
-    ~TransitionView();
+    ImmediateTransitionView(PetriWidget *pWidget, spnp::Transition* transition);
+    ~ImmediateTransitionView();
 
     enum { Type = UserType + 2 };
 
@@ -17,6 +18,7 @@ public:
     virtual std::string getTypeName() const;
 protected:
     virtual void paintDraw(QPainter *painter) override;
+    spnp::Transition* transition;
 };
 
 #endif // TRANSITION_H
