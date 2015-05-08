@@ -2,6 +2,7 @@
 #define TRANSITION_H
 
 #include "abstractvisualdata.h"
+#include "objs/label.h"
 
 namespace spnp
 {
@@ -16,7 +17,7 @@ public:
     };
 
     Transition();
-    Transition(int id, std::string name, std::string priority, int x=0, int y=0);
+    Transition(int id, std::string name, std::string priority, Label *label=nullptr, int x=0, int y=0);
     virtual ~Transition();
     virtual XMLNode* toXML();
     virtual void fromXML(XMLNode *xml);
@@ -26,6 +27,7 @@ protected:
     std::string priority;
     std::string guard;
     ProbabilityType probType;
+    Label* label;
 
     //fazer
     bool isVertical;

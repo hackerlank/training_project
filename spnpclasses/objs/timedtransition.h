@@ -38,7 +38,9 @@ public:
 
     TimedTransition();
     TimedTransition(int id, std::string name,
-                    std::string priority, std::string rate="0.25",
+                    std::string priority,
+                    Label* label=nullptr,
+                    std::string rate="0.25",
                     Distribution distribution = Distribution::Exponential,
                     std::string distValue="", Policy policy = Policy::PreemptiveRepeatDifferent,
                     Affected affected = Affected::PRS, int x=0, int y=0);
@@ -54,7 +56,6 @@ private:
     Policy policy;
     Affected affected;
     virtual std::string getClassNodeName();
-
 };
 }
 

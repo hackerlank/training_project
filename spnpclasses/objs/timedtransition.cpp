@@ -7,12 +7,13 @@ spnp::TimedTransition::TimedTransition():Transition()
     this->distValue = "";
     this->policy = Policy::PreemptiveRepeatDifferent;
     this->affected = Affected::PRS;
+    this->label = new Label();
 }
 
-spnp::TimedTransition::TimedTransition(int id, std::string name, std::string priority, std::string rate,
+spnp::TimedTransition::TimedTransition(int id, std::string name, std::string priority, Label *label, std::string rate,
                                        Distribution distribution, std::string distValue,
                                        Policy policy, Affected affected, int x, int y)
-    :Transition(id, name, priority, x, y)
+    :Transition(id, name, priority, label, x, y)
 {
     this->rate = rate;
     this->distribution = distribution;
@@ -28,7 +29,7 @@ spnp::TimedTransition::~TimedTransition()
 
 XMLNode *spnp::TimedTransition::toXML()
 {
-    XMLNode* node = AbstractVisualData::toXML();
+    XMLNode* node = Transition::toXML();
     node->setAttribute("rate", this->rate);
     node->setAttribute("dist_value", this->distValue);
     node->setAttribute("dist", static_cast<int>(this->distribution));
@@ -38,7 +39,7 @@ XMLNode *spnp::TimedTransition::toXML()
 
 void spnp::TimedTransition::fromXML(XMLNode *xml)
 {
-    AbstractVisualData::fromXML(xml);
+    Transition::fromXML(xml);
     this->rate = xml->getAttributeS("rate");
     this->distValue= xml->getAttributeS("dist_value");
     this->distribution = static_cast<Distribution>(xml->getAttributeI("dist"));

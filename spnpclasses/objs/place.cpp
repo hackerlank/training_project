@@ -36,6 +36,9 @@ void spnp::Place::fromXML(XMLNode *xml)
     AbstractVisualData::fromXML(xml);
     this->tokens = xml->getAttributeD("tokens");
 
+    if(this->label != nullptr)
+        delete this->label;
+
     this->label = new Label();
     this->label->fromXML(xml->getChildAt(0));
 }
