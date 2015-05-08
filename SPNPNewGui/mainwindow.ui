@@ -6,31 +6,37 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>575</width>
-    <height>398</height>
+    <width>759</width>
+    <height>762</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>SpnpNewGui</string>
+  </property>
+  <property name="windowIcon">
+   <iconset resource="../PetriWidget/imgs.qrc">
+    <normaloff>:/icons/img/net.ico</normaloff>:/icons/img/net.ico</iconset>
   </property>
   <widget class="QWidget" name="mainWidget">
-   <widget class="PetriEditor" name="widget" native="true">
-    <property name="geometry">
-     <rect>
-      <x>30</x>
-      <y>30</y>
-      <width>491</width>
-      <height>271</height>
-     </rect>
-    </property>
-   </widget>
+   <layout class="QGridLayout" name="gridLayout">
+    <item row="0" column="0">
+     <widget class="PetriEditor" name="widget" native="true">
+      <property name="minimumSize">
+       <size>
+        <width>700</width>
+        <height>675</height>
+       </size>
+      </property>
+     </widget>
+    </item>
+   </layout>
   </widget>
   <widget class="QMenuBar" name="menuBar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>575</width>
+     <width>759</width>
      <height>27</height>
     </rect>
    </property>
@@ -165,6 +171,8 @@
    <container>1</container>
   </customwidget>
  </customwidgets>
- <resources/>
+ <resources>
+  <include location="../PetriWidget/imgs.qrc"/>
+ </resources>
  <connections/>
 </ui>

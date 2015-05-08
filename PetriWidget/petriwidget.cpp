@@ -1,7 +1,7 @@
 #include "petriwidget.h"
 
 #include "view/placeview.h"
-#include "view/transitionview.h"
+#include "view/immediatetransitionview.h"
 
 #include <QMenu>
 
@@ -22,10 +22,10 @@ PetriWidget::PetriWidget(QWidget *parent) :
     setRenderHint(QPainter::Antialiasing);
     setTransformationAnchor(AnchorUnderMouse);
 
-    TransitionView *tv = new TransitionView(this);
+    /*ImmediateTransitionView *tv = new ImmediateTransitionView(this);
     tv->setX(10);
     tv->setY(20);
-    scene->addItem(tv);
+    scene->addItem(tv);*/
 
     this->currentState = spnp::CurrentState::ARROW;
 
@@ -53,7 +53,6 @@ void PetriWidget::createPlace(QMouseEvent *evt)
     pv->setPos(point);
 
     this->scene()->addItem(pv);
-
 }
 
 void PetriWidget::createFluidPlace(QMouseEvent *evt)
@@ -73,7 +72,19 @@ void PetriWidget::createTimedTransition(QMouseEvent *evt)
 
 void PetriWidget::createImmediateTransition(QMouseEvent *evt)
 {
+    int id = getNextTransition();
+    std::string transitionName = "t_"+std::to_string(id);
+    QPointF point = mapToScene(evt->pos());
+    spnp::Transition *t = new spnp::Transition(id, transitionName, "1",
+                                     new spnp::Label(id, transitionName, point.x(), point.y()),
+                                               point.x(), point.y());
 
+    //this->netData.add(p);
+
+    ImmediateTransitionView* pv = new ImmediateTransitionView(this, t);
+    pv->setPos(point);
+
+    this->scene()->addItem(pv);
 }
 
 void PetriWidget::createArc(QMouseEvent *evt)
@@ -223,7 +234,7 @@ void PetriWidget::mouseReleaseEvent(QMouseEvent *event)
 
             break;
         case spnp::CurrentState::ITRANS:
-
+            this->createImmediateTransition(event);
             break;
         case spnp::CurrentState::PLACE:
             this->createPlace(event);

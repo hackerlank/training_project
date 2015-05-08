@@ -17,19 +17,19 @@ DEFINES += PETRIWIDGET_LIBRARY
 SOURCES += petriwidget.cpp \
     view/moveable.cpp \
     view/placeview.cpp \
-    view/transitionview.cpp \
     petributtons.cpp \
-    petrieditor.cpp
+    petrieditor.cpp \
+    view/immediatetransitionview.cpp
 
 HEADERS += \
     petriwidget.h\
     petriwidget_global.h \
     view/moveable.h \
     view/placeview.h \
-    view/transitionview.h \
     petributtons.h \
     petrieditor.h \
-    states.h
+    states.h \
+    view/immediatetransitionview.h
 
 unix {
     target.path = /usr/lib
