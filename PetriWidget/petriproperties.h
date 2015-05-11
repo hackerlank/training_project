@@ -18,10 +18,17 @@ public:
 
     void setMoveable(Moveable* m);
 
+private slots:
+    void on_le_place_name_textEdited(const QString &arg1);
+
+    void on_le_place_tokens_textEdited(const QString &arg1);
+
 private:
     Ui::PetriProperties *ui;
 
     Moveable* currentMoveable;
+
+    void setData();
 };
 
 #endif // PETRIPROPERTIES_H

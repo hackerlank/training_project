@@ -43,9 +43,14 @@ void spnp::Place::fromXML(XMLNode *xml)
     this->label->fromXML(xml->getChildAt(0));
 }
 
-double spnp::Place::getTokensOrInitValue() const
+double spnp::Place::getTokens() const
 {
     return this->tokens;
+}
+
+void spnp::Place::setToken(const double d)
+{
+    this->tokens = d;
 }
 
 spnp::Label *spnp::Place::getLabel() const

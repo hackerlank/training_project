@@ -24,6 +24,11 @@ Moveable::MoveableTypes PlaceView::getTypeName() const
     return MoveableTypes::place;
 }
 
+spnp::Place *PlaceView::getPlace() const
+{
+    return this->place;
+}
+
 void PlaceView::paintDraw(QPainter *painter)
 {
     painter->drawEllipse(-_H_/2, -_H_/2, _H_, _H_);

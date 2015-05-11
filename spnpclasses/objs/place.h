@@ -14,7 +14,8 @@ public:
     virtual XMLNode* toXML();
     virtual void fromXML(XMLNode *xml);
 
-    double getTokensOrInitValue() const;
+    double getTokens() const;
+    void setToken(const double d);
     Label* getLabel() const;
 private:
     double tokens;

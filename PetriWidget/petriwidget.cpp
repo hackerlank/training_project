@@ -204,11 +204,6 @@ void PetriWidget::mousePressEvent(QMouseEvent *event)
 
 void PetriWidget::mouseReleaseEvent(QMouseEvent *event)
 {
-    //Moveable* moveable = static_cast<Moveable*>(this->itemAt(event->pos()));
-    //if(moveable == nullptr) return;
-    /*std::string type = "";
-    if(moveable != nullptr) type = moveable->getTypeName();*/
-
     if(event->button() == Qt::LeftButton)
     {
         switch(this->currentState)

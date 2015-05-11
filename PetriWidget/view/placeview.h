@@ -15,6 +15,7 @@ public:
 
     QPainterPath shape() const override;
     virtual MoveableTypes getTypeName() const;
+    spnp::Place* getPlace() const;
 protected:
     virtual void paintDraw(QPainter *painter) override;
     spnp::Place* place;
