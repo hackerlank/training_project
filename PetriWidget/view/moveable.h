@@ -9,6 +9,18 @@ class PetriWidget;
 class PW_PUBLIC Moveable : public QGraphicsItem
 {
 public:
+    enum MoveableTypes
+    {
+        place = 0,
+        fplace,
+        itrans,
+        ttrans,
+        arc,
+        farc,
+        inhibitor,
+        net
+    };
+
     Moveable(PetriWidget *pWidget);
     ~Moveable();
 
@@ -17,7 +29,8 @@ public:
 
     QRectF boundingRect() const override;
     QPainterPath shape() const override = 0;
-    virtual std::string getTypeName() const = 0;
+    virtual MoveableTypes getTypeName() const = 0;
+    virtual void setSelected(bool b);
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) override;
 
 protected:
@@ -31,13 +44,15 @@ protected:
     int _W_ = 20;
     int _H_ = 20;
 
-    QColor color_black;
     QColor color_white;
+    QColor getBrushColor();
 
     PetriWidget *parentGraph;
-
 private:
     bool selected;
+
+    QColor color_blue;
+    QColor color_black;
 };
 
 #endif // MOVEABLE_H

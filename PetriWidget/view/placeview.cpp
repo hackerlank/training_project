@@ -19,9 +19,9 @@ QPainterPath PlaceView::shape() const
     return path;
 }
 
-std::string PlaceView::getTypeName() const
+Moveable::MoveableTypes PlaceView::getTypeName() const
 {
-    return "place";
+    return MoveableTypes::place;
 }
 
 void PlaceView::paintDraw(QPainter *painter)

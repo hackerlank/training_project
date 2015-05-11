@@ -19,7 +19,8 @@ SOURCES += petriwidget.cpp \
     view/placeview.cpp \
     petributtons.cpp \
     petrieditor.cpp \
-    view/immediatetransitionview.cpp
+    view/immediatetransitionview.cpp \
+    petriproperties.cpp
 
 HEADERS += \
     petriwidget.h\
@@ -29,7 +30,8 @@ HEADERS += \
     petributtons.h \
     petrieditor.h \
     states.h \
-    view/immediatetransitionview.h
+    view/immediatetransitionview.h \
+    petriproperties.h
 
 unix {
     target.path = /usr/lib
@@ -60,4 +62,5 @@ RESOURCES += \
 
 FORMS += \
     petributtons.ui \
-    petrieditor.ui
+    petrieditor.ui \
+    petriproperties.ui

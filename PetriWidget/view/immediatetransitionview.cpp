@@ -21,13 +21,13 @@ QPainterPath ImmediateTransitionView::shape() const
     return path;
 }
 
-std::string ImmediateTransitionView::getTypeName() const
+Moveable::MoveableTypes ImmediateTransitionView::getTypeName() const
 {
-    return "timed_trans";
+    return MoveableTypes::itrans;
 }
 
 void ImmediateTransitionView::paintDraw(QPainter *painter)
 {
     QRect r(-_W_/2, -_H_/2, _W_, _H_);
-    painter->fillRect(r, QBrush(this->color_black));
+    painter->fillRect(r, QBrush(this->getBrushColor()));
 }

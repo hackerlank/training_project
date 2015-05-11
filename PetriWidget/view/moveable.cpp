@@ -13,6 +13,7 @@ Moveable::Moveable(PetriWidget *pWidget):
 
     this->color_black = QColor(0,0,0,255);
     this->color_white = QColor(255, 255, 255, 255);
+    this->color_blue = QColor(0x10, 0x4e, 0x8b, 255);
     this->selected = false;
 }
 
@@ -26,6 +27,11 @@ QRectF Moveable::boundingRect() const
     return QRectF( -_W_/2, -_H_/2, _W_, _H_);
 }
 
+void Moveable::setSelected(bool b)
+{
+    this->selected = b;
+}
+
 void Moveable::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
 {
     QBrush b(color_white);
@@ -37,21 +43,21 @@ void Moveable::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, 
         color_white.setAlpha(255);
     painter->setBrush(b);
 
-    painter->setPen(QPen(color_black, 0));
+    painter->setPen(QPen(getBrushColor(), 0));
     this->paintDraw(painter);
 }
 
 QVariant Moveable::itemChange(QGraphicsItem::GraphicsItemChange change, const QVariant &value)
-{
+{/*
     switch (change) {
     case ItemPositionHasChanged:
         /*foreach (Edge *edge, edgeList)
             edge->adjust();*/
-        //graph->itemMoved();
-        break;
+    //graph->itemMoved();
+    /* break;
     default:
         break;
-    };
+    };*/
 
     return QGraphicsItem::itemChange(change, value);
 }
@@ -66,4 +72,9 @@ void Moveable::mouseReleaseEvent(QGraphicsSceneMouseEvent *event)
 {
     update();
     QGraphicsItem::mouseReleaseEvent(event);
+}
+
+QColor Moveable::getBrushColor()
+{
+    return this->selected ? this->color_blue : this->color_black;
 }

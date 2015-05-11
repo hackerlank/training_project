@@ -15,7 +15,7 @@ public:
     int type() const override { return Type; }
 
     QPainterPath shape() const override;
-    virtual std::string getTypeName() const;
+    virtual MoveableTypes getTypeName() const;
 protected:
     virtual void paintDraw(QPainter *painter) override;
     spnp::Transition* transition;

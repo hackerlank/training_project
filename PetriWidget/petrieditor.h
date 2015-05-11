@@ -3,6 +3,7 @@
 
 #include <QWidget>
 #include "petriwidget_global.h"
+#include "view/moveable.h"
 
 namespace Ui {
 class PetriEditor;
@@ -31,8 +32,11 @@ private slots:
 
     void on_petri_buttons_ttrans();
 
+    void onItemClick(Moveable *m);
+
 private:
     Ui::PetriEditor *ui;
+    Moveable* currentObject;
 };
 
 #endif // PETRIEDITOR_H

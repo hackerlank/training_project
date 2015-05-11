@@ -155,7 +155,7 @@ void PetriWidget::animFinished()
     sender()->~QObject();
 }
 
-/*void PetriWidget::keyPressEvent(QKeyEvent *event)
+void PetriWidget::keyPressEvent(QKeyEvent *event)
 {
     switch (event->key())
     {
@@ -168,14 +168,13 @@ void PetriWidget::animFinished()
     default:
         QGraphicsView::keyPressEvent(event);
     }
-}*/
+}
 
 //http://www.qtcentre.org/threads/15004-QGraphicsView-Mouse-Events
 void PetriWidget::mousePressEvent(QMouseEvent *event)
 {
     Moveable* moveable = static_cast<Moveable*>(this->itemAt(event->pos()));
-    if(moveable == nullptr) return;
-    std::string type = moveable->getTypeName();
+    //if(moveable == nullptr) return;
 
     if(event->button() == Qt::LeftButton)
     {
@@ -189,6 +188,7 @@ void PetriWidget::mousePressEvent(QMouseEvent *event)
             break;
         case spnp::CurrentState::ARROW:
             QGraphicsView::mousePressEvent(event);
+            emit this->itemSelected(moveable);
             break;
         case spnp::CurrentState::FPLACE:
         case spnp::CurrentState::ITRANS:
@@ -318,4 +318,9 @@ void PetriWidget::clear()
 void PetriWidget::setCurrentState(spnp::CurrentState state)
 {
     this->currentState = state;
+}
+
+void PetriWidget::removeMoveable(Moveable *m)
+{
+    this->scene()->removeItem(m);
 }
