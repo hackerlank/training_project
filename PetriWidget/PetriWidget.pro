@@ -20,7 +20,8 @@ SOURCES += petriwidget.cpp \
     petributtons.cpp \
     petrieditor.cpp \
     view/immediatetransitionview.cpp \
-    petriproperties.cpp
+    petriproperties.cpp \
+    view/labelview.cpp
 
 HEADERS += \
     petriwidget.h\
@@ -31,7 +32,8 @@ HEADERS += \
     petrieditor.h \
     states.h \
     view/immediatetransitionview.h \
-    petriproperties.h
+    petriproperties.h \
+    view/labelview.h
 
 unix {
     target.path = /usr/lib
