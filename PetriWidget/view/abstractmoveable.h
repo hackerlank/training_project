@@ -6,7 +6,7 @@
 #include "petriwidget_global.h"
 
 class PetriWidget;
-class PW_PUBLIC Moveable : public QGraphicsItem
+class PW_PUBLIC AbstractMoveable : public QGraphicsItem
 {
 public:
     enum MoveableTypes
@@ -18,11 +18,12 @@ public:
         arc,
         farc,
         inhibitor,
-        net
+        net,
+        label
     };
 
-    Moveable(PetriWidget *pWidget);
-    ~Moveable();
+    AbstractMoveable(PetriWidget *pWidget);
+    ~AbstractMoveable();
 
     enum { Type = UserType + 0 };
     int type() const override { return Type; }
@@ -40,6 +41,8 @@ protected:
 
     void mousePressEvent(QGraphicsSceneMouseEvent *event) override;
     void mouseReleaseEvent(QGraphicsSceneMouseEvent *event) override;
+
+    virtual void itemMoved(QPointF point)=0;
 
     int _W_ = 20;
     int _H_ = 20;

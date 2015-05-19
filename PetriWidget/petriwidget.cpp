@@ -173,7 +173,7 @@ void PetriWidget::keyPressEvent(QKeyEvent *event)
 //http://www.qtcentre.org/threads/15004-QGraphicsView-Mouse-Events
 void PetriWidget::mousePressEvent(QMouseEvent *event)
 {
-    Moveable* moveable = static_cast<Moveable*>(this->itemAt(event->pos()));
+    AbstractMoveable* moveable = static_cast<AbstractMoveable*>(this->itemAt(event->pos()));
     //if(moveable == nullptr) return;
 
     if(event->button() == Qt::LeftButton)
@@ -315,7 +315,7 @@ void PetriWidget::setCurrentState(spnp::CurrentState state)
     this->currentState = state;
 }
 
-void PetriWidget::removeMoveable(Moveable *m)
+void PetriWidget::removeMoveable(AbstractMoveable *m)
 {
     this->scene()->removeItem(m);
 }

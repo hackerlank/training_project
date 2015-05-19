@@ -1,10 +1,10 @@
-#ifndef TRANSITIONVIEW_H
-#define TRANSITIONVIEW_H
+#ifndef ITRANSITIONVIEW_H
+#define ITRANSITIONVIEW_H
 
-#include "moveable.h"
+#include "view/abstractlabeledmoveable.h"
 #include "objs/transition.h"
 
-class PW_PUBLIC ImmediateTransitionView : public Moveable
+class PW_PUBLIC ImmediateTransitionView : public AbstractLabeledMoveable
 {
 public:
     ImmediateTransitionView(PetriWidget *pWidget, spnp::Transition* transition);
@@ -16,9 +16,15 @@ public:
 
     QPainterPath shape() const override;
     virtual MoveableTypes getTypeName() const;
+
+    std::string getName() const;
+    virtual void setName(std::string name) override;
 protected:
     virtual void paintDraw(QPainter *painter) override;
+
+    virtual void itemMoved(QPointF point);
+
     spnp::Transition* transition;
 };
 
-#endif // TRANSITION_H
+#endif // ITRANSITION_H

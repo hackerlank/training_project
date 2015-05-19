@@ -15,25 +15,27 @@ TEMPLATE = lib
 DEFINES += PETRIWIDGET_LIBRARY
 
 SOURCES += petriwidget.cpp \
-    view/moveable.cpp \
     view/placeview.cpp \
     petributtons.cpp \
     petrieditor.cpp \
     view/immediatetransitionview.cpp \
     petriproperties.cpp \
-    view/labelview.cpp
+    view/labelview.cpp \
+    view/abstractmoveable.cpp \
+    view/abstractlabeledmoveable.cpp
 
 HEADERS += \
     petriwidget.h\
     petriwidget_global.h \
-    view/moveable.h \
     view/placeview.h \
     petributtons.h \
     petrieditor.h \
     states.h \
     view/immediatetransitionview.h \
     petriproperties.h \
-    view/labelview.h
+    view/labelview.h \
+    view/abstractmoveable.h \
+    view/abstractlabeledmoveable.h
 
 unix {
     target.path = /usr/lib

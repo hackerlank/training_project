@@ -1,9 +1,9 @@
 #ifndef PLACEVIEW_H
 #define PLACEVIEW_H
 
-#include "moveable.h"
+#include "view/abstractlabeledmoveable.h"
 #include "objs/place.h"
-class PW_PUBLIC PlaceView : public Moveable
+class PW_PUBLIC PlaceView : public AbstractLabeledMoveable
 {
 public:
     PlaceView(PetriWidget *pWidget, spnp::Place* place);
@@ -16,8 +16,17 @@ public:
     QPainterPath shape() const override;
     virtual MoveableTypes getTypeName() const;
     spnp::Place* getPlace() const;
+
+    std::string getName() const;
+    virtual void setName(std::string txt) override;
+
+    double getValue() const;
+    void setValue(double d);
 protected:
     virtual void paintDraw(QPainter *painter) override;
+
+    virtual void itemMoved(QPointF point);
+
     spnp::Place* place;
 };
 

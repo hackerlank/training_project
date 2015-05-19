@@ -6,7 +6,7 @@
 #include "petriwidget_global.h"
 #include "objs/net.h"
 #include "states.h"
-#include "view/moveable.h"
+#include "view/abstractmoveable.h"
 
 class PW_PUBLIC PetriWidget: public QGraphicsView
 {
@@ -32,9 +32,9 @@ public:
 
     void setCurrentState(spnp::CurrentState state);
 
-    void removeMoveable(Moveable* m);
+    void removeMoveable(AbstractMoveable* m);
 signals:
-    void itemSelected(Moveable* m);
+    void itemSelected(AbstractMoveable* m);
 public slots:
     void showContextMenu(const QPoint& pos);
     void scalingTime(qreal x);

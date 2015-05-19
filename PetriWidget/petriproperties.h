@@ -2,7 +2,7 @@
 #define PETRIPROPERTIES_H
 
 #include <QWidget>
-#include "view/moveable.h"
+#include "view/abstractmoveable.h"
 
 namespace Ui {
 class PetriProperties;
@@ -16,17 +16,23 @@ public:
     explicit PetriProperties(QWidget *parent = 0);
     ~PetriProperties();
 
-    void setMoveable(Moveable* m);
+    void setMoveable(AbstractMoveable* m);
 
 private slots:
     void on_le_place_name_textEdited(const QString &arg1);
 
     void on_le_place_tokens_textEdited(const QString &arg1);
 
+    void on_le_itrans_name_textEdited(const QString &arg1);
+
+    void on_le_itrans_prior_textEdited(const QString &arg1);
+
+    void on_le_itrans_guard_textEdited(const QString &arg1);
+
 private:
     Ui::PetriProperties *ui;
 
-    Moveable* currentMoveable;
+    AbstractMoveable* currentMoveable;
 
     void setData();
 };

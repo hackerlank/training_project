@@ -1,9 +1,9 @@
-#include "moveable.h"
+#include "abstractmoveable.h"
 
 #include <QPainter>
 #include <QStyleOption>
 
-Moveable::Moveable(PetriWidget *pWidget):
+AbstractMoveable::AbstractMoveable(PetriWidget *pWidget):
     parentGraph(pWidget)
 {
     setZValue(-1);
@@ -17,22 +17,22 @@ Moveable::Moveable(PetriWidget *pWidget):
     this->selected = false;
 }
 
-Moveable::~Moveable()
+AbstractMoveable::~AbstractMoveable()
 {
 
 }
 
-QRectF Moveable::boundingRect() const
+QRectF AbstractMoveable::boundingRect() const
 {
     return QRectF( -_W_/2, -_H_/2, _W_, _H_);
 }
 
-void Moveable::setSelected(bool b)
+void AbstractMoveable::setSelected(bool b)
 {
     this->selected = b;
 }
 
-void Moveable::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
+void AbstractMoveable::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
 {
     QBrush b(color_white);
     if(!(option->state & QStyle::State_Sunken))
@@ -47,34 +47,38 @@ void Moveable::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, 
     this->paintDraw(painter);
 }
 
-QVariant Moveable::itemChange(QGraphicsItem::GraphicsItemChange change, const QVariant &value)
-{/*
+QVariant AbstractMoveable::itemChange(QGraphicsItem::GraphicsItemChange change, const QVariant &value)
+{
     switch (change) {
     case ItemPositionHasChanged:
+    {
+        this->itemMoved(value.toPointF());
         /*foreach (Edge *edge, edgeList)
-            edge->adjust();*/
-    //graph->itemMoved();
-    /* break;
+            edge->adjust();
+        graph->itemMoved();*/
+
+        break;
+    }
     default:
         break;
-    };*/
+    };
 
     return QGraphicsItem::itemChange(change, value);
 }
 
-void Moveable::mousePressEvent(QGraphicsSceneMouseEvent *event)
+void AbstractMoveable::mousePressEvent(QGraphicsSceneMouseEvent *event)
 {
     update();
     QGraphicsItem::mousePressEvent(event);
 }
 
-void Moveable::mouseReleaseEvent(QGraphicsSceneMouseEvent *event)
+void AbstractMoveable::mouseReleaseEvent(QGraphicsSceneMouseEvent *event)
 {
     update();
     QGraphicsItem::mouseReleaseEvent(event);
 }
 
-QColor Moveable::getBrushColor()
+QColor AbstractMoveable::getBrushColor()
 {
     return this->selected ? this->color_blue : this->color_black;
 }

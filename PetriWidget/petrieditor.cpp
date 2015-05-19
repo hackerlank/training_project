@@ -9,8 +9,8 @@ PetriEditor::PetriEditor(QWidget *parent) :
 {
     ui->setupUi(this);
     this->currentObject = nullptr;
-    connect(this->ui->petri_view, SIGNAL(itemSelected(Moveable*)),
-            this, SLOT(onItemClick(Moveable*)));
+    connect(this->ui->petri_view, SIGNAL(itemSelected(AbstractMoveable*)),
+            this, SLOT(onItemClick(AbstractMoveable*)));
 }
 
 PetriEditor::~PetriEditor()
@@ -53,7 +53,7 @@ void PetriEditor::on_petri_buttons_ttrans()
     this->ui->petri_view->setCurrentState(spnp::CurrentState::TTRANS);
 }
 
-void PetriEditor::onItemClick(Moveable* m)
+void PetriEditor::onItemClick(AbstractMoveable* m)
 {
     this->ui->prop->setMoveable(m);
     /*if(this->currentObject != nullptr)

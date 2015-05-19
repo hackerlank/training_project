@@ -35,7 +35,7 @@
       </size>
      </property>
      <property name="currentIndex">
-      <number>0</number>
+      <number>2</number>
      </property>
      <widget class="QWidget" name="place">
       <layout class="QGridLayout" name="gridLayout_17">
@@ -130,7 +130,7 @@
           </widget>
          </item>
          <item row="1" column="1" colspan="2">
-          <widget class="QLineEdit" name="lineEdit_3"/>
+          <widget class="QLineEdit" name="le_fplace_name"/>
          </item>
          <item row="2" column="0">
           <widget class="QLabel" name="label_6">
@@ -140,7 +140,7 @@
           </widget>
          </item>
          <item row="2" column="1" colspan="2">
-          <widget class="QLineEdit" name="lineEdit_4"/>
+          <widget class="QLineEdit" name="le_fplace_tokens"/>
          </item>
          <item row="3" column="0">
           <widget class="QLabel" name="label_7">
@@ -150,7 +150,7 @@
           </widget>
          </item>
          <item row="3" column="1" colspan="2">
-          <widget class="QLineEdit" name="lineEdit_5"/>
+          <widget class="QLineEdit" name="le_fplace_limit"/>
          </item>
          <item row="4" column="0" colspan="2">
           <widget class="QLabel" name="label_8">
@@ -160,7 +160,7 @@
           </widget>
          </item>
          <item row="4" column="2">
-          <widget class="QLineEdit" name="lineEdit_6"/>
+          <widget class="QLineEdit" name="le_fplace_break"/>
          </item>
         </layout>
        </item>
@@ -211,7 +211,7 @@
           </widget>
          </item>
          <item row="1" column="1" colspan="2">
-          <widget class="QLineEdit" name="lineEdit_7"/>
+          <widget class="QLineEdit" name="le_itrans_name"/>
          </item>
          <item row="2" column="0">
           <widget class="QLabel" name="label_16">
@@ -221,7 +221,7 @@
           </widget>
          </item>
          <item row="2" column="1" colspan="2">
-          <widget class="QLineEdit" name="lineEdit_8"/>
+          <widget class="QLineEdit" name="le_itrans_prior"/>
          </item>
          <item row="3" column="0">
           <widget class="QLabel" name="label_17">
@@ -231,7 +231,7 @@
           </widget>
          </item>
          <item row="3" column="1" colspan="2">
-          <widget class="QLineEdit" name="lineEdit_9"/>
+          <widget class="QLineEdit" name="le_itrans_guard"/>
          </item>
         </layout>
        </item>
@@ -248,7 +248,7 @@
          </property>
          <layout class="QGridLayout" name="gridLayout_5">
           <item row="0" column="0">
-           <widget class="QComboBox" name="comboBox_4">
+           <widget class="QComboBox" name="cb_itrans_prob">
             <item>
              <property name="text">
               <string>Constante</string>
@@ -276,7 +276,7 @@
              </widget>
             </item>
             <item row="0" column="1">
-             <widget class="QLineEdit" name="lineEdit_10"/>
+             <widget class="QLineEdit" name="le_itrans_prob_value"/>
             </item>
             <item row="1" column="0">
              <widget class="QLabel" name="label_19">
@@ -286,7 +286,7 @@
              </widget>
             </item>
             <item row="1" column="1">
-             <widget class="QComboBox" name="comboBox">
+             <widget class="QComboBox" name="cb_itrans_prob_place">
               <property name="enabled">
                <bool>false</bool>
               </property>

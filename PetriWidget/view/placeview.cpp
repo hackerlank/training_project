@@ -2,9 +2,10 @@
 
 #include <QPainter>
 
-PlaceView::PlaceView(PetriWidget *pWidget, spnp::Place *place):Moveable(pWidget)
+PlaceView::PlaceView(PetriWidget *pWidget, spnp::Place *place):AbstractLabeledMoveable(pWidget)
 {
     this->place = place;
+    this->setName(place->getName());
 }
 
 PlaceView::~PlaceView()
@@ -19,7 +20,7 @@ QPainterPath PlaceView::shape() const
     return path;
 }
 
-Moveable::MoveableTypes PlaceView::getTypeName() const
+AbstractMoveable::MoveableTypes PlaceView::getTypeName() const
 {
     return MoveableTypes::place;
 }
@@ -27,6 +28,33 @@ Moveable::MoveableTypes PlaceView::getTypeName() const
 spnp::Place *PlaceView::getPlace() const
 {
     return this->place;
+}
+
+std::string PlaceView::getName() const
+{
+    return this->place->getName();
+}
+
+void PlaceView::setName(std::string name)
+{
+    AbstractLabeledMoveable::setName(name);
+    this->place->setName(name);
+}
+
+double PlaceView::getValue() const
+{
+    return this->place->getTokens();
+}
+
+void PlaceView::setValue(double d)
+{
+    this->place->setToken(d);
+}
+
+void PlaceView::itemMoved(QPointF point)
+{
+    this->place->x = point.x();
+    this->place->y = point.y();
 }
 
 void PlaceView::paintDraw(QPainter *painter)
