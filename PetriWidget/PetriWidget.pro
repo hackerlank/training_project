@@ -42,7 +42,7 @@ unix {
     INSTALLS += target
     DEFINES += LINUX
     LIBS += -L$$OUT_PWD/../XMLParser/ -lXMLParser
-    LIBS += -L$$OUT_PWD/../SPNPClasses/ -lSPNPClasses
+    LIBS += -L$$OUT_PWD/../spnpclasses/ -lSPNPClasses
 }
 
 win32{
@@ -51,12 +51,12 @@ win32{
     CONFIG(release, debug|release): LIBS += -L$$OUT_PWD/../XMLParser/release/ -lXMLParser
     else:CONFIG(debug, debug|release): LIBS += -L$$OUT_PWD/../XMLParser/debug/ -lXMLParser
 
-    CONFIG(release, debug|release): LIBS += -L$$OUT_PWD/../SPNPClasses/release/ -lSPNPClasses
-    else:CONFIG(debug, debug|release): LIBS += -L$$OUT_PWD/../SPNPClasses/debug/ -lSPNPClasses
+    CONFIG(release, debug|release): LIBS += -L$$OUT_PWD/../spnpclasses/release/ -lSPNPClasses
+    else:CONFIG(debug, debug|release): LIBS += -L$$OUT_PWD/../spnpclasses/debug/ -lSPNPClasses
 }
 
-INCLUDEPATH += $$PWD/../SPNPClasses
-DEPENDPATH += $$PWD/../SPNPClasses
+INCLUDEPATH += $$PWD/../spnpclasses
+DEPENDPATH += $$PWD/../spnpclasses
 
 INCLUDEPATH += $$PWD/../XMLParser
 DEPENDPATH += $$PWD/../XMLParser

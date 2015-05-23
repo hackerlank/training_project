@@ -2,7 +2,7 @@ TEMPLATE = subdirs
 CONFIG += c++14
 SUBDIRS += \
     XMLParser \
-    SPNPClasses \
+    spnpclasses \
     HighLighter \
     SaveLoadFile \
     PetriWidget \

@@ -24,7 +24,7 @@ unix{
     LIBS += -L$$OUT_PWD/../HighLighter/ -lHighlighter
     LIBS += -L$$OUT_PWD/../SaveLoadFile/ -lSaveLoadFile
     LIBS += -L$$OUT_PWD/../XMLParser/ -lXMLParser
-    LIBS += -L$$OUT_PWD/../SPNPClasses/ -lSPNPClasses
+    LIBS += -L$$OUT_PWD/../spnpclasses/ -lSPNPClasses
     LIBS += -L$$OUT_PWD/../PetriWidget/ -lPetriWidget
 }
 
@@ -40,8 +40,8 @@ win32{
     CONFIG(release, debug|release): LIBS += -L$$OUT_PWD/../XMLParser/release/ -lXMLParser
     else:CONFIG(debug, debug|release): LIBS += -L$$OUT_PWD/../XMLParser/debug/ -lXMLParser
 
-    CONFIG(release, debug|release): LIBS += -L$$OUT_PWD/../SPNPClasses/release/ -lSPNPClasses
-    else:CONFIG(debug, debug|release): LIBS += -L$$OUT_PWD/../SPNPClasses/debug/ -lSPNPClasses
+    CONFIG(release, debug|release): LIBS += -L$$OUT_PWD/../spnpclasses/release/ -lSPNPClasses
+    else:CONFIG(debug, debug|release): LIBS += -L$$OUT_PWD/../spnpclasses/debug/ -lSPNPClasses
 
     CONFIG(release, debug|release): LIBS += -L$$OUT_PWD/../PetriWidget/release/ -lPetriWidget
     else:CONFIG(debug, debug|release): LIBS += -L$$OUT_PWD/../PetriWidget/debug/ -lPetriWidget
@@ -56,8 +56,8 @@ DEPENDPATH += $$PWD/../SaveLoadFile
 INCLUDEPATH += $$PWD/../XMLParser
 DEPENDPATH += $$PWD/../XMLParser
 
-INCLUDEPATH += $$PWD/../SPNPClasses
-DEPENDPATH += $$PWD/../SPNPClasses
+INCLUDEPATH += $$PWD/../spnpclasses
+DEPENDPATH += $$PWD/../spnpclasses
 
 INCLUDEPATH += $$PWD/../PetriWidget
 DEPENDPATH += $$PWD/../PetriWidget
