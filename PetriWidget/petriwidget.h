@@ -2,6 +2,7 @@
 #define PETRIWIDGET_H
 
 #include <QGraphicsView>
+#include <QGraphicsLineItem>
 
 #include "petriwidget_global.h"
 #include "objs/net.h"
@@ -67,6 +68,9 @@ private:
     spnp::CurrentState currentState;
 
     int _numScheduledScalings;
+
+    QPointF startPoint;
+    QGraphicsLineItem *line;
 };
 
 #endif // PETRIWIDGET_H

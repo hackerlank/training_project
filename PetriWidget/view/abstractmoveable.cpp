@@ -47,6 +47,14 @@ void AbstractMoveable::paint(QPainter *painter, const QStyleOptionGraphicsItem *
     this->paintDraw(painter);
 }
 
+QPolygonF AbstractMoveable::polygon()
+{
+    QPolygonF pol;
+    pol << QPointF(-_W_/2, -_H_/2) << QPointF(_W_/2, -_H_/2)
+        << QPointF(_W_/2, _H_/2) << QPointF(-_W_/2, _H_/2);
+    return pol;
+}
+
 QVariant AbstractMoveable::itemChange(QGraphicsItem::GraphicsItemChange change, const QVariant &value)
 {
     switch (change) {

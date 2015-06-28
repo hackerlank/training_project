@@ -181,7 +181,7 @@ void PetriWidget::mousePressEvent(QMouseEvent *event)
         switch(this->currentState)
         {
         case spnp::CurrentState::ARC:
-
+            //this->line = new QGraphicsLineItem(QLineF(event->screenPos()))
             break;
         case spnp::CurrentState::INHIBITOR:
 

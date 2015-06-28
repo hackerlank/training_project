@@ -22,7 +22,9 @@ SOURCES += petriwidget.cpp \
     petriproperties.cpp \
     view/labelview.cpp \
     view/abstractmoveable.cpp \
-    view/abstractlabeledmoveable.cpp
+    view/abstractlabeledmoveable.cpp \
+    petriscene.cpp \
+    view/arcview.cpp
 
 HEADERS += \
     petriwidget.h\
@@ -35,7 +37,9 @@ HEADERS += \
     petriproperties.h \
     view/labelview.h \
     view/abstractmoveable.h \
-    view/abstractlabeledmoveable.h
+    view/abstractlabeledmoveable.h \
+    petriscene.h \
+    view/arcview.h
 
 unix {
     target.path = /usr/lib

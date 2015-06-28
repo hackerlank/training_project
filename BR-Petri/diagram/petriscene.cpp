@@ -1,0 +1,224 @@
+#include "petriscene.h"
+
+#include "abstractpetriarc.h"
+#include <QTextCursor>
+#include <QGraphicsSceneMouseEvent>
+
+#include "diagram/placeitem.h"
+#include "diagram/fplaceitem.h"
+#include "diagram/ttransitem.h"
+#include "diagram/itransitem.h"
+
+PetriScene::PetriScene(QMenu *itemMenu, QObject *parent)
+    :QGraphicsScene(parent)
+{
+    this->myItemMenu = itemMenu;
+    myMode = MoveItem;
+    myItemType = IPetriItem::PetriType::Place;
+    line = nullptr;
+    textItem = nullptr;
+    myItemColor = Qt::white;
+    myTextColor = Qt::black;
+    myLineColor = Qt::black;
+}
+
+void PetriScene::setLineColor(const QColor &color)
+{
+    myLineColor = color;
+    if(isItemChange(AbstractPetriArc::Type))
+    {
+        AbstractPetriArc *item = qgraphicsitem_cast<AbstractPetriArc*>(selectedItems().first());
+        item->setColor(myLineColor);
+        update();
+    }
+}
+
+void PetriScene::setTextColor(const QColor &color)
+{
+    myTextColor = color;
+    if(isItemChange(PetriTextItem::Type))
+    {
+        PetriTextItem *item = qgraphicsitem_cast<PetriTextItem*>(selectedItems().first());
+        item->setDefaultTextColor(myTextColor);
+    }
+}
+
+void PetriScene::setItemColor(const QColor &color)
+{
+    myItemColor = color;
+    if(isItemChange(IPetriItem::Type))
+    {
+        IPetriItem *item = qgraphicsitem_cast<IPetriItem*>(selectedItems().first());
+        item->setBrush(myItemColor);
+    }
+}
+
+void PetriScene::setFont(const QFont &font)
+{
+    myFont = font;
+    if(isItemChange(PetriTextItem::Type))
+    {
+        QGraphicsTextItem *item = qgraphicsitem_cast<QGraphicsTextItem*>(selectedItems().first());
+        if(item)
+            item->setFont(myFont);
+    }
+}
+
+void PetriScene::setMode(PetriScene::Mode mode)
+{
+    this->myMode = mode;
+}
+
+void PetriScene::setItemtype(IPetriItem::PetriType type)
+{
+    this->myItemType = type;
+}
+
+void PetriScene::editorLostFocus(PetriTextItem *item)
+{
+    QTextCursor cursor = item->textCursor();
+    cursor.clearSelection();
+    item->setTextCursor(cursor);
+
+    if(item->toPlainText().isEmpty())
+    {
+        removeItem(item);
+        item->deleteLater();
+    }
+}
+
+void PetriScene::mousePressEvent(QGraphicsSceneMouseEvent *mouseEvent)
+{
+    if(mouseEvent->button() != Qt::LeftButton)
+        return;
+
+    switch (myMode)
+    {
+    case InsItem:
+        insertItem(mouseEvent->scenePos());
+        break;
+    case InsArc:
+        insertArc(mouseEvent->scenePos());
+        break;
+    case InsText:
+        insertText(mouseEvent->scenePos());
+        break;
+    default:
+        break;
+    }
+    QGraphicsScene::mousePressEvent(mouseEvent);
+}
+
+void PetriScene::mouseMoveEvent(QGraphicsSceneMouseEvent *mouseEvent)
+{
+    if(myMode == InsArc && line != nullptr)
+    {
+        QLineF newLine(line->line().p1(), mouseEvent->scenePos());
+        line->setLine(newLine);
+    }
+    else if(myMode == MoveItem)
+    {
+        QGraphicsScene::mouseMoveEvent(mouseEvent);
+    }
+}
+
+void PetriScene::mouseReleaseEvent(QGraphicsSceneMouseEvent *mouseEvent)
+{
+    if(line != nullptr && myMode == InsArc)
+    {
+        QList<QGraphicsItem *>startItems = items(line->line().p1());
+        if(startItems.count() && startItems.first() == line)
+        {
+            startItems.removeFirst();
+        }
+        QList<QGraphicsItem *>endItems = items(line->line().p2());
+        if(endItems.count() && endItems.first() == line)
+        {
+            endItems.removeFirst();
+        }
+
+        removeItem(line);
+        delete line;
+
+        IPetriItem *start = qgraphicsitem_cast<IPetriItem*>(startItems.first());
+        IPetriItem *end = qgraphicsitem_cast<IPetriItem*>(endItems.first());
+
+        if(startItems.count() > 0 && endItems.count() > 0 &&
+                start != end &&
+                start->type() == IPetriItem::Type &&
+                end->type() == IPetriItem::Type &&
+                ((start->isPlace() && end->isTransition()) || (start->isTransition() && end->isPlace()))
+                )
+        {
+            AbstractPetriArc *arc = new AbstractPetriArc(start,end);
+            arc->setColor(myLineColor);
+            start->addArc(arc);
+            end->addArc(arc);
+            arc->setZValue(-1000.0);
+            addItem(arc);
+            arc->updatePosition();
+        }
+    }
+    line = nullptr;
+    QGraphicsScene::mouseReleaseEvent(mouseEvent);
+}
+
+bool PetriScene::isItemChange(int type)
+{
+    foreach (QGraphicsItem *item, selectedItems())
+    {
+        if(item->type() == type)
+            return true;
+    }
+    return false;//horrível dois returns :'(
+}
+
+void PetriScene::insertItem(QPointF position)
+{
+    IPetriItem *item = nullptr;
+    switch (myItemType)
+    {
+    case IPetriItem::Place:
+        item = new PlaceItem(myItemMenu);
+        break;
+    case IPetriItem::FPlace:
+        item = new FPlaceItem(myItemMenu);
+        break;
+    case IPetriItem::ITrans:
+        item = new ITransItem(myItemMenu);
+        break;
+    case IPetriItem::TTrans:
+        item = new TTransItem(myItemMenu);
+        break;
+    default:
+        break;
+    }
+    item->setBrush(myItemColor);
+    addItem(item);
+    item->setPos(position);
+    emit itemInserted(item);
+}
+
+void PetriScene::insertArc(QPointF position)
+{
+    line = new QGraphicsLineItem(QLineF(position, position));
+    line->setPen(QPen(myLineColor, 2));
+    addItem(line);
+}
+
+void PetriScene::insertText(QPointF position)
+{
+    textItem = new PetriTextItem();
+    textItem->setFont(myFont);
+    textItem->setTextInteractionFlags(Qt::TextEditorInteraction);
+    textItem->setZValue(1000.0);
+    connect(textItem, SIGNAL(lostFocus(PetriTextItem*)),
+            this, SLOT(editorLostFocus(PetriTextItem*)));
+    connect(textItem, SIGNAL(selectedChange(QGraphicsItem*)),
+            this, SLOT(itemSelected(QGraphicsItem*)));
+    addItem(textItem);
+    textItem->setDefaultTextColor(myTextColor);
+    textItem->setPos(position);
+    emit textInserted(textItem);
+}
+

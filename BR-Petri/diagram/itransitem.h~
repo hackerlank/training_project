@@ -1,0 +1,16 @@
+#ifndef ITRANSITEM_H
+#define ITRANSITEM_H
+
+#include "abstractpetriitem.h"
+
+class ITransItem : public AbstractPetriItem
+{
+public:
+    ITransItem(QMenu *contextMenu, QGraphicsItem *parent = nullptr);
+    virtual ~ITransItem();
+
+protected:
+    virtual void drawItem() override;
+};
+
+#endif // ITRANSITEM_H

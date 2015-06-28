@@ -34,6 +34,8 @@ public:
     virtual void setSelected(bool b);
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) override;
 
+    QPolygonF polygon();
+
 protected:
     virtual void paintDraw(QPainter *painter)=0;
 
