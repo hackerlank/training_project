@@ -8,13 +8,16 @@
 const qreal Pi = 3.14;
 
 AbstractPetriArc::AbstractPetriArc(IPetriItem *startItem, IPetriItem *endItem, QGraphicsItem *parent)
-    :QGraphicsLineItem(parent)
+    :IPetriArc(startItem, endItem, parent)
 {
-    this->myStartItem = startItem;
-    this->myEndItem = endItem;
     setFlag(QGraphicsItem::ItemIsSelectable, true);
     this->myColor = Qt::black;
     setPen(QPen(this->myColor, 2, Qt::SolidLine, Qt::RoundCap, Qt::RoundJoin));
+}
+
+AbstractPetriArc::~AbstractPetriArc()
+{
+
 }
 
 QRectF AbstractPetriArc::boundingRect() const
@@ -34,6 +37,12 @@ QPainterPath AbstractPetriArc::shape() const
     return path;
 }
 
+bool AbstractPetriArc::canConnect()
+{
+    return (myStartItem->isPlace() && myEndItem->isTransition()) ||
+            (myStartItem->isTransition() && myEndItem->isPlace());
+}
+
 void AbstractPetriArc::updatePosition()
 {
     QLineF line(mapFromItem(myStartItem, 0, 0), mapFromItem(myEndItem, 0, 0));
@@ -46,10 +55,7 @@ void AbstractPetriArc::paint(QPainter *painter, const QStyleOptionGraphicsItem *
     (void)option;
     (void)widget;
 
-    bool petriLogic = (myStartItem->isPlace() && myEndItem->isTransition()) ||
-            (myStartItem->isTransition() && myEndItem->isPlace());
-
-    if(myStartItem->collidesWithItem(myEndItem) || !petriLogic)
+    if(myStartItem->collidesWithItem(myEndItem) || !canConnect())
     {
         return;
     }

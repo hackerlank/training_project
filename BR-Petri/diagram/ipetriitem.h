@@ -3,7 +3,7 @@
 
 #include <QGraphicsPolygonItem>
 
-class AbstractPetriArc;
+class IPetriArc;
 
 class IPetriItem : public QGraphicsPolygonItem
 {
@@ -14,8 +14,10 @@ public:
     IPetriItem(QGraphicsItem *parent):QGraphicsPolygonItem(parent) { }
     virtual ~IPetriItem() { }
 
-    virtual void removeArc(AbstractPetriArc *arc) = 0;
-    virtual void addArc(AbstractPetriArc* arc) = 0;
+    int type() const Q_DECL_OVERRIDE { return Type; }
+
+    virtual void removeArc(IPetriArc *arc) = 0;
+    virtual void addArc(IPetriArc* arc) = 0;
     virtual bool isPlace() = 0;
     virtual bool isTransition() = 0;
 

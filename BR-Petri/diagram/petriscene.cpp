@@ -1,20 +1,23 @@
 #include "petriscene.h"
 
-#include "abstractpetriarc.h"
+#include "diagram/ipetriarc.h"
 #include <QTextCursor>
 #include <QGraphicsSceneMouseEvent>
 
 #include "diagram/placeitem.h"
 #include "diagram/fplaceitem.h"
 #include "diagram/ttransitem.h"
-#include "diagram/itransitem.h"
+#include "diagram/imtransitem.h"
+#include "diagram/abstractpetriarc.h"
+#include "diagram/inhibitorarcitem.h"
 
 PetriScene::PetriScene(QMenu *itemMenu, QObject *parent)
     :QGraphicsScene(parent)
 {
     this->myItemMenu = itemMenu;
     myMode = MoveItem;
-    myItemType = IPetriItem::PetriType::Place;
+    myItemType = IPetriItem::Place;
+    myArcType = IPetriArc::Activator;
     line = nullptr;
     textItem = nullptr;
     myItemColor = Qt::white;
@@ -25,9 +28,9 @@ PetriScene::PetriScene(QMenu *itemMenu, QObject *parent)
 void PetriScene::setLineColor(const QColor &color)
 {
     myLineColor = color;
-    if(isItemChange(AbstractPetriArc::Type))
+    if(isItemChange(IPetriArc::Type))
     {
-        AbstractPetriArc *item = qgraphicsitem_cast<AbstractPetriArc*>(selectedItems().first());
+        IPetriArc *item = qgraphicsitem_cast<IPetriArc*>(selectedItems().first());
         item->setColor(myLineColor);
         update();
     }
@@ -69,9 +72,14 @@ void PetriScene::setMode(PetriScene::Mode mode)
     this->myMode = mode;
 }
 
-void PetriScene::setItemtype(IPetriItem::PetriType type)
+void PetriScene::setItemType(IPetriItem::PetriType type)
 {
     this->myItemType = type;
+}
+
+void PetriScene::setArcType(IPetriArc::ArcType type)
+{
+    this->myArcType = type;
 }
 
 void PetriScene::editorLostFocus(PetriTextItem *item)
@@ -140,23 +148,34 @@ void PetriScene::mouseReleaseEvent(QGraphicsSceneMouseEvent *mouseEvent)
         removeItem(line);
         delete line;
 
-        IPetriItem *start = qgraphicsitem_cast<IPetriItem*>(startItems.first());
-        IPetriItem *end = qgraphicsitem_cast<IPetriItem*>(endItems.first());
-
-        if(startItems.count() > 0 && endItems.count() > 0 &&
-                start != end &&
-                start->type() == IPetriItem::Type &&
-                end->type() == IPetriItem::Type &&
-                ((start->isPlace() && end->isTransition()) || (start->isTransition() && end->isPlace()))
-                )
+        if(startItems.count() > 0 && endItems.count() > 0)
         {
-            AbstractPetriArc *arc = new AbstractPetriArc(start,end);
-            arc->setColor(myLineColor);
-            start->addArc(arc);
-            end->addArc(arc);
-            arc->setZValue(-1000.0);
-            addItem(arc);
-            arc->updatePosition();
+            IPetriItem *start = qgraphicsitem_cast<IPetriItem*>(startItems.first());
+            IPetriItem *end = qgraphicsitem_cast<IPetriItem*>(endItems.first());
+
+            if(start != end &&
+                    start->type() == IPetriItem::Type &&
+                    end->type() == IPetriItem::Type &&
+                    ((start->isPlace() && end->isTransition()) || (start->isTransition() && end->isPlace())))
+            {
+                IPetriArc *arc = nullptr;
+                switch (myArcType) {
+                case IPetriArc::Activator:
+                    arc = new AbstractPetriArc(start,end);//TODO : fazer classe activator
+                    break;
+                case IPetriArc::Inhibitor:
+                    arc = new InhibitorArcItem(start, end);
+                default:
+                    break;
+                }
+
+                arc->setColor(myLineColor);
+                start->addArc(arc);
+                end->addArc(arc);
+                arc->setZValue(-1000.0);
+                addItem(arc);
+                arc->updatePosition();
+            }
         }
     }
     line = nullptr;
@@ -185,7 +204,7 @@ void PetriScene::insertItem(QPointF position)
         item = new FPlaceItem(myItemMenu);
         break;
     case IPetriItem::ITrans:
-        item = new ITransItem(myItemMenu);
+        item = new ImTransItem(myItemMenu);
         break;
     case IPetriItem::TTrans:
         item = new TTransItem(myItemMenu);
@@ -221,4 +240,3 @@ void PetriScene::insertText(QPointF position)
     textItem->setPos(position);
     emit textInserted(textItem);
 }
-

@@ -2,7 +2,7 @@
 #define PETRIITEM_H
 
 #include <QList>
-#include "ipetriitem.h"
+#include "diagram/ipetriitem.h"
 
 class QPixmap;
 class QGraphicsItem;
@@ -22,16 +22,15 @@ public:
     AbstractPetriItem(QMenu *contextMenu, QGraphicsItem *parent=nullptr);
     virtual ~AbstractPetriItem();
 
-    virtual void removeArc(AbstractPetriArc *arc);
+    virtual void removeArc(IPetriArc *arc) override;
     void removeArcs();
     IPetriItem::PetriType petriType() const { return myPetriType; }
     QPolygonF polygon() const { return myPolygon; }
-    virtual void addArc(AbstractPetriArc* arc);
+    virtual void addArc(IPetriArc *arc) override;
     QPixmap image() const;
-    int type() const Q_DECL_OVERRIDE { return Type; }
 
-    virtual bool isPlace();
-    virtual bool isTransition();
+    virtual bool isPlace() override;
+    virtual bool isTransition() override;
 
 protected:
     void contextMenuEvent(QGraphicsSceneContextMenuEvent *event) Q_DECL_OVERRIDE;
@@ -40,9 +39,9 @@ protected:
     IPetriItem::PetriType myPetriType;
     QPolygonF myPolygon;
     QMenu *myContextMenu;
-    QList<AbstractPetriArc*> arcs;
+    QList<IPetriArc*> arcs;
 
-    virtual void drawItem();
+    virtual void drawItem() override;
 };
 
 #endif // PETRIITEM_H

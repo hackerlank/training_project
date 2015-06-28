@@ -21,7 +21,8 @@ SOURCES += main.cpp\
     diagram/petritextitem.cpp \
     diagram/fplaceitem.cpp \
     diagram/ttransitem.cpp \
-    diagram/itransitem.cpp
+    diagram/inhibitorarcitem.cpp \
+    diagram/imtransitem.cpp
 
 HEADERS  += mainwindow.h \
     diagram/placeitem.h \
@@ -32,6 +33,8 @@ HEADERS  += mainwindow.h \
     diagram/ipetriitem.h \
     diagram/fplaceitem.h \
     diagram/ttransitem.h \
-    diagram/itransitem.h
+    diagram/inhibitorarcitem.h \
+    diagram/ipetriarc.h \
+    diagram/imtransitem.h
 
 FORMS    += mainwindow.ui

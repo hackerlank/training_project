@@ -2,7 +2,8 @@
 #define PETRISCENE_H
 
 //#include "abstractpetriitem.h"
-#include "ipetriitem.h"
+#include "diagram/ipetriitem.h"
+#include "diagram/ipetriarc.h"
 #include "petritextitem.h"
 
 #include <QGraphicsScene>
@@ -35,7 +36,8 @@ public:
 
 public slots:
     void setMode(Mode mode);
-    void setItemtype(IPetriItem::PetriType type);
+    void setItemType(IPetriItem::PetriType type);
+    void setArcType(IPetriArc::ArcType type);
     void editorLostFocus(PetriTextItem *item);
 
 signals:
@@ -52,6 +54,7 @@ private:
     bool isItemChange(int type);
 
     IPetriItem::PetriType myItemType;
+    IPetriArc::ArcType myArcType;
     QMenu *myItemMenu;
     Mode myMode;
     bool leftButtonDown;

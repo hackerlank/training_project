@@ -1,6 +1,6 @@
 #include "abstractpetriitem.h"
 
-#include "abstractpetriarc.h"
+#include "ipetriarc.h"
 
 #include <QGraphicsScene>
 #include <QGraphicsSceneContextMenuEvent>
@@ -22,7 +22,7 @@ AbstractPetriItem::~AbstractPetriItem()
 
 }
 
-void AbstractPetriItem::removeArc(AbstractPetriArc *arc)
+void AbstractPetriItem::removeArc(IPetriArc *arc)
 {
     int index = arcs.indexOf(arc);
 
@@ -31,7 +31,7 @@ void AbstractPetriItem::removeArc(AbstractPetriArc *arc)
 
 void AbstractPetriItem::removeArcs()
 {
-    foreach (AbstractPetriArc *arc, arcs)
+    foreach (IPetriArc *arc, arcs)
     {
         arc->startItem()->removeArc(arc);
         arc->endItem()->removeArc(arc);
@@ -40,7 +40,7 @@ void AbstractPetriItem::removeArcs()
     }
 }
 
-void AbstractPetriItem::addArc(AbstractPetriArc *arc)
+void AbstractPetriItem::addArc(IPetriArc *arc)
 {
     this->arcs.append(arc);
 }
@@ -78,7 +78,7 @@ QVariant AbstractPetriItem::itemChange(QGraphicsItem::GraphicsItemChange change,
 {
     if(change == QGraphicsItem::ItemPositionChange)
     {
-        foreach (AbstractPetriArc* arc, arcs)
+        foreach (IPetriArc* arc, arcs)
         {
             arc->updatePosition();
         }

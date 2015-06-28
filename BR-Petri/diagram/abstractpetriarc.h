@@ -4,7 +4,8 @@
 #include <QGraphicsLineItem>
 
 //#include "abstractpetriitem.h"
-#include "ipetriitem.h"
+//#include "ipetriitem.h"
+#include "diagram/ipetriarc.h"
 
 class QGraphicsPolygonItem;
 class QGraphicsLineItem;
@@ -13,32 +14,27 @@ class QRectF;
 class QGraphicsSceneMouseEvent;
 class QPainterPath;
 
-class AbstractPetriArc : public QGraphicsLineItem
+class AbstractPetriArc : public IPetriArc
 {
 public:
-    enum { Type = UserType + 4 };
-
     AbstractPetriArc(IPetriItem *startItem, IPetriItem *endItem, QGraphicsItem *parent=nullptr);
+    virtual ~AbstractPetriArc();
 
-    int type() const Q_DECL_OVERRIDE { return Type; }
     QRectF boundingRect() const Q_DECL_OVERRIDE;
     QPainterPath shape() const Q_DECL_OVERRIDE;
-    void setColor(const QColor &color) { myColor = color; }
-    IPetriItem *startItem() const { return myStartItem; }
-    IPetriItem *endItem() const { return myEndItem; }
+    void setColor(const QColor &color) override { myColor = color; }
 
-    void updatePosition();
+    virtual bool canConnect() override;
+    void updatePosition() override;
 
 protected:
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget=nullptr) Q_DECL_OVERRIDE;
 
-    virtual void paintHead(double angle);
+    virtual void paintHead(double angle) override;
 
     QPolygonF myHead;
 
 private:
-    IPetriItem* myStartItem;
-    IPetriItem* myEndItem;
     QColor myColor;
 };
 

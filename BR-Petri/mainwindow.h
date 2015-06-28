@@ -7,7 +7,6 @@
 
 class DiagramScene;
 
-
 namespace Ui {
 class MainWindow;
 }

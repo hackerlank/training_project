@@ -35,37 +35,37 @@ void MainWindow::on_bt_normal_clicked()
 void MainWindow::on_bt_place_clicked()
 {
     this->scene->setMode(PetriScene::InsItem);
-    this->scene->setItemtype(IPetriItem::Place);
+    this->scene->setItemType(IPetriItem::Place);
 }
 
 void MainWindow::on_bt_fplace_clicked()
 {
     this->scene->setMode(PetriScene::InsItem);
-    this->scene->setItemtype(IPetriItem::FPlace);
+    this->scene->setItemType(IPetriItem::FPlace);
 }
 
 void MainWindow::on_bt_ttrans_clicked()
 {
     this->scene->setMode(PetriScene::InsItem);
-    this->scene->setItemtype(IPetriItem::TTrans);
+    this->scene->setItemType(IPetriItem::TTrans);
 }
 
 void MainWindow::on_bt_itrans_clicked()
 {
     this->scene->setMode(PetriScene::InsItem);
-    this->scene->setItemtype(IPetriItem::ITrans);
+    this->scene->setItemType(IPetriItem::ITrans);
 }
 
 void MainWindow::on_bt_arc_clicked()
 {
     this->scene->setMode(PetriScene::InsArc);
-    //this->scene->setItemtype(IPetriItem::);
+    this->scene->setArcType(IPetriArc::Activator);
 }
 
 void MainWindow::on_bt_iarc_clicked()
 {
     this->scene->setMode(PetriScene::InsArc);
-    //this->scene->setItemtype(IPetriItem::TTrans);
+    this->scene->setArcType(IPetriArc::Inhibitor);
 }
 
 void MainWindow::itemInserted(IPetriItem *item)

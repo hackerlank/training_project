@@ -1,25 +1,25 @@
-#include "itransitem.h"
+#include "imtransitem.h"
 
 #include <QPainter>
 
-ITransItem::ITransItem(QMenu *contextMenu, QGraphicsItem *parent):AbstractPetriItem(contextMenu, parent)
+ImTransItem::ImTransItem(QMenu *contextMenu, QGraphicsItem *parent):AbstractPetriItem(contextMenu, parent)
 {
     myPetriType = IPetriItem::ITrans;
     drawItem();
 }
 
-ITransItem::~ITransItem()
+ImTransItem::~ImTransItem()
 {
 
 }
 
-void ITransItem::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
+void ImTransItem::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
 {
     this->setBrush(QBrush(Qt::black));
     AbstractPetriItem::paint(painter, option, widget);
 }
 
-void ITransItem::drawItem()
+void ImTransItem::drawItem()
 {
     const int vert = 30;
     const int hor = 8;

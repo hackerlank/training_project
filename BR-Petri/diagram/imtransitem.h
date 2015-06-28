@@ -3,11 +3,11 @@
 
 #include "abstractpetriitem.h"
 
-class ITransItem : public AbstractPetriItem
+class ImTransItem : public AbstractPetriItem
 {
 public:
-    ITransItem(QMenu *contextMenu, QGraphicsItem *parent = nullptr);
-    virtual ~ITransItem();
+    ImTransItem(QMenu *contextMenu, QGraphicsItem *parent = nullptr);
+    virtual ~ImTransItem();
 
     virtual void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
 protected:
