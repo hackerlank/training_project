@@ -4,7 +4,6 @@ TTransItem::TTransItem(QMenu *contextMenu, QGraphicsItem *parent):AbstractPetriI
 {
     myPetriType = IPetriItem::TTrans;
 
-
     drawItem();
 }
 

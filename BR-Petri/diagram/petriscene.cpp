@@ -8,8 +8,9 @@
 #include "diagram/fplaceitem.h"
 #include "diagram/ttransitem.h"
 #include "diagram/imtransitem.h"
-#include "diagram/abstractpetriarc.h"
+#include "diagram/activatorarcitem.h"
 #include "diagram/inhibitorarcitem.h"
+#include "diagram/factivatorarcitem.h"
 
 PetriScene::PetriScene(QMenu *itemMenu, QObject *parent)
     :QGraphicsScene(parent)
@@ -161,10 +162,14 @@ void PetriScene::mouseReleaseEvent(QGraphicsSceneMouseEvent *mouseEvent)
                 IPetriArc *arc = nullptr;
                 switch (myArcType) {
                 case IPetriArc::Activator:
-                    arc = new AbstractPetriArc(start,end);//TODO : fazer classe activator
+                    arc = new ActivatorArcItem(start,end);
                     break;
                 case IPetriArc::Inhibitor:
                     arc = new InhibitorArcItem(start, end);
+                    break;
+                case IPetriArc::FActivator:
+                    arc = new FActivatorArcItem(start, end);
+                    break;
                 default:
                     break;
                 }

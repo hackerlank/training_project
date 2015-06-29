@@ -9,6 +9,7 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
 
+    //TODO : refazer esse menu
     this->itemMenu = menuBar()->addMenu(tr("oi"));
 
     this->scene = new PetriScene(itemMenu, this);
@@ -66,6 +67,12 @@ void MainWindow::on_bt_iarc_clicked()
 {
     this->scene->setMode(PetriScene::InsArc);
     this->scene->setArcType(IPetriArc::Inhibitor);
+}
+
+void MainWindow::on_bt_farc_clicked()
+{
+    this->scene->setMode(PetriScene::InsArc);
+    this->scene->setArcType(IPetriArc::FActivator);
 }
 
 void MainWindow::itemInserted(IPetriItem *item)

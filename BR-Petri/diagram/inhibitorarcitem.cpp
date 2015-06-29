@@ -19,15 +19,19 @@ bool InhibitorArcItem::canConnect()
 void InhibitorArcItem::paintHead(double angle)
 {
     (void)angle;
-    qreal arcSize = 10;
-    qreal arcSubSize = arcSize *0.9;
+    qreal circleSize = 4;
+
+    QPointF p1 = line().p1()-QPointF(-cos(angle)*circleSize, sin(angle)*circleSize);
+
+    QPainterPath path;
+    path.addEllipse(p1, circleSize, circleSize);
 
     myHead.clear();
 
-    QPainterPath path;
-    path.addEllipse(-arcSize/2, -arcSize/2, arcSize, arcSize);
-    path.addEllipse(-arcSubSize/2, -arcSubSize/2, arcSubSize, arcSubSize);
     myHead = path.toFillPolygon();
+}
 
-    //myHead << line().p1() << arcP1 << arcP2;
+QColor InhibitorArcItem::getBrushColor()
+{
+    return Qt::white;
 }

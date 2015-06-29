@@ -22,7 +22,9 @@ SOURCES += main.cpp\
     diagram/fplaceitem.cpp \
     diagram/ttransitem.cpp \
     diagram/inhibitorarcitem.cpp \
-    diagram/imtransitem.cpp
+    diagram/imtransitem.cpp \
+    diagram/activatorarcitem.cpp \
+    diagram/factivatorarcitem.cpp
 
 HEADERS  += mainwindow.h \
     diagram/placeitem.h \
@@ -35,6 +37,8 @@ HEADERS  += mainwindow.h \
     diagram/ttransitem.h \
     diagram/inhibitorarcitem.h \
     diagram/ipetriarc.h \
-    diagram/imtransitem.h
+    diagram/imtransitem.h \
+    diagram/activatorarcitem.h \
+    diagram/factivatorarcitem.h
 
 FORMS    += mainwindow.ui

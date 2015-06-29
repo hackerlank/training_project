@@ -34,6 +34,9 @@ protected:
 
     QPolygonF myHead;
 
+    virtual QColor getBrushColor();
+    virtual QColor getPenColor();
+
 private:
     QColor myColor;
 };

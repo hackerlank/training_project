@@ -10,7 +10,7 @@ class IPetriArc : public QGraphicsLineItem
 {
 public:
     enum { Type = UserType + 4 };
-    enum ArcType { Activator, Inhibitor };
+    enum ArcType { Activator, Inhibitor, FActivator };
 
     IPetriArc(IPetriItem *startItem, IPetriItem *endItem, QGraphicsItem *parent=nullptr)
         :QGraphicsLineItem(parent) { this->myStartItem = startItem; this->myEndItem = endItem;}

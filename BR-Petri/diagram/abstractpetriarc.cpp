@@ -12,7 +12,7 @@ AbstractPetriArc::AbstractPetriArc(IPetriItem *startItem, IPetriItem *endItem, Q
 {
     setFlag(QGraphicsItem::ItemIsSelectable, true);
     this->myColor = Qt::black;
-    setPen(QPen(this->myColor, 2, Qt::SolidLine, Qt::RoundCap, Qt::RoundJoin));
+    setPen(QPen(this->getPenColor(), 2, Qt::SolidLine, Qt::RoundCap, Qt::RoundJoin));
 }
 
 AbstractPetriArc::~AbstractPetriArc()
@@ -51,7 +51,7 @@ void AbstractPetriArc::updatePosition()
 
 void AbstractPetriArc::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
 {
-    //TODO
+    //avoiding warnings ;)
     (void)option;
     (void)widget;
 
@@ -61,10 +61,10 @@ void AbstractPetriArc::paint(QPainter *painter, const QStyleOptionGraphicsItem *
     }
 
     QPen myPen = pen();
-    myPen.setColor(myColor);
-    //qreal arcSize = 20;
+    myPen.setColor(this->getPenColor());
+
     painter->setPen(myPen);
-    painter->setBrush(myColor);
+    painter->setBrush(this->getBrushColor());
 
     QLineF centerLine(myStartItem->pos(), myEndItem->pos());
     QPolygonF endPolygon = myEndItem->polygon();
@@ -97,7 +97,7 @@ void AbstractPetriArc::paint(QPainter *painter, const QStyleOptionGraphicsItem *
 
     if(isSelected())
     {
-        painter->setPen(QPen(myColor, 1, Qt::DotLine));
+        painter->setPen(QPen(this->getPenColor(), 1, Qt::DotLine));
         QLineF myLine = line();
         myLine.translate(0, 4.0);
         painter->drawLine(myLine);
@@ -108,7 +108,7 @@ void AbstractPetriArc::paint(QPainter *painter, const QStyleOptionGraphicsItem *
 
 void AbstractPetriArc::paintHead(double angle)
 {
-    qreal arcSize = 20;
+    qreal arcSize = 10;
     QPointF arcP1 = line().p1() + QPointF(sin(angle+Pi/3)*arcSize,
                                           cos(angle+Pi/3)*arcSize);
     QPointF arcP2 = line().p1() + QPointF(sin(angle+Pi - Pi/3)*arcSize,
@@ -117,4 +117,14 @@ void AbstractPetriArc::paintHead(double angle)
     myHead.clear();
 
     myHead << line().p1() << arcP1 << arcP2;
+}
+
+QColor AbstractPetriArc::getBrushColor()
+{
+    return myColor;
+}
+
+QColor AbstractPetriArc::getPenColor()
+{
+    return myColor;
 }

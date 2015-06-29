@@ -38,6 +38,8 @@ private slots:
 
     void on_bt_iarc_clicked();
 
+    void on_bt_farc_clicked();
+
 private:
     Ui::MainWindow *ui;
 

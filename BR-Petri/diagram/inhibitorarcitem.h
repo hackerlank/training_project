@@ -13,6 +13,8 @@ public:
 
 protected:
     virtual void paintHead(double angle);
+
+    virtual QColor getBrushColor();
 };
 
 #endif // INHIBITORARCITEM_H

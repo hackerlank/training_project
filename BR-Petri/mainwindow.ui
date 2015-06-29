@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>402</width>
+    <width>403</width>
     <height>395</height>
    </rect>
   </property>
@@ -98,9 +98,9 @@
         </widget>
        </item>
        <item row="1" column="3">
-        <widget class="QPushButton" name="pushButton_8">
+        <widget class="QPushButton" name="bt_farc">
          <property name="text">
-          <string>PushButton</string>
+          <string>_arcoF</string>
          </property>
          <property name="checkable">
           <bool>true</bool>
