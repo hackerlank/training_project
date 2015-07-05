@@ -1,6 +1,7 @@
 #include "abstractpetriitem.h"
 
 #include "ipetriarc.h"
+#include "diagram/petrilabelitem.h"
 
 #include <QGraphicsScene>
 #include <QGraphicsSceneContextMenuEvent>
@@ -15,11 +16,14 @@ AbstractPetriItem::AbstractPetriItem(QMenu *contextMenu, QGraphicsItem *parent):
     setFlag(QGraphicsItem::ItemIsMovable, true);
     setFlag(QGraphicsItem::ItemIsSelectable, true);
     setFlag(QGraphicsItem::ItemSendsGeometryChanges, true);
+
+    this->myLabel = new PetriLabelItem("Name", this);
+    this->myLabel->setPos(this->x() - this->myLabel->boundingRect().width()/2, this->y() - 35);
 }
 
 AbstractPetriItem::~AbstractPetriItem()
 {
-
+    delete this->myLabel;
 }
 
 void AbstractPetriItem::removeArc(IPetriArc *arc)

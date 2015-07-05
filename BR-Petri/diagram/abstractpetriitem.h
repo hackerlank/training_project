@@ -3,6 +3,7 @@
 
 #include <QList>
 #include "diagram/ipetriitem.h"
+#include "diagram/ipetrilabelitem.h"
 
 class QPixmap;
 class QGraphicsItem;
@@ -33,13 +34,15 @@ public:
     virtual bool isTransition() override;
 
 protected:
-    void contextMenuEvent(QGraphicsSceneContextMenuEvent *event) Q_DECL_OVERRIDE;
-    QVariant itemChange(GraphicsItemChange change, const QVariant &value) Q_DECL_OVERRIDE;
+    void contextMenuEvent(QGraphicsSceneContextMenuEvent *event) override;
+    QVariant itemChange(GraphicsItemChange change, const QVariant &value) override;
 
     IPetriItem::PetriType myPetriType;
     QPolygonF myPolygon;
     QMenu *myContextMenu;
     QList<IPetriArc*> arcs;
+
+    IPetriLabelItem *myLabel;
 
     virtual void drawItem() override;
 };

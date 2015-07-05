@@ -20,7 +20,7 @@ public:
     IPetriItem *startItem() const { return myStartItem; }
     IPetriItem *endItem() const { return myEndItem; }
 
-    int type() const Q_DECL_OVERRIDE { return Type; }
+    int type() const override { return Type; }
 
     virtual bool canConnect() = 0;
     virtual void updatePosition() = 0;

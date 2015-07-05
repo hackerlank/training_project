@@ -149,14 +149,15 @@ void PetriScene::mouseReleaseEvent(QGraphicsSceneMouseEvent *mouseEvent)
         removeItem(line);
         delete line;
 
-        if(startItems.count() > 0 && endItems.count() > 0)
+        if(startItems.count() > 0 &&
+                endItems.count() > 0 &&
+                startItems.first()->type() == IPetriItem::Type &&
+                endItems.first()->type() == IPetriItem::Type)
         {
             IPetriItem *start = qgraphicsitem_cast<IPetriItem*>(startItems.first());
             IPetriItem *end = qgraphicsitem_cast<IPetriItem*>(endItems.first());
 
             if(start != end &&
-                    start->type() == IPetriItem::Type &&
-                    end->type() == IPetriItem::Type &&
                     ((start->isPlace() && end->isTransition()) || (start->isTransition() && end->isPlace())))
             {
                 IPetriArc *arc = nullptr;

@@ -24,7 +24,9 @@ SOURCES += main.cpp\
     diagram/inhibitorarcitem.cpp \
     diagram/imtransitem.cpp \
     diagram/activatorarcitem.cpp \
-    diagram/factivatorarcitem.cpp
+    diagram/factivatorarcitem.cpp \
+    diagram/abstractpetrilabelitem.cpp \
+    diagram/petrilabelitem.cpp
 
 HEADERS  += mainwindow.h \
     diagram/placeitem.h \
@@ -39,6 +41,9 @@ HEADERS  += mainwindow.h \
     diagram/ipetriarc.h \
     diagram/imtransitem.h \
     diagram/activatorarcitem.h \
-    diagram/factivatorarcitem.h
+    diagram/factivatorarcitem.h \
+    diagram/ipetrilabelitem.h \
+    diagram/abstractpetrilabelitem.h \
+    diagram/petrilabelitem.h
 
 FORMS    += mainwindow.ui

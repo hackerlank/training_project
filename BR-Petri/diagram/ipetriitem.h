@@ -14,7 +14,7 @@ public:
     IPetriItem(QGraphicsItem *parent):QGraphicsPolygonItem(parent) { }
     virtual ~IPetriItem() { }
 
-    int type() const Q_DECL_OVERRIDE { return Type; }
+    int type() const override { return Type; }
 
     virtual void removeArc(IPetriArc *arc) = 0;
     virtual void addArc(IPetriArc* arc) = 0;
