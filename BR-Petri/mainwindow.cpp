@@ -12,15 +12,8 @@ MainWindow::MainWindow(QWidget *parent) :
     //TODO : refazer esse menu
     this->itemMenu = menuBar()->addMenu(tr("oi"));
 
-    this->scene = new PetriScene(itemMenu, this);
-    this->ui->graphicsView->setScene(this->scene);
-
-    connect(scene, SIGNAL(itemInserted(IPetriItem*)),
-            this, SLOT(itemInserted(IPetriItem*)));
-    connect(scene, SIGNAL(textInserted(QGraphicsTextItem*)),
-            this, SLOT(textInserted(QGraphicsTextItem*)));
-    connect(scene, SIGNAL(itemSelected(QGraphicsItem*)),
-            this, SLOT(itemSelected(QGraphicsItem*)));
+    //this->scene = new PetriScene(itemMenu, this);
+    //this->ui->graphicsView->setScene(this->scene);
 }
 
 MainWindow::~MainWindow()
@@ -30,65 +23,47 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_bt_normal_clicked()
 {
-    this->scene->setMode(PetriScene::MoveItem);
+    this->ui->widget->getScene()->setMode(PetriScene::MoveItem);
 }
 
 void MainWindow::on_bt_place_clicked()
 {
-    this->scene->setMode(PetriScene::InsItem);
-    this->scene->setItemType(IPetriItem::Place);
+    this->ui->widget->getScene()->setMode(PetriScene::InsItem);
+    this->ui->widget->getScene()->setItemType(IPetriItem::Place);
 }
 
 void MainWindow::on_bt_fplace_clicked()
 {
-    this->scene->setMode(PetriScene::InsItem);
-    this->scene->setItemType(IPetriItem::FPlace);
+    this->ui->widget->getScene()->setMode(PetriScene::InsItem);
+    this->ui->widget->getScene()->setItemType(IPetriItem::FPlace);
 }
 
 void MainWindow::on_bt_ttrans_clicked()
 {
-    this->scene->setMode(PetriScene::InsItem);
-    this->scene->setItemType(IPetriItem::TTrans);
+    this->ui->widget->getScene()->setMode(PetriScene::InsItem);
+    this->ui->widget->getScene()->setItemType(IPetriItem::TTrans);
 }
 
 void MainWindow::on_bt_itrans_clicked()
 {
-    this->scene->setMode(PetriScene::InsItem);
-    this->scene->setItemType(IPetriItem::ITrans);
+    this->ui->widget->getScene()->setMode(PetriScene::InsItem);
+    this->ui->widget->getScene()->setItemType(IPetriItem::ITrans);
 }
 
 void MainWindow::on_bt_arc_clicked()
 {
-    this->scene->setMode(PetriScene::InsArc);
-    this->scene->setArcType(IPetriArc::Activator);
+    this->ui->widget->getScene()->setMode(PetriScene::InsArc);
+    this->ui->widget->getScene()->setArcType(IPetriArc::Activator);
 }
 
 void MainWindow::on_bt_iarc_clicked()
 {
-    this->scene->setMode(PetriScene::InsArc);
-    this->scene->setArcType(IPetriArc::Inhibitor);
+    this->ui->widget->getScene()->setMode(PetriScene::InsArc);
+    this->ui->widget->getScene()->setArcType(IPetriArc::Inhibitor);
 }
 
 void MainWindow::on_bt_farc_clicked()
 {
-    this->scene->setMode(PetriScene::InsArc);
-    this->scene->setArcType(IPetriArc::FActivator);
-}
-
-void MainWindow::itemInserted(IPetriItem *item)
-{
-    //TODO aqui
-    (void)item;
-}
-
-void MainWindow::textInserted(QGraphicsTextItem *item)
-{
-    //TODO aqui
-    (void)item;
-}
-
-void MainWindow::itemSelected(QGraphicsItem *item)
-{
-    //TODO aqui
-    (void)item;
+    this->ui->widget->getScene()->setMode(PetriScene::InsArc);
+    this->ui->widget->getScene()->setArcType(IPetriArc::FActivator);
 }

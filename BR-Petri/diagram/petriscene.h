@@ -1,10 +1,10 @@
 #ifndef PETRISCENE_H
 #define PETRISCENE_H
 
-//#include "abstractpetriitem.h"
-#include "diagram/ipetriitem.h"
-#include "diagram/ipetriarc.h"
-#include "petritextitem.h"
+//#include "diagram/items/abstractpetriitem.h"
+#include "diagram/items/ipetriitem.h"
+#include "diagram/arcs/ipetriarc.h"
+#include "diagram/items/petritextitem.h"
 
 #include <QGraphicsScene>
 

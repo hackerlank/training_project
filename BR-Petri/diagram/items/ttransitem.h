@@ -1,7 +1,7 @@
 #ifndef TTRANS_H
 #define TTRANS_H
 
-#include "abstractpetriitem.h"
+#include "diagram/items/abstractpetriitem.h"
 
 class TTransItem : public AbstractPetriItem
 {

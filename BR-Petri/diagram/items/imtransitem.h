@@ -1,7 +1,7 @@
 #ifndef ITRANSITEM_H
 #define ITRANSITEM_H
 
-#include "abstractpetriitem.h"
+#include "diagram/items/abstractpetriitem.h"
 
 class ImTransItem : public AbstractPetriItem
 {

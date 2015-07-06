@@ -2,8 +2,8 @@
 #define PETRIITEM_H
 
 #include <QList>
-#include "diagram/ipetriitem.h"
-#include "diagram/ipetrilabelitem.h"
+#include "diagram/items/ipetriitem.h"
+#include "diagram/items/ipetrilabelitem.h"
 
 class QPixmap;
 class QGraphicsItem;

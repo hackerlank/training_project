@@ -1,7 +1,7 @@
 #include "abstractpetriitem.h"
 
-#include "ipetriarc.h"
-#include "diagram/petrilabelitem.h"
+#include "diagram/arcs/ipetriarc.h"
+#include "diagram/items/petrilabelitem.h"
 
 #include <QGraphicsScene>
 #include <QGraphicsSceneContextMenuEvent>

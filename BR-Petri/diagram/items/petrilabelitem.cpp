@@ -14,12 +14,10 @@ PetriLabelItem::~PetriLabelItem()
 void PetriLabelItem::saveText(const QString &text)
 {
     //TODO
-    (void)text;
 }
 
 void PetriLabelItem::savePosition(const QPointF pos)
 {
     //TODO
-    (void)pos;
 }
 

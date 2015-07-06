@@ -5,7 +5,9 @@
 
 //#include "abstractpetriitem.h"
 //#include "ipetriitem.h"
-#include "diagram/ipetriarc.h"
+
+#include "diagram/arcs/ipetriarc.h"
+#include "diagram/items/ipetrilabelitem.h"
 
 class QGraphicsPolygonItem;
 class QGraphicsLineItem;
@@ -36,6 +38,10 @@ protected:
 
     virtual QColor getBrushColor();
     virtual QColor getPenColor();
+
+    virtual void updateLabelPosition();
+
+    IPetriLabelItem *myLabel;
 
 private:
     QColor myColor;

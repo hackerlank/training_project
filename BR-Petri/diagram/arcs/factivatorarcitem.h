@@ -1,7 +1,7 @@
 #ifndef FACTIVATORARCITEM_H
 #define FACTIVATORARCITEM_H
 
-#include "diagram/abstractpetriarc.h"
+#include "diagram/arcs/abstractpetriarc.h"
 
 class FActivatorArcItem : public AbstractPetriArc
 {

@@ -2,7 +2,7 @@
 #define IPETRIARC_H
 
 #include <QGraphicsLineItem>
-#include "diagram/ipetriitem.h"
+#include "diagram/items/ipetriitem.h"
 
 class QGraphicsLineItem;
 

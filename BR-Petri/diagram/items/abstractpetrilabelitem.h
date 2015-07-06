@@ -1,7 +1,7 @@
 #ifndef ABSTRACTPETRILABELITEM_H
 #define ABSTRACTPETRILABELITEM_H
 
-#include "diagram/ipetrilabelitem.h"
+#include "diagram/items/ipetrilabelitem.h"
 
 class AbstractPetriLabelItem : public IPetriLabelItem
 {

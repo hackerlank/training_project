@@ -12,7 +12,7 @@ class QGraphicsSceneMouseEvent;
 class PetriTextItem : public QGraphicsTextItem
 {
     Q_OBJECT
-
+//TODO : tornar possível acrescentar texto
 public:
     enum { Type = UserType + 3};
 

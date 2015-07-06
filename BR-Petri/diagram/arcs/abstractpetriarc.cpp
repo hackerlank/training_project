@@ -5,6 +5,8 @@
 #include <QPen>
 #include <QPainter>
 
+#include "diagram/items/petrilabelitem.h"
+
 const qreal Pi = 3.14;
 
 AbstractPetriArc::AbstractPetriArc(IPetriItem *startItem, IPetriItem *endItem, QGraphicsItem *parent)
@@ -13,6 +15,9 @@ AbstractPetriArc::AbstractPetriArc(IPetriItem *startItem, IPetriItem *endItem, Q
     setFlag(QGraphicsItem::ItemIsSelectable, true);
     this->myColor = Qt::black;
     setPen(QPen(this->getPenColor(), 2, Qt::SolidLine, Qt::RoundCap, Qt::RoundJoin));
+
+    this->myLabel = new PetriLabelItem("Name", this);
+    this->updateLabelPosition();
 }
 
 AbstractPetriArc::~AbstractPetriArc()
@@ -104,6 +109,8 @@ void AbstractPetriArc::paint(QPainter *painter, const QStyleOptionGraphicsItem *
         myLine.translate(0, -8.0);
         painter->drawLine(myLine);
     }
+
+    this->updateLabelPosition();
 }
 
 void AbstractPetriArc::paintHead(double angle)
@@ -127,4 +134,9 @@ QColor AbstractPetriArc::getBrushColor()
 QColor AbstractPetriArc::getPenColor()
 {
     return myColor;
+}
+
+void AbstractPetriArc::updateLabelPosition()
+{
+    this->myLabel->setPos((startItem()->pos().x() + endItem()->pos().x())/2, (startItem()->pos().y() + endItem()->pos().y())/2);
 }

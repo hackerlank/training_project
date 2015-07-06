@@ -1,7 +1,7 @@
 #ifndef FPLACEITEM_H
 #define FPLACEITEM_H
 
-#include "diagram/abstractpetriitem.h"
+#include "diagram/items/abstractpetriitem.h"
 
 class FPlaceItem : public AbstractPetriItem
 {

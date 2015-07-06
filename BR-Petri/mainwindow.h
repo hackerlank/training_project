@@ -3,7 +3,7 @@
 
 #include <QMainWindow>
 
-#include "diagram/petriscene.h"
+//#include "diagram/petriscene.h"
 
 class DiagramScene;
 
@@ -24,10 +24,6 @@ private slots:
 
     void on_bt_place_clicked();
 
-    void itemInserted(IPetriItem *item);
-    void textInserted(QGraphicsTextItem *item);
-    void itemSelected(QGraphicsItem *item);
-
     void on_bt_fplace_clicked();
 
     void on_bt_ttrans_clicked();
@@ -43,7 +39,7 @@ private slots:
 private:
     Ui::MainWindow *ui;
 
-    PetriScene* scene;
+    //PetriScene* scene;
 
     QMenu *itemMenu;
 };

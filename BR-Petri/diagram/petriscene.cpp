@@ -1,16 +1,17 @@
 #include "petriscene.h"
 
-#include "diagram/ipetriarc.h"
+#include "diagram/arcs/ipetriarc.h"
 #include <QTextCursor>
 #include <QGraphicsSceneMouseEvent>
 
-#include "diagram/placeitem.h"
-#include "diagram/fplaceitem.h"
-#include "diagram/ttransitem.h"
-#include "diagram/imtransitem.h"
-#include "diagram/activatorarcitem.h"
-#include "diagram/inhibitorarcitem.h"
-#include "diagram/factivatorarcitem.h"
+#include "diagram/items/placeitem.h"
+#include "diagram/items/fplaceitem.h"
+#include "diagram/items/ttransitem.h"
+#include "diagram/items/imtransitem.h"
+
+#include "diagram/arcs/activatorarcitem.h"
+#include "diagram/arcs/inhibitorarcitem.h"
+#include "diagram/arcs/factivatorarcitem.h"
 
 PetriScene::PetriScene(QMenu *itemMenu, QObject *parent)
     :QGraphicsScene(parent)

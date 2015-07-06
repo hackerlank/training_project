@@ -1,7 +1,7 @@
 #ifndef INHIBITORARCITEM_H
 #define INHIBITORARCITEM_H
 
-#include "diagram/abstractpetriarc.h"
+#include "diagram/arcs/abstractpetriarc.h"
 
 class InhibitorArcItem : public AbstractPetriArc
 {
