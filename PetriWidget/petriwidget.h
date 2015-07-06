@@ -42,12 +42,12 @@ public slots:
     void animFinished();
 
 protected:
-    void keyPressEvent(QKeyEvent *event) Q_DECL_OVERRIDE;
-    void mousePressEvent(QMouseEvent *event) Q_DECL_OVERRIDE;
-    void mouseReleaseEvent(QMouseEvent *event) Q_DECL_OVERRIDE;
+    void keyPressEvent(QKeyEvent *event) override;
+    void mousePressEvent(QMouseEvent *event) override;
+    void mouseReleaseEvent(QMouseEvent *event) override;
 
 #ifndef QT_NO_WHEELEVENT
-    void wheelEvent(QWheelEvent *event) Q_DECL_OVERRIDE;
+    void wheelEvent(QWheelEvent *event) override;
 #endif
 
 private:
