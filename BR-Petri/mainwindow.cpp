@@ -14,11 +14,15 @@ MainWindow::MainWindow(QWidget *parent) :
 
     //this->scene = new PetriScene(itemMenu, this);
     //this->ui->graphicsView->setScene(this->scene);
+
+    this->bGroup = new QButtonGroup();
+    this->addButtonsToGroup();
 }
 
 MainWindow::~MainWindow()
 {
     delete ui;
+    delete bGroup;
 }
 
 void MainWindow::on_bt_normal_clicked()
@@ -66,4 +70,22 @@ void MainWindow::on_bt_farc_clicked()
 {
     this->ui->widget->getScene()->setMode(PetriScene::InsArc);
     this->ui->widget->getScene()->setArcType(IPetriArc::FActivator);
+}
+
+void MainWindow::on_bt_remove_clicked()
+{
+    this->ui->widget->getScene()->setMode(PetriScene::RemoveItem);
+}
+
+void MainWindow::addButtonsToGroup()
+{
+    this->bGroup->addButton(this->ui->bt_arc);
+    this->bGroup->addButton(this->ui->bt_farc);
+    this->bGroup->addButton(this->ui->bt_fplace);
+    this->bGroup->addButton(this->ui->bt_iarc);
+    this->bGroup->addButton(this->ui->bt_itrans);
+    this->bGroup->addButton(this->ui->bt_normal);
+    this->bGroup->addButton(this->ui->bt_place);
+    this->bGroup->addButton(this->ui->bt_remove);
+    this->bGroup->addButton(this->ui->bt_ttrans);
 }

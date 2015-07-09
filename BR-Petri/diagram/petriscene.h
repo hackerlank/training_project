@@ -20,7 +20,7 @@ class PetriScene : public QGraphicsScene
 {
     Q_OBJECT
 public:
-    enum Mode { InsItem, InsArc, InsText, MoveItem };
+    enum Mode { InsItem, InsArc, InsText, MoveItem, RemoveItem };
 
     explicit PetriScene(QMenu *itemMenu, QObject *parent=nullptr);
     QFont font() const { return myFont; }

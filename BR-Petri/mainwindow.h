@@ -2,6 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <QButtonGroup>
 
 //#include "diagram/petriscene.h"
 
@@ -36,12 +37,18 @@ private slots:
 
     void on_bt_farc_clicked();
 
+    void on_bt_remove_clicked();
+
 private:
     Ui::MainWindow *ui;
 
     //PetriScene* scene;
 
     QMenu *itemMenu;
+
+    QButtonGroup *bGroup;
+
+    void addButtonsToGroup();
 };
 
 #endif // MAINWINDOW_H

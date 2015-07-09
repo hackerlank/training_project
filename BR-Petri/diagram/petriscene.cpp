@@ -113,6 +113,9 @@ void PetriScene::mousePressEvent(QGraphicsSceneMouseEvent *mouseEvent)
     case InsText:
         insertText(mouseEvent->scenePos());
         break;
+    case RemoveItem:
+
+        break;
     default:
         break;
     }
