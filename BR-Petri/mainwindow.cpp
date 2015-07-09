@@ -89,5 +89,8 @@ void MainWindow::addButtonsToGroup()
 
 void MainWindow::afterClickAction()
 {
-
+    if(!this->ui->cb_lock->isChecked())
+    {
+        this->ui->bt_normal->click();
+    }
 }

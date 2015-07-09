@@ -20,6 +20,7 @@ public slots:
     void petriTextInserted(QGraphicsTextItem *item);
     void petriItemSelected(QGraphicsItem *item);
     void petriItemDeleted(QGraphicsItem *item);
+    void petriArcInserted(IPetriArc *arc);
 
     //zoom
     void scalingTime(qreal x);

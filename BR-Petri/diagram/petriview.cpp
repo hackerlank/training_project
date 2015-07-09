@@ -11,6 +11,8 @@ PetriView::PetriView(QWidget *parent)
 
     connect(scene, SIGNAL(itemInserted(IPetriItem*)),
             this, SLOT(petriItemInserted(IPetriItem*)));
+    connect(scene, SIGNAL(arcInserted(IPetriArc*)),
+            this, SLOT(petriArcInserted(IPetriArc*)));
     connect(scene, SIGNAL(textInserted(QGraphicsTextItem*)),
             this, SLOT(petriTextInserted(QGraphicsTextItem*)));
     connect(scene, SIGNAL(itemSelected(QGraphicsItem*)),
@@ -36,7 +38,7 @@ void PetriView::petriItemInserted(IPetriItem *item)
     //TODO aqui
     (void)item;
     this->scene->clearSelection();
-    sceneClicked();
+    emit sceneClicked();
 }
 
 void PetriView::petriTextInserted(QGraphicsTextItem *item)
@@ -44,21 +46,31 @@ void PetriView::petriTextInserted(QGraphicsTextItem *item)
     //TODO aqui
     (void)item;
     this->scene->clearSelection();
-    sceneClicked();
+    emit sceneClicked();
 }
 
 void PetriView::petriItemSelected(QGraphicsItem *item)
 {
     //TODO aqui
     (void)item;
-    this->scene->clearSelection();
-    sceneClicked();
+    //this->scene->clearSelection();
+    emit sceneClicked();
 }
 
 void PetriView::petriItemDeleted(QGraphicsItem *item)
 {
+    //TODO aqui
+    (void) item;
     this->scene->clearSelection();
-    sceneClicked();
+    emit sceneClicked();
+}
+
+void PetriView::petriArcInserted(IPetriArc *arc)
+{
+    //TODO aqui
+    (void) arc;
+    this->scene->clearSelection();
+    emit sceneClicked();
 }
 
 void PetriView::scalingTime(qreal x)

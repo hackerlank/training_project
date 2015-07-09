@@ -119,7 +119,6 @@ void PetriScene::mousePressEvent(QGraphicsSceneMouseEvent *mouseEvent)
     default:
         break;
     }
-    this->clearSelection();
     QGraphicsScene::mousePressEvent(mouseEvent);
 }
 
@@ -186,6 +185,7 @@ void PetriScene::mouseReleaseEvent(QGraphicsSceneMouseEvent *mouseEvent)
                 arc->setZValue(-1000.0);
                 addItem(arc);
                 arc->updatePosition();
+                emit arcInserted(arc);
             }
         }
     }
@@ -273,4 +273,5 @@ void PetriScene::deleteItem()
         this->removeItem(item);
         delete item;
     }
+    emit itemDeleted();
 }

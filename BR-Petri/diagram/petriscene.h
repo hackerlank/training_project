@@ -42,7 +42,8 @@ public slots:
 
 signals:
     void itemInserted(IPetriItem *item);
-    void itemDeleted(QGraphicsItem *item);
+    void itemDeleted();
+    void arcInserted(IPetriArc *arc);
     void textInserted(QGraphicsTextItem *item);
     void itemSelected(QGraphicsItem *item);
 
