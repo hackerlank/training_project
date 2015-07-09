@@ -17,6 +17,7 @@ public:
     int type() const override { return Type; }
 
     virtual void removeArc(IPetriArc *arc) = 0;
+    virtual void removeArcs() = 0;
     virtual void addArc(IPetriArc* arc) = 0;
     virtual bool isPlace() = 0;
     virtual bool isTransition() = 0;

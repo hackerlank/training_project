@@ -29,6 +29,9 @@
       <property name="title">
        <string>Elementos</string>
       </property>
+      <property name="flat">
+       <bool>true</bool>
+      </property>
       <layout class="QGridLayout" name="gridLayout">
        <item row="0" column="0">
         <widget class="QPushButton" name="bt_normal">
@@ -87,6 +90,9 @@
         <widget class="QPushButton" name="bt_remove">
          <property name="text">
           <string>_remover</string>
+         </property>
+         <property name="checkable">
+          <bool>true</bool>
          </property>
         </widget>
        </item>

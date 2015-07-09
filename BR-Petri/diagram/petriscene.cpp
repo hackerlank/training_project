@@ -105,20 +105,21 @@ void PetriScene::mousePressEvent(QGraphicsSceneMouseEvent *mouseEvent)
     switch (myMode)
     {
     case InsItem:
-        insertItem(mouseEvent->scenePos());
+        this->insertItem(mouseEvent->scenePos());
         break;
     case InsArc:
-        insertArc(mouseEvent->scenePos());
+        this->insertArc(mouseEvent->scenePos());
         break;
     case InsText:
-        insertText(mouseEvent->scenePos());
+        this->insertText(mouseEvent->scenePos());
         break;
     case RemoveItem:
-
+        this->deleteItem();
         break;
     default:
         break;
     }
+    this->clearSelection();
     QGraphicsScene::mousePressEvent(mouseEvent);
 }
 
@@ -249,4 +250,27 @@ void PetriScene::insertText(QPointF position)
     textItem->setDefaultTextColor(myTextColor);
     textItem->setPos(position);
     emit textInserted(textItem);
+}
+
+void PetriScene::deleteItem()
+{
+    foreach (QGraphicsItem *item, this->selectedItems())
+    {
+        if(item->type() == IPetriArc::Type)
+        {
+            this->removeItem(item);
+            IPetriArc *arc = qgraphicsitem_cast<IPetriArc*>(item);
+            arc->startItem()->removeArc(arc);
+            arc->endItem()->removeArc(arc);
+            delete item;
+        }
+    }
+
+    foreach (QGraphicsItem *item, this->selectedItems())
+    {
+        if (item->type() == IPetriItem::Type)
+            qgraphicsitem_cast<IPetriItem *>(item)->removeArcs();
+        this->removeItem(item);
+        delete item;
+    }
 }

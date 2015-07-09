@@ -42,6 +42,7 @@ public slots:
 
 signals:
     void itemInserted(IPetriItem *item);
+    void itemDeleted(QGraphicsItem *item);
     void textInserted(QGraphicsTextItem *item);
     void itemSelected(QGraphicsItem *item);
 
@@ -69,6 +70,7 @@ private:
     void insertItem(QPointF position);
     void insertArc(QPointF position);
     void insertText(QPointF position);
+    void deleteItem();
 };
 
 #endif // PETRISCENE_H

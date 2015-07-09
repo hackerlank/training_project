@@ -16,13 +16,17 @@ public:
     PetriScene* getScene() const;
 
 public slots:
-    void itemViewInserted(IPetriItem *item);
-    void textViewInserted(QGraphicsTextItem *item);
-    void itemViewSelected(QGraphicsItem *item);
+    void petriItemInserted(IPetriItem *item);
+    void petriTextInserted(QGraphicsTextItem *item);
+    void petriItemSelected(QGraphicsItem *item);
+    void petriItemDeleted(QGraphicsItem *item);
 
     //zoom
     void scalingTime(qreal x);
     void animFinished();
+
+signals:
+    void sceneClicked();
 
 #ifndef QT_NO_WHEELEVENT
 protected:

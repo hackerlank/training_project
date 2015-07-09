@@ -24,7 +24,7 @@ public:
     virtual ~AbstractPetriItem();
 
     virtual void removeArc(IPetriArc *arc) override;
-    void removeArcs();
+    virtual void removeArcs();
     IPetriItem::PetriType petriType() const { return myPetriType; }
     QPolygonF polygon() const { return myPolygon; }
     virtual void addArc(IPetriArc *arc) override;

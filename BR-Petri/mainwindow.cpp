@@ -9,14 +9,11 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
 
-    //TODO : refazer esse menu
-    this->itemMenu = menuBar()->addMenu(tr("oi"));
-
-    //this->scene = new PetriScene(itemMenu, this);
-    //this->ui->graphicsView->setScene(this->scene);
-
     this->bGroup = new QButtonGroup();
     this->addButtonsToGroup();
+
+    connect(this->ui->widget, SIGNAL(sceneClicked()),
+            this, SLOT(afterClickAction()));
 }
 
 MainWindow::~MainWindow()
@@ -88,4 +85,9 @@ void MainWindow::addButtonsToGroup()
     this->bGroup->addButton(this->ui->bt_place);
     this->bGroup->addButton(this->ui->bt_remove);
     this->bGroup->addButton(this->ui->bt_ttrans);
+}
+
+void MainWindow::afterClickAction()
+{
+
 }

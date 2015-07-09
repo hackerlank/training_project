@@ -39,16 +39,16 @@ private slots:
 
     void on_bt_remove_clicked();
 
+private slots:
+    void afterClickAction();
+
 private:
     Ui::MainWindow *ui;
-
-    //PetriScene* scene;
-
-    QMenu *itemMenu;
 
     QButtonGroup *bGroup;
 
     void addButtonsToGroup();
+
 };
 
 #endif // MAINWINDOW_H
