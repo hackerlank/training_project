@@ -16,6 +16,8 @@ public:
 
     int type() const override { return Type; }
 
+    IPetriItem::PetriType petriType() const { return myPetriType; }
+
     virtual void removeArc(IPetriArc *arc) = 0;
     virtual void removeArcs() = 0;
     virtual void addArc(IPetriArc* arc) = 0;
@@ -23,6 +25,9 @@ public:
     virtual bool isTransition() = 0;
 
     virtual void drawItem() = 0;
+
+protected:
+    IPetriItem::PetriType myPetriType;
 };
 
 #endif // IPETRIITEM_H

@@ -10,8 +10,6 @@ public:
     virtual ~FActivatorArcItem();
 
 protected:
-    //virtual void paintHead(double angle);
-
     virtual QColor getBrushColor();
     virtual QColor getPenColor();
 };

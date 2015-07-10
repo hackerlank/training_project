@@ -25,7 +25,7 @@ public:
 
     virtual void removeArc(IPetriArc *arc) override;
     virtual void removeArcs();
-    IPetriItem::PetriType petriType() const { return myPetriType; }
+
     QPolygonF polygon() const { return myPolygon; }
     virtual void addArc(IPetriArc *arc) override;
     QPixmap image() const;
@@ -37,7 +37,6 @@ protected:
     void contextMenuEvent(QGraphicsSceneContextMenuEvent *event) override;
     QVariant itemChange(GraphicsItemChange change, const QVariant &value) override;
 
-    IPetriItem::PetriType myPetriType;
     QPolygonF myPolygon;
     QMenu *myContextMenu;
     QList<IPetriArc*> arcs;

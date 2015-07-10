@@ -12,11 +12,6 @@ FActivatorArcItem::~FActivatorArcItem()
 {
 
 }
-/*
-void FActivatorArcItem::paintHead(double angle)
-{
-
-}*/
 
 QColor FActivatorArcItem::getBrushColor()
 {
