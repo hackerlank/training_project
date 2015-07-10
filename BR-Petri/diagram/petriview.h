@@ -19,9 +19,11 @@ public slots:
     void petriItemInserted(IPetriItem *item);
     void petriTextInserted(QGraphicsTextItem *item);
     void petriItemSelected(QGraphicsItem *item);
-    void petriItemDeleted(QGraphicsItem *item);
+    void petriItemDeleted();
     void petriArcInserted(IPetriArc *arc);
 
+    //right click
+    void showContextMenu(const QPoint& pos);
     //zoom
     void scalingTime(qreal x);
     void animFinished();
@@ -40,6 +42,9 @@ private:
 
     //zoom
     int _numScheduledScalings;
+
+private slots:
+    void rotate();
 };
 
 #endif // PETRIVIEW_H

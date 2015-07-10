@@ -1,6 +1,7 @@
 #include "petriview.h"
 
 #include <QTimeLine>
+#include <QMenu>
 
 PetriView::PetriView(QWidget *parent)
     :QGraphicsView(parent)
@@ -17,10 +18,16 @@ PetriView::PetriView(QWidget *parent)
             this, SLOT(petriTextInserted(QGraphicsTextItem*)));
     connect(scene, SIGNAL(itemSelected(QGraphicsItem*)),
             this, SLOT(petriItemSelected(QGraphicsItem*)));
-    connect(scene, SIGNAL(itemDeleted(QGraphicsItem*)),
-            this, SLOT(petriItemDeleted(QGraphicsItem*)));
+    connect(scene, SIGNAL(itemDeleted()),
+            this, SLOT(petriItemDeleted()));
+
 
     this->_numScheduledScalings = 0;
+
+    //right click : what to do.
+    this->setContextMenuPolicy(Qt::CustomContextMenu);
+    connect(this, SIGNAL(customContextMenuRequested(const QPoint&)),
+            this, SLOT(showContextMenu(const QPoint&)));
 }
 
 PetriView::~PetriView()
@@ -57,10 +64,9 @@ void PetriView::petriItemSelected(QGraphicsItem *item)
     emit sceneClicked();
 }
 
-void PetriView::petriItemDeleted(QGraphicsItem *item)
+void PetriView::petriItemDeleted()
 {
     //TODO aqui
-    (void) item;
     this->scene->clearSelection();
     emit sceneClicked();
 }
@@ -71,6 +77,53 @@ void PetriView::petriArcInserted(IPetriArc *arc)
     (void) arc;
     this->scene->clearSelection();
     emit sceneClicked();
+}
+
+void PetriView::showContextMenu(const QPoint &pos)
+{
+    // for most widgets
+    //QPoint globalPos = this->mapToGlobal(pos);//normal
+    QPoint globalPos = this->viewport()->mapToGlobal(pos); //QAbstractScrollArea e derivados
+
+    if(this->scene->selectedItems().size() > 0)
+    {
+        QGraphicsItem *item = this->scene->selectedItems().first();
+        //TODO mover criação do menu para fora daqui (um para cada tipo: lugar, transição, arco e rede)
+        QMenu myMenu;
+        switch (item->type())
+        {
+        case IPetriItem::Type:
+        {
+            IPetriItem *pItem = qgraphicsitem_cast<IPetriItem*>(item);
+            if(pItem->isTransition())
+            {
+                QAction *rotateAction = new QAction(tr("Rotate"), this);
+                rotateAction->setStatusTip(tr("Rotate arc"));
+                connect(rotateAction, SIGNAL(triggered(bool)),
+                        this, SLOT(rotate()));
+                myMenu.addAction(rotateAction);
+            }
+            break;
+        }
+        default:
+            break;
+        }
+
+        /*myMenu.addAction(tr("Menu Item 1"));
+        myMenu.addAction(tr("Menu Item 2"));
+        myMenu.addAction(tr("Menu Item 3"));*/
+
+        QAction* selectedMenuItem = myMenu.exec(globalPos);
+        if (selectedMenuItem)
+        {
+            // Escolheu algo
+            //fazer algo
+        }
+        else
+        {
+            // nada foi escolhido
+        }
+    }
 }
 
 void PetriView::scalingTime(qreal x)
@@ -108,3 +161,8 @@ void PetriView::wheelEvent(QWheelEvent *event)
     anim->start();
 }
 
+void PetriView::rotate()
+{
+    //TODO
+    QGraphicsItem *item = this->scene->selectedItems().first();
+}
