@@ -3,6 +3,7 @@
 
 #include <QGraphicsView>
 #include <QWheelEvent>
+#include <QMenu>
 
 #include "diagram/petriscene.h"
 
@@ -42,6 +43,13 @@ private:
 
     //zoom
     int _numScheduledScalings;
+
+    QMenu menuPlace;
+    QMenu menuTransition;
+    QMenu menuArc;
+    QMenu menuNet;
+
+    void createMenus();
 
 private slots:
     void rotate();
