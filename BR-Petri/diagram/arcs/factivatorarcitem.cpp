@@ -20,10 +20,10 @@ void FActivatorArcItem::paintHead(double angle)
 
 QColor FActivatorArcItem::getBrushColor()
 {
-    return Qt::blue;
+    return Qt::green;
 }
 
 QColor FActivatorArcItem::getPenColor()
 {
-    return Qt::blue;
+    return Qt::green;
 }
