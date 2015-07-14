@@ -85,10 +85,10 @@ void PetriView::showContextMenu(const QPoint &pos)
     // for most widgets
     //QPoint globalPos = this->mapToGlobal(pos);//normal
     QPoint globalPos = this->viewport()->mapToGlobal(pos); //QAbstractScrollArea e derivados
+    QAction* selectedMenuItem = nullptr;
 
     if(this->scene->selectedItems().size() > 0)
     {
-        QAction* selectedMenuItem = nullptr;
         QGraphicsItem *item = this->scene->selectedItems().first();
 
         switch (item->type())
@@ -98,7 +98,7 @@ void PetriView::showContextMenu(const QPoint &pos)
             IPetriItem *pItem = qgraphicsitem_cast<IPetriItem*>(item);
             if(pItem->isTransition())
             {
-               selectedMenuItem = menuTransition.exec(globalPos);
+                selectedMenuItem = menuTransition.exec(globalPos);
             }
             else if(pItem->isPlace())
             {
@@ -106,19 +106,28 @@ void PetriView::showContextMenu(const QPoint &pos)
             }
             break;
         }
+        case IPetriArc::Type:
+        {
+            selectedMenuItem = menuArc.exec(globalPos);
+            break;
+        }
         default:
             break;
         }
+    }
+    else
+    {
+        selectedMenuItem = menuNet.exec(globalPos);
+    }
 
-        if (selectedMenuItem)
-        {
-            // Escolheu algo
-            //fazer algo
-        }
-        else
-        {
-            // nada foi escolhido
-        }
+    if (selectedMenuItem)
+    {
+        // Escolheu algo
+        //fazer algo
+    }
+    else
+    {
+        // nada foi escolhido
     }
 }
 
@@ -165,8 +174,19 @@ void PetriView::createMenus()
     //connect
 
     //menuArc
+    QAction *showCardinality = new QAction(tr("_display the cardinality"), this);
+    showCardinality->setStatusTip(tr("_Displays the arc's cardinality"));
+    //connect
+    menuArc.addAction(showCardinality);
+    menuArc.addSeparator();
+    menuArc.addAction(deleteAction);
 
     //menuNet
+    QAction *matrixArcs = new QAction(tr("_matrix for the arcs"), this);
+    matrixArcs->setStatusTip(tr("_pop matrix"));
+    //copy cut paste clear undo
+    //connect
+    menuNet.addAction(matrixArcs);
 
     //menuPlace
     QAction *numberToken = new QAction(tr("_display tokens number"), this);
