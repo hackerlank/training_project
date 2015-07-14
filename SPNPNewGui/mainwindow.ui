@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>759</width>
-    <height>762</height>
+    <width>825</width>
+    <height>645</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -23,8 +23,8 @@
      <widget class="PetriEditor" name="widget" native="true">
       <property name="minimumSize">
        <size>
-        <width>700</width>
-        <height>675</height>
+        <width>807</width>
+        <height>570</height>
        </size>
       </property>
      </widget>
@@ -36,8 +36,8 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>759</width>
-     <height>27</height>
+     <width>825</width>
+     <height>21</height>
     </rect>
    </property>
    <widget class="QMenu" name="menu_arquivo">

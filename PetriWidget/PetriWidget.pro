@@ -14,32 +14,47 @@ TEMPLATE = lib
 
 DEFINES += PETRIWIDGET_LIBRARY
 
-SOURCES += petriwidget.cpp \
-    view/placeview.cpp \
-    petributtons.cpp \
-    petrieditor.cpp \
-    view/immediatetransitionview.cpp \
+SOURCES += \
     petriproperties.cpp \
-    view/labelview.cpp \
-    view/abstractmoveable.cpp \
-    view/abstractlabeledmoveable.cpp \
-    petriscene.cpp \
-    view/arcview.cpp
+    diagram/arcs/abstractpetriarc.cpp \
+    diagram/arcs/activatorarcitem.cpp \
+    diagram/arcs/factivatorarcitem.cpp \
+    diagram/arcs/inhibitorarcitem.cpp \
+    diagram/items/abstractpetriitem.cpp \
+    diagram/items/abstractpetrilabelitem.cpp \
+    diagram/items/fplaceitem.cpp \
+    diagram/items/imtransitem.cpp \
+    diagram/items/petrilabelitem.cpp \
+    diagram/items/petritextitem.cpp \
+    diagram/items/placeitem.cpp \
+    diagram/items/ttransitem.cpp \
+    diagram/petriscene.cpp \
+    diagram/petriview.cpp \
+    petridesign.cpp \
+    petrieditor.cpp
 
 HEADERS += \
-    petriwidget.h\
     petriwidget_global.h \
-    view/placeview.h \
-    petributtons.h \
-    petrieditor.h \
-    states.h \
-    view/immediatetransitionview.h \
     petriproperties.h \
-    view/labelview.h \
-    view/abstractmoveable.h \
-    view/abstractlabeledmoveable.h \
-    petriscene.h \
-    view/arcview.h
+    diagram/arcs/abstractpetriarc.h \
+    diagram/arcs/activatorarcitem.h \
+    diagram/arcs/factivatorarcitem.h \
+    diagram/arcs/inhibitorarcitem.h \
+    diagram/arcs/ipetriarc.h \
+    diagram/items/abstractpetriitem.h \
+    diagram/items/abstractpetrilabelitem.h \
+    diagram/items/fplaceitem.h \
+    diagram/items/imtransitem.h \
+    diagram/items/ipetriitem.h \
+    diagram/items/ipetrilabelitem.h \
+    diagram/items/petrilabelitem.h \
+    diagram/items/petritextitem.h \
+    diagram/items/placeitem.h \
+    diagram/items/ttransitem.h \
+    diagram/petriscene.h \
+    diagram/petriview.h \
+    petridesign.h \
+    petrieditor.h
 
 unix {
     target.path = /usr/lib
@@ -69,6 +84,6 @@ RESOURCES += \
     imgs.qrc
 
 FORMS += \
-    petributtons.ui \
-    petrieditor.ui \
-    petriproperties.ui
+    petriproperties.ui \
+    petridesign.ui \
+    petrieditor.ui
