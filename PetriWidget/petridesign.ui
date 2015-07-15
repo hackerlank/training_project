@@ -32,7 +32,7 @@
       </size>
      </property>
      <property name="title">
-      <string>Elementos</string>
+      <string>_elementos</string>
      </property>
      <property name="flat">
       <bool>true</bool>
@@ -134,7 +134,7 @@
       <item row="1" column="4">
        <widget class="QCheckBox" name="cb_lock">
         <property name="text">
-         <string>travar</string>
+         <string>_travar</string>
         </property>
        </widget>
       </item>
