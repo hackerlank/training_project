@@ -9,6 +9,11 @@ PetriView::PetriView(QWidget *parent)
     this->setScene(scene);
     //this->ui->graphicsView->setScene(this->scene);
 
+    setCacheMode(CacheBackground);
+    setViewportUpdateMode(BoundingRectViewportUpdate);
+    setRenderHint(QPainter::Antialiasing);
+    setTransformationAnchor(AnchorUnderMouse);
+
     connect(scene, SIGNAL(itemInserted(IPetriItem*)),
             this, SLOT(petriItemInserted(IPetriItem*)));
     connect(scene, SIGNAL(arcInserted(IPetriArc*)),
