@@ -23,8 +23,6 @@ public slots:
     void petriItemDeleted();
     void petriArcInserted(IPetriArc *arc);
 
-    //right click
-    void showContextMenu(const QPoint& pos);
     //zoom
     void scalingTime(qreal x);
     void animFinished();
@@ -44,12 +42,7 @@ private:
     //zoom
     int _numScheduledScalings;
 
-    QMenu menuPlace;
-    QMenu menuTransition;
-    QMenu menuArc;
-    QMenu menuNet;
-
-    void createMenus();
+    QMenu itemMenu;
 
 private slots:
     void rotate();

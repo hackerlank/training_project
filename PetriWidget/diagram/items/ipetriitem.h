@@ -11,7 +11,7 @@ public:
     enum { Type = UserType + 15 };
     enum PetriType { Place, FPlace, ITrans, TTrans };
 
-    IPetriItem(QGraphicsItem *parent):QGraphicsPolygonItem(parent) { }
+    IPetriItem(QMenu *contextMenu, QGraphicsItem *parent):QGraphicsPolygonItem(parent) { this->myContextMenu = contextMenu; }
     virtual ~IPetriItem() { }
 
     int type() const override { return Type; }
@@ -28,6 +28,7 @@ public:
 
 protected:
     IPetriItem::PetriType myPetriType;
+    QMenu *myContextMenu;
 };
 
 #endif // IPETRIITEM_H

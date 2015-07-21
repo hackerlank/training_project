@@ -38,7 +38,6 @@ protected:
     QVariant itemChange(GraphicsItemChange change, const QVariant &value) override;
 
     QPolygonF myPolygon;
-    QMenu *myContextMenu;
     QList<IPetriArc*> arcs;
 
     IPetriLabelItem *myLabel;
