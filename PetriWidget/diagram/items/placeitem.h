@@ -11,6 +11,7 @@ public:
 
 protected:
     virtual void drawItem() override;
+    virtual void mouseMoveEvent(QGraphicsSceneMouseEvent *event) override;
 };
 
 #endif // PLACEITEM_H

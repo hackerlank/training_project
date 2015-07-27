@@ -11,6 +11,7 @@ public:
 
 protected:
     virtual void drawItem() override;
+    void mouseMoveEvent(QGraphicsSceneMouseEvent *event) override;
 };
 
 #endif // TTRANS_H

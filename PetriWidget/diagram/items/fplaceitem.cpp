@@ -1,6 +1,9 @@
 #include "fplaceitem.h"
 
 #include <QPainter>
+#include <QGraphicsSceneMouseEvent>
+
+#include "objs/fluidplace.h"
 
 FPlaceItem::FPlaceItem(spnp::IData *data, QMenu *contextMenu, QGraphicsItem *parent)
     :AbstractPetriItem(data, contextMenu, parent)
@@ -26,4 +29,12 @@ void FPlaceItem::drawItem()
     path.addEllipse(-inner/2, -inner/2, inner, inner);
     myPolygon = path.toFillPolygon();
     AbstractPetriItem::drawItem();
+}
+
+void FPlaceItem::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
+{
+    QGraphicsItem::mouseMoveEvent(event);
+    spnp::FluidPlace *_data = static_cast<spnp::FluidPlace*>(this->getData());
+    _data->x = event->pos().x();
+    _data->y = event->pos().y();
 }

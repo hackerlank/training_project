@@ -10,8 +10,10 @@ public:
     virtual ~ImTransItem();
 
     virtual void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
+
 protected:
     virtual void drawItem() override;
+    void mouseMoveEvent(QGraphicsSceneMouseEvent *event) override;
 };
 
 #endif // ITRANSITEM_H

@@ -31,7 +31,7 @@ public:
 
     virtual void drawItem() = 0;
 
-    spnp::IData* getData() { return this->data; }
+    spnp::IData* getData() const { return this->data; }
 
 protected:
     IPetriItem::PetriType myPetriType;
