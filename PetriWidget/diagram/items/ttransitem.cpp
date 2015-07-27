@@ -1,6 +1,7 @@
 #include "ttransitem.h"
 
-TTransItem::TTransItem(QMenu *contextMenu, QGraphicsItem *parent):AbstractPetriItem(contextMenu, parent)
+TTransItem::TTransItem(spnp::IData *data, QMenu *contextMenu, QGraphicsItem *parent)
+    :AbstractPetriItem(data, contextMenu, parent)
 {
     myPetriType = IPetriItem::TTrans;
 

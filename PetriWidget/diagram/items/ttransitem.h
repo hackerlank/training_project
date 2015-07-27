@@ -6,7 +6,7 @@
 class TTransItem : public AbstractPetriItem
 {
 public:
-    TTransItem(QMenu *contextMenu, QGraphicsItem *parent = nullptr);
+    TTransItem(spnp::IData *data, QMenu *contextMenu, QGraphicsItem *parent = nullptr);
     virtual ~TTransItem();
 
 protected:

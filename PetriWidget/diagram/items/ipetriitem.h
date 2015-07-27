@@ -2,6 +2,7 @@
 #define IPETRIITEM_H
 
 #include <QGraphicsPolygonItem>
+#include "idata.h"
 
 class IPetriArc;
 
@@ -11,8 +12,12 @@ public:
     enum { Type = UserType + 15 };
     enum PetriType { Place, FPlace, ITrans, TTrans };
 
-    IPetriItem(QMenu *contextMenu, QGraphicsItem *parent):QGraphicsPolygonItem(parent) { this->myContextMenu = contextMenu; }
-    virtual ~IPetriItem() { }
+    IPetriItem(spnp::IData* data, QMenu *contextMenu, QGraphicsItem *parent):QGraphicsPolygonItem(parent)
+    {
+        this->myContextMenu = contextMenu;
+        this->data = data;
+    }
+    virtual ~IPetriItem() { delete this->data; }
 
     int type() const override { return Type; }
 
@@ -26,9 +31,15 @@ public:
 
     virtual void drawItem() = 0;
 
+    spnp::IData* getData() { return this->data; }
+
 protected:
     IPetriItem::PetriType myPetriType;
     QMenu *myContextMenu;
+
+private:
+    spnp::IData* data;
+
 };
 
 #endif // IPETRIITEM_H

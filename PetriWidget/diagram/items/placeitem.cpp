@@ -2,7 +2,8 @@
 
 #include <QPainter>
 
-PlaceItem::PlaceItem(QMenu *contextMenu, QGraphicsItem *parent):AbstractPetriItem(contextMenu, parent)
+PlaceItem::PlaceItem(spnp::IData *data, QMenu *contextMenu, QGraphicsItem *parent)
+    :AbstractPetriItem(data, contextMenu, parent)
 {
     myPetriType = IPetriItem::Place;
 

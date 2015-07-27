@@ -13,6 +13,9 @@
 #include "diagram/arcs/inhibitorarcitem.h"
 #include "diagram/arcs/factivatorarcitem.h"
 
+#include "objs/fluidplace.h"
+#include "objs/timedtransition.h"
+
 PetriScene::PetriScene(QMenu *itemMenu, QObject *parent)
     :QGraphicsScene(parent)
 {
@@ -105,7 +108,7 @@ void PetriScene::mousePressEvent(QGraphicsSceneMouseEvent *mouseEvent)
     switch (myMode)
     {
     case InsItem:
-        this->insertItem(mouseEvent->scenePos());
+        this->insertItem(nullptr, mouseEvent->scenePos());
         break;
     case InsArc:
         this->insertArc(mouseEvent->scenePos());
@@ -203,22 +206,31 @@ bool PetriScene::isItemChange(int type)
     return false;//horrível dois returns :'(
 }
 
-void PetriScene::insertItem(QPointF position)
+void PetriScene::insertItem(spnp::IData *itemData, QPointF position)
 {
     IPetriItem *item = nullptr;
+
     switch (myItemType)
     {
     case IPetriItem::Place:
-        item = new PlaceItem(myItemMenu);
+        if(itemData == nullptr)
+            itemData = new spnp::Place();
+        item = new PlaceItem(itemData, myItemMenu);
         break;
     case IPetriItem::FPlace:
-        item = new FPlaceItem(myItemMenu);
+        if(itemData == nullptr)
+            itemData = new spnp::FluidPlace();
+        item = new FPlaceItem(itemData, myItemMenu);
         break;
     case IPetriItem::ITrans:
-        item = new ImTransItem(myItemMenu);
+        if(itemData == nullptr)
+            itemData = new spnp::Transition();
+        item = new ImTransItem(itemData, myItemMenu);
         break;
     case IPetriItem::TTrans:
-        item = new TTransItem(myItemMenu);
+        if(itemData == nullptr)
+            itemData = new spnp::TimedTransition();
+        item = new TTransItem(itemData, myItemMenu);
         break;
     default:
         break;

@@ -6,7 +6,7 @@
 class ImTransItem : public AbstractPetriItem
 {
 public:
-    ImTransItem(QMenu *contextMenu, QGraphicsItem *parent = nullptr);
+    ImTransItem(spnp::IData *data, QMenu *contextMenu, QGraphicsItem *parent = nullptr);
     virtual ~ImTransItem();
 
     virtual void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);

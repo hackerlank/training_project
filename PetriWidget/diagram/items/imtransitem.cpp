@@ -2,7 +2,8 @@
 
 #include <QPainter>
 
-ImTransItem::ImTransItem(QMenu *contextMenu, QGraphicsItem *parent):AbstractPetriItem(contextMenu, parent)
+ImTransItem::ImTransItem(spnp::IData *data, QMenu *contextMenu, QGraphicsItem *parent)
+    :AbstractPetriItem(data, contextMenu, parent)
 {
     myPetriType = IPetriItem::ITrans;
     drawItem();

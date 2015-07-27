@@ -6,7 +6,7 @@
 class FPlaceItem : public AbstractPetriItem
 {
 public:
-    FPlaceItem(QMenu *contextMenu, QGraphicsItem *parent=nullptr);
+    FPlaceItem(spnp::IData *data, QMenu *contextMenu, QGraphicsItem *parent=nullptr);
     virtual ~FPlaceItem();
 
 protected:

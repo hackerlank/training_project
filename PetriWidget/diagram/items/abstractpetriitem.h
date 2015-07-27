@@ -20,7 +20,7 @@ class QPolygonF;
 class AbstractPetriItem : public IPetriItem
 {
 public:
-    AbstractPetriItem(QMenu *contextMenu, QGraphicsItem *parent=nullptr);
+    AbstractPetriItem(spnp::IData *data, QMenu *contextMenu, QGraphicsItem *parent=nullptr);
     virtual ~AbstractPetriItem();
 
     virtual void removeArc(IPetriArc *arc) override;
