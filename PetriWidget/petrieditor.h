@@ -15,6 +15,9 @@ public:
     explicit PetriEditor(QWidget *parent = 0);
     ~PetriEditor();
 
+    bool isLocked();
+    void setLocked(bool l);
+
 private:
     Ui::PetriEditor *ui;
 };
