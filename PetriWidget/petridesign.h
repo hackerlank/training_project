@@ -3,6 +3,7 @@
 
 #include <QWidget>
 #include <QButtonGroup>
+#include <QGraphicsItem>
 
 namespace Ui {
 class PetriDesign;
@@ -15,6 +16,12 @@ class PetriDesign : public QWidget
 public:
     explicit PetriDesign(QWidget *parent = 0);
     ~PetriDesign();
+
+    bool isLocked();
+    void setLocked(bool l);
+
+signals:
+    void itemSelected(QGraphicsItem* item);
 
 private slots:
     void on_bt_normal_clicked();
@@ -38,6 +45,7 @@ private slots:
 
 private slots:
     void afterClickAction();
+    void afterSelectionAction(QGraphicsItem *item);
 
 private:
     Ui::PetriDesign *ui;
