@@ -29,6 +29,7 @@ public slots:
 
 signals:
     void sceneClicked();
+    void itemSelected(QGraphicsItem *item);
 
 #ifndef QT_NO_WHEELEVENT
 protected:

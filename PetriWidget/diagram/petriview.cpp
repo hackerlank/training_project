@@ -65,8 +65,7 @@ void PetriView::petriTextInserted(QGraphicsTextItem *item)
 
 void PetriView::petriItemSelected(QGraphicsItem *item)
 {
-    //TODO aqui
-    (void)item;
+    emit itemSelected(item);
     //this->scene->clearSelection();
     emit sceneClicked();
 }
