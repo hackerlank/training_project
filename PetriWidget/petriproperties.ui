@@ -35,7 +35,7 @@
       </size>
      </property>
      <property name="currentIndex">
-      <number>3</number>
+      <number>7</number>
      </property>
      <widget class="QWidget" name="place">
       <layout class="QGridLayout" name="gridLayout_17">
@@ -337,7 +337,7 @@
           </spacer>
          </item>
          <item row="1" column="1" rowspan="2" colspan="2">
-          <widget class="QLineEdit" name="lineEdit_11"/>
+          <widget class="QLineEdit" name="le_ttrans_name"/>
          </item>
          <item row="2" column="0">
           <widget class="QLabel" name="label_20">
@@ -354,7 +354,7 @@
           </widget>
          </item>
          <item row="3" column="1" colspan="2">
-          <widget class="QLineEdit" name="lineEdit_12"/>
+          <widget class="QLineEdit" name="le_ttrans_guard"/>
          </item>
          <item row="4" column="0">
           <widget class="QLabel" name="label_22">
@@ -364,7 +364,7 @@
           </widget>
          </item>
          <item row="4" column="1" colspan="2">
-          <widget class="QLineEdit" name="lineEdit_14"/>
+          <widget class="QLineEdit" name="le_ttrans_prior"/>
          </item>
         </layout>
        </item>
@@ -386,10 +386,10 @@
                </widget>
               </item>
               <item row="0" column="1">
-               <widget class="QComboBox" name="comboBox_2"/>
+               <widget class="QComboBox" name="cb_ttrans_distr"/>
               </item>
               <item row="1" column="0" colspan="2">
-               <widget class="QPlainTextEdit" name="plainTextEdit"/>
+               <widget class="QPlainTextEdit" name="pte_ttrans_distr"/>
               </item>
              </layout>
             </item>
@@ -403,12 +403,12 @@
                </widget>
               </item>
               <item row="0" column="1">
-               <widget class="QLineEdit" name="lineEdit_13"/>
+               <widget class="QLineEdit" name="le_ttrans_rate"/>
               </item>
              </layout>
             </item>
             <item row="2" column="0">
-             <widget class="QComboBox" name="comboBox_3">
+             <widget class="QComboBox" name="cb_ttrans_rate">
               <item>
                <property name="text">
                 <string>Constante</string>
@@ -436,7 +436,7 @@
                </widget>
               </item>
               <item row="0" column="1">
-               <widget class="QComboBox" name="comboBox_5">
+               <widget class="QComboBox" name="cb_ttrans_place">
                 <property name="enabled">
                  <bool>false</bool>
                 </property>
@@ -457,7 +457,7 @@
             </widget>
            </item>
            <item row="0" column="1">
-            <widget class="QComboBox" name="comboBox_6"/>
+            <widget class="QComboBox" name="cb_ttrans_pol"/>
            </item>
            <item row="1" column="0">
             <widget class="QLabel" name="label_27">
@@ -467,7 +467,7 @@
             </widget>
            </item>
            <item row="1" column="1">
-            <widget class="QComboBox" name="comboBox_7"/>
+            <widget class="QComboBox" name="cb_ttrans_afected"/>
            </item>
           </layout>
          </item>
@@ -489,19 +489,101 @@
       </layout>
      </widget>
      <widget class="QWidget" name="arc">
-      <widget class="QLabel" name="label_11">
-       <property name="geometry">
-        <rect>
-         <x>10</x>
-         <y>10</y>
-         <width>59</width>
-         <height>17</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>Arco</string>
-       </property>
-      </widget>
+      <layout class="QGridLayout" name="gridLayout_19">
+       <item row="0" column="0">
+        <widget class="QLabel" name="label_11">
+         <property name="text">
+          <string>Arco</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="1">
+        <spacer name="horizontalSpacer_4">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>221</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item row="1" column="0" colspan="2">
+        <layout class="QHBoxLayout" name="horizontalLayout">
+         <item>
+          <widget class="QLabel" name="label_28">
+           <property name="text">
+            <string>De:</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLineEdit" name="le_arc_from">
+           <property name="enabled">
+            <bool>false</bool>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLabel" name="label_29">
+           <property name="text">
+            <string>Para:</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLineEdit" name="le_arc_to">
+           <property name="enabled">
+            <bool>false</bool>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item row="2" column="0" colspan="2">
+        <layout class="QGridLayout" name="gridLayout_18">
+         <item row="0" column="0" colspan="2">
+          <widget class="QRadioButton" name="rb_arc_const">
+           <property name="text">
+            <string>Constante</string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="2">
+          <widget class="QRadioButton" name="rb_arc_function">
+           <property name="text">
+            <string>Função</string>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="0">
+          <widget class="QLabel" name="label_30">
+           <property name="text">
+            <string>Multiplicidade:</string>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="1" colspan="2">
+          <widget class="QLineEdit" name="le_arc_mult"/>
+         </item>
+        </layout>
+       </item>
+       <item row="3" column="1">
+        <spacer name="verticalSpacer_2">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>20</width>
+           <height>388</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+      </layout>
      </widget>
      <widget class="QWidget" name="farc">
       <widget class="QLabel" name="label_12">
@@ -546,6 +628,28 @@
        <property name="text">
         <string>Rede</string>
        </property>
+      </widget>
+      <widget class="QWidget" name="">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>40</y>
+         <width>168</width>
+         <height>22</height>
+        </rect>
+       </property>
+       <layout class="QHBoxLayout" name="horizontalLayout_2">
+        <item>
+         <widget class="QLabel" name="label_31">
+          <property name="text">
+           <string>Nome</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLineEdit" name="le_net_name"/>
+        </item>
+       </layout>
       </widget>
      </widget>
     </widget>
