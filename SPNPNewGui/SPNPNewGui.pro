@@ -5,7 +5,7 @@
 #-------------------------------------------------
 
 QT      += core gui
-CONFIG	+=c++14
+CONFIG	+= c++14
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 TARGET = SPNPNewGui
@@ -13,11 +13,16 @@ TEMPLATE = app
 
 
 SOURCES += main.cpp\
-        mainwindow.cpp
+        mainwindow.cpp \
+    preferencesetupform.cpp \
+    appsettings.cpp
 
-HEADERS  += mainwindow.h
+HEADERS  += mainwindow.h \
+    preferencesetupform.h \
+    appsettings.h
 
-FORMS    += mainwindow.ui
+FORMS    += mainwindow.ui \
+    preferencesetupform.ui
 
 unix{
     DEFINES += LINUX
