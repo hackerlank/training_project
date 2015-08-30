@@ -21,6 +21,8 @@ public:
 private slots:
     void on_action_preferencias_triggered();
 
+    void on_action_sair_triggered();
+
 private:
     Ui::MainWindow *ui;
     PreferenceSetupForm *psf;

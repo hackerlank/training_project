@@ -34,3 +34,8 @@ void MainWindow::on_action_preferencias_triggered()
 {
     this->psf->show();
 }
+
+void MainWindow::on_action_sair_triggered()
+{
+    this->close();
+}
