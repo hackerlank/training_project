@@ -33,7 +33,7 @@ PetriScene::PetriScene(QMenu *itemMenu, QObject *parent)
 void PetriScene::setLineColor(const QColor &color)
 {
     myLineColor = color;
-    if(isItemChange(IPetriArc::Type))
+    if(isItemOfType(IPetriArc::Type))
     {
         IPetriArc *item = qgraphicsitem_cast<IPetriArc*>(selectedItems().first());
         item->setColor(myLineColor);
@@ -44,7 +44,7 @@ void PetriScene::setLineColor(const QColor &color)
 void PetriScene::setTextColor(const QColor &color)
 {
     myTextColor = color;
-    if(isItemChange(PetriTextItem::Type))
+    if(isItemOfType(PetriTextItem::Type))
     {
         PetriTextItem *item = qgraphicsitem_cast<PetriTextItem*>(selectedItems().first());
         item->setDefaultTextColor(myTextColor);
@@ -54,7 +54,7 @@ void PetriScene::setTextColor(const QColor &color)
 void PetriScene::setItemColor(const QColor &color)
 {
     myItemColor = color;
-    if(isItemChange(IPetriItem::Type))
+    if(isItemOfType(IPetriItem::Type))
     {
         IPetriItem *item = qgraphicsitem_cast<IPetriItem*>(selectedItems().first());
         item->setBrush(myItemColor);
@@ -64,7 +64,7 @@ void PetriScene::setItemColor(const QColor &color)
 void PetriScene::setFont(const QFont &font)
 {
     myFont = font;
-    if(isItemChange(PetriTextItem::Type))
+    if(isItemOfType(PetriTextItem::Type))
     {
         QGraphicsTextItem *item = qgraphicsitem_cast<QGraphicsTextItem*>(selectedItems().first());
         if(item)
@@ -123,6 +123,9 @@ void PetriScene::mousePressEvent(QGraphicsSceneMouseEvent *mouseEvent)
         break;
     }
     QGraphicsScene::mousePressEvent(mouseEvent);
+    //aqui porque deve ser após a seleção de um item
+    if(myMode == MoveItem)
+        this->itemSelection();
 }
 
 void PetriScene::mouseMoveEvent(QGraphicsSceneMouseEvent *mouseEvent)
@@ -196,7 +199,7 @@ void PetriScene::mouseReleaseEvent(QGraphicsSceneMouseEvent *mouseEvent)
     QGraphicsScene::mouseReleaseEvent(mouseEvent);
 }
 
-bool PetriScene::isItemChange(int type)
+bool PetriScene::isItemOfType(int type)
 {
     foreach (QGraphicsItem *item, selectedItems())
     {
@@ -286,4 +289,12 @@ void PetriScene::deleteItem()
         delete item;
     }
     emit itemDeleted();
+}
+
+void PetriScene::itemSelection()
+{
+    if(this->selectedItems().size() > 0)
+    {
+        emit itemSelected(this->selectedItems().at(0));
+    }
 }

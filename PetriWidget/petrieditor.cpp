@@ -6,6 +6,8 @@ PetriEditor::PetriEditor(QWidget *parent) :
     ui(new Ui::PetriEditor)
 {
     ui->setupUi(this);
+    connect(this->ui->widget, SIGNAL(itemSelected(QGraphicsItem*)),
+            this->ui->widget_2, SLOT(onItemSelected(QGraphicsItem*)));
 }
 
 PetriEditor::~PetriEditor()

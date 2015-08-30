@@ -53,7 +53,7 @@ protected:
     void mouseReleaseEvent(QGraphicsSceneMouseEvent *mouseEvent) override;
 
 private:
-    bool isItemChange(int type);
+    bool isItemOfType(int type);
 
     IPetriItem::PetriType myItemType;
     IPetriArc::ArcType myArcType;
@@ -72,6 +72,7 @@ private:
     void insertArc(QPointF position);
     void insertText(QPointF position);
     void deleteItem();
+    void itemSelection();
 };
 
 #endif // PETRISCENE_H

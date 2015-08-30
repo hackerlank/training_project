@@ -35,7 +35,7 @@
       </size>
      </property>
      <property name="currentIndex">
-      <number>7</number>
+      <number>2</number>
      </property>
      <widget class="QWidget" name="place">
       <layout class="QGridLayout" name="gridLayout_17">
@@ -629,7 +629,7 @@
         <string>Rede</string>
        </property>
       </widget>
-      <widget class="QWidget" name="">
+      <widget class="QWidget" name="layoutWidget">
        <property name="geometry">
         <rect>
          <x>20</x>

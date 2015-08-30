@@ -17,6 +17,9 @@ public:
     virtual ~IPetriArc() { }
 
     virtual void setColor(const QColor &color) = 0;
+
+    IPetriArc::ArcType arcType() const { return myArcType; }
+
     IPetriItem *startItem() const { return myStartItem; }
     IPetriItem *endItem() const { return myEndItem; }
 
@@ -30,6 +33,8 @@ protected:
 
     IPetriItem* myStartItem;
     IPetriItem* myEndItem;
+
+    IPetriArc::ArcType myArcType;
 };
 
 #endif // IPETRIARC_H

@@ -3,7 +3,7 @@
 InhibitorArcItem::InhibitorArcItem(IPetriItem *startItem, IPetriItem *endItem, QGraphicsItem *parent)
     :AbstractPetriArc(startItem, endItem, parent)
 {
-
+    this->myArcType = IPetriArc::Inhibitor;
 }
 
 InhibitorArcItem::~InhibitorArcItem()

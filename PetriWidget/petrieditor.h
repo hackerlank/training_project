@@ -2,6 +2,7 @@
 #define PETRIEDITOR_H
 
 #include <QWidget>
+#include <QGraphicsItem>
 
 namespace Ui {
 class PetriEditor;
@@ -20,6 +21,7 @@ public:
 
 private:
     Ui::PetriEditor *ui;
+
 };
 
 #endif // PETRIEDITOR_H
