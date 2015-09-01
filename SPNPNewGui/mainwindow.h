@@ -27,7 +27,9 @@ private slots:
 
     void on_action_Novo_Projeto_triggered();
 
-    void on_confirm_New_Project(spnp::Project* project);
+    void startNewProject(spnp::Project* project);
+
+    void on_action_Fechar_triggered();
 
 private:
     Ui::MainWindow *ui;

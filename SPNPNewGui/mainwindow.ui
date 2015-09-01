@@ -56,7 +56,7 @@
     <addaction name="separator"/>
     <addaction name="menu_Recente"/>
     <addaction name="separator"/>
-    <addaction name="actionFechar"/>
+    <addaction name="action_Fechar"/>
     <addaction name="separator"/>
     <addaction name="action_sair"/>
    </widget>
@@ -85,7 +85,7 @@
    <addaction name="separator"/>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
-  <action name="actionFechar">
+  <action name="action_Fechar">
    <property name="text">
     <string>&amp;Fechar</string>
    </property>

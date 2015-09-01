@@ -21,7 +21,7 @@ MainWindow::MainWindow(QWidget *parent) :
     this->npd->setModal(true);
 
     connect(this->npd, SIGNAL(startNewProject(spnp::Project*)),
-            this, SLOT(on_confirm_New_Project(spnp::Project*)));
+            this, SLOT(startNewProject(spnp::Project*)));
 
     this->updateMenus();
 
@@ -33,6 +33,7 @@ MainWindow::~MainWindow()
     delete ui;
     delete this->psf;
     delete this->npd;
+
 }
 
 bool MainWindow::isLocked()
@@ -78,8 +79,12 @@ void MainWindow::on_action_Novo_Projeto_triggered()
     this->npd->show();
 }
 
-void MainWindow::on_confirm_New_Project(spnp::Project *project)
+void MainWindow::startNewProject(spnp::Project* project)
 {
-    this->ui->widget->setEnabled(true);
-    (void)project;
+    this->ui->widget->startProject(project);
+}
+
+void MainWindow::on_action_Fechar_triggered()
+{
+    this->ui->widget->closeProject();
 }
