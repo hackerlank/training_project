@@ -1,14 +1,21 @@
 #include "project.h"
 
-spnp::Project::Project(std::string name):AbstractData()
+spnp::Project::Project(int id, std::string name):AbstractData(id, name)
 {
     this->nets = new std::vector<Net*>();
     this->name = name;
+    this->owner = "";
+    this->commentary = "";
+    this->date = "";
 }
 
-spnp::Project::Project(int id, std::string name, std::vector<Net *> *nets):AbstractData(id, name)
+spnp::Project::Project(int id, std::string name, std::vector<Net *> *nets, std::string owner,
+                       std::string commentary, std::string date):AbstractData(id, name)
 {
     this->nets = nets;
+    this->owner = owner;
+    this->commentary = commentary;
+    this->date = date;
 }
 
 spnp::Project::~Project()
@@ -61,6 +68,7 @@ XMLNode *spnp::Project::toXML()
     XMLNode* node = AbstractData::toXML();
     node->setAttribute("owner", this->owner);
     node->setAttribute("commentary", this->commentary);
+    node->setAttribute("date", this->date);
     for(auto it = nets->begin(); it != nets->end(); ++it)
     {
         node->addChild((*it)->toXML());
@@ -74,6 +82,7 @@ void spnp::Project::fromXML(XMLNode *xml)
     AbstractData::fromXML(xml);
     this->owner = xml->getAttributeS("owner");
     this->commentary = xml->getAttributeS("commentary");
+    this->date = xml->getAttributeS("date");
     std::vector<XMLNode*> *v = xml->getChildrenByName("net");
     for(auto it = v->begin(); it != v->end(); ++it)
     {

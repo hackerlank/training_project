@@ -8,8 +8,9 @@ namespace spnp
 class SPNPCLASSES_PUBLIC Project : public AbstractData
 {
 public:
-    Project(std::string name);
-    Project(int id, std::string name, std::vector<Net*> *nets = new std::vector<Net*>());
+    Project(int id, std::string name);
+    Project(int id=0, std::string name="", std::vector<Net*> *nets = new std::vector<Net*>(),
+            std::string owner="", std::string commentary="", std::string date="");
     virtual ~Project();
 
     void addNet(Net* net);
@@ -27,9 +28,7 @@ private:
     std::vector<Net*> *nets;
     std::string owner;
     std::string commentary;
-
-    //fazer
-    //date
+    std::string date;
 };
 }
 
