@@ -3,7 +3,9 @@
 
 #include <QMainWindow>
 #include "preferencesetupform.h"
+#include "newprojectdialog.h"
 
+#include "appsettings.h"
 namespace Ui {
 class MainWindow;
 }
@@ -23,9 +25,17 @@ private slots:
 
     void on_action_sair_triggered();
 
+    void on_action_Novo_Projeto_triggered();
+
 private:
     Ui::MainWindow *ui;
     PreferenceSetupForm *psf;
+    NewProjectDialog *npd;
+
+    void createMenus();
+    void updateMenus();
+
+    QAction* recentFileActs[AppSettings::MaxRecentFiles];
 };
 
 #endif // MAINWINDOW_H

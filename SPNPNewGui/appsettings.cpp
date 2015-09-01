@@ -17,7 +17,7 @@ QString AppSettings::getSPNPFolder()
     return this->getValue(FOLDERS, SPNP_FOLDER).toString();
 }
 
-void AppSettings::setSPNPFolder(QString str)
+void AppSettings::setSPNPFolder(const QString &str)
 {
     this->setValue(FOLDERS, SPNP_FOLDER, str);
 }
@@ -27,7 +27,7 @@ QString AppSettings::getExamples()
     return this->getValue(FOLDERS, EXAMPLES).toString();
 }
 
-void AppSettings::setExamples(QString str)
+void AppSettings::setExamples(const QString &str)
 {
     this->setValue(FOLDERS, EXAMPLES, str);
 }
@@ -37,7 +37,7 @@ QString AppSettings::getGraphs()
     return this->getValue(FOLDERS, GRAPHS).toString();
 }
 
-void AppSettings::setGraphs(QString str)
+void AppSettings::setGraphs(const QString &str)
 {
     this->setValue(FOLDERS, GRAPHS, str);
 }
@@ -57,7 +57,7 @@ QByteArray AppSettings::getGeometry()
     return this->getValue(SETTINGS, GEOMETRY).toByteArray();
 }
 
-void AppSettings::setGeometry(QByteArray ba)
+void AppSettings::setGeometry(const QByteArray &ba)
 {
     this->setValue(SETTINGS, GEOMETRY, ba);
 }
@@ -67,16 +67,39 @@ QByteArray AppSettings::getState()
     return this->getValue(SETTINGS, STATE).toByteArray();
 }
 
-void AppSettings::setState(QByteArray ba)
+void AppSettings::setState(const QByteArray &ba)
 {
     this->setValue(SETTINGS, STATE, ba);
+}
+
+QStringList AppSettings::getRecentFiles()
+{
+    return this->getValue(RECENT, RECENT_FILES).toStringList();
+}
+
+void AppSettings::setRecentFile(const QString &fileName)
+{
+    QStringList files = this->getRecentFiles();
+    files.removeAll(fileName);
+    files.prepend(fileName);
+
+    while(files.size() > MaxRecentFiles)
+    {
+        files.removeLast();
+    }
+
+    this->setValue(RECENT, RECENT_FILES, fileName);
 }
 
 AppSettings::AppSettings()
 {
     this->settings = new QSettings("spnpNewGui.ini", QSettings::IniFormat);
-    this->appGroups << "folders" << "settings";
-    this->appGroupNames << "spnp_folder" << "locked" << "geometry" << "state" << "spnp_examples" << "spnp_graphs";
+    this->appGroups << "folders" << "settings" << "recent";
+
+    this->appGroupNames << "spnp_folder"
+                        << "locked" << "geometry" << "state"
+                        << "spnp_examples" << "spnp_graphs"
+                        << "files";
 }
 
 AppSettings::~AppSettings()

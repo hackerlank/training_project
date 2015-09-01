@@ -7,32 +7,40 @@
 class AppSettings
 {
 public:
+    enum { MaxRecentFiles = 5 };
+
     static AppSettings* Instance();
 
     QString getSPNPFolder();
-    void setSPNPFolder(QString str);
+    void setSPNPFolder(const QString& str);
 
     QString getExamples();
-    void setExamples(QString str);
+    void setExamples(const QString& str);
 
     QString getGraphs();
-    void setGraphs(QString str);
+    void setGraphs(const QString& str);
 
     bool isLocked();
-    void setLocked(bool b);
+    void setLocked(const bool b);
 
     QByteArray getGeometry();
-    void setGeometry(QByteArray ba);
+    void setGeometry(const QByteArray& ba);
 
     QByteArray getState();
-    void setState(QByteArray ba);
+    void setState(const QByteArray& ba);
+
+    QStringList getRecentFiles();
+    void setRecentFile(const QString &fileName);
 
     static const int VERSION;
 
 private:
-    enum AppGroup { FOLDERS, SETTINGS };
+    enum AppGroup { FOLDERS, SETTINGS, RECENT };
     QStringList appGroups;
-    enum AppGroupNames { SPNP_FOLDER, LOCKED, GEOMETRY, STATE, EXAMPLES, GRAPHS };
+    enum AppGroupNames { SPNP_FOLDER,
+                         LOCKED, GEOMETRY, STATE,
+                         EXAMPLES, GRAPHS,
+                         RECENT_FILES };
     QStringList appGroupNames;
 
     AppSettings();

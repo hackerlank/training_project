@@ -44,38 +44,17 @@
     <property name="title">
      <string>_&amp;Arquivo</string>
     </property>
-    <widget class="QMenu" name="menu_novo">
+    <widget class="QMenu" name="menu_Recente">
      <property name="title">
-      <string>&amp;Novo</string>
+      <string>&amp;Recente</string>
      </property>
-     <addaction name="action__new_rede"/>
-     <addaction name="action_new_projeto"/>
     </widget>
-    <widget class="QMenu" name="menu_abrir">
-     <property name="title">
-      <string>&amp;Abrir</string>
-     </property>
-     <addaction name="action_open_rede"/>
-     <addaction name="action_open_projeto"/>
-    </widget>
-    <widget class="QMenu" name="menu_salvar_rede">
-     <property name="title">
-      <string>&amp;Salvar</string>
-     </property>
-     <addaction name="action_save_rede"/>
-     <addaction name="action_save_projeto"/>
-    </widget>
-    <widget class="QMenu" name="menuSalvar_como">
-     <property name="title">
-      <string>Salvar &amp;como...</string>
-     </property>
-     <addaction name="action_save_as_rede"/>
-     <addaction name="action_save_as_projeto"/>
-    </widget>
-    <addaction name="menu_novo"/>
-    <addaction name="menu_abrir"/>
-    <addaction name="menu_salvar_rede"/>
-    <addaction name="menuSalvar_como"/>
+    <addaction name="action_Novo_Projeto"/>
+    <addaction name="action_Abrir_Projeto"/>
+    <addaction name="action_Salvar_Projeto"/>
+    <addaction name="actionSalvar_como"/>
+    <addaction name="separator"/>
+    <addaction name="menu_Recente"/>
     <addaction name="separator"/>
     <addaction name="actionFechar"/>
     <addaction name="separator"/>
@@ -103,82 +82,9 @@
    <attribute name="toolBarBreak">
     <bool>false</bool>
    </attribute>
-   <addaction name="action__new_rede"/>
-   <addaction name="action_open_rede"/>
    <addaction name="separator"/>
-   <addaction name="action_new_projeto"/>
-   <addaction name="action_open_projeto"/>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
-  <action name="action__new_rede">
-   <property name="text">
-    <string>&amp;rede</string>
-   </property>
-   <property name="toolTip">
-    <string>Adicionar rede de Petri</string>
-   </property>
-   <property name="shortcut">
-    <string>Ctrl+Shift+N</string>
-   </property>
-  </action>
-  <action name="action_new_projeto">
-   <property name="text">
-    <string>&amp;projeto</string>
-   </property>
-   <property name="toolTip">
-    <string>Criar novo projeto</string>
-   </property>
-  </action>
-  <action name="action_open_rede">
-   <property name="icon">
-    <iconset resource="../PetriWidget/imgs.qrc">
-     <normaloff>:/icons/img/proj.ico</normaloff>:/icons/img/proj.ico</iconset>
-   </property>
-   <property name="text">
-    <string comment="abrir rede">&amp;rede</string>
-   </property>
-   <property name="toolTip">
-    <string>Abrir rede de Petri</string>
-   </property>
-  </action>
-  <action name="action_open_projeto">
-   <property name="icon">
-    <iconset resource="../PetriWidget/imgs.qrc">
-     <normaloff>:/icons/img/proj.ico</normaloff>:/icons/img/proj.ico</iconset>
-   </property>
-   <property name="text">
-    <string>&amp;projeto</string>
-   </property>
-   <property name="toolTip">
-    <string>Abrir projeto</string>
-   </property>
-   <property name="shortcut">
-    <string>Ctrl+Shift+O</string>
-   </property>
-  </action>
-  <action name="action_save_rede">
-   <property name="text">
-    <string>&amp;rede</string>
-   </property>
-  </action>
-  <action name="action_save_projeto">
-   <property name="text">
-    <string>&amp;projeto</string>
-   </property>
-   <property name="shortcut">
-    <string>Ctrl+S</string>
-   </property>
-  </action>
-  <action name="action_save_as_rede">
-   <property name="text">
-    <string>&amp;rede</string>
-   </property>
-  </action>
-  <action name="action_save_as_projeto">
-   <property name="text">
-    <string>&amp;projeto</string>
-   </property>
-  </action>
   <action name="actionFechar">
    <property name="text">
     <string>&amp;Fechar</string>
@@ -204,6 +110,26 @@
    </property>
    <property name="menuRole">
     <enum>QAction::QuitRole</enum>
+   </property>
+  </action>
+  <action name="action_Novo_Projeto">
+   <property name="text">
+    <string>&amp;Novo Projeto</string>
+   </property>
+  </action>
+  <action name="action_Abrir_Projeto">
+   <property name="text">
+    <string>&amp;Abrir Projeto</string>
+   </property>
+  </action>
+  <action name="action_Salvar_Projeto">
+   <property name="text">
+    <string>&amp;Salvar Projeto</string>
+   </property>
+  </action>
+  <action name="actionSalvar_como">
+   <property name="text">
+    <string>Salvar &amp;como...</string>
    </property>
   </action>
  </widget>
