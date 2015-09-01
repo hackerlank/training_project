@@ -27,6 +27,8 @@ private slots:
 
     void on_action_Novo_Projeto_triggered();
 
+    void on_confirm_New_Project(spnp::Project* project);
+
 private:
     Ui::MainWindow *ui;
     PreferenceSetupForm *psf;

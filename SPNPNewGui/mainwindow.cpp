@@ -20,6 +20,9 @@ MainWindow::MainWindow(QWidget *parent) :
     this->npd = new NewProjectDialog(this);
     this->npd->setModal(true);
 
+    connect(this->npd, SIGNAL(startNewProject(spnp::Project*)),
+            this, SLOT(on_confirm_New_Project(spnp::Project*)));
+
     this->updateMenus();
 
     this->ui->widget->setEnabled(false);
@@ -73,4 +76,10 @@ void MainWindow::updateMenus()
 void MainWindow::on_action_Novo_Projeto_triggered()
 {
     this->npd->show();
+}
+
+void MainWindow::on_confirm_New_Project(spnp::Project *project)
+{
+    this->ui->widget->setEnabled(true);
+    (void)project;
 }
