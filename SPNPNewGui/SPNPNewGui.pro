@@ -15,14 +15,17 @@ TEMPLATE = app
 SOURCES += main.cpp\
         mainwindow.cpp \
     preferencesetupform.cpp \
-    appsettings.cpp
+    appsettings.cpp \
+    newprojectdialog.cpp
 
 HEADERS  += mainwindow.h \
     preferencesetupform.h \
-    appsettings.h
+    appsettings.h \
+    newprojectdialog.h
 
 FORMS    += mainwindow.ui \
-    preferencesetupform.ui
+    preferencesetupform.ui \
+    newprojectdialog.ui
 
 unix{
     DEFINES += LINUX
