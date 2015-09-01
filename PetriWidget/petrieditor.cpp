@@ -30,12 +30,16 @@ void PetriEditor::setLocked(bool l)
 
 void PetriEditor::closeProject()
 {
-    delete this->project;
+    this->ui->widget->close();
+    this->ui->widget->setEnabled(false);
     this->setEnabled(false);
+    delete this->project;
 }
 
 void PetriEditor::startProject(spnp::Project *project)
 {
     this->project = project;
     this->setEnabled(true);
+    this->ui->widget->setEnabled(true);
+    //this->ui->widget_2->
 }

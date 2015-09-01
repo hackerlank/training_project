@@ -116,15 +116,24 @@
    <property name="text">
     <string>&amp;Novo Projeto</string>
    </property>
+   <property name="shortcut">
+    <string>Ctrl+N</string>
+   </property>
   </action>
   <action name="action_Abrir_Projeto">
    <property name="text">
     <string>&amp;Abrir Projeto</string>
    </property>
+   <property name="shortcut">
+    <string>Ctrl+O</string>
+   </property>
   </action>
   <action name="action_Salvar_Projeto">
    <property name="text">
     <string>&amp;Salvar Projeto</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+S</string>
    </property>
   </action>
   <action name="actionSalvar_como">

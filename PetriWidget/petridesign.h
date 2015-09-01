@@ -20,6 +20,8 @@ public:
     bool isLocked();
     void setLocked(bool l);
 
+    void close();
+
 signals:
     void itemSelected(QGraphicsItem* item);
 

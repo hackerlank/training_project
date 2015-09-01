@@ -47,6 +47,11 @@ PetriScene *PetriView::getScene() const
     return this->scene;
 }
 
+void PetriView::close()
+{
+    this->scene->clear();
+}
+
 void PetriView::petriItemInserted(IPetriItem *item)
 {
     //TODO aqui

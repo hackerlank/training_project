@@ -16,6 +16,8 @@ public:
 
     PetriScene* getScene() const;
 
+    void close();
+
 public slots:
     void petriItemInserted(IPetriItem *item);
     void petriTextInserted(QGraphicsTextItem *item);

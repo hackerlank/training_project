@@ -32,6 +32,11 @@ void PetriDesign::setLocked(bool l)
     this->ui->cb_lock->setChecked(l);
 }
 
+void PetriDesign::close()
+{
+    this->ui->widget->close();
+}
+
 void PetriDesign::on_bt_normal_clicked()
 {
     this->ui->widget->getScene()->setMode(PetriScene::MoveItem);
