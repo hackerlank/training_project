@@ -34,6 +34,8 @@ public:
 
     void setFont(const QFont &font);
 
+    void drawBackground(QPainter *painter, const QRectF &rect) override;
+
 public slots:
     void setMode(Mode mode);
     void setItemType(IPetriItem::PetriType type);
@@ -73,6 +75,10 @@ private:
     void insertText(QPointF position);
     void deleteItem();
     void itemSelection();
+
+    const int gridSize = 40;
+
+    void repositionItem(QGraphicsItem* item);
 };
 
 #endif // PETRISCENE_H

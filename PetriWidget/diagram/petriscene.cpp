@@ -1,9 +1,10 @@
 #include "petriscene.h"
 
-#include "diagram/arcs/ipetriarc.h"
 #include <QTextCursor>
 #include <QGraphicsSceneMouseEvent>
+#include <QPainter>
 
+#include "diagram/arcs/ipetriarc.h"
 #include "diagram/items/placeitem.h"
 #include "diagram/items/fplaceitem.h"
 #include "diagram/items/ttransitem.h"
@@ -72,6 +73,23 @@ void PetriScene::setFont(const QFont &font)
     }
 }
 
+void PetriScene::drawBackground(QPainter *painter, const QRectF &rect)
+{
+    painter->fillRect(rect, 0xFFECCC);
+    QPen pen;
+    painter->setPen(pen);
+
+    qreal left = int(rect.left()) - (int(rect.left()) % gridSize);
+    qreal top = int(rect.top()) - (int(rect.top()) % gridSize);
+    QVector<QPointF> points;
+    for (qreal x = left; x < rect.right(); x += gridSize){
+        for (qreal y = top; y < rect.bottom(); y += gridSize){
+            points.append(QPointF(x,y));
+        }
+    }
+    painter->drawPoints(points.data(), points.size());
+}
+
 void PetriScene::setMode(PetriScene::Mode mode)
 {
     this->myMode = mode;
@@ -138,6 +156,11 @@ void PetriScene::mouseMoveEvent(QGraphicsSceneMouseEvent *mouseEvent)
     else if(myMode == MoveItem)
     {
         QGraphicsScene::mouseMoveEvent(mouseEvent);
+        QList<QGraphicsItem*> items = this->selectedItems();
+        for(int i =0; i<items.size(); ++i)
+        {
+            repositionItem(items.at(i));
+        }
     }
 }
 
@@ -241,6 +264,7 @@ void PetriScene::insertItem(spnp::IData *itemData, QPointF position)
     item->setBrush(myItemColor);
     addItem(item);
     item->setPos(position);
+    repositionItem(item);
     emit itemInserted(item);
 }
 
@@ -297,4 +321,12 @@ void PetriScene::itemSelection()
     {
         emit itemSelected(this->selectedItems().at(0));
     }
+}
+
+void PetriScene::repositionItem(QGraphicsItem *item)
+{
+    int x = round(item->pos().x()/gridSize)*gridSize;
+    int y = round(item->pos().y()/gridSize)*gridSize;
+
+    item->setPos(x, y);
 }
