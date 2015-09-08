@@ -9,7 +9,7 @@ class SPNPCLASSES_PUBLIC FluidPlace : public Place
 {
 public:
     FluidPlace();
-    FluidPlace(int id, std::string name, double tokens=0., Label* label = nullptr,
+    FluidPlace(std::string name, double tokens=0., Label* label = nullptr,
                std::string boundValue="", std::string breakValue="", int x=0, int y=0);
     virtual ~FluidPlace();
 

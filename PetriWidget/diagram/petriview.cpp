@@ -52,6 +52,11 @@ void PetriView::close()
     this->scene->clear();
 }
 
+void PetriView::load(spnp::IData *data)
+{
+    this->scene->load(data);
+}
+
 void PetriView::petriItemInserted(IPetriItem *item)
 {
     //TODO aqui

@@ -14,8 +14,7 @@
 #include "diagram/arcs/inhibitorarcitem.h"
 #include "diagram/arcs/factivatorarcitem.h"
 
-#include "objs/fluidplace.h"
-#include "objs/timedtransition.h"
+#include "objs/net.h"
 
 PetriScene::PetriScene(QMenu *itemMenu, QObject *parent)
     :QGraphicsScene(parent)
@@ -88,6 +87,28 @@ void PetriScene::drawBackground(QPainter *painter, const QRectF &rect)
         }
     }
     painter->drawPoints(points.data(), points.size());
+}
+
+void PetriScene::load(spnp::IData *data)
+{
+    spnp::Net *netData = static_cast<spnp::Net*>(data);
+    this->clear();
+    for(unsigned int i=0, total=netData->getPlaces()->size(); i<total; ++i)
+    {
+        spnp::Place* place = netData->getPlaces()->at(i);
+        this->insertItem(place, QPointF(place->x, place->y));
+    }
+    for(unsigned int i=0, total=netData->getTransitions()->size(); i<total; ++i)
+    {
+        spnp::Transition* transition = netData->getTransitions()->at(i);
+        this->insertItem(transition, QPointF(transition->x, transition->y));
+    }
+    for(unsigned int i=0, total=netData->getArcs()->size(); i<total; ++i)
+    {
+        spnp::Arc* arc = netData->getArcs()->at(i);
+        //TODO inserir arco
+        //this->insertArc(arc, QPointF(arc->x, arc->y));
+    }
 }
 
 void PetriScene::setMode(PetriScene::Mode mode)

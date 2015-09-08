@@ -17,6 +17,7 @@ public:
     PetriScene* getScene() const;
 
     void close();
+    void load(spnp::IData *data);
 
 public slots:
     void petriItemInserted(IPetriItem *item);

@@ -37,7 +37,7 @@ public:
     };
 
     TimedTransition();
-    TimedTransition(int id, std::string name,
+    TimedTransition(std::string name,
                     std::string priority,
                     Label* label=nullptr,
                     std::string rate="0.25",

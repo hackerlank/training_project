@@ -10,10 +10,10 @@ spnp::TimedTransition::TimedTransition():Transition()
     this->label = new Label();
 }
 
-spnp::TimedTransition::TimedTransition(int id, std::string name, std::string priority, Label *label, std::string rate,
+spnp::TimedTransition::TimedTransition(std::string name, std::string priority, Label *label, std::string rate,
                                        Distribution distribution, std::string distValue,
                                        Policy policy, Affected affected, int x, int y)
-    :Transition(id, name, priority, label, x, y)
+    :Transition(name, priority, label, x, y)
 {
     this->rate = rate;
     this->distribution = distribution;

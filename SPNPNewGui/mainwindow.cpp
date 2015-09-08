@@ -33,7 +33,6 @@ MainWindow::~MainWindow()
     delete ui;
     delete this->psf;
     delete this->npd;
-
 }
 
 bool MainWindow::isLocked()

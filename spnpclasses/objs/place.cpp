@@ -6,8 +6,8 @@ spnp::Place::Place():AbstractVisualData()
     this->label = new Label();
 }
 
-spnp::Place::Place(int id, std::string name, double tokens, Label *label, int x, int y)
-    :AbstractVisualData(id, name, x, y)
+spnp::Place::Place(std::string name, double tokens, Label *label, int x, int y)
+    :AbstractVisualData(name, x, y)
 {
     this->tokens = tokens;
     if(label != nullptr)

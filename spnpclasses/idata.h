@@ -18,7 +18,7 @@ namespace spnp
         virtual std::string getName() const { return this->name; }
         virtual void setName(std::string name) { this->name = name; }
 
-        int id;
+        std::string id;
     protected:
         std::string name;
     };

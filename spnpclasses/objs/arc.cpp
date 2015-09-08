@@ -8,9 +8,9 @@ spnp::Arc::Arc():AbstractData()
     this->multiplicity = 1.;
 }
 
-spnp::Arc::Arc(int id, std::string name, int place,
+spnp::Arc::Arc(std::string name, int place,
                int transition, bool fromPlaceToTransition,
-               double multiplicity):AbstractData(id, name)
+               double multiplicity):AbstractData(name)
 {
     this->place = place;
     this->transition = transition;

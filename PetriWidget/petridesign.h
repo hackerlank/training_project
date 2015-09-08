@@ -5,6 +5,8 @@
 #include <QButtonGroup>
 #include <QGraphicsItem>
 
+#include "idata.h"
+
 namespace Ui {
 class PetriDesign;
 }
@@ -21,6 +23,7 @@ public:
     void setLocked(bool l);
 
     void close();
+    void load(spnp::IData *data);
 
 signals:
     void itemSelected(QGraphicsItem* item);

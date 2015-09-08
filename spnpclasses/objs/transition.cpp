@@ -6,8 +6,8 @@ spnp::Transition::Transition():AbstractVisualData()
     this->label = new Label();
 }
 
-spnp::Transition::Transition(int id, std::string name,
-                             std::string value, Label *label, int x, int y):AbstractVisualData(id, name, x, y)
+spnp::Transition::Transition(std::string name,
+                             std::string value, Label *label, int x, int y):AbstractVisualData(name, x, y)
 {
     this->priority = value;
     if(label==nullptr)

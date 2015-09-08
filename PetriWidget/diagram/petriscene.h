@@ -36,6 +36,8 @@ public:
 
     void drawBackground(QPainter *painter, const QRectF &rect) override;
 
+    void load(spnp::IData* data);
+
 public slots:
     void setMode(Mode mode);
     void setItemType(IPetriItem::PetriType type);

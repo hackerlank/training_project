@@ -1,6 +1,6 @@
 #include "project.h"
 
-spnp::Project::Project(int id, std::string name):AbstractData(id, name)
+spnp::Project::Project(std::string name):AbstractData(name)
 {
     this->nets = new std::vector<Net*>();
     this->name = name;
@@ -9,8 +9,8 @@ spnp::Project::Project(int id, std::string name):AbstractData(id, name)
     this->date = "";
 }
 
-spnp::Project::Project(int id, std::string name, std::vector<Net *> *nets, std::string owner,
-                       std::string commentary, std::string date):AbstractData(id, name)
+spnp::Project::Project(std::string name, std::vector<Net *> *nets, std::string owner,
+                       std::string commentary, std::string date):AbstractData(name)
 {
     this->nets = nets;
     this->owner = owner;
@@ -20,8 +20,11 @@ spnp::Project::Project(int id, std::string name, std::vector<Net *> *nets, std::
 
 spnp::Project::~Project()
 {
-    for(auto it = nets->begin(); it != nets->end(); ++it)
-        delete(*it);
+    for(int i=0, total = this->nets->size(); i<total; ++i)
+    {
+        spnp::Net* currentNet = this->nets->at(i);
+        delete currentNet;
+    }
     nets->clear();
     delete nets;
 }
@@ -31,11 +34,11 @@ void spnp::Project::addNet(Net *net)
     this->nets->push_back(net);
 }
 
-spnp::Net *spnp::Project::getNet(int id) const
+spnp::Net *spnp::Project::getNet(std::string id) const
 {
     for(auto it = this->nets->begin(); it != this->nets->end(); ++it)
     {
-        if((*it)->id == id)
+        if((*it)->id.compare(id))
             return (*it);
     }
     return nullptr;
@@ -46,11 +49,11 @@ std::vector<spnp::Net*> *spnp::Project::getNets() const
     return this->nets;
 }
 
-void spnp::Project::removeNet(int id)
+void spnp::Project::removeNet(std::string id)
 {
-    for(unsigned int i=0; i< this->nets->size(); ++i)
+    for(unsigned int i=0, total = this->nets->size(); i < total; ++i)
     {
-        if(nets->at(i)->id == id)
+        if(nets->at(i)->id.compare(id))
         {
             nets->erase(nets->begin()+i);
             break;

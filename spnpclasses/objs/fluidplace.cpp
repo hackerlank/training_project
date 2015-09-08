@@ -11,9 +11,9 @@ spnp::FluidPlace::~FluidPlace()
 
 }
 
-spnp::FluidPlace::FluidPlace(int id, std::string name, double tokens, spnp::Label *label,
+spnp::FluidPlace::FluidPlace(std::string name, double tokens, spnp::Label *label,
                              std::string boundValue, std::string breakValue, int x, int y)
-    :Place(id, name, tokens, label, x, y)
+    :Place(name, tokens, label, x, y)
 {
     this->boundValue = boundValue;
     this->breakValue = breakValue;

@@ -9,7 +9,7 @@ class SPNPCLASSES_PUBLIC Label : public AbstractVisualData
 {
 public:
     Label();
-    Label(int id, std::string name, int x=0, int y=0);
+    Label(std::string name, int x=0, int y=0);
     virtual ~Label();
 
     virtual XMLNode* toXML();

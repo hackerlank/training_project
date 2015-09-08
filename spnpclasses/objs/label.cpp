@@ -4,7 +4,7 @@ spnp::Label::Label():AbstractVisualData()
 {
 }
 
-spnp::Label::Label(int id, std::string name, int x, int y):AbstractVisualData(id, name, x, y)
+spnp::Label::Label(std::string name, int x, int y):AbstractVisualData(name, x, y)
 {
 }
 

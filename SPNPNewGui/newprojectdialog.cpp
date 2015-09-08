@@ -32,13 +32,20 @@ void NewProjectDialog::on_bb_okcancel_clicked(QAbstractButton *button)
 void NewProjectDialog::createProject()
 {
     std::vector<spnp::Net*>* nets = new std::vector<spnp::Net*>();
-    spnp::Net* net = new spnp::Net(0, this->ui->le_mod_name->text().toStdString());
+    spnp::Net* net = new spnp::Net(this->ui->le_mod_name->text().toStdString());
 
     nets->push_back(net);
 
-    spnp::Project* project = new spnp::Project(0, this->ui->le_proj_name->text().toStdString(),
+    //TODO tirar isso
+    spnp::Place* place = new spnp::Place("opa", 2);
+    net->add(place);
+//delete place;
+    spnp::Project* project = new spnp::Project(this->ui->le_proj_name->text().toStdString(),
                                   nets, this->ui->le_owner->text().toStdString(),
                                   this->ui->pte_comments->toPlainText().toStdString(),
                                   this->ui->de_date->date().toString().toStdString());
+
+
+
     emit this->startNewProject(project);
 }

@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>825</width>
+    <width>963</width>
     <height>661</height>
    </rect>
   </property>
@@ -23,7 +23,7 @@
      <widget class="PetriEditor" name="widget" native="true">
       <property name="minimumSize">
        <size>
-        <width>807</width>
+        <width>945</width>
         <height>570</height>
        </size>
       </property>
@@ -36,7 +36,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>825</width>
+     <width>963</width>
      <height>21</height>
     </rect>
    </property>

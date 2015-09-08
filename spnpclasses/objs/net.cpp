@@ -7,8 +7,8 @@ spnp::Net::Net():AbstractData()
     this->arcs = new std::vector<Arc*>();
 }
 
-spnp::Net::Net(int id, std::string name, std::vector<Place *> *places,
-               std::vector<Transition *> *transitions, std::vector<Arc *> *arcs):AbstractData(id, name)
+spnp::Net::Net(std::string name, std::vector<Place *> *places,
+               std::vector<Transition *> *transitions, std::vector<Arc *> *arcs):AbstractData(name)
 {
     this->places = places;
     this->transitions = transitions;
@@ -17,18 +17,24 @@ spnp::Net::Net(int id, std::string name, std::vector<Place *> *places,
 
 spnp::Net::~Net()
 {
-    for(auto it = places->begin(); it != places->end(); ++it)
-        delete(*it);
-    for(auto it = transitions->begin(); it != transitions->end(); ++it)
+    for(int i=0, total = this->places->size(); i<total; ++i)
+    {
+        spnp::Place* _place = this->places->at(i);
+        delete _place;
+    }
+    places->clear();
+    delete places;
+
+    /*for(auto it = transitions->begin(); it != transitions->end(); ++it)
         delete(*it);
     for(auto it = arcs->begin(); it != arcs->end(); ++it)
-        delete(*it);
-    places->clear();
-    transitions->clear();
-    arcs->clear();
-    delete places;
-    delete transitions;
-    delete arcs;
+        delete(*it);*/
+
+    //transitions->clear();
+    //arcs->clear();
+
+    //delete transitions;
+    //delete arcs;
 }
 
 XMLNode *spnp::Net::toXML()
@@ -119,11 +125,13 @@ void spnp::Net::add(Arc *a)
     this->arcs->push_back(a);
 }
 
-void spnp::Net::removePlace(int id)
+void spnp::Net::removePlace(std::string id)
 {
     for(unsigned int i=0, total = this->places->size(); i<total; ++i)
     {
-        if(places->at(i)->id == id)
+        spnp::Place *place = this->places->at(i);
+
+        if(place->id.compare(id))
         {
             places->erase(places->begin()+i);
             break;
@@ -131,11 +139,12 @@ void spnp::Net::removePlace(int id)
     }
 }
 
-void spnp::Net::removeTransition(int id)
+void spnp::Net::removeTransition(std::string id)
 {
     for(unsigned int i=0, total = this->transitions->size(); i<total; ++i)
     {
-        if(transitions->at(i)->id == id)
+        spnp::Transition *transition = this->transitions->at(i);
+        if(transition->id.compare(id))
         {
             transitions->erase(transitions->begin()+i);
             break;
@@ -143,47 +152,51 @@ void spnp::Net::removeTransition(int id)
     }
 }
 
-void spnp::Net::removeArc(int id)
+void spnp::Net::removeArc(std::string id)
 {
     for(unsigned int i=0, total = this->arcs->size(); i<total; ++i)
     {
-        if(arcs->at(i)->id == id)
+        spnp::Arc *arc = this->arcs->at(i);
+        if(arc->id.compare(id))
         {
             arcs->erase(arcs->begin()+i);
             break;
         }
     }
 }
-/*
-spnp::Place *spnp::Net::getPlace(int id)
+
+spnp::Place *spnp::Net::getPlace(std::string id)
 {
-    for(auto &it : this->places)
+    for(unsigned int i=0, total = this->places->size(); i<total; ++i)
     {
-        if((*it)->id == id)
-            return (*it);
+        spnp::Place *place = this->places->at(i);
+        if(place->id.compare(id))
+            return (place);
     }
     return nullptr;
 }
 
-spnp::Transition *spnp::Net::getTransition(int id)
+spnp::Transition *spnp::Net::getTransition(std::string id)
 {
-    for(auto &it : this->transitions)
+    for(unsigned int i=0, total = this->transitions->size(); i<total; ++i)
     {
-        if((*it)->id == id)
-            return (*it);
+        spnp::Transition* trans = this->transitions->at(i);
+        if(trans->id.compare(id))
+            return trans;
     }
     return nullptr;
 }
 
-spnp::Arc *spnp::Net::getArc(int id)
+spnp::Arc *spnp::Net::getArc(std::string id)
 {
-    for(auto &it : this->arcs)
+    for(unsigned int i=0, total = this->arcs->size(); i<total; ++i)
     {
-        if((*it)->id == id)
-            return (*it);
+        spnp::Arc *arc = this->arcs->at(i);
+        if(arc->id.compare(id))
+            return arc;
     }
     return nullptr;
-}*/
+}
 
 std::vector<spnp::Place *> *spnp::Net::getPlaces() const
 {

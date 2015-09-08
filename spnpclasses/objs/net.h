@@ -13,7 +13,7 @@ class SPNPCLASSES_PUBLIC Net : public AbstractData
 {
 public:
     Net();
-    Net(int id, std::string name,
+    Net(std::string name,
         std::vector<Place*> *places = new std::vector<Place*>(),
         std::vector<Transition*> *transitions = new std::vector<Transition*>(),
         std::vector<Arc*> *arcs = new std::vector<Arc*>());
@@ -26,14 +26,14 @@ public:
     void add(Transition* t);
     void add(Arc* a);
 
-    void removePlace(int id);
-    void removeTransition(int id);
-    void removeArc(int id);
-/*
-    Place* getPlace(int id);
-    Transition* getTransition(int id);
-    Arc* getArc(int id);
-*/
+    void removePlace(std::string id);
+    void removeTransition(std::string id);
+    void removeArc(std::string id);
+
+    Place* getPlace(std::string id);
+    Transition* getTransition(std::string id);
+    Arc* getArc(std::string id);
+
     std::vector<Place*> * getPlaces() const;
     std::vector<Transition*> *getTransitions() const;
     std::vector<Arc*> *getArcs() const;

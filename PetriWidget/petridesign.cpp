@@ -37,6 +37,11 @@ void PetriDesign::close()
     this->ui->widget->close();
 }
 
+void PetriDesign::load(spnp::IData *data)
+{
+    this->ui->widget->load(data);
+}
+
 void PetriDesign::on_bt_normal_clicked()
 {
     this->ui->widget->getScene()->setMode(PetriScene::MoveItem);

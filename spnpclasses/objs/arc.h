@@ -9,7 +9,7 @@ class SPNPCLASSES_PUBLIC Arc : public AbstractData
 {
 public:
     Arc();
-    Arc(int id, std::string name, int place=-1, int transition=-1, bool fromPlaceToTransition=false, double multiplicity=1.);
+    Arc(std::string name, int place=-1, int transition=-1, bool fromPlaceToTransition=false, double multiplicity=1.);
     virtual ~Arc();
     virtual XMLNode* toXML();
     virtual void fromXML(XMLNode *xml);
