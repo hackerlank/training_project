@@ -17,7 +17,8 @@ public:
         this->myContextMenu = contextMenu;
         this->data = data;
     }
-    virtual ~IPetriItem() { delete this->data; }
+    //TODO verificar se está consumindo memória
+    virtual ~IPetriItem() { /*delete this->data;*/ }
 
     int type() const override { return Type; }
 
