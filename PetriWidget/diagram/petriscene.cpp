@@ -28,6 +28,8 @@ PetriScene::PetriScene(QMenu *itemMenu, QObject *parent)
     myItemColor = Qt::white;
     myTextColor = Qt::black;
     myLineColor = Qt::black;
+
+    this->setBackgroundBrush(QBrush(0xAACACA));
 }
 
 void PetriScene::setLineColor(const QColor &color)
@@ -71,7 +73,7 @@ void PetriScene::setFont(const QFont &font)
             item->setFont(myFont);
     }
 }
-
+/*
 void PetriScene::drawBackground(QPainter *painter, const QRectF &rect)
 {
     painter->fillRect(rect, 0xFFECCC);
@@ -87,7 +89,7 @@ void PetriScene::drawBackground(QPainter *painter, const QRectF &rect)
         }
     }
     painter->drawPoints(points.data(), points.size());
-}
+}*/
 
 void PetriScene::load(spnp::IData *data)
 {
@@ -100,7 +102,7 @@ void PetriScene::load(spnp::IData *data)
     }
     for(unsigned int i=0, total=netData->getTransitions()->size(); i<total; ++i)
     {
-        spnp::Transition* transition = netData->getTransitions()->at(i);
+        spnp::ImmediateTransition* transition = netData->getTransitions()->at(i);
         this->insertItem(transition, QPointF(transition->x, transition->y));
     }
     for(unsigned int i=0, total=netData->getArcs()->size(); i<total; ++i)
@@ -271,7 +273,7 @@ void PetriScene::insertItem(spnp::IData *itemData, QPointF position)
         break;
     case IPetriItem::ITrans:
         if(itemData == nullptr)
-            itemData = new spnp::Transition();
+            itemData = new spnp::ImmediateTransition();
         item = new ImTransItem(itemData, myItemMenu);
         break;
     case IPetriItem::TTrans:

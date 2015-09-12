@@ -1,7 +1,6 @@
 #ifndef PETRISCENE_H
 #define PETRISCENE_H
 
-//#include "diagram/items/abstractpetriitem.h"
 #include "diagram/items/ipetriitem.h"
 #include "diagram/arcs/ipetriarc.h"
 #include "diagram/items/petritextitem.h"
@@ -34,7 +33,7 @@ public:
 
     void setFont(const QFont &font);
 
-    void drawBackground(QPainter *painter, const QRectF &rect) override;
+    //void drawBackground(QPainter *painter, const QRectF &rect) override;
 
     void load(spnp::IData* data);
 
@@ -78,7 +77,7 @@ private:
     void deleteItem();
     void itemSelection();
 
-    const int gridSize = 40;
+    const int gridSize = 10;
 
     void repositionItem(QGraphicsItem* item);
 };
