@@ -27,7 +27,7 @@ public:
 
     virtual bool canConnect() = 0;
     virtual void updatePosition() = 0;
-
+    spnp::IData* getData() const { return this->data; }
 protected:
     virtual void paintHead(double angle) = 0;
 
@@ -35,6 +35,8 @@ protected:
     IPetriItem* myEndItem;
 
     IPetriArc::ArcType myArcType;
+
+    spnp::IData* data;
 };
 
 #endif // IPETRIARC_H

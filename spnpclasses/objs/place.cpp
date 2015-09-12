@@ -43,7 +43,7 @@ void spnp::Place::fromXML(XMLNode *xml)
     this->label->fromXML(xml->getChildAt(0));
 }
 
-double spnp::Place::getTokens() const
+double spnp::Place::getToken() const
 {
     return this->tokens;
 }

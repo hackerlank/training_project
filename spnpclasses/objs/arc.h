@@ -9,27 +9,30 @@ class SPNPCLASSES_PUBLIC Arc : public AbstractData
 {
 public:
     Arc();
-    Arc(std::string name, int place=-1, int transition=-1, bool fromPlaceToTransition=false, double multiplicity=1.);
+    Arc(std::string name, std::string place="", std::string transition="",
+        bool fromPlaceToTransition=false, double multiplicity=1., bool isFluid=false);
     virtual ~Arc();
     virtual XMLNode* toXML();
     virtual void fromXML(XMLNode *xml);
 
-    int getPlaceId() const;
-    int getTransitionId() const;
+    std::string getPlaceId() const;
+    std::string getTransitionId() const;
     bool getFromPlaceToTransition() const;
     double getMultiplicity() const;
 
-    void setPlace(const int id);
-    void setTransition(const int id);
+    void setPlace(const std::string id);
+    void setTransition(const std::string id);
     void setFromPlaceToTransition(const bool b);
     void setMultiplicity(const double m);
 private:
-    int place;
-    int transition;
+    std::string place;
+    std::string transition;
     bool fromPlaceToTransition;
     double multiplicity;
 
     virtual std::string getClassNodeName();
+
+    bool isFluid;
 };
 }
 

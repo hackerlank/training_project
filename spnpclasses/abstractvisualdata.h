@@ -5,21 +5,21 @@
 
 namespace spnp
 {
-    class SPNPCLASSES_PUBLIC AbstractVisualData : public AbstractData
-    {
-    public:
-        AbstractVisualData();
-        AbstractVisualData(std::string name, int x=0, int y=0);
-        virtual ~AbstractVisualData();
+class SPNPCLASSES_PUBLIC AbstractVisualData : public AbstractData
+{
+public:
+    AbstractVisualData();
+    AbstractVisualData(std::string name, int x=0, int y=0);
+    virtual ~AbstractVisualData();
 
-        int x;
-        int y;
+    int x;
+    int y;
 
-        virtual XMLNode* toXML();
-        virtual void fromXML(XMLNode *xml);
-    private:
-        virtual std::string getClassNodeName()=0;
-    };
+    virtual XMLNode* toXML();
+    virtual void fromXML(XMLNode *xml);
+protected:
+    virtual std::string getClassNodeName()=0;
+};
 }
 
 #endif // ABSTRACTVISUALDATA_H

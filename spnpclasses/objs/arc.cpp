@@ -6,16 +6,18 @@ spnp::Arc::Arc():AbstractData()
     this->transition = -1;
     this->fromPlaceToTransition = false;
     this->multiplicity = 1.;
+    this->isFluid = false;
 }
 
-spnp::Arc::Arc(std::string name, int place,
-               int transition, bool fromPlaceToTransition,
-               double multiplicity):AbstractData(name)
+spnp::Arc::Arc(std::string name, std::string place,
+               std::string transition, bool fromPlaceToTransition,
+               double multiplicity, bool isFluid):AbstractData(name)
 {
     this->place = place;
     this->transition = transition;
     this->fromPlaceToTransition = fromPlaceToTransition;
     this->multiplicity = multiplicity;
+    this->isFluid = isFluid;
 }
 
 spnp::Arc::~Arc()
@@ -29,6 +31,7 @@ XMLNode *spnp::Arc::toXML()
     node->setAttribute("place", this->place);
     node->setAttribute("transition", this->transition);
     node->setAttribute("ptot", this->fromPlaceToTransition);
+    node->setAttribute("fluid", this->isFluid);
     return node;
 }
 
@@ -38,14 +41,15 @@ void spnp::Arc::fromXML(XMLNode *xml)
     this->place = xml->getAttributeI("place");
     this->transition = xml->getAttributeI("transition");
     this->fromPlaceToTransition = xml->getAttributeB("ptot");
+    this->isFluid = xml->getAttributeB("fluid");
 }
 
-int spnp::Arc::getPlaceId() const
+std::string spnp::Arc::getPlaceId() const
 {
     return this->place;
 }
 
-int spnp::Arc::getTransitionId() const
+std::string spnp::Arc::getTransitionId() const
 {
     return this->transition;
 }
@@ -60,12 +64,12 @@ double spnp::Arc::getMultiplicity() const
     return this->multiplicity;
 }
 
-void spnp::Arc::setPlace(const int id)
+void spnp::Arc::setPlace(const std::string id)
 {
     this->place = id;
 }
 
-void spnp::Arc::setTransition(const int id)
+void spnp::Arc::setTransition(const std::string id)
 {
     this->transition = id;
 }

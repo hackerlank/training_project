@@ -6,20 +6,20 @@
 
 namespace spnp
 {
-    class SPNPCLASSES_PUBLIC AbstractData : public IData
-    {
-    public:
-        AbstractData();
-        AbstractData(std::string name);
-        virtual ~AbstractData();
+class SPNPCLASSES_PUBLIC AbstractData : public IData
+{
+public:
+    AbstractData();
+    AbstractData(std::string name);
+    virtual ~AbstractData();
 
-        virtual XMLNode* toXML();
-        virtual void fromXML(XMLNode *xml);
-    private:
-        virtual std::string getClassNodeName()=0;
-
-        void createID();
-    };
+    virtual XMLNode* toXML();
+    virtual void fromXML(XMLNode *xml);
+protected:
+    virtual std::string getClassNodeName()=0;
+private:
+    void createID();
+};
 }
 
 #endif // ABSTRACTDATA_H

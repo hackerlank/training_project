@@ -35,6 +35,26 @@ void spnp::FluidPlace::fromXML(XMLNode *xml)
     this->breakValue = xml->getAttributeS("break");
 }
 
+std::string spnp::FluidPlace::getBoundValue()
+{
+    return this->boundValue;
+}
+
+std::string spnp::FluidPlace::getBreakValue()
+{
+    return this->breakValue;
+}
+
+void spnp::FluidPlace::setBoundValue(std::string v)
+{
+    this->boundValue = v;
+}
+
+void spnp::FluidPlace::setBreakValue(std::string v)
+{
+    this->breakValue = v;
+}
+
 std::string spnp::FluidPlace::getClassNodeName()
 {
     return "fluid_place";

@@ -16,6 +16,11 @@ public:
     virtual XMLNode* toXML();
     virtual void fromXML(XMLNode *xml);
 
+    std::string getBoundValue();
+    std::string getBreakValue();
+    void setBoundValue(std::string v);
+    void setBreakValue(std::string v);
+
 private:
     virtual std::string getClassNodeName();
 

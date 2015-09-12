@@ -3,12 +3,12 @@
 spnp::Net::Net():AbstractData()
 {
     this->places = new std::vector<Place*>();
-    this->transitions = new std::vector<Transition*>();
+    this->transitions = new std::vector<ImmediateTransition*>();
     this->arcs = new std::vector<Arc*>();
 }
 
 spnp::Net::Net(std::string name, std::vector<Place *> *places,
-               std::vector<Transition *> *transitions, std::vector<Arc *> *arcs):AbstractData(name)
+               std::vector<ImmediateTransition *> *transitions, std::vector<Arc *> *arcs):AbstractData(name)
 {
     this->places = places;
     this->transitions = transitions;
@@ -92,7 +92,7 @@ void spnp::Net::fromXML(XMLNode *xml)
     v = xml->getChildrenByName("transition");
     for(auto it = v->begin(); it != v->end(); ++it)
     {
-        Transition* t = new Transition();
+        ImmediateTransition* t = new ImmediateTransition();
         t->fromXML(*it);
         this->transitions->push_back(t);
         delete (*it);
@@ -115,7 +115,7 @@ void spnp::Net::add(Place *p)
     this->places->push_back(p);
 }
 
-void spnp::Net::add(Transition *t)
+void spnp::Net::add(ImmediateTransition *t)
 {
     this->transitions->push_back(t);
 }
@@ -143,7 +143,7 @@ void spnp::Net::removeTransition(std::string id)
 {
     for(unsigned int i=0, total = this->transitions->size(); i<total; ++i)
     {
-        spnp::Transition *transition = this->transitions->at(i);
+        spnp::ImmediateTransition *transition = this->transitions->at(i);
         if(transition->id.compare(id))
         {
             transitions->erase(transitions->begin()+i);
@@ -176,11 +176,11 @@ spnp::Place *spnp::Net::getPlace(std::string id)
     return nullptr;
 }
 
-spnp::Transition *spnp::Net::getTransition(std::string id)
+spnp::ImmediateTransition *spnp::Net::getTransition(std::string id)
 {
     for(unsigned int i=0, total = this->transitions->size(); i<total; ++i)
     {
-        spnp::Transition* trans = this->transitions->at(i);
+        spnp::ImmediateTransition* trans = this->transitions->at(i);
         if(trans->id.compare(id))
             return trans;
     }
@@ -203,7 +203,7 @@ std::vector<spnp::Place *> *spnp::Net::getPlaces() const
     return this->places;
 }
 
-std::vector<spnp::Transition *> *spnp::Net::getTransitions() const
+std::vector<spnp::ImmediateTransition *> *spnp::Net::getTransitions() const
 {
     return this->transitions;
 }
