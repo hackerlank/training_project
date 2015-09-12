@@ -3,6 +3,7 @@
 
 #include <QWidget>
 #include <QGraphicsItem>
+#include "idata.h"
 
 namespace Ui {
 class PetriProperties;
@@ -33,7 +34,7 @@ private slots:
 private:
     Ui::PetriProperties *ui;
 
-    void setData();
+    void setData(spnp::IData *data);
 };
 
 #endif // PETRIPROPERTIES_H

@@ -38,7 +38,7 @@ void PetriProperties::onItemSelected(QGraphicsItem *item)
         default:
             break;
         }
-
+        this->setData(other->getData());
     }
     else if(item->type() == IPetriArc::Type)
     {
@@ -57,7 +57,10 @@ void PetriProperties::onItemSelected(QGraphicsItem *item)
         default:
             break;
         }
+        this->setData(arc->getData());
     }
+
+    //item->g
 }
 
 void PetriProperties::on_le_place_name_textEdited(const QString &arg1)
@@ -72,7 +75,7 @@ void PetriProperties::on_le_place_tokens_textEdited(const QString &arg1)
     (void)arg1;
 }
 
-void PetriProperties::setData()
+void PetriProperties::setData(spnp::IData *data)
 {
 
 }

@@ -3,7 +3,7 @@
 #include <QPainter>
 #include <QGraphicsSceneMouseEvent>
 
-#include "objs/transition.h"
+#include "objs/immediatetransition.h"
 
 ImTransItem::ImTransItem(spnp::IData *data, QMenu *contextMenu, QGraphicsItem *parent)
     :AbstractPetriItem(data, contextMenu, parent)
@@ -36,7 +36,7 @@ void ImTransItem::drawItem()
 void ImTransItem::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
 {
     QGraphicsItem::mouseMoveEvent(event);
-    spnp::Transition *_data = static_cast<spnp::Transition*>(this->getData());
+    spnp::ImmediateTransition *_data = static_cast<spnp::ImmediateTransition*>(this->getData());
     _data->x = event->pos().x();
     _data->y = event->pos().y();
 }
