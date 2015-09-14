@@ -219,18 +219,39 @@ void PetriScene::mouseReleaseEvent(QGraphicsSceneMouseEvent *mouseEvent)
             if(start != end &&
                     ((start->isPlace() && end->isTransition()) || (start->isTransition() && end->isPlace())))
             {
+                IPetriItem *__place = start->isPlace() ? start : end;
+                IPetriItem *__trans = start->isPlace() ? end : start;
+                spnp::Arc* _arc = nullptr;
+
                 //TODO refazer
                 IPetriArc *arc = nullptr;
-                switch (myArcType) {
+
+                switch (myArcType)
+                {
                 case IPetriArc::Activator:
-                    //arc = new ActivatorArcItem(start,end);
+                {
+                    _arc = new spnp::Arc("arco", __place->getPetriItemId(), __trans->getPetriItemId(),
+                                         start->isPlace());
+                    arc = new ActivatorArcItem(_arc->id, start, end);
+                    currentNet->add(_arc);
                     break;
+                }
                 case IPetriArc::Inhibitor:
+                {
+                    //TODO rever aqui
+                    // _arc = new spnp::
                     //arc = new InhibitorArcItem(start, end);
                     break;
+                }
                 case IPetriArc::FActivator:
-                    //arc = new FActivatorArcItem(start, end);
+                {
+                    _arc = new spnp::Arc("arcoF", __place->getPetriItemId(), __trans->getPetriItemId(),
+                                         start->isPlace());
+                    _arc->setIsFluid(true);
+                    arc = new FActivatorArcItem(_arc->id, start, end);
+                    currentNet->add(_arc);
                     break;
+                }
                 default:
                     break;
                 }
@@ -241,6 +262,7 @@ void PetriScene::mouseReleaseEvent(QGraphicsSceneMouseEvent *mouseEvent)
                 arc->setZValue(-1000.0);
                 addItem(arc);
                 arc->updatePosition();
+
                 emit arcInserted(arc);
             }
         }
@@ -348,6 +370,7 @@ void PetriScene::deleteItem()
             IPetriArc *arc = qgraphicsitem_cast<IPetriArc*>(item);
             arc->startItem()->removeArc(arc);
             arc->endItem()->removeArc(arc);
+            currentNet->removeArc(arc->getArcId());
             delete item;
         }
     }
@@ -355,7 +378,14 @@ void PetriScene::deleteItem()
     foreach (QGraphicsItem *item, this->selectedItems())
     {
         if (item->type() == IPetriItem::Type)
-            qgraphicsitem_cast<IPetriItem *>(item)->removeArcs();
+        {
+            IPetriItem *ipi = qgraphicsitem_cast<IPetriItem *>(item);
+            //TODO otimizar
+            currentNet->removePlace(ipi->getPetriItemId());
+            currentNet->removeTransition(ipi->getPetriItemId());
+            ipi->removeArcs();
+        }
+
         this->removeItem(item);
         delete item;
     }
