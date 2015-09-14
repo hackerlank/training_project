@@ -72,7 +72,9 @@ private:
     QColor myItemColor;
     QColor myLineColor;
 
-    void insertItem(QPointF position);
+    void insertItemToPosition(spnp::IData *data, QPointF position);
+    void insertItemToPosition(QPointF position);
+    void insertItem(IPetriItem *item);
     void insertArc(QPointF position);
     void insertText(QPointF position);
     void deleteItem();

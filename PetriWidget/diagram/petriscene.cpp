@@ -96,24 +96,24 @@ void PetriScene::load(spnp::IData *data)
 {
     this->currentNet = static_cast<spnp::Net*>(data);
     this->clear();
-    //TODO setar o tipo antes de adicionar
-    /*
+
+
     for(unsigned int i=0, total=currentNet->getPlaces()->size(); i<total; ++i)
     {
         spnp::Place* place = currentNet->getPlaces()->at(i);
-        this->insertItem(place->id, QPointF(place->x, place->y));
+        this->insertItemToPosition(place, QPointF(place->x, place->y));
     }
     for(unsigned int i=0, total=currentNet->getTransitions()->size(); i<total; ++i)
     {
         spnp::ImmediateTransition* transition = currentNet->getTransitions()->at(i);
-        this->insertItem(transition->id, QPointF(transition->x, transition->y));
+        this->insertItemToPosition(transition, QPointF(transition->x, transition->y));
     }
     for(unsigned int i=0, total=currentNet->getArcs()->size(); i<total; ++i)
     {
         spnp::Arc* arc = currentNet->getArcs()->at(i);
         //TODO inserir arco
         //this->insertArc(arc, QPointF(arc->x, arc->y));
-    }*/
+    }
 }
 
 void PetriScene::setMode(PetriScene::Mode mode)
@@ -152,7 +152,7 @@ void PetriScene::mousePressEvent(QGraphicsSceneMouseEvent *mouseEvent)
     switch (myMode)
     {
     case InsItem:
-        this->insertItem(mouseEvent->scenePos());
+        this->insertItemToPosition(mouseEvent->scenePos());
         break;
     case InsArc:
         this->insertArc(mouseEvent->scenePos());
@@ -259,7 +259,14 @@ bool PetriScene::isItemOfType(int type)
     return false;//horrível dois returns :'(
 }
 
-void PetriScene::insertItem(QPointF position)
+void PetriScene::insertItemToPosition(spnp::IData *data, QPointF position)
+{
+    IPetriItem *item = new PlaceItem(data->id, myItemMenu);
+    item->setPos(position);
+    this->insertItem(item);
+}
+
+void PetriScene::insertItemToPosition(QPointF position)
 {
     IPetriItem *item = nullptr;
 
@@ -296,9 +303,14 @@ void PetriScene::insertItem(QPointF position)
     default:
         break;
     }
+    item->setPos(position);
+    insertItem(item);
+}
+
+void PetriScene::insertItem(IPetriItem *item)
+{
     item->setBrush(myItemColor);
     addItem(item);
-    item->setPos(position);
     repositionItem(item);
     emit itemInserted(item);
 }
