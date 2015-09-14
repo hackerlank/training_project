@@ -7,17 +7,19 @@ spnp::Arc::Arc():AbstractData()
     this->fromPlaceToTransition = false;
     this->multiplicity = 1.;
     this->isFluid = false;
+    this->isInhibitor = false;
 }
 
 spnp::Arc::Arc(std::string name, std::string place,
                std::string transition, bool fromPlaceToTransition,
-               double multiplicity, bool isFluid):AbstractData(name)
+               double multiplicity, bool isFluid, bool isInhibitor):AbstractData(name)
 {
     this->place = place;
     this->transition = transition;
     this->fromPlaceToTransition = fromPlaceToTransition;
     this->multiplicity = multiplicity;
     this->isFluid = isFluid;
+    this->isInhibitor = isInhibitor;
 }
 
 spnp::Arc::~Arc()
@@ -32,6 +34,7 @@ XMLNode *spnp::Arc::toXML()
     node->setAttribute("transition", this->transition);
     node->setAttribute("ptot", this->fromPlaceToTransition);
     node->setAttribute("fluid", this->isFluid);
+    node->setAttribute("inhibitor", this->isInhibitor);
     return node;
 }
 
@@ -42,6 +45,7 @@ void spnp::Arc::fromXML(XMLNode *xml)
     this->transition = xml->getAttributeI("transition");
     this->fromPlaceToTransition = xml->getAttributeB("ptot");
     this->isFluid = xml->getAttributeB("fluid");
+    this->isInhibitor = xml->getAttributeB("inhibitor");
 }
 
 std::string spnp::Arc::getPlaceId() const
@@ -69,6 +73,11 @@ bool spnp::Arc::getIsFluid() const
     return this->isFluid;
 }
 
+bool spnp::Arc::getIsInhibitor() const
+{
+    return this->isInhibitor;
+}
+
 void spnp::Arc::setPlace(const std::string id)
 {
     this->place = id;
@@ -92,6 +101,11 @@ void spnp::Arc::setMultiplicity(const double m)
 void spnp::Arc::setIsFluid(const bool b)
 {
     this->isFluid = b;
+}
+
+void spnp::Arc::setIsInhibitor(const bool b)
+{
+    this->isInhibitor = b;
 }
 
 std::string spnp::Arc::getClassNodeName()
