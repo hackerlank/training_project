@@ -223,7 +223,6 @@ void PetriScene::mouseReleaseEvent(QGraphicsSceneMouseEvent *mouseEvent)
                 IPetriItem *__trans = start->isPlace() ? end : start;
                 spnp::Arc* _arc = nullptr;
 
-                //TODO refazer
                 IPetriArc *arc = nullptr;
 
                 switch (myArcType)
@@ -233,7 +232,7 @@ void PetriScene::mouseReleaseEvent(QGraphicsSceneMouseEvent *mouseEvent)
                     _arc = new spnp::Arc("arco", __place->getPetriItemId(), __trans->getPetriItemId(),
                                          start->isPlace());
                     arc = new ActivatorArcItem(_arc->id, start, end);
-                    currentNet->add(_arc);
+
                     break;
                 }
                 case IPetriArc::Inhibitor:
@@ -242,7 +241,6 @@ void PetriScene::mouseReleaseEvent(QGraphicsSceneMouseEvent *mouseEvent)
                                          start->isPlace());
                     _arc->setIsInhibitor(true);
                     arc = new InhibitorArcItem(_arc->id, start, end);
-                    currentNet->add(_arc);
                     break;
                 }
                 case IPetriArc::FActivator:
@@ -251,13 +249,12 @@ void PetriScene::mouseReleaseEvent(QGraphicsSceneMouseEvent *mouseEvent)
                                          start->isPlace());
                     _arc->setIsFluid(true);
                     arc = new FActivatorArcItem(_arc->id, start, end);
-                    currentNet->add(_arc);
                     break;
                 }
                 default:
                     break;
                 }
-
+                currentNet->add(_arc);
                 arc->setColor(myLineColor);
                 start->addArc(arc);
                 end->addArc(arc);
