@@ -238,9 +238,11 @@ void PetriScene::mouseReleaseEvent(QGraphicsSceneMouseEvent *mouseEvent)
                 }
                 case IPetriArc::Inhibitor:
                 {
-                    //TODO rever aqui
-                    // _arc = new spnp::
-                    //arc = new InhibitorArcItem(start, end);
+                    _arc = new spnp::Arc("arco", __place->getPetriItemId(), __trans->getPetriItemId(),
+                                         start->isPlace());
+                    _arc->setIsInhibitor(true);
+                    arc = new InhibitorArcItem(_arc->id, start, end);
+                    currentNet->add(_arc);
                     break;
                 }
                 case IPetriArc::FActivator:
