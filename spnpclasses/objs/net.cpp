@@ -134,6 +134,7 @@ void spnp::Net::removePlace(std::string id)
         if(place->id.compare(id))
         {
             places->erase(places->begin()+i);
+            delete place;
             break;
         }
     }
@@ -147,6 +148,7 @@ void spnp::Net::removeTransition(std::string id)
         if(transition->id.compare(id))
         {
             transitions->erase(transitions->begin()+i);
+            delete transition;
             break;
         }
     }
@@ -160,6 +162,7 @@ void spnp::Net::removeArc(std::string id)
         if(arc->id.compare(id))
         {
             arcs->erase(arcs->begin()+i);
+            delete arc;
             break;
         }
     }
