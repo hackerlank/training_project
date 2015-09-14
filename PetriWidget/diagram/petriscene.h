@@ -1,6 +1,7 @@
 #ifndef PETRISCENE_H
 #define PETRISCENE_H
 
+#include "objs/net.h"
 #include "diagram/items/ipetriitem.h"
 #include "diagram/arcs/ipetriarc.h"
 #include "diagram/items/petritextitem.h"
@@ -71,7 +72,7 @@ private:
     QColor myItemColor;
     QColor myLineColor;
 
-    void insertItem(spnp::IData *itemData, QPointF position);
+    void insertItem(QPointF position);
     void insertArc(QPointF position);
     void insertText(QPointF position);
     void deleteItem();
@@ -80,6 +81,8 @@ private:
     const int gridSize = 10;
 
     void repositionItem(QGraphicsItem* item);
+
+    spnp::Net *currentNet;
 };
 
 #endif // PETRISCENE_H

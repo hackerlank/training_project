@@ -2,8 +2,8 @@
 
 const qreal Pi = 3.14;
 
-FActivatorArcItem::FActivatorArcItem(IPetriItem *startItem, IPetriItem *endItem, QGraphicsItem *parent)
-    :AbstractPetriArc(startItem, endItem, parent)
+FActivatorArcItem::FActivatorArcItem(std::string id, IPetriItem *startItem, IPetriItem *endItem, QGraphicsItem *parent)
+    :AbstractPetriArc(id, startItem, endItem, parent)
 {
     this->myArcType = IPetriArc::FActivator;
 }

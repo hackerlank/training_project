@@ -9,8 +9,8 @@
 
 const qreal Pi = 3.14;
 
-AbstractPetriArc::AbstractPetriArc(IPetriItem *startItem, IPetriItem *endItem, QGraphicsItem *parent)
-    :IPetriArc(startItem, endItem, parent)
+AbstractPetriArc::AbstractPetriArc(std::string id, IPetriItem *startItem, IPetriItem *endItem, QGraphicsItem *parent)
+    :IPetriArc(id, startItem, endItem, parent)
 {
     setFlag(QGraphicsItem::ItemIsSelectable, true);
     this->myColor = Qt::black;

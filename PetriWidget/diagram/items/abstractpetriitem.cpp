@@ -8,8 +8,8 @@
 #include <QMenu>
 #include <QPainter>
 
-AbstractPetriItem::AbstractPetriItem(spnp::IData *data, QMenu *contextMenu, QGraphicsItem *parent)
-    :IPetriItem(data, contextMenu, parent)
+AbstractPetriItem::AbstractPetriItem(std::string id, QMenu *contextMenu, QGraphicsItem *parent)
+    :IPetriItem(id, contextMenu, parent)
 {
     //drawItem();
     setFlag(QGraphicsItem::ItemIsMovable, true);

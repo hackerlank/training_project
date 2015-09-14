@@ -64,6 +64,11 @@ double spnp::Arc::getMultiplicity() const
     return this->multiplicity;
 }
 
+bool spnp::Arc::getIsFluid() const
+{
+    return this->isFluid;
+}
+
 void spnp::Arc::setPlace(const std::string id)
 {
     this->place = id;
@@ -82,6 +87,11 @@ void spnp::Arc::setFromPlaceToTransition(const bool b)
 void spnp::Arc::setMultiplicity(const double m)
 {
     this->multiplicity = m;
+}
+
+void spnp::Arc::setIsFluid(const bool b)
+{
+    this->isFluid = b;
 }
 
 std::string spnp::Arc::getClassNodeName()

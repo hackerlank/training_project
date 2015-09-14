@@ -12,8 +12,8 @@ public:
     enum { Type = UserType + 4 };
     enum ArcType { Activator, Inhibitor, FActivator };
 
-    IPetriArc(IPetriItem *startItem, IPetriItem *endItem, QGraphicsItem *parent=nullptr)
-        :QGraphicsLineItem(parent) { this->myStartItem = startItem; this->myEndItem = endItem;}
+    IPetriArc(std::string id, IPetriItem *startItem, IPetriItem *endItem, QGraphicsItem *parent=nullptr)
+        :QGraphicsLineItem(parent) { this->arcId = id; this->myStartItem = startItem; this->myEndItem = endItem;}
     virtual ~IPetriArc() { }
 
     virtual void setColor(const QColor &color) = 0;
@@ -27,7 +27,8 @@ public:
 
     virtual bool canConnect() = 0;
     virtual void updatePosition() = 0;
-    spnp::IData* getData() const { return this->data; }
+
+    std::string getArcId() const { return this->arcId; }
 protected:
     virtual void paintHead(double angle) = 0;
 
@@ -36,7 +37,7 @@ protected:
 
     IPetriArc::ArcType myArcType;
 
-    spnp::IData* data;
+    std::string arcId;
 };
 
 #endif // IPETRIARC_H

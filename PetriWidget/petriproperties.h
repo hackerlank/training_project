@@ -34,7 +34,7 @@ private slots:
 private:
     Ui::PetriProperties *ui;
 
-    void setData(spnp::IData *data);
+    void setData(std::string itemId);
 };
 
 #endif // PETRIPROPERTIES_H

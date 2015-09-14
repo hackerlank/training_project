@@ -25,6 +25,7 @@ PetriScene::PetriScene(QMenu *itemMenu, QObject *parent)
     myArcType = IPetriArc::Activator;
     line = nullptr;
     textItem = nullptr;
+    this->currentNet = nullptr;
     myItemColor = Qt::white;
     myTextColor = Qt::black;
     myLineColor = Qt::black;
@@ -93,24 +94,26 @@ void PetriScene::drawBackground(QPainter *painter, const QRectF &rect)
 
 void PetriScene::load(spnp::IData *data)
 {
-    spnp::Net *netData = static_cast<spnp::Net*>(data);
+    this->currentNet = static_cast<spnp::Net*>(data);
     this->clear();
-    for(unsigned int i=0, total=netData->getPlaces()->size(); i<total; ++i)
+    //TODO setar o tipo antes de adicionar
+    /*
+    for(unsigned int i=0, total=currentNet->getPlaces()->size(); i<total; ++i)
     {
-        spnp::Place* place = netData->getPlaces()->at(i);
-        this->insertItem(place, QPointF(place->x, place->y));
+        spnp::Place* place = currentNet->getPlaces()->at(i);
+        this->insertItem(place->id, QPointF(place->x, place->y));
     }
-    for(unsigned int i=0, total=netData->getTransitions()->size(); i<total; ++i)
+    for(unsigned int i=0, total=currentNet->getTransitions()->size(); i<total; ++i)
     {
-        spnp::ImmediateTransition* transition = netData->getTransitions()->at(i);
-        this->insertItem(transition, QPointF(transition->x, transition->y));
+        spnp::ImmediateTransition* transition = currentNet->getTransitions()->at(i);
+        this->insertItem(transition->id, QPointF(transition->x, transition->y));
     }
-    for(unsigned int i=0, total=netData->getArcs()->size(); i<total; ++i)
+    for(unsigned int i=0, total=currentNet->getArcs()->size(); i<total; ++i)
     {
-        spnp::Arc* arc = netData->getArcs()->at(i);
+        spnp::Arc* arc = currentNet->getArcs()->at(i);
         //TODO inserir arco
         //this->insertArc(arc, QPointF(arc->x, arc->y));
-    }
+    }*/
 }
 
 void PetriScene::setMode(PetriScene::Mode mode)
@@ -149,7 +152,7 @@ void PetriScene::mousePressEvent(QGraphicsSceneMouseEvent *mouseEvent)
     switch (myMode)
     {
     case InsItem:
-        this->insertItem(nullptr, mouseEvent->scenePos());
+        this->insertItem(mouseEvent->scenePos());
         break;
     case InsArc:
         this->insertArc(mouseEvent->scenePos());
@@ -216,16 +219,17 @@ void PetriScene::mouseReleaseEvent(QGraphicsSceneMouseEvent *mouseEvent)
             if(start != end &&
                     ((start->isPlace() && end->isTransition()) || (start->isTransition() && end->isPlace())))
             {
+                //TODO refazer
                 IPetriArc *arc = nullptr;
                 switch (myArcType) {
                 case IPetriArc::Activator:
-                    arc = new ActivatorArcItem(start,end);
+                    //arc = new ActivatorArcItem(start,end);
                     break;
                 case IPetriArc::Inhibitor:
-                    arc = new InhibitorArcItem(start, end);
+                    //arc = new InhibitorArcItem(start, end);
                     break;
                 case IPetriArc::FActivator:
-                    arc = new FActivatorArcItem(start, end);
+                    //arc = new FActivatorArcItem(start, end);
                     break;
                 default:
                     break;
@@ -255,32 +259,40 @@ bool PetriScene::isItemOfType(int type)
     return false;//horrível dois returns :'(
 }
 
-void PetriScene::insertItem(spnp::IData *itemData, QPointF position)
+void PetriScene::insertItem(QPointF position)
 {
     IPetriItem *item = nullptr;
 
     switch (myItemType)
     {
     case IPetriItem::Place:
-        if(itemData == nullptr)
-            itemData = new spnp::Place();
-        item = new PlaceItem(itemData, myItemMenu);
+    {
+        spnp::Place *_place = new spnp::Place();
+        item = new PlaceItem(_place->id, myItemMenu);
+        this->currentNet->add(_place);
         break;
+    }
     case IPetriItem::FPlace:
-        if(itemData == nullptr)
-            itemData = new spnp::FluidPlace();
-        item = new FPlaceItem(itemData, myItemMenu);
+    {
+        spnp::FluidPlace *_fplace = new spnp::FluidPlace();
+        item = new FPlaceItem(_fplace->id, myItemMenu);
+        this->currentNet->add(_fplace);
         break;
+    }
     case IPetriItem::ITrans:
-        if(itemData == nullptr)
-            itemData = new spnp::ImmediateTransition();
-        item = new ImTransItem(itemData, myItemMenu);
+    {
+        spnp::ImmediateTransition *_itrans = new spnp::ImmediateTransition();
+        item = new ImTransItem(_itrans->id, myItemMenu);
+        this->currentNet->add(_itrans);
         break;
+    }
     case IPetriItem::TTrans:
-        if(itemData == nullptr)
-            itemData = new spnp::TimedTransition();
-        item = new TTransItem(itemData, myItemMenu);
+    {
+        spnp::TimedTransition* _ttrans = new spnp::TimedTransition();
+        item = new TTransItem(_ttrans->id, myItemMenu);
+        this->currentNet->add(_ttrans);
         break;
+    }
     default:
         break;
     }

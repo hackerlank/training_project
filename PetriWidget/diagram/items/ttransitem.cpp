@@ -3,8 +3,8 @@
 #include <QGraphicsSceneMouseEvent>
 #include "objs/timedtransition.h"
 
-TTransItem::TTransItem(spnp::IData *data, QMenu *contextMenu, QGraphicsItem *parent)
-    :AbstractPetriItem(data, contextMenu, parent)
+TTransItem::TTransItem(std::string id, QMenu *contextMenu, QGraphicsItem *parent)
+    :AbstractPetriItem(id, contextMenu, parent)
 {
     myPetriType = IPetriItem::TTrans;
 
@@ -29,8 +29,9 @@ void TTransItem::drawItem()
 
 void TTransItem::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
 {
-    QGraphicsItem::mouseMoveEvent(event);
+    //TODO conferir
+    QGraphicsItem::mouseMoveEvent(event);/*
     spnp::TimedTransition *_data = static_cast<spnp::TimedTransition*>(this->getData());
     _data->x = event->pos().x();
-    _data->y = event->pos().y();
+    _data->y = event->pos().y();*/
 }

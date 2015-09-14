@@ -5,8 +5,8 @@
 
 #include "objs/fluidplace.h"
 
-FPlaceItem::FPlaceItem(spnp::IData *data, QMenu *contextMenu, QGraphicsItem *parent)
-    :AbstractPetriItem(data, contextMenu, parent)
+FPlaceItem::FPlaceItem(std::string id, QMenu *contextMenu, QGraphicsItem *parent)
+    :AbstractPetriItem(id, contextMenu, parent)
 {
     myPetriType = IPetriItem::FPlace;
 
@@ -34,7 +34,8 @@ void FPlaceItem::drawItem()
 void FPlaceItem::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
 {
     QGraphicsItem::mouseMoveEvent(event);
-    spnp::FluidPlace *_data = static_cast<spnp::FluidPlace*>(this->getData());
+    //TODO atualizar isso
+    /*spnp::FluidPlace *_data = static_cast<spnp::FluidPlace*>(this->getData());
     _data->x = event->pos().x();
-    _data->y = event->pos().y();
+    _data->y = event->pos().y();*/
 }

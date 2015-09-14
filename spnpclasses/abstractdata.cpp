@@ -2,6 +2,7 @@
 #include <ctime>
 spnp::AbstractData::AbstractData()
 {
+    this->createID();
     this->name = "ad";
 }
 

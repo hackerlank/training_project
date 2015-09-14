@@ -36,10 +36,6 @@ void NewProjectDialog::createProject()
 
     nets->push_back(net);
 
-    //TODO tirar isso
-    spnp::Place* place = new spnp::Place("opa", 2);
-    net->add(place);
-//delete place;
     spnp::Project* project = new spnp::Project(this->ui->le_proj_name->text().toStdString(),
                                   nets, this->ui->le_owner->text().toStdString(),
                                   this->ui->pte_comments->toPlainText().toStdString(),

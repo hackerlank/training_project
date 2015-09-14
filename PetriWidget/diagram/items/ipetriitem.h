@@ -12,13 +12,13 @@ public:
     enum { Type = UserType + 15 };
     enum PetriType { Place, FPlace, ITrans, TTrans };
 
-    IPetriItem(spnp::IData* data, QMenu *contextMenu, QGraphicsItem *parent):QGraphicsPolygonItem(parent)
+    IPetriItem(std::string id, QMenu *contextMenu, QGraphicsItem *parent):QGraphicsPolygonItem(parent)
     {
         this->myContextMenu = contextMenu;
-        this->data = data;
+        this->petriItemId = id;
     }
-    //TODO verificar se está consumindo memória
-    virtual ~IPetriItem() { /*delete this->data;*/ }
+
+    virtual ~IPetriItem() {  }
 
     int type() const override { return Type; }
 
@@ -32,14 +32,14 @@ public:
 
     virtual void drawItem() = 0;
 
-    spnp::IData* getData() const { return this->data; }
+    std::string getPetriItemId() const { return this->petriItemId; }
 
 protected:
     IPetriItem::PetriType myPetriType;
     QMenu *myContextMenu;
 
 private:
-    spnp::IData* data;
+    std::string petriItemId;
 
 };
 

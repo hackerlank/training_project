@@ -5,8 +5,8 @@
 
 #include "objs/place.h"
 
-PlaceItem::PlaceItem(spnp::IData *data, QMenu *contextMenu, QGraphicsItem *parent)
-    :AbstractPetriItem(data, contextMenu, parent)
+PlaceItem::PlaceItem(std::string id, QMenu *contextMenu, QGraphicsItem *parent)
+    :AbstractPetriItem(id, contextMenu, parent)
 {
     myPetriType = IPetriItem::Place;
 
@@ -30,7 +30,8 @@ void PlaceItem::drawItem()
 void PlaceItem::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
 {
     QGraphicsItem::mouseMoveEvent(event);
-    spnp::Place *_data = static_cast<spnp::Place*>(this->getData());
+    //TODO conferir
+    /*spnp::Place *_data = static_cast<spnp::Place*>(this->getData());
     _data->x = event->pos().x();
-    _data->y = event->pos().y();
+    _data->y = event->pos().y();*/
 }

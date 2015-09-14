@@ -19,11 +19,13 @@ public:
     std::string getTransitionId() const;
     bool getFromPlaceToTransition() const;
     double getMultiplicity() const;
-
+    bool getIsFluid() const;
     void setPlace(const std::string id);
     void setTransition(const std::string id);
     void setFromPlaceToTransition(const bool b);
     void setMultiplicity(const double m);
+    void setIsFluid(const bool b);
+
 private:
     std::string place;
     std::string transition;

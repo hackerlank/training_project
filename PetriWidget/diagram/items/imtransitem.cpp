@@ -5,8 +5,8 @@
 
 #include "objs/immediatetransition.h"
 
-ImTransItem::ImTransItem(spnp::IData *data, QMenu *contextMenu, QGraphicsItem *parent)
-    :AbstractPetriItem(data, contextMenu, parent)
+ImTransItem::ImTransItem(std::string id, QMenu *contextMenu, QGraphicsItem *parent)
+    :AbstractPetriItem(id, contextMenu, parent)
 {
     myPetriType = IPetriItem::ITrans;
     drawItem();
@@ -36,7 +36,8 @@ void ImTransItem::drawItem()
 void ImTransItem::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
 {
     QGraphicsItem::mouseMoveEvent(event);
-    spnp::ImmediateTransition *_data = static_cast<spnp::ImmediateTransition*>(this->getData());
+    //TODO verificar
+    /*spnp::ImmediateTransition *_data = static_cast<spnp::ImmediateTransition*>(this->getData());
     _data->x = event->pos().x();
-    _data->y = event->pos().y();
+    _data->y = event->pos().y();*/
 }
