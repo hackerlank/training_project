@@ -6,6 +6,7 @@ NewProjectDialog::NewProjectDialog(QWidget *parent) :
     ui(new Ui::NewProjectDialog)
 {
     ui->setupUi(this);
+    this->ui->de_date->setDate(QDate::currentDate());
 }
 
 NewProjectDialog::~NewProjectDialog()
