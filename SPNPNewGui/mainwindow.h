@@ -31,6 +31,10 @@ private slots:
 
     void on_action_Fechar_triggered();
 
+    void on_actionSalvar_como_triggered();
+
+    void on_action_Salvar_Projeto_triggered();
+
 private:
     Ui::MainWindow *ui;
     PreferenceSetupForm *psf;
@@ -39,7 +43,12 @@ private:
     void createMenus();
     void updateMenus();
 
+    void save();
+    void saveAs();
+
     QAction* recentFileActs[AppSettings::MaxRecentFiles];
+
+    std::string currentFile;
 };
 
 #endif // MAINWINDOW_H

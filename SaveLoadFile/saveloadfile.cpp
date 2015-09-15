@@ -8,7 +8,7 @@ SaveLoadFile::SaveLoadFile()
 
 void SaveLoadFile::saveFile(std::string file, std::string text)
 {
-    std::ofstream output(file);
+    std::ofstream output(file, std::ofstream::out | std::ofstream::trunc);
     output << text;
     output.close();
 }

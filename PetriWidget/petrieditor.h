@@ -26,6 +26,8 @@ public:
     void closeProject();
     void startProject(spnp::Project* project);
 
+    spnp::Project* getCurrentProject();
+
 private slots:
     void on_lw_nets_itemClicked(QListWidgetItem *item);
     void showContextMenuForListOfNets(const QPoint &p);

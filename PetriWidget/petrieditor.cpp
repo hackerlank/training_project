@@ -64,6 +64,11 @@ void PetriEditor::startProject(spnp::Project *project)
     }
 }
 
+spnp::Project *PetriEditor::getCurrentProject()
+{
+    return this->project;
+}
+
 void PetriEditor::on_lw_nets_itemClicked(QListWidgetItem *item)
 {
     QString data = item->data(Qt::UserRole).toString();

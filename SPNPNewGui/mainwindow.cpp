@@ -2,6 +2,9 @@
 #include "ui_mainwindow.h"
 
 #include <QDesktopWidget>
+#include <QFileDialog>
+
+#include "saveloadfile.h"
 
 
 MainWindow::MainWindow(QWidget *parent) :
@@ -9,6 +12,8 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+
+    this->currentFile = "";
 
     this->restoreGeometry(AppSettings::Instance()->getGeometry());
     this->restoreState(AppSettings::Instance()->getState(), AppSettings::VERSION);
@@ -86,4 +91,39 @@ void MainWindow::startNewProject(spnp::Project* project)
 void MainWindow::on_action_Fechar_triggered()
 {
     this->ui->widget->closeProject();
+}
+
+void MainWindow::on_actionSalvar_como_triggered()
+{
+    saveAs();
+}
+
+void MainWindow::on_action_Salvar_Projeto_triggered()
+{
+    save();
+}
+
+void MainWindow::save()
+{
+    if(currentFile.compare("") == 0)
+    {
+        saveAs();
+    }
+    else
+    {
+        std::string text = this->ui->widget->getCurrentProject()->toXML()->toString();
+        printf(text.c_str());
+        SaveLoadFile slf;
+        slf.saveFile(this->currentFile, text);
+    }
+}
+
+void MainWindow::saveAs()
+{
+    QString file = QFileDialog::getSaveFileName(this, tr("_salvar projeto"), QDir::currentPath(), tr("projetos (*.pnml)"));
+    if(!file.isEmpty())
+    {
+        this->currentFile = file.toStdString();
+        save();
+    }
 }
