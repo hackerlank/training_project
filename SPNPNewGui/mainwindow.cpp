@@ -118,6 +118,11 @@ void MainWindow::save()
     }
 }
 
+void MainWindow::on_action_Abrir_Projeto_triggered()
+{
+    load();
+}
+
 void MainWindow::saveAs()
 {
     QString file = QFileDialog::getSaveFileName(this, tr("_salvar projeto"), QDir::currentPath(), tr("projetos (*.pnml)"));
@@ -125,5 +130,24 @@ void MainWindow::saveAs()
     {
         this->currentFile = file.toStdString();
         save();
+    }
+}
+
+void MainWindow::load()
+{
+    QString file = QFileDialog::getOpenFileName(this, tr("_abrir projeto"), QDir::currentPath(), tr("projetos (*.pnml)"));
+    if(!file.isEmpty())
+    {
+        this->currentFile = file.toStdString();
+        //SaveLoadFile slf;
+        //std::ifstream data = slf.loadIfFile(currentFile);
+        XMLNode * node = XMLNode::fromString(currentFile);
+
+        spnp::Project* proj = new spnp::Project();
+        proj->fromXML(node);
+
+        //this->startNewProject(proj);
+
+        delete node;
     }
 }

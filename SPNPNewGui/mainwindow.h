@@ -35,6 +35,8 @@ private slots:
 
     void on_action_Salvar_Projeto_triggered();
 
+    void on_action_Abrir_Projeto_triggered();
+
 private:
     Ui::MainWindow *ui;
     PreferenceSetupForm *psf;
@@ -45,6 +47,7 @@ private:
 
     void save();
     void saveAs();
+    void load();
 
     QAction* recentFileActs[AppSettings::MaxRecentFiles];
 

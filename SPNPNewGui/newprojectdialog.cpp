@@ -40,7 +40,7 @@ void NewProjectDialog::createProject()
     spnp::Project* project = new spnp::Project(this->ui->le_proj_name->text().toStdString(),
                                   nets, this->ui->le_owner->text().toStdString(),
                                   this->ui->pte_comments->toPlainText().toStdString(),
-                                  this->ui->de_date->date().toString().toStdString());
+                                  this->ui->de_date->date().toString("dd.MM.yyyy").toStdString());
 
 
 

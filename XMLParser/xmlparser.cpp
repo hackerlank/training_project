@@ -66,10 +66,10 @@ std::string XMLNode::toString()
     return out;
 }
 
-XMLNode *XMLNode::fromString(std::ifstream &ifs)
+XMLNode *XMLNode::fromString(std::string str)
 {
     //std::cout << ss.str() << std::endl;
-
+std::ifstream ifs(str);
     std::string line;
     XMLNode* currentNode = nullptr;
     std::stack<XMLNode*> *xmlStack = new std::stack<XMLNode*>();
@@ -99,7 +99,7 @@ XMLNode *XMLNode::fromString(std::ifstream &ifs)
                 std::istream_iterator<std::string> begin(ss);
                 std::istream_iterator<std::string> end;
                 std::vector<std::string> vstrings(begin, end);
-
+//\s+\w+=\'[^\']+\'|\s+\w+=''
                 //'desescapando' o nome
                 XMLNode* xNode = new XMLNode(xmlUnescape(vstrings[0]));
 

@@ -22,7 +22,7 @@ public:
 
     std::string toString();
 
-    static XMLNode *fromString(std::ifstream &ifs);
+    static XMLNode *fromString(std::string str);
 
     std::string getName() const;
 
