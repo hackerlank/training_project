@@ -69,7 +69,7 @@ std::string XMLNode::toString()
 XMLNode *XMLNode::fromString(std::string str)
 {
     //std::cout << ss.str() << std::endl;
-std::ifstream ifs(str);
+    std::ifstream ifs(str);
     std::string line;
     XMLNode* currentNode = nullptr;
     std::stack<XMLNode*> *xmlStack = new std::stack<XMLNode*>();
@@ -99,7 +99,8 @@ std::ifstream ifs(str);
                 std::istream_iterator<std::string> begin(ss);
                 std::istream_iterator<std::string> end;
                 std::vector<std::string> vstrings(begin, end);
-//\s+\w+=\'[^\']+\'|\s+\w+=''
+                //\w+=(\'[^\']+\'|\'\')
+
                 //'desescapando' o nome
                 XMLNode* xNode = new XMLNode(xmlUnescape(vstrings[0]));
 
@@ -136,8 +137,6 @@ std::ifstream ifs(str);
             currentContent += line;
         }
     }
-    //currentNode = xmlStack->top();
-    //xmlStack->pop();
     delete xmlStack;
     return currentNode;
 }
@@ -312,15 +311,17 @@ std::string XMLNode::stringReplace(std::string xml, std::vector<std::string> fro
     }
     return xml;
 }
-
+#include "base64.h"
 std::string XMLNode::xmlEscape(std::string xml)
 {
-    return stringReplace(xml, UNESCAPED, ESCAPED);
+    return base64_encode(reinterpret_cast<const unsigned char*>(xml.c_str()), xml.length());
+    //return stringReplace(xml, UNESCAPED, ESCAPED);
 }
 
 std::string XMLNode::xmlUnescape(std::string xml)
 {
-    return stringReplace(xml, ESCAPED, UNESCAPED);
+    return base64_decode(xml);
+    //return stringReplace(xml, ESCAPED, UNESCAPED);
 }
 
 const std::vector<std::string> XMLNode::UNESCAPED = { "<", ">" };
