@@ -4,6 +4,8 @@
 #include <sstream>
 #include <iterator>
 
+#include "base64.h"
+
 XMLNode::XMLNode()
 {
     this->name = "-";
@@ -32,7 +34,7 @@ std::vector<XMLNode*> *XMLNode::getChildrenByName(std::string childName)
     std::vector<XMLNode*> *out = new std::vector<XMLNode*>();
     for(XMLNode *n : *(this->children))
     {
-        if(n->getName() == childName)
+        if(n!=nullptr && n->getName() == childName)
         {
             out->push_back(n);
         }
@@ -206,6 +208,11 @@ void XMLNode::setAttribute(std::string attName, long long attValue)
     this->setAttribute(attName, std::to_string(attValue));
 }
 
+void XMLNode::setAttribute(std::string attName, unsigned long long attValue)
+{
+    this->setAttribute(attName, std::to_string(attValue));
+}
+
 void XMLNode::setAttribute(std::string attName, double attValue)
 {
     this->setAttribute(attName, std::to_string(attValue));
@@ -243,17 +250,17 @@ int XMLNode::getAttributeI(std::string name)
 
 long XMLNode::getAttributeL(std::string name)
 {
-    std::string in = "1442757151449";
-    //char *sizeOf;
-    long output = std::stol(in);
-    return output;
-    //return std::stol(in, &sizeOf, 10);
-    //return std::stol(this->getAttributeByName(name));
+    return std::stol(this->getAttributeByName(name));
 }
 
 long long XMLNode::getAttributeLL(std::string name)
 {
     return std::stoll(this->getAttributeByName(name));
+}
+
+unsigned long long XMLNode::getAttributeULL(std::string name)
+{
+    return std::stoull(this->getAttributeByName(name));
 }
 
 double XMLNode::getAttributeD(std::string name)
@@ -295,19 +302,6 @@ std::string XMLNode::closing()
 
 std::string XMLNode::getAttributeByName(std::string name) const
 {
-/*    std::map<std::string, std::string>::iterator p = this->attributes->find(name);
-
-    if(p == this->attributes->end())
-    {
-        printf("nao achou");
-        return "";
-    }
-    else
-    {
-        printf("achou");
-        return p->second;
-    }*/
-
     std::string out = "";
 
     for(auto iter = attributes->begin(); iter != attributes->end(); ++iter)
@@ -337,18 +331,13 @@ std::string XMLNode::stringReplace(std::string xml, std::vector<std::string> fro
     }
     return xml;
 }
-#include "base64.h"
+
 std::string XMLNode::xmlEscape(std::string xml)
 {
     return base64_encode(reinterpret_cast<const unsigned char*>(xml.c_str()), xml.length());
-    //return stringReplace(xml, UNESCAPED, ESCAPED);
 }
 
 std::string XMLNode::xmlUnescape(std::string xml)
 {
     return base64_decode(xml);
-    //return stringReplace(xml, ESCAPED, UNESCAPED);
 }
-
-const std::vector<std::string> XMLNode::UNESCAPED = { "<", ">" };
-const std::vector<std::string> XMLNode::ESCAPED = { "&lt;", "&gt;" };

@@ -42,6 +42,7 @@ public:
     void setAttribute(std::string attName, int attValue);
     void setAttribute(std::string attName, long attValue);
     void setAttribute(std::string attName, long long attValue);
+    void setAttribute(std::string attName, unsigned long long attValue);
     void setAttribute(std::string attName, double attValue);
     void setAttribute(std::string attName, long double attValue);
     void setAttribute(std::string attName, float attValue);
@@ -53,6 +54,7 @@ public:
     int getAttributeI(std::string name);
     long getAttributeL(std::string name);
     long long getAttributeLL(std::string name);
+    unsigned long long getAttributeULL(std::string name);
     double getAttributeD(std::string name);
     long double getAttributeLD(std::string name);
     float getAttributeF(std::string name);
@@ -77,9 +79,6 @@ private:
     std::string getAttributeByName(std::string name) const;
 
     static std::string stringReplace(std::string xml, std::vector<std::string> from, std::vector<std::string> to);
-
-    static const std::vector<std::string> UNESCAPED;
-    static const std::vector<std::string> ESCAPED;
 };
 
 #endif // XMLPARSER_H
