@@ -82,7 +82,11 @@
    <attribute name="toolBarBreak">
     <bool>false</bool>
    </attribute>
+   <addaction name="action_Novo_Projeto"/>
+   <addaction name="action_Abrir_Projeto"/>
+   <addaction name="action_Salvar_Projeto"/>
    <addaction name="separator"/>
+   <addaction name="action_Fechar"/>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
   <action name="action_Fechar">
