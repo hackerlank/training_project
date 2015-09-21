@@ -28,7 +28,7 @@ XMLNode *spnp::AbstractData::toXML()
 
 void spnp::AbstractData::fromXML(XMLNode *xml)
 {
-    this->id = xml->getAttributeL("id");
+    this->id = xml->getAttributeS("id");
     this->name = xml->getAttributeS("name");
 }
 
