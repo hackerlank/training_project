@@ -92,7 +92,6 @@ void spnp::Project::fromXML(XMLNode *xml)
         Net* net = new Net();
         net->fromXML(*it);
         this->nets->push_back(net);
-        delete (*it);
     }
     delete v;
 }
