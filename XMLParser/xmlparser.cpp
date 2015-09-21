@@ -243,7 +243,12 @@ int XMLNode::getAttributeI(std::string name)
 
 long XMLNode::getAttributeL(std::string name)
 {
-    return std::stol(this->getAttributeByName(name));
+    std::string in = "1442757151449";
+    //char *sizeOf;
+    long output = std::stol(in);
+    return output;
+    //return std::stol(in, &sizeOf, 10);
+    //return std::stol(this->getAttributeByName(name));
 }
 
 long long XMLNode::getAttributeLL(std::string name)
@@ -290,10 +295,31 @@ std::string XMLNode::closing()
 
 std::string XMLNode::getAttributeByName(std::string name) const
 {
-    std::map<std::string, std::string>::iterator p;
-    p = this->attributes->find(name);
-    if(p == this->attributes->end()) return "";
-    else return p->second;
+/*    std::map<std::string, std::string>::iterator p = this->attributes->find(name);
+
+    if(p == this->attributes->end())
+    {
+        printf("nao achou");
+        return "";
+    }
+    else
+    {
+        printf("achou");
+        return p->second;
+    }*/
+
+    std::string out = "";
+
+    for(auto iter = attributes->begin(); iter != attributes->end(); ++iter)
+    {
+        if(iter->first == name)
+        {
+            out = iter->second;
+            break;
+        }
+    }
+
+    return out;
 }
 
 std::string XMLNode::stringReplace(std::string xml, std::vector<std::string> from, std::vector<std::string> to)
