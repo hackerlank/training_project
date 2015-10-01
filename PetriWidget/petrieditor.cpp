@@ -97,4 +97,5 @@ void PetriEditor::loadNetIntoDesign(spnp::Net *net)
     this->ui->pd_design->close();
     this->ui->pd_design->setEnabled(true);
     this->ui->pd_design->load(net);
+    this->ui->pp_prop->setCurrentNet(net);
 }

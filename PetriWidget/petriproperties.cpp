@@ -9,6 +9,8 @@ PetriProperties::PetriProperties(QWidget *parent) :
     ui(new Ui::PetriProperties)
 {
     ui->setupUi(this);
+    this->itemDataID = "";
+    this->netData = nullptr;
 }
 
 PetriProperties::~PetriProperties()
@@ -16,11 +18,22 @@ PetriProperties::~PetriProperties()
     delete ui;
 }
 
+void PetriProperties::setCurrentNet(spnp::Net *net)
+{
+    this->netData = net;
+}
+
 void PetriProperties::onItemSelected(QGraphicsItem *item)
 {
-    if(item->type() == IPetriItem::Type)
+    if(item == nullptr)
+    {
+        this->ui->stackedWidget->setCurrentIndex(7);
+        this->itemDataID = "";
+    }
+    else if(item->type() == IPetriItem::Type)
     {
         IPetriItem *other = qgraphicsitem_cast<IPetriItem *>(item);
+        this->setData(other->getPetriItemId());
         switch (other->petriType())
         {
         case IPetriItem::Place:
@@ -38,11 +51,12 @@ void PetriProperties::onItemSelected(QGraphicsItem *item)
         default:
             break;
         }
-        this->setData(other->getPetriItemId());
     }
     else if(item->type() == IPetriArc::Type)
     {
         IPetriArc *arc = qgraphicsitem_cast<IPetriArc *>(item);
+        this->setData(arc->getArcId());
+
         switch (arc->arcType())
         {
         case IPetriArc::Activator:
@@ -57,33 +71,39 @@ void PetriProperties::onItemSelected(QGraphicsItem *item)
         default:
             break;
         }
-        this->setData(arc->getArcId());
     }
-
-    //item->g
 }
 
 void PetriProperties::on_le_place_name_textEdited(const QString &arg1)
 {
-    //TODO
-    (void)arg1;
+    spnp::Place* p = this->netData->getPlace(itemDataID);
+    if(p != nullptr)
+    {
+        p->setName(arg1.toStdString());
+    }
 }
 
 void PetriProperties::on_le_place_tokens_textEdited(const QString &arg1)
 {
-    //TODO
-    (void)arg1;
+    spnp::Place* p = this->netData->getPlace(itemDataID);
+    if(p != nullptr)
+    {
+        p->setToken(arg1.toDouble());
+    }
 }
 
 void PetriProperties::setData(std::string itemId)
 {
-
+    this->itemDataID = itemId;
 }
 
 void PetriProperties::on_le_itrans_name_textEdited(const QString &arg1)
 {
-    //TODO
-    (void)arg1;
+    spnp::ImmediateTransition *it = this->netData->getTransition(itemDataID);
+    if(it != nullptr)
+    {
+        it->setName(arg1.toStdString());
+    }
 }
 
 void PetriProperties::on_le_itrans_prior_textEdited(const QString &arg1)

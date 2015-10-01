@@ -146,7 +146,7 @@ void MainWindow::load()
         spnp::Project* proj = new spnp::Project();
         proj->fromXML(node);
 
-        //this->startNewProject(proj);
+        this->startNewProject(proj);
 
         delete node;
     }

@@ -397,6 +397,8 @@ void PetriScene::itemSelection()
     {
         emit itemSelected(this->selectedItems().at(0));
     }
+    else
+        emit itemSelected(nullptr);
 }
 
 void PetriScene::repositionItem(QGraphicsItem *item)

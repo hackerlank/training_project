@@ -4,6 +4,7 @@
 #include <QWidget>
 #include <QGraphicsItem>
 #include "idata.h"
+#include "objs/net.h"
 
 namespace Ui {
 class PetriProperties;
@@ -16,6 +17,8 @@ class PetriProperties : public QWidget
 public:
     explicit PetriProperties(QWidget *parent = 0);
     ~PetriProperties();
+
+    void setCurrentNet(spnp::Net *net);
 
 public slots:
     void onItemSelected(QGraphicsItem* item);
@@ -35,6 +38,9 @@ private:
     Ui::PetriProperties *ui;
 
     void setData(std::string itemId);
+
+    std::string itemDataID;
+    spnp::Net *netData;
 };
 
 #endif // PETRIPROPERTIES_H
