@@ -33,6 +33,9 @@ public:
     virtual bool isPlace() override;
     virtual bool isTransition() override;
 
+    //TODO remover a linha seguinte
+    virtual void updateLabel(spnp::IData *data) override { }
+
 protected:
     void contextMenuEvent(QGraphicsSceneContextMenuEvent *event) override;
     QVariant itemChange(GraphicsItemChange change, const QVariant &value) override;
@@ -43,6 +46,8 @@ protected:
     IPetriLabelItem *myLabel;
 
     virtual void drawItem() override;
+
+    void setLabel(std::string txt);
 };
 
 #endif // PETRIITEM_H

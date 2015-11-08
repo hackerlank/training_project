@@ -18,6 +18,12 @@ PlaceItem::~PlaceItem()
 
 }
 
+void PlaceItem::updateLabel(spnp::IData *data)
+{
+    spnp::Place* place = static_cast<spnp::Place*>(data);
+    this->setLabel(place->getName());
+}
+
 void PlaceItem::drawItem()
 {
     const int radius = 40;

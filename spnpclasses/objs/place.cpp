@@ -6,7 +6,7 @@ spnp::Place::Place():AbstractVisualData()
     this->label = new Label();
 }
 
-spnp::Place::Place(std::string name, double tokens, Label *label, int x, int y)
+spnp::Place::Place(std::string name, std::string tokens, Label *label, int x, int y)
     :AbstractVisualData(name, x, y)
 {
     this->tokens = tokens;
@@ -43,12 +43,12 @@ void spnp::Place::fromXML(XMLNode *xml)
     this->label->fromXML(xml->getChildAt(0));
 }
 
-double spnp::Place::getToken() const
+std::string spnp::Place::getToken() const
 {
     return this->tokens;
 }
 
-void spnp::Place::setToken(const double d)
+void spnp::Place::setToken(const std::string d)
 {
     this->tokens = d;
 }

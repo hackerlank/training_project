@@ -93,3 +93,8 @@ void AbstractPetriItem::drawItem()
 {
     setPolygon(myPolygon);
 }
+
+void AbstractPetriItem::setLabel(std::string txt)
+{
+    this->myLabel->setText(QString::fromStdString(txt));
+}

@@ -34,10 +34,10 @@ public:
 
     std::string getPetriItemId() const { return this->petriItemId; }
 
+    virtual void updateLabel(spnp::IData *data) = 0;
 protected:
     IPetriItem::PetriType myPetriType;
     QMenu *myContextMenu;
-
 private:
     std::string petriItemId;
 

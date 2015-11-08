@@ -3,7 +3,7 @@
 spnp::AbstractData::AbstractData()
 {
     this->createID();
-    this->name = "ad";
+    this->name = "Name_"+id;
 }
 
 spnp::AbstractData::AbstractData(std::string name)

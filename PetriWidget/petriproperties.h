@@ -5,6 +5,7 @@
 #include <QGraphicsItem>
 #include "idata.h"
 #include "objs/net.h"
+#include "diagram/items/ipetriitem.h"
 
 namespace Ui {
 class PetriProperties;
@@ -41,6 +42,8 @@ private:
 
     std::string itemDataID;
     spnp::Net *netData;
+    IPetriItem* currentPetriItem;
+    void loadPlace();
 };
 
 #endif // PETRIPROPERTIES_H
