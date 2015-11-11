@@ -1,7 +1,5 @@
-# training_project
+# GUI para rede de petri.
 Projeto para treinar um programação visual e redes de petri
-
-Só pra manter o backup mesmo :P
 
 ## TODO
 * Fazer uso da biblioteca 'iaspp'
