@@ -103,8 +103,11 @@ void PetriProperties::setData(std::string itemId)
 void PetriProperties::loadPlace()
 {
     spnp::Place* place = this->netData->getPlace(this->itemDataID);
-    this->ui->le_place_name->setText(QString::fromStdString(place->getName()));
-    this->ui->le_place_tokens->setText(QString::fromStdString(place->getToken()));
+    if(place != nullptr)
+    {
+        this->ui->le_place_name->setText(QString::fromStdString(place->getName()));
+        this->ui->le_place_tokens->setText(QString::fromStdString(place->getToken()));
+    }
 }
 
 void PetriProperties::on_le_itrans_name_textEdited(const QString &arg1)
