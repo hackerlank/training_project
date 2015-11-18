@@ -3,6 +3,8 @@
 
 #include "diagram/arcs/ipetriarc.h"
 
+#include "diagram/items/placeitem.h"
+
 PetriProperties::PetriProperties(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::PetriProperties)
@@ -88,11 +90,15 @@ void PetriProperties::on_le_place_name_textEdited(const QString &arg1)
 
 void PetriProperties::on_le_place_tokens_textEdited(const QString &arg1)
 {
+    QString newValue = arg1;
+    newValue.remove(QRegExp("\001"));
     spnp::Place* p = this->netData->getPlace(itemDataID);
     if(p != nullptr)
     {
-        p->setToken(arg1.toStdString());
+        p->setToken(newValue.toStdString());
     }
+    PlaceItem *pi = qgraphicsitem_cast<PlaceItem*>(this->currentPetriItem);
+    pi->updateToken(newValue);
 }
 
 void PetriProperties::setData(std::string itemId)

@@ -5,10 +5,15 @@
 
 #include "objs/place.h"
 
+#include "petrilabelitem.h"
+
 PlaceItem::PlaceItem(std::string id, QMenu *contextMenu, QGraphicsItem *parent)
     :AbstractPetriItem(id, contextMenu, parent)
 {
     myPetriType = IPetriItem::Place;
+
+    this->tokenLabel = new PetriLabelItem("0", this, false);
+    this->tokenLabel->setPos(this->x() - this->tokenLabel->boundingRect().width()/2, this->x() - this->tokenLabel->boundingRect().height()/2);
 
     drawItem();
 }
@@ -22,6 +27,11 @@ void PlaceItem::updateLabel(spnp::IData *data)
 {
     spnp::Place* place = static_cast<spnp::Place*>(data);
     this->setLabel(place->getName());
+}
+
+void PlaceItem::updateToken(QString value)
+{
+    this->tokenLabel->setText(value);
 }
 
 void PlaceItem::drawItem()

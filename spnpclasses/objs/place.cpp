@@ -2,7 +2,7 @@
 
 spnp::Place::Place():AbstractVisualData()
 {
-    this->tokens = 1.;
+    this->tokens = "0";
     this->label = new Label();
 }
 

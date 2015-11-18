@@ -11,9 +11,13 @@ public:
 
     virtual void updateLabel(spnp::IData *data) override;
 
+    void updateToken(QString value);
+
 protected:
     virtual void drawItem() override;
     virtual void mouseMoveEvent(QGraphicsSceneMouseEvent *event) override;
+
+    IPetriLabelItem *tokenLabel;
 };
 
 #endif // PLACEITEM_H
