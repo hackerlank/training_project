@@ -285,6 +285,8 @@ void PetriScene::insertItemToPosition(spnp::IData *data, QPointF position)
     IPetriItem *item = new PlaceItem(data->id, myItemMenu);
     item->setPos(position);
     this->insertItem(item);
+    PlaceItem* pi = qgraphicsitem_cast<PlaceItem*>(item);
+    pi->updateLabel(data);
 }
 
 void PetriScene::insertItemToPosition(QPointF position)
@@ -298,6 +300,8 @@ void PetriScene::insertItemToPosition(QPointF position)
         spnp::Place *_place = new spnp::Place();
         item = new PlaceItem(_place->id, myItemMenu);
         this->currentNet->add(_place);
+        PlaceItem* pi = qgraphicsitem_cast<PlaceItem*>(item);
+        pi->updateLabel(_place);
         break;
     }
     case IPetriItem::FPlace:
