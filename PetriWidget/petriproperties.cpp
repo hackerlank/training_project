@@ -90,8 +90,7 @@ void PetriProperties::on_le_place_name_textEdited(const QString &arg1)
 
 void PetriProperties::on_le_place_tokens_textEdited(const QString &arg1)
 {
-    QString newValue = arg1;
-    newValue.remove(QRegExp("\001"));
+    QString newValue = this->clearArg(arg1);
     spnp::Place* p = this->netData->getPlace(itemDataID);
     if(p != nullptr)
     {
@@ -114,6 +113,12 @@ void PetriProperties::loadPlace()
         this->ui->le_place_name->setText(QString::fromStdString(place->getName()));
         this->ui->le_place_tokens->setText(QString::fromStdString(place->getToken()));
     }
+}
+
+QString PetriProperties::clearArg(QString arg1)
+{
+    QString newValue = arg1;
+    return newValue.remove(QRegExp("\001"));
 }
 
 void PetriProperties::on_le_itrans_name_textEdited(const QString &arg1)

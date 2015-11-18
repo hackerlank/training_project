@@ -9,6 +9,8 @@ public:
     FPlaceItem(std::string id, QMenu *contextMenu, QGraphicsItem *parent=nullptr);
     virtual ~FPlaceItem();
 
+    virtual void updateLabel(spnp::IData *data) override;
+
 protected:
     virtual void drawItem() override;
 

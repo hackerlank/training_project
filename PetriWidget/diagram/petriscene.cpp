@@ -300,8 +300,7 @@ void PetriScene::insertItemToPosition(QPointF position)
         spnp::Place *_place = new spnp::Place();
         item = new PlaceItem(_place->id, myItemMenu);
         this->currentNet->add(_place);
-        PlaceItem* pi = qgraphicsitem_cast<PlaceItem*>(item);
-        pi->updateLabel(_place);
+        item->updateLabel(_place);
         break;
     }
     case IPetriItem::FPlace:
@@ -309,6 +308,7 @@ void PetriScene::insertItemToPosition(QPointF position)
         spnp::FluidPlace *_fplace = new spnp::FluidPlace();
         item = new FPlaceItem(_fplace->id, myItemMenu);
         this->currentNet->add(_fplace);
+        item->updateLabel(_fplace);
         break;
     }
     case IPetriItem::ITrans:
@@ -316,6 +316,7 @@ void PetriScene::insertItemToPosition(QPointF position)
         spnp::ImmediateTransition *_itrans = new spnp::ImmediateTransition();
         item = new ImTransItem(_itrans->id, myItemMenu);
         this->currentNet->add(_itrans);
+        //update label
         break;
     }
     case IPetriItem::TTrans:
@@ -323,6 +324,7 @@ void PetriScene::insertItemToPosition(QPointF position)
         spnp::TimedTransition* _ttrans = new spnp::TimedTransition();
         item = new TTransItem(_ttrans->id, myItemMenu);
         this->currentNet->add(_ttrans);
+        //update label
         break;
     }
     default:

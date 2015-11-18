@@ -18,6 +18,12 @@ FPlaceItem::~FPlaceItem()
 
 }
 
+void FPlaceItem::updateLabel(spnp::IData *data)
+{
+    spnp::FluidPlace *fplace = static_cast<spnp::FluidPlace*>(data);
+    this->setLabel(fplace->getName());
+}
+
 void FPlaceItem::drawItem()
 {
     this->setFillRule(Qt::WindingFill);

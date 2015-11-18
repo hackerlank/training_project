@@ -44,6 +44,7 @@ private:
     spnp::Net *netData;
     IPetriItem* currentPetriItem;
     void loadPlace();
+    QString clearArg(QString arg1);
 };
 
 #endif // PETRIPROPERTIES_H
