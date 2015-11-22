@@ -138,7 +138,7 @@ void PetriProperties::on_le_itrans_guard_textEdited(const QString &arg1)
 
 void PetriProperties::on_le_net_name_textEdited(const QString &arg1)
 {
-
+    this->netData->setName(arg1.toStdString());
 }
 
 void PetriProperties::on_le_fplace_name_textEdited(const QString &arg1)
