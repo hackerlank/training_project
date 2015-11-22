@@ -31,6 +31,7 @@ void PetriProperties::onItemSelected(QGraphicsItem *item)
     {
         this->ui->stackedWidget->setCurrentIndex(7);
         this->itemDataID = "";
+        this->loadNet();
     }
     else if(item->type() == IPetriItem::Type)
     {
@@ -45,12 +46,15 @@ void PetriProperties::onItemSelected(QGraphicsItem *item)
             break;
         case IPetriItem::FPlace:
             this->ui->stackedWidget->setCurrentIndex(1);
+            this->loadFPlace();
             break;
         case IPetriItem::ITrans:
             this->ui->stackedWidget->setCurrentIndex(2);
+            this->loadITrans();
             break;
         case IPetriItem::TTrans:
             this->ui->stackedWidget->setCurrentIndex(3);
+            this->loadTTrans();
             break;
         default:
             break;
@@ -112,6 +116,51 @@ void PetriProperties::loadPlace()
     {
         this->ui->le_place_name->setText(QString::fromStdString(place->getName()));
         this->ui->le_place_tokens->setText(QString::fromStdString(place->getToken()));
+    }
+}
+
+void PetriProperties::loadFPlace()
+{
+    spnp::FluidPlace* fplace = static_cast<spnp::FluidPlace*>(this->netData->getPlace(this->itemDataID));
+    if(fplace != nullptr)
+    {
+        //TODO update view
+    }
+}
+
+void PetriProperties::loadITrans()
+{
+    spnp::ImmediateTransition* itrans = this->netData->getTransition(this->itemDataID);
+    if(itrans != nullptr)
+    {
+        //TODO update view
+    }
+}
+
+void PetriProperties::loadTTrans()
+{
+    spnp::ImmediateTransition* itrans = static_cast<spnp::ImmediateTransition*>(this->netData->getTransition(this->itemDataID));
+    if(itrans != nullptr)
+    {
+        //TODO update view
+    }
+}
+
+void PetriProperties::loadArc()
+{
+
+}
+
+void PetriProperties::loadFArc()
+{
+
+}
+
+void PetriProperties::loadNet()
+{
+    if(this->netData != nullptr)
+    {
+        this->ui->le_net_name->setText(QString::fromStdString(this->netData->getName()));
     }
 }
 

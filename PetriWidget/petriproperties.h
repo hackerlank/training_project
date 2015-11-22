@@ -84,6 +84,12 @@ private:
     spnp::Net *netData;
     IPetriItem* currentPetriItem;
     void loadPlace();
+    void loadFPlace();
+    void loadITrans();
+    void loadTTrans();
+    void loadArc();
+    void loadFArc();
+    void loadNet();
     QString clearArg(QString arg1);
 };
 

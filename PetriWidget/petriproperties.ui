@@ -35,7 +35,7 @@
       </size>
      </property>
      <property name="currentIndex">
-      <number>5</number>
+      <number>7</number>
      </property>
      <widget class="QWidget" name="place">
       <layout class="QGridLayout" name="gridLayout_17">
