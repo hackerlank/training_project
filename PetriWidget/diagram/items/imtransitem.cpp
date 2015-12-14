@@ -23,6 +23,12 @@ void ImTransItem::paint(QPainter *painter, const QStyleOptionGraphicsItem *optio
     AbstractPetriItem::paint(painter, option, widget);
 }
 
+void ImTransItem::updateLabel(spnp::IData *data)
+{
+    spnp::ImmediateTransition *it = static_cast<spnp::ImmediateTransition*>(data);
+    this->setLabel(it->getName());
+}
+
 void ImTransItem::drawItem()
 {
     const int vert = 30;

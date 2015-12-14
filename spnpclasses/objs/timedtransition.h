@@ -35,10 +35,12 @@ public:
         PRS,
         PRD
     };
-
     TimedTransition();
     TimedTransition(std::string name,
                     std::string priority,
+                    std::string guard = "",
+                    ProbabilityType probType = ProbabilityType::CONSTANT,
+                    std::string value = "0.789",
                     Label* label=nullptr,
                     std::string rate="0.25",
                     Distribution distribution = Distribution::Exponential,

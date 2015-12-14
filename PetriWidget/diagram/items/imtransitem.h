@@ -11,6 +11,7 @@ public:
 
     virtual void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
 
+    virtual void updateLabel(spnp::IData *data) override;
 protected:
     virtual void drawItem() override;
     void mouseMoveEvent(QGraphicsSceneMouseEvent *event) override;

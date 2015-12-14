@@ -17,7 +17,10 @@ public:
     };
 
     ImmediateTransition();
-    ImmediateTransition(std::string name, std::string priority, Label *label=nullptr, int x=0, int y=0);
+    ImmediateTransition(std::string name, std::string priority, std::string guard = "",
+                        ProbabilityType probType = ProbabilityType::CONSTANT,
+                        std::string value = "0.789",
+                        Label *label=nullptr, int x=0, int y=0);
     virtual ~ImmediateTransition();
     virtual XMLNode* toXML();
     virtual void fromXML(XMLNode *xml);
@@ -31,6 +34,9 @@ public:
     ProbabilityType getProbType() const;
     void setProbType(ProbabilityType t);
 
+    std::string getValue() const;
+    void setValue(std::string v);
+
     bool isVertical();
     void setVertical(bool v);
 
@@ -39,6 +45,8 @@ protected:
     std::string guard;
     ProbabilityType probType;
     Label* label;
+
+    std::string value;
 
     bool vertical;
 

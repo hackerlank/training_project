@@ -4,6 +4,7 @@
 #include "diagram/arcs/ipetriarc.h"
 
 #include "diagram/items/placeitem.h"
+#include "diagram/items/fplaceitem.h"
 
 PetriProperties::PetriProperties(QWidget *parent) :
     QWidget(parent),
@@ -82,28 +83,6 @@ void PetriProperties::onItemSelected(QGraphicsItem *item)
     }
 }
 
-void PetriProperties::on_le_place_name_textEdited(const QString &arg1)
-{
-    spnp::Place* p = this->netData->getPlace(itemDataID);
-    if(p != nullptr)
-    {
-        p->setName(arg1.toStdString());
-    }
-    this->currentPetriItem->updateLabel(p);
-}
-
-void PetriProperties::on_le_place_tokens_textEdited(const QString &arg1)
-{
-    QString newValue = this->clearArg(arg1);
-    spnp::Place* p = this->netData->getPlace(itemDataID);
-    if(p != nullptr)
-    {
-        p->setToken(newValue.toStdString());
-    }
-    PlaceItem *pi = qgraphicsitem_cast<PlaceItem*>(this->currentPetriItem);
-    pi->updateToken(newValue);
-}
-
 void PetriProperties::setData(std::string itemId)
 {
     this->itemDataID = itemId;
@@ -124,7 +103,10 @@ void PetriProperties::loadFPlace()
     spnp::FluidPlace* fplace = static_cast<spnp::FluidPlace*>(this->netData->getPlace(this->itemDataID));
     if(fplace != nullptr)
     {
-        //TODO update view
+        this->ui->le_fplace_name->setText(QString::fromStdString(fplace->getName()));
+        this->ui->le_fplace_tokens->setText(QString::fromStdString(fplace->getToken()));
+        this->ui->le_fplace_break->setText(QString::fromStdString(fplace->getBreakValue()));
+        this->ui->le_fplace_limit->setText(QString::fromStdString(fplace->getBoundValue()));
     }
 }
 
@@ -133,7 +115,11 @@ void PetriProperties::loadITrans()
     spnp::ImmediateTransition* itrans = this->netData->getTransition(this->itemDataID);
     if(itrans != nullptr)
     {
-        //TODO update view
+        this->ui->le_itrans_name->setText(QString::fromStdString(itrans->getName()));
+        this->ui->le_itrans_guard->setText(QString::fromStdString(itrans->getGuard()));
+        this->ui->le_itrans_prior->setText(QString::fromStdString(itrans->getPriority()));
+        //TODO carregar o tipo de probabilidade
+        this->ui->le_itrans_prob_value->setText(QString::fromStdString(itrans->getValue()));
     }
 }
 
@@ -164,6 +150,33 @@ void PetriProperties::loadNet()
     }
 }
 
+/*
+ * Edições de campos de propriedades
+ *
+ */
+
+void PetriProperties::on_le_place_name_textEdited(const QString &arg1)
+{
+    spnp::Place* p = this->netData->getPlace(itemDataID);
+    if(p != nullptr)
+    {
+        p->setName(arg1.toStdString());
+    }
+    this->currentPetriItem->updateLabel(p);
+}
+
+void PetriProperties::on_le_place_tokens_textEdited(const QString &arg1)
+{
+    QString newValue = this->clearArg(arg1);
+    spnp::Place* p = this->netData->getPlace(itemDataID);
+    if(p != nullptr)
+    {
+        p->setToken(newValue.toStdString());
+    }
+    PlaceItem *pi = qgraphicsitem_cast<PlaceItem*>(this->currentPetriItem);
+    pi->updateToken(newValue);
+}
+
 void PetriProperties::on_le_itrans_name_textEdited(const QString &arg1)
 {
     spnp::ImmediateTransition *it = this->netData->getTransition(itemDataID);
@@ -171,18 +184,25 @@ void PetriProperties::on_le_itrans_name_textEdited(const QString &arg1)
     {
         it->setName(arg1.toStdString());
     }
+    this->currentPetriItem->updateLabel(it);
 }
 
 void PetriProperties::on_le_itrans_prior_textEdited(const QString &arg1)
 {
-    //TODO
-    (void)arg1;
+    spnp::ImmediateTransition *it = this->netData->getTransition(itemDataID);
+    if(it != nullptr)
+    {
+        it->setPriority(arg1.toStdString());
+    }
 }
 
 void PetriProperties::on_le_itrans_guard_textEdited(const QString &arg1)
 {
-    //TODO
-    (void)arg1;
+    spnp::ImmediateTransition *it = this->netData->getTransition(itemDataID);
+    if(it != nullptr)
+    {
+        it->setGuard(arg1.toStdString());
+    }
 }
 
 void PetriProperties::on_le_net_name_textEdited(const QString &arg1)
@@ -192,35 +212,45 @@ void PetriProperties::on_le_net_name_textEdited(const QString &arg1)
 
 void PetriProperties::on_le_fplace_name_textEdited(const QString &arg1)
 {
-
+    spnp::Place* p = this->netData->getPlace(itemDataID);
+    if(p != nullptr)
+    {
+        p->setName(arg1.toStdString());
+    }
+    this->currentPetriItem->updateLabel(p);
 }
 
 void PetriProperties::on_le_fplace_tokens_textEdited(const QString &arg1)
 {
-
+    QString newValue = this->clearArg(arg1);
+    spnp::FluidPlace* p = static_cast<spnp::FluidPlace*>(this->netData->getPlace(itemDataID));
+    if(p != nullptr)
+    {
+        p->setToken(newValue.toStdString());
+    }
+    FPlaceItem *fpi = qgraphicsitem_cast<FPlaceItem*>(this->currentPetriItem);
+    fpi->updateToken(newValue);
 }
 
 void PetriProperties::on_le_fplace_limit_textEdited(const QString &arg1)
 {
-
+    spnp::FluidPlace* p = static_cast<spnp::FluidPlace*>(this->netData->getPlace(itemDataID));
+    if(p != nullptr)
+    {
+        p->setBoundValue(arg1.toStdString());
+    }
 }
 
 void PetriProperties::on_le_fplace_break_textEdited(const QString &arg1)
 {
-
-}
-
-void PetriProperties::on_cb_itrans_prob_currentTextChanged(const QString &arg1)
-{
-
+    spnp::FluidPlace* p = static_cast<spnp::FluidPlace*>(this->netData->getPlace(itemDataID));
+    if(p != nullptr)
+    {
+        p->setBreakValue(arg1.toStdString());
+    }
 }
 
 void PetriProperties::on_le_itrans_prob_value_textEdited(const QString &arg1)
-{
-
-}
-
-void PetriProperties::on_cb_itrans_prob_place_currentTextChanged(const QString &arg1)
 {
 
 }
@@ -240,37 +270,7 @@ void PetriProperties::on_le_ttrans_prior_textEdited(const QString &arg1)
 
 }
 
-void PetriProperties::on_cb_ttrans_distr_currentTextChanged(const QString &arg1)
-{
-
-}
-
-void PetriProperties::on_pte_ttrans_distr_textChanged()
-{
-
-}
-
 void PetriProperties::on_le_ttrans_rate_textEdited(const QString &arg1)
-{
-
-}
-
-void PetriProperties::on_cb_ttrans_rate_currentTextChanged(const QString &arg1)
-{
-
-}
-
-void PetriProperties::on_cb_ttrans_place_currentTextChanged(const QString &arg1)
-{
-
-}
-
-void PetriProperties::on_cb_ttrans_pol_currentTextChanged(const QString &arg1)
-{
-
-}
-
-void PetriProperties::on_cb_ttrans_afected_currentTextChanged(const QString &arg1)
 {
 
 }

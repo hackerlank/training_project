@@ -45,11 +45,7 @@ private slots:
 
     void on_le_fplace_break_textEdited(const QString &arg1);
 
-    void on_cb_itrans_prob_currentTextChanged(const QString &arg1);
-
     void on_le_itrans_prob_value_textEdited(const QString &arg1);
-
-    void on_cb_itrans_prob_place_currentTextChanged(const QString &arg1);
 
     void on_le_ttrans_name_textEdited(const QString &arg1);
 
@@ -57,19 +53,9 @@ private slots:
 
     void on_le_ttrans_prior_textEdited(const QString &arg1);
 
-    void on_cb_ttrans_distr_currentTextChanged(const QString &arg1);
-
     void on_pte_ttrans_distr_textChanged();
 
     void on_le_ttrans_rate_textEdited(const QString &arg1);
-
-    void on_cb_ttrans_rate_currentTextChanged(const QString &arg1);
-
-    void on_cb_ttrans_place_currentTextChanged(const QString &arg1);
-
-    void on_cb_ttrans_pol_currentTextChanged(const QString &arg1);
-
-    void on_cb_ttrans_afected_currentTextChanged(const QString &arg1);
 
     void on_rb_arc_const_toggled(bool checked);
 

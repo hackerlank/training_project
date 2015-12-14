@@ -33,7 +33,6 @@ public:
     virtual bool isPlace() override;
     virtual bool isTransition() override;
 
-    //TODO remover a linha seguinte
     virtual void updateLabel(spnp::IData *data) override { }
 
 protected:

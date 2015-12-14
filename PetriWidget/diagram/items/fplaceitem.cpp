@@ -5,10 +5,15 @@
 
 #include "objs/fluidplace.h"
 
+#include "petrilabelitem.h"
+
 FPlaceItem::FPlaceItem(std::string id, QMenu *contextMenu, QGraphicsItem *parent)
     :AbstractPetriItem(id, contextMenu, parent)
 {
     myPetriType = IPetriItem::FPlace;
+
+    this->tokenLabel = new PetriLabelItem("0", this, false);
+    this->tokenLabel->setPos(this->x() - this->tokenLabel->boundingRect().width()/2, this->x() - this->tokenLabel->boundingRect().height()/2);
 
     drawItem();
 }
@@ -22,6 +27,11 @@ void FPlaceItem::updateLabel(spnp::IData *data)
 {
     spnp::FluidPlace *fplace = static_cast<spnp::FluidPlace*>(data);
     this->setLabel(fplace->getName());
+}
+
+void FPlaceItem::updateToken(QString value)
+{
+    this->tokenLabel->setText(value);
 }
 
 void FPlaceItem::drawItem()

@@ -28,6 +28,8 @@ public:
     virtual bool canConnect() = 0;
     virtual void updatePosition() = 0;
 
+    virtual void updateLabel(spnp::IData *data) = 0;
+
     std::string getArcId() const { return this->arcId; }
 protected:
     virtual void paintHead(double angle) = 0;

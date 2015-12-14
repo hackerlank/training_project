@@ -3,13 +3,23 @@
 spnp::ImmediateTransition::ImmediateTransition():AbstractVisualData()
 {
     this->priority = "1";
+    this->guard = "";
+    this->probType = ProbabilityType::CONSTANT;
+    this->value = "0.789";
     this->label = new Label();
 }
 
 spnp::ImmediateTransition::ImmediateTransition(std::string name,
-                             std::string value, Label *label, int x, int y):AbstractVisualData(name, x, y)
+                             std::string priority, std::string guard,
+                             ProbabilityType probType, std::string value, Label *label,
+                             int x, int y)
+    :AbstractVisualData(name, x, y)
 {
-    this->priority = value;
+    this->priority = priority;
+    this->guard = guard;
+    this->probType = probType;
+    this->value = value;
+
     if(label==nullptr)
         this->label = label;
     else
@@ -18,7 +28,7 @@ spnp::ImmediateTransition::ImmediateTransition(std::string name,
 
 spnp::ImmediateTransition::~ImmediateTransition()
 {
-
+    //delete this->label;
 }
 
 XMLNode *spnp::ImmediateTransition::toXML()
@@ -27,6 +37,7 @@ XMLNode *spnp::ImmediateTransition::toXML()
     node->setAttribute("priority", this->priority);
     node->setAttribute("guard", this->guard);
     node->setAttribute("prob", static_cast<int>(this->probType));
+    node->setAttribute("value", this->value);
     node->setAttribute("vertical", this->vertical);
 
     node->addChild(this->label->toXML());
@@ -40,6 +51,7 @@ void spnp::ImmediateTransition::fromXML(XMLNode *xml)
     this->priority = xml->getAttributeS("priority");
     this->guard = xml->getAttributeS("guard");
     this->probType = static_cast<ProbabilityType>(xml->getAttributeI("prob"));
+    this->value = xml->getAttributeS("value");
     this->vertical = xml->getAttributeB("vertical");
 
     if(this->label !=nullptr)
@@ -76,6 +88,16 @@ spnp::ImmediateTransition::ProbabilityType spnp::ImmediateTransition::getProbTyp
 void spnp::ImmediateTransition::setProbType(spnp::ImmediateTransition::ProbabilityType t)
 {
     this->probType = t;
+}
+
+std::string spnp::ImmediateTransition::getValue() const
+{
+    return this->value;
+}
+
+void spnp::ImmediateTransition::setValue(std::string v)
+{
+    this->value = v;
 }
 
 bool spnp::ImmediateTransition::isVertical()

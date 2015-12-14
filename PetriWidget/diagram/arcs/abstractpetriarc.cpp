@@ -16,7 +16,7 @@ AbstractPetriArc::AbstractPetriArc(std::string id, IPetriItem *startItem, IPetri
     this->myColor = Qt::black;
     setPen(QPen(this->getPenColor(), 2, Qt::SolidLine, Qt::RoundCap, Qt::RoundJoin));
 
-    this->myLabel = new PetriLabelItem("Name", this);
+    this->myLabel = new PetriLabelItem("1", this);
     this->updateLabelPosition();
 }
 

@@ -16,6 +16,12 @@ TTransItem::~TTransItem()
 
 }
 
+void TTransItem::updateLabel(spnp::IData *data)
+{
+    spnp::TimedTransition *it = static_cast<spnp::TimedTransition*>(data);
+    this->setLabel(it->getName());
+}
+
 void TTransItem::drawItem()
 {
     const int vert = 30;
