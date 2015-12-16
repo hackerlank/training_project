@@ -71,9 +71,16 @@
      <string>_&amp;sobre</string>
     </property>
    </widget>
+   <widget class="QMenu" name="menuTeste">
+    <property name="title">
+     <string>teste</string>
+    </property>
+    <addaction name="actionEscrever"/>
+   </widget>
    <addaction name="menu_arquivo"/>
    <addaction name="menuAaa"/>
    <addaction name="menuSobre"/>
+   <addaction name="menuTeste"/>
   </widget>
   <widget class="QToolBar" name="mainToolBar">
    <attribute name="toolBarArea">
@@ -143,6 +150,11 @@
   <action name="actionSalvar_como">
    <property name="text">
     <string>Salvar &amp;como...</string>
+   </property>
+  </action>
+  <action name="actionEscrever">
+   <property name="text">
+    <string>escrever</string>
    </property>
   </action>
  </widget>

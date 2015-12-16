@@ -150,7 +150,7 @@ void PetriView::showContextMenu(const QPoint &pos)
 
 void PetriView::scalingTime(qreal x)
 {
-    //TODO aqui
+    //TODO TDD aqui
     (void)x;
     qreal factor = 1.0+ qreal(_numScheduledScalings) / 300.0;
     scale(factor, factor);

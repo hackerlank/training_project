@@ -6,4 +6,5 @@ SUBDIRS += \
     HighLighter \
     SaveLoadFile \
     PetriWidget \
-    SPNPNewGui
+    SPNPNewGui \
+    cspl

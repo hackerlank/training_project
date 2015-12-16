@@ -37,6 +37,8 @@ private slots:
 
     void on_action_Abrir_Projeto_triggered();
 
+    void on_actionEscrever_triggered();
+
 private:
     Ui::MainWindow *ui;
     PreferenceSetupForm *psf;

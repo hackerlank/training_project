@@ -34,6 +34,7 @@ unix{
     LIBS += -L$$OUT_PWD/../XMLParser/ -lXMLParser
     LIBS += -L$$OUT_PWD/../spnpclasses/ -lSPNPClasses
     LIBS += -L$$OUT_PWD/../PetriWidget/ -lPetriWidget
+    LIBS += -L$$OUT_PWD/../cspl/ -lcspl
 }
 
 win32{
@@ -53,6 +54,9 @@ win32{
 
     CONFIG(release, debug|release): LIBS += -L$$OUT_PWD/../PetriWidget/release/ -lPetriWidget
     else:CONFIG(debug, debug|release): LIBS += -L$$OUT_PWD/../PetriWidget/debug/ -lPetriWidget
+
+    CONFIG(release, debug|release): LIBS += -L$$OUT_PWD/../cspl/release/ -lcspl
+    else:CONFIG(debug, debug|release): LIBS += -L$$OUT_PWD/../cspl/debug/ -lcspl
 }
 
 INCLUDEPATH += $$PWD/../HighLighter
@@ -69,3 +73,6 @@ DEPENDPATH += $$PWD/../spnpclasses
 
 INCLUDEPATH += $$PWD/../PetriWidget
 DEPENDPATH += $$PWD/../PetriWidget
+
+INCLUDEPATH += $$PWD/../cspl
+DEPENDPATH += $$PWD/../cspl
