@@ -2,7 +2,7 @@
 
 spnp::ImmediateTransition::ImmediateTransition():AbstractVisualData()
 {
-    this->priority = "1";
+    this->priority = "0.5";
     this->guard = "";
     this->probType = ProbabilityType::CONSTANT;
     this->value = "0.789";
