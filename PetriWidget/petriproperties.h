@@ -63,6 +63,8 @@ private slots:
 
     void fillITransPlacesNames();
 
+    void on_stackedWidget_currentChanged(int arg1);
+
 private:
     Ui::PetriProperties *ui;
 
@@ -80,7 +82,7 @@ private:
     void loadNet();
     QString clearArg(QString arg1);
 
-    void on_stackedWidget_currentChanged(int arg1);
+
 };
 
 #endif // PETRIPROPERTIES_H
