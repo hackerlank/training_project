@@ -252,7 +252,23 @@ void PetriProperties::on_le_fplace_break_textEdited(const QString &arg1)
 
 void PetriProperties::on_le_itrans_prob_value_textEdited(const QString &arg1)
 {
+    int index = this->ui->cb_itrans_prob->currentIndex();
 
+    spnp::ImmediateTransition* itrans = static_cast<spnp::ImmediateTransition*>(this->netData->getTransition(itemDataID));
+    this->ui->cb_itrans_prob_place->setEnabled(false);
+    switch (index)
+    {
+    case 0:
+    case 2:
+        itrans->setValue(arg1.toStdString());
+
+        break;
+    case 1://places
+
+        break;
+    default:
+        break;
+    }
 }
 
 void PetriProperties::on_le_ttrans_name_textEdited(const QString &arg1)
@@ -289,4 +305,50 @@ QString PetriProperties::clearArg(QString arg1)
 {
     QString newValue = arg1;
     return newValue.remove(QRegExp("\001"));
+}
+
+void PetriProperties::fillITransPlacesNames()
+{
+    this->ui->cb_itrans_prob_place->clear();
+    std::vector<spnp::Place*>* places = this->netData->getPlaces();
+    if(places!=nullptr)
+    {
+        for(int i=0, total = places->size(); i< total; ++i)
+        {
+            spnp::Place* place = places->at(i);
+            if(place!=nullptr)
+                this->ui->cb_itrans_prob_place->addItem(QString::fromStdString(place->getName()));
+        }
+    }
+}
+
+void PetriProperties::on_cb_itrans_prob_currentTextChanged(const QString &arg1)
+{
+    int index = this->ui->cb_itrans_prob->currentIndex();
+
+    spnp::ImmediateTransition* itrans = static_cast<spnp::ImmediateTransition*>(this->netData->getTransition(itemDataID));
+    this->ui->cb_itrans_prob_place->setEnabled(false);
+    switch (index)
+    {
+    default:
+    case 0:
+        itrans->setProbType(spnp::ImmediateTransition::CONSTANT);
+        break;
+    case 1:
+        itrans->setProbType(spnp::ImmediateTransition::PLACE_DEPENDENT);
+        this->fillITransPlacesNames();
+        this->ui->cb_itrans_prob_place->setEnabled(true);
+        break;
+    case 2:
+        itrans->setProbType(spnp::ImmediateTransition::FUNCTION);
+        break;
+    }
+}
+
+void PetriProperties::on_stackedWidget_currentChanged(int arg1)
+{
+    if(arg1 == 2)
+    {
+        fillITransPlacesNames();
+    }
 }

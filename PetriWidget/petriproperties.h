@@ -59,6 +59,10 @@ private slots:
 
     void on_le_arc_mult_textEdited(const QString &arg1);
 
+    void on_cb_itrans_prob_currentTextChanged(const QString &arg1);
+
+    void fillITransPlacesNames();
+
 private:
     Ui::PetriProperties *ui;
 
@@ -75,6 +79,8 @@ private:
     void loadFArc();
     void loadNet();
     QString clearArg(QString arg1);
+
+    void on_stackedWidget_currentChanged(int arg1);
 };
 
 #endif // PETRIPROPERTIES_H
