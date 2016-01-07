@@ -96,6 +96,11 @@ void spnp::Project::fromXML(XMLNode *xml)
     delete v;
 }
 
+std::string spnp::Project::c_str() const
+{
+    throw;
+}
+
 std::string spnp::Project::getClassNodeName()
 {
     return "project";

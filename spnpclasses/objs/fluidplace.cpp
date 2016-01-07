@@ -55,6 +55,28 @@ void spnp::FluidPlace::setBreakValue(std::string v)
     this->breakValue = v;
 }
 
+std::string spnp::FluidPlace::c_str() const
+{
+    std::stringstream ss;
+
+    ss << "fplace(\"" << getName() << "\");\n";
+    if(this->tokens.compare("0")!=0)
+    {
+        ss<< "finit(\"" << getName() << "\"," << this->tokens << ");\n";
+    }
+
+    if(this->boundValue.compare("") != 0)
+    {
+        ss << "fbound(\"" << getName() << "\", "<< this->boundValue << ");\n";
+    }
+
+    if(this->breakValue.compare("") != 0)
+    {
+        ss << "fbreak(\"" << getName() << "\", "<< this->breakValue << ");\n";
+    }
+    return ss.str();
+}
+
 std::string spnp::FluidPlace::getClassNodeName()
 {
     return "fluid_place";

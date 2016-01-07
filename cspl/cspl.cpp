@@ -78,59 +78,7 @@ void Cspl::addNet()
     ss << "/*=========Definition of the NET=========*/\n";
     ss << "void net() {\n";
 
-    //TODO adicionar rede
-    //lugares (não apagar o ponteiro!!!)
-    std::vector<spnp::Place*>* places = this->net->getPlaces();
-    if(places->size()>0)
-    {
-        ss << "/* Place */\n";
-        for (int i = 0, total = places->size(); i < total; ++i)
-        {
-            spnp::Place* place = places->at(i);
-            ss << "place(\"" << place->getName() << "\");\n";
-            if(place->getToken().compare("0")!=0)
-            {
-                ss<< "init(\"" << place->getName() << "\"," << place->getToken() << ");\n";
-            }
-        }
-    }
-
-    std::vector<spnp::ImmediateTransition*>* trans = this->net->getTransitions();
-    if(trans->size()>0)
-    {
-        ss << "/* Transition */\n";
-        for (int i = 0, total = trans->size(); i < total; ++i)
-        {
-            spnp::ImmediateTransition* it = trans->at(i);
-            ss << "imm(\"" << it->getName() << "\");\n";
-            if(it->getGuard().compare("") != 0)
-            {
-                ss << "guard(\"" << it->getName() << "\", " << it->getGuard() << ");\n";
-            }
-            ss << "priority(\""<< it->getName() << "\"," << it->getPriority() << ");\n";
-
-            if(it->getGuard().compare("") != 0) //outras funções
-            {
-                switch (it->getProbType())
-                {
-                case spnp::ImmediateTransition::CONSTANT:
-                    ss << "probval(\"" << it->getName() << "\", " << it->getValue() << ");\n";
-                    break;
-                case spnp::ImmediateTransition::PLACE_DEPENDENT:
-
-                    break;
-                case spnp::ImmediateTransition::FUNCTION:
-
-                    break;
-                default:
-                    break;
-                }
-            }
-
-        }
-    }
-
-
+    ss << this->net->c_str();
     ss << "}\n";
 }
 

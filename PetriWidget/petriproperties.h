@@ -53,8 +53,6 @@ private slots:
 
     void on_le_ttrans_prior_textEdited(const QString &arg1);
 
-    void on_pte_ttrans_distr_textChanged();
-
     void on_le_ttrans_rate_textEdited(const QString &arg1);
 
     void on_rb_arc_const_toggled(bool checked);

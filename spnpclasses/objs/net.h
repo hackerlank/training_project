@@ -38,6 +38,8 @@ public:
     std::vector<ImmediateTransition*> *getTransitions() const;
     std::vector<Arc*> *getArcs() const;
 
+    virtual std::string c_str() const;
+
 private:
     std::vector<Place* > *places;
     std::vector<ImmediateTransition* > *transitions;

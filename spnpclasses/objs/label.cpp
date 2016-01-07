@@ -25,6 +25,11 @@ void spnp::Label::fromXML(XMLNode *xml)
     AbstractVisualData::fromXML(xml);
 }
 
+std::string spnp::Label::c_str() const
+{
+    throw;
+}
+
 std::string spnp::Label::getClassNodeName()
 {
     return "label";

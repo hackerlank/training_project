@@ -63,6 +63,8 @@ public:
     Policy getPolicy();
     Affected getAffected();
 
+    virtual std::string c_str() const;
+
 private:
     std::string rate;
     Distribution distribution;

@@ -100,6 +100,16 @@ void spnp::ImmediateTransition::setValue(std::string v)
     this->value = v;
 }
 
+std::string spnp::ImmediateTransition::getProbFuncName() const
+{
+    return this->probFuncName;
+}
+
+void spnp::ImmediateTransition::setProbFuncName(std::string v)
+{
+    this->probFuncName = v;
+}
+
 bool spnp::ImmediateTransition::isVertical()
 {
     return this->vertical;
@@ -108,6 +118,39 @@ bool spnp::ImmediateTransition::isVertical()
 void spnp::ImmediateTransition::setVertical(bool v)
 {
     this->vertical = v;
+}
+
+std::string spnp::ImmediateTransition::c_str() const
+{
+    std::stringstream ss;
+
+    ss << "imm(\"" << getName() << "\");\n";
+    if(this->guard.compare("") != 0)
+    {
+        ss << "guard(\"" << getName() << "\", " << this->guard << ");\n";
+    }
+    ss << "priority(\""<< getName() << "\"," << this->priority << ");\n";
+
+    if(this->guard.compare("") != 0) //outras funções
+    {
+        switch (this->probType)
+        {
+        case spnp::ImmediateTransition::CONSTANT:
+            ss << "probval(\"" << getName() << "\", " << this->value << ");\n";
+            break;
+        case spnp::ImmediateTransition::PLACE_DEPENDENT:
+
+            break;
+        case spnp::ImmediateTransition::FUNCTION:
+            //ss << "probfun(\"" << getName() << "\", " << this->f
+//probfun("t0",asdfasdf);
+            break;
+        default:
+            break;
+        }
+    }
+
+    return ss.str();
 }
 
 std::string spnp::ImmediateTransition::getClassNodeName()

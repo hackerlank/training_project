@@ -58,6 +58,17 @@ spnp::Label *spnp::Place::getLabel() const
     return this->label;
 }
 
+std::string spnp::Place::c_str() const
+{
+    std::stringstream ss;
+    ss << "place(\"" << getName() << "\");\n";
+    if(this->tokens.compare("0")!=0)
+    {
+        ss<< "init(\"" << getName() << "\"," << this->tokens << ");\n";
+    }
+    return ss.str();
+}
+
 std::string spnp::Place::getClassNodeName()
 {
     return "place";

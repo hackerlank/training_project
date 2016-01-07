@@ -216,6 +216,32 @@ std::vector<spnp::Arc *> *spnp::Net::getArcs() const
     return this->arcs;
 }
 
+std::string spnp::Net::c_str() const
+{
+    std::stringstream ss;
+    if(places->size()>0)
+    {
+        ss << "/* Place */\n";
+        for (int i = 0, total = places->size(); i < total; ++i)
+        {
+            spnp::Place* place = places->at(i);
+            ss << place->c_str();
+        }
+    }
+
+    if(transitions->size()>0)
+    {
+        ss << "/* Transition */\n";
+        for (int i = 0, total = transitions->size(); i < total; ++i)
+        {
+            spnp::ImmediateTransition* it = transitions->at(i);
+            ss << it->c_str();
+        }
+    }
+
+    return ss.str();
+}
+
 std::string spnp::Net::getClassNodeName()
 {
     return "net";

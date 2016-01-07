@@ -108,6 +108,11 @@ void spnp::Arc::setIsInhibitor(const bool b)
     this->isInhibitor = b;
 }
 
+std::string spnp::Arc::c_str() const
+{
+    throw;
+}
+
 std::string spnp::Arc::getClassNodeName()
 {
     return "arc";

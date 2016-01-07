@@ -21,6 +21,8 @@ public:
     void setBoundValue(std::string v);
     void setBreakValue(std::string v);
 
+    virtual std::string c_str() const;
+
 private:
     virtual std::string getClassNodeName();
 

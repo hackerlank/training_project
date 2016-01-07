@@ -28,6 +28,8 @@ public:
     void setIsFluid(const bool b);
     void setIsInhibitor(const bool b);
 
+    virtual std::string c_str() const;
+
 private:
     std::string place;
     std::string transition;

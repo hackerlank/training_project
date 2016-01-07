@@ -101,6 +101,15 @@ spnp::TimedTransition::Affected spnp::TimedTransition::getAffected()
     return this->affected;
 }
 
+std::string spnp::TimedTransition::c_str() const
+{
+    std::stringstream ss;
+
+
+
+    return ss.str();
+}
+
 std::string spnp::TimedTransition::getClassNodeName()
 {
     return "timed_transition";

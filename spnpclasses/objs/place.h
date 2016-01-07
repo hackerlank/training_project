@@ -17,9 +17,12 @@ public:
     std::string getToken() const;
     void setToken(const std::string d);
     Label* getLabel() const;
-private:
+
+    virtual std::string c_str() const;
+protected:
     std::string tokens;
 
+private:
     Label* label;
     virtual std::string getClassNodeName();
 };
