@@ -131,7 +131,7 @@ void spnp::Net::removePlace(std::string id)
     {
         spnp::Place *place = this->places->at(i);
 
-        if(place->id.compare(id))
+        if(place->id.compare(id) == 0)
         {
             places->erase(places->begin()+i);
             delete place;
@@ -145,7 +145,7 @@ void spnp::Net::removeTransition(std::string id)
     for(unsigned int i=0, total = this->transitions->size(); i<total; ++i)
     {
         spnp::ImmediateTransition *transition = this->transitions->at(i);
-        if(transition->id.compare(id))
+        if(transition->id.compare(id) == 0)
         {
             transitions->erase(transitions->begin()+i);
             delete transition;
@@ -159,7 +159,7 @@ void spnp::Net::removeArc(std::string id)
     for(unsigned int i=0, total = this->arcs->size(); i<total; ++i)
     {
         spnp::Arc *arc = this->arcs->at(i);
-        if(arc->id.compare(id))
+        if(arc->id.compare(id) == 0)
         {
             arcs->erase(arcs->begin()+i);
             delete arc;
@@ -173,7 +173,7 @@ spnp::Place *spnp::Net::getPlace(std::string id)
     for(unsigned int i=0, total = this->places->size(); i<total; ++i)
     {
         spnp::Place *place = this->places->at(i);
-        if(place->id.compare(id))
+        if(place->id.compare(id) == 0)
             return (place);
     }
     return nullptr;
@@ -184,7 +184,8 @@ spnp::ImmediateTransition *spnp::Net::getTransition(std::string id)
     for(unsigned int i=0, total = this->transitions->size(); i<total; ++i)
     {
         spnp::ImmediateTransition* trans = this->transitions->at(i);
-        if(trans->id.compare(id))
+        std::string currentId = trans->id;
+        if(currentId.compare(id) == 0)
             return trans;
     }
     return nullptr;
@@ -195,7 +196,7 @@ spnp::Arc *spnp::Net::getArc(std::string id)
     for(unsigned int i=0, total = this->arcs->size(); i<total; ++i)
     {
         spnp::Arc *arc = this->arcs->at(i);
-        if(arc->id.compare(id))
+        if(arc->id.compare(id) == 0)
             return arc;
     }
     return nullptr;
