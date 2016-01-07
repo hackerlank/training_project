@@ -37,9 +37,6 @@ public:
     std::string getValue() const;
     void setValue(std::string v);
 
-    std::string getProbFuncName() const;
-    void setProbFuncName(std::string v);
-
     bool isVertical();
     void setVertical(bool v);
 
@@ -54,8 +51,6 @@ protected:
     std::string value;
 
     bool vertical;
-
-    std::string probFuncName;
 
 private:
     virtual std::string getClassNodeName();

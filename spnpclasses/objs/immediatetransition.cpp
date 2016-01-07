@@ -100,16 +100,6 @@ void spnp::ImmediateTransition::setValue(std::string v)
     this->value = v;
 }
 
-std::string spnp::ImmediateTransition::getProbFuncName() const
-{
-    return this->probFuncName;
-}
-
-void spnp::ImmediateTransition::setProbFuncName(std::string v)
-{
-    this->probFuncName = v;
-}
-
 bool spnp::ImmediateTransition::isVertical()
 {
     return this->vertical;
