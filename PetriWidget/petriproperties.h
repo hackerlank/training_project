@@ -65,6 +65,8 @@ private slots:
 
     void on_stackedWidget_currentChanged(int arg1);
 
+    void on_cb_itrans_prob_place_currentTextChanged(const QString &arg1);
+
 private:
     Ui::PetriProperties *ui;
 
@@ -82,7 +84,7 @@ private:
     void loadNet();
     QString clearArg(QString arg1);
 
-
+    bool mounting;
 };
 
 #endif // PETRIPROPERTIES_H

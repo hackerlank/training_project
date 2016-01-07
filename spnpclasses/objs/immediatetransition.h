@@ -40,6 +40,9 @@ public:
     bool isVertical();
     void setVertical(bool v);
 
+    std::string getPlaceId() const;
+    void setPlaceId(std::string id);
+
     virtual std::string c_str() const;
 
 protected:
@@ -49,6 +52,8 @@ protected:
     Label* label;
 
     std::string value;
+
+    std::string placeId;
 
     bool vertical;
 

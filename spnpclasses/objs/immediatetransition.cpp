@@ -7,6 +7,7 @@ spnp::ImmediateTransition::ImmediateTransition():AbstractVisualData()
     this->probType = ProbabilityType::CONSTANT;
     this->value = "0.789";
     this->label = new Label();
+    this->placeId = "";
 }
 
 spnp::ImmediateTransition::ImmediateTransition(std::string name,
@@ -38,6 +39,7 @@ XMLNode *spnp::ImmediateTransition::toXML()
     node->setAttribute("guard", this->guard);
     node->setAttribute("prob", static_cast<int>(this->probType));
     node->setAttribute("value", this->value);
+    node->setAttribute("place_id", this->placeId);
     node->setAttribute("vertical", this->vertical);
 
     node->addChild(this->label->toXML());
@@ -52,6 +54,7 @@ void spnp::ImmediateTransition::fromXML(XMLNode *xml)
     this->guard = xml->getAttributeS("guard");
     this->probType = static_cast<ProbabilityType>(xml->getAttributeI("prob"));
     this->value = xml->getAttributeS("value");
+    this->placeId = xml->getAttributeS("place_id");
     this->vertical = xml->getAttributeB("vertical");
 
     if(this->label !=nullptr)
@@ -108,6 +111,16 @@ bool spnp::ImmediateTransition::isVertical()
 void spnp::ImmediateTransition::setVertical(bool v)
 {
     this->vertical = v;
+}
+
+std::string spnp::ImmediateTransition::getPlaceId() const
+{
+    return this->placeId;
+}
+
+void spnp::ImmediateTransition::setPlaceId(std::string id)
+{
+    this->placeId = id;
 }
 
 std::string spnp::ImmediateTransition::c_str() const
