@@ -2,7 +2,7 @@
 
 spnp::TimedTransition::TimedTransition():ImmediateTransition()
 {
-    this->rate = "0.25";
+    this->value = "0.25";
     this->distribution = Distribution::Exponential;
     this->distValue = "";
     this->policy = Policy::PreemptiveRepeatDifferent;
@@ -12,12 +12,11 @@ spnp::TimedTransition::TimedTransition():ImmediateTransition()
 
 spnp::TimedTransition::TimedTransition(std::string name, std::string priority, std::string guard,
                                        ProbabilityType probType, std::string value,
-                                       Label *label, std::string rate,
+                                       Label *label,
                                        Distribution distribution, std::string distValue,
                                        Policy policy, Affected affected, int x, int y)
     :ImmediateTransition(name, priority, guard, probType, value, label, x, y)
 {
-    this->rate = rate;
     this->distribution = distribution;
     this->distValue = distValue;
     this->policy = policy;
@@ -32,7 +31,6 @@ spnp::TimedTransition::~TimedTransition()
 XMLNode *spnp::TimedTransition::toXML()
 {
     XMLNode* node = ImmediateTransition::toXML();
-    node->setAttribute("rate", this->rate);
     node->setAttribute("dist_value", this->distValue);
     node->setAttribute("dist", static_cast<int>(this->distribution));
     node->setAttribute("policy", static_cast<int>(this->policy));
@@ -44,16 +42,10 @@ XMLNode *spnp::TimedTransition::toXML()
 void spnp::TimedTransition::fromXML(XMLNode *xml)
 {
     ImmediateTransition::fromXML(xml);
-    this->rate = xml->getAttributeS("rate");
     this->distValue= xml->getAttributeS("dist_value");
     this->distribution = static_cast<Distribution>(xml->getAttributeI("dist"));
     this->policy = static_cast<Policy>(xml->getAttributeI("policy"));
     this->affected = static_cast<Affected>(xml->getAttributeI("affected"));
-}
-
-void spnp::TimedTransition::setRate(std::string r)
-{
-    this->rate = r;
 }
 
 void spnp::TimedTransition::setDistribution(spnp::TimedTransition::Distribution d)
@@ -74,11 +66,6 @@ void spnp::TimedTransition::setPolicy(spnp::TimedTransition::Policy p)
 void spnp::TimedTransition::setAffected(spnp::TimedTransition::Affected a)
 {
     this->affected = a;
-}
-
-std::string spnp::TimedTransition::getRate()
-{
-    return this->rate;
 }
 
 spnp::TimedTransition::Distribution spnp::TimedTransition::getDistribution()

@@ -42,7 +42,6 @@ public:
                     ProbabilityType probType = ProbabilityType::CONSTANT,
                     std::string value = "0.789",
                     Label* label=nullptr,
-                    std::string rate="0.25",
                     Distribution distribution = Distribution::Exponential,
                     std::string distValue="", Policy policy = Policy::PreemptiveRepeatDifferent,
                     Affected affected = Affected::PRS, int x=0, int y=0);
@@ -51,22 +50,19 @@ public:
     virtual XMLNode* toXML();
     virtual void fromXML(XMLNode *xml);
 
-    void setRate(std::string r);
     void setDistribution(Distribution d);
     void setDistributionValue(std::string dv);
     void setPolicy(Policy p);
     void setAffected(Affected a);
 
-    std::string getRate();
     Distribution getDistribution();
     std::string getDistributionValue();
     Policy getPolicy();
     Affected getAffected();
 
     virtual std::string c_str() const;
-
+//o "rate" daqui é o mesmo q o "valor" do imediato
 private:
-    std::string rate;
     Distribution distribution;
     std::string distValue;
     Policy policy;

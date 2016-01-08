@@ -159,7 +159,7 @@ void PetriProperties::loadTTrans()
         this->ui->cb_ttrans_rate->setCurrentIndex(2);
         break;
     }
-    this->ui->le_ttrans_rate->setText(QString::fromStdString(ttrans->getRate()));
+    this->ui->le_ttrans_rate->setText(QString::fromStdString(ttrans->getValue()));
 }
 
 void PetriProperties::loadArc()
