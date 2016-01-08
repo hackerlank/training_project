@@ -55,8 +55,9 @@ void spnp::FluidPlace::setBreakValue(std::string v)
     this->breakValue = v;
 }
 
-std::string spnp::FluidPlace::c_str() const
+std::string spnp::FluidPlace::c_str(IData *data) const
 {
+    (void)data;
     std::stringstream ss;
 
     ss << "fplace(\"" << getName() << "\");\n";

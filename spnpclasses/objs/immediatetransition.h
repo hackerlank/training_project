@@ -43,7 +43,7 @@ public:
     std::string getPlaceId() const;
     void setPlaceId(std::string id);
 
-    virtual std::string c_str() const;
+    virtual std::string c_str(IData* data=nullptr) const;
 
 protected:
     std::string priority;

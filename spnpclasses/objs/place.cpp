@@ -58,8 +58,9 @@ spnp::Label *spnp::Place::getLabel() const
     return this->label;
 }
 
-std::string spnp::Place::c_str() const
+std::string spnp::Place::c_str(IData* data) const
 {
+    (void)data;
     std::stringstream ss;
     ss << "place(\"" << getName() << "\");\n";
     if(this->tokens.compare("0")!=0)

@@ -18,7 +18,7 @@ public:
     void setToken(const std::string d);
     Label* getLabel() const;
 
-    virtual std::string c_str() const;
+    virtual std::string c_str(IData* data=nullptr) const;
 protected:
     std::string tokens;
 

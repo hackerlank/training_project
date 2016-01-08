@@ -1,5 +1,7 @@
 #include "immediatetransition.h"
 
+#include "objs/net.h"
+
 spnp::ImmediateTransition::ImmediateTransition():AbstractVisualData()
 {
     this->priority = "0.5";
@@ -123,7 +125,7 @@ void spnp::ImmediateTransition::setPlaceId(std::string id)
     this->placeId = id;
 }
 
-std::string spnp::ImmediateTransition::c_str() const
+std::string spnp::ImmediateTransition::c_str(IData *data) const
 {
     std::stringstream ss;
 
@@ -142,11 +144,11 @@ std::string spnp::ImmediateTransition::c_str() const
             ss << "probval(\"" << getName() << "\", " << this->value << ");\n";
             break;
         case spnp::ImmediateTransition::PLACE_DEPENDENT:
-
+            spnp::Net* net = static_cast<Net*>(data);
+            ss << "probdep(\"" << getName() <<"\", " << this->value << ", " << net->getPlace(this->placeId)->getName() << ");\n";
             break;
         case spnp::ImmediateTransition::FUNCTION:
-            //ss << "probfun(\"" << getName() << "\", " << this->f
-//probfun("t0",asdfasdf);
+            ss << "probfun(\"" << getName() << "\", " << this->getValue() << ");\n";
             break;
         default:
             break;

@@ -108,7 +108,7 @@ void spnp::Arc::setIsInhibitor(const bool b)
     this->isInhibitor = b;
 }
 
-std::string spnp::Arc::c_str() const
+std::string spnp::Arc::c_str(IData *data) const
 {
     throw;
 }

@@ -15,7 +15,7 @@ public:
 
     virtual XMLNode* toXML();
     virtual void fromXML(XMLNode *xml);
-    virtual std::string c_str() const = 0;
+    virtual std::string c_str(IData* data=nullptr) const = 0;
 protected:
     virtual std::string getClassNodeName()=0;
 private:

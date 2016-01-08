@@ -88,8 +88,9 @@ spnp::TimedTransition::Affected spnp::TimedTransition::getAffected()
     return this->affected;
 }
 
-std::string spnp::TimedTransition::c_str() const
+std::string spnp::TimedTransition::c_str(IData *data) const
 {
+    (void)data;
     std::stringstream ss;
 
 

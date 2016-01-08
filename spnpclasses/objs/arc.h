@@ -28,7 +28,7 @@ public:
     void setIsFluid(const bool b);
     void setIsInhibitor(const bool b);
 
-    virtual std::string c_str() const;
+    virtual std::string c_str(IData* data=nullptr) const;
 
 private:
     std::string place;

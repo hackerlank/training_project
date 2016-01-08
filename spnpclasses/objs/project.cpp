@@ -96,8 +96,9 @@ void spnp::Project::fromXML(XMLNode *xml)
     delete v;
 }
 
-std::string spnp::Project::c_str() const
+std::string spnp::Project::c_str(IData *data) const
 {
+    (void)data;
     throw;
 }
 

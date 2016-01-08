@@ -60,7 +60,7 @@ public:
     Policy getPolicy();
     Affected getAffected();
 
-    virtual std::string c_str() const;
+    virtual std::string c_str(IData* data=nullptr) const;
 //o "rate" daqui é o mesmo q o "valor" do imediato
 private:
     Distribution distribution;

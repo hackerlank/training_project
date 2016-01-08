@@ -25,8 +25,9 @@ void spnp::Label::fromXML(XMLNode *xml)
     AbstractVisualData::fromXML(xml);
 }
 
-std::string spnp::Label::c_str() const
+std::string spnp::Label::c_str(IData* data) const
 {
+    (void)data;
     throw;
 }
 
