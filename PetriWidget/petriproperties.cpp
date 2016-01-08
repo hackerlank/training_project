@@ -112,7 +112,6 @@ void PetriProperties::loadITrans()
     this->ui->le_itrans_name->setText(QString::fromStdString(itrans->getName()));
     this->ui->le_itrans_guard->setText(QString::fromStdString(itrans->getGuard()));
     this->ui->le_itrans_prior->setText(QString::fromStdString(itrans->getPriority()));
-    //TODO carregar o tipo de probabilidade
     switch (itrans->getProbType())
     {
     default:
@@ -136,8 +135,31 @@ void PetriProperties::loadITrans()
 
 void PetriProperties::loadTTrans()
 {
-    spnp::ImmediateTransition* itrans = static_cast<spnp::ImmediateTransition*>(this->netData->getTransition(this->itemDataID));
-    //TODO update view
+    spnp::TimedTransition* ttrans = static_cast<spnp::TimedTransition*>(this->netData->getTransition(this->itemDataID));
+    this->ui->le_ttrans_name->setText(QString::fromStdString(ttrans->getName()));
+    this->ui->le_ttrans_guard->setText(QString::fromStdString(ttrans->getGuard()));
+    this->ui->le_ttrans_prior->setText(QString::fromStdString(ttrans->getPriority()));
+
+    //TODO distribuição
+    switch (ttrans->getProbType())
+    {
+    default:
+    case spnp::ImmediateTransition::CONSTANT:
+        this->ui->cb_ttrans_rate->setCurrentIndex(0);
+        break;
+    case spnp::ImmediateTransition::PLACE_DEPENDENT:
+    {
+        this->ui->cb_ttrans_rate->setCurrentIndex(1);
+        QString data = QString::fromStdString(ttrans->getPlaceId());
+        int index = this->ui->cb_ttrans_place->findData(data);
+        this->ui->cb_ttrans_place->setCurrentIndex(index);
+        break;
+    }
+    case spnp::ImmediateTransition::FUNCTION:
+        this->ui->cb_ttrans_rate->setCurrentIndex(2);
+        break;
+    }
+    this->ui->le_ttrans_rate->setText(QString::fromStdString(ttrans->getRate()));
 }
 
 void PetriProperties::loadArc()
@@ -179,25 +201,6 @@ void PetriProperties::on_le_place_tokens_textEdited(const QString &arg1)
     pi->updateToken(newValue);
 }
 
-void PetriProperties::on_le_itrans_name_textEdited(const QString &arg1)
-{
-    spnp::ImmediateTransition *it = this->netData->getTransition(itemDataID);
-    it->setName(arg1.toStdString());
-    this->currentPetriItem->updateLabel(it);
-}
-
-void PetriProperties::on_le_itrans_prior_textEdited(const QString &arg1)
-{
-    spnp::ImmediateTransition *it = this->netData->getTransition(itemDataID);
-    it->setPriority(arg1.toStdString());
-}
-
-void PetriProperties::on_le_itrans_guard_textEdited(const QString &arg1)
-{
-    spnp::ImmediateTransition *it = this->netData->getTransition(itemDataID);
-    it->setGuard(arg1.toStdString());
-}
-
 void PetriProperties::on_le_net_name_textEdited(const QString &arg1)
 {
     this->netData->setName(arg1.toStdString());
@@ -231,17 +234,38 @@ void PetriProperties::on_le_fplace_break_textEdited(const QString &arg1)
     p->setBreakValue(arg1.toStdString());
 }
 
+void PetriProperties::on_le_itrans_name_textEdited(const QString &arg1)
+{
+    spnp::ImmediateTransition *it = this->netData->getTransition(itemDataID);
+    it->setName(arg1.toStdString());
+    this->currentPetriItem->updateLabel(it);
+}
+
+void PetriProperties::on_le_itrans_prior_textEdited(const QString &arg1)
+{
+    spnp::ImmediateTransition *it = this->netData->getTransition(itemDataID);
+    it->setPriority(arg1.toStdString());
+}
+
+void PetriProperties::on_le_itrans_guard_textEdited(const QString &arg1)
+{
+    spnp::ImmediateTransition *it = this->netData->getTransition(itemDataID);
+    it->setGuard(arg1.toStdString());
+}
+
 void PetriProperties::on_le_itrans_prob_value_textEdited(const QString &arg1)
 {
-    int index = this->ui->cb_itrans_prob->currentIndex();
+    //int index = this->ui->cb_itrans_prob->currentIndex();
 
     spnp::ImmediateTransition* itrans = static_cast<spnp::ImmediateTransition*>(this->netData->getTransition(itemDataID));
     this->ui->cb_itrans_prob_place->setEnabled(false);
+    itrans->setValue(arg1.toStdString());
+    /*
     switch (index)
     {
     case 0:
     case 2:
-        itrans->setValue(arg1.toStdString());
+
 
         break;
     case 1://places
@@ -249,17 +273,55 @@ void PetriProperties::on_le_itrans_prob_value_textEdited(const QString &arg1)
         break;
     default:
         break;
+    }*/
+}
+
+void PetriProperties::on_cb_itrans_prob_currentTextChanged(const QString &arg1)
+{
+    (void)arg1;
+    int index = this->ui->cb_itrans_prob->currentIndex();
+
+    spnp::ImmediateTransition* itrans = static_cast<spnp::ImmediateTransition*>(this->netData->getTransition(itemDataID));
+    this->ui->cb_itrans_prob_place->setEnabled(false);
+    switch (index)
+    {
+    default:
+    case 0:
+        itrans->setProbType(spnp::ImmediateTransition::CONSTANT);
+        break;
+    case 1:
+        itrans->setProbType(spnp::ImmediateTransition::PLACE_DEPENDENT);
+        this->fillITransPlacesNames();
+        this->ui->cb_itrans_prob_place->setEnabled(true);
+        break;
+    case 2:
+        itrans->setProbType(spnp::ImmediateTransition::FUNCTION);
+        break;
+    }
+}
+
+void PetriProperties::on_cb_itrans_prob_place_currentTextChanged(const QString &arg1)
+{
+    (void)arg1;
+    if(!mounting)
+    {
+        spnp::ImmediateTransition* itrans = static_cast<spnp::ImmediateTransition*>(this->netData->getTransition(itemDataID));
+        QString data = this->ui->cb_itrans_prob_place->currentData().toString();
+        itrans->setPlaceId(data.toStdString());
     }
 }
 
 void PetriProperties::on_le_ttrans_name_textEdited(const QString &arg1)
 {
-
+    spnp::TimedTransition *tt = static_cast<spnp::TimedTransition*>(this->netData->getTransition(itemDataID));
+    tt->setName(arg1.toStdString());
+    this->currentPetriItem->updateLabel(tt);
 }
 
 void PetriProperties::on_le_ttrans_guard_textEdited(const QString &arg1)
 {
-
+    spnp::TimedTransition *tt = static_cast<spnp::TimedTransition*>(this->netData->getTransition(itemDataID));
+    tt->setGuard(arg1.toStdString());
 }
 
 void PetriProperties::on_le_ttrans_prior_textEdited(const QString &arg1)
@@ -306,45 +368,10 @@ void PetriProperties::fillITransPlacesNames()
     this->mounting = false;
 }
 
-void PetriProperties::on_cb_itrans_prob_currentTextChanged(const QString &arg1)
-{
-    (void)arg1;
-    int index = this->ui->cb_itrans_prob->currentIndex();
-
-    spnp::ImmediateTransition* itrans = static_cast<spnp::ImmediateTransition*>(this->netData->getTransition(itemDataID));
-    this->ui->cb_itrans_prob_place->setEnabled(false);
-    switch (index)
-    {
-    default:
-    case 0:
-        itrans->setProbType(spnp::ImmediateTransition::CONSTANT);
-        break;
-    case 1:
-        itrans->setProbType(spnp::ImmediateTransition::PLACE_DEPENDENT);
-        this->fillITransPlacesNames();
-        this->ui->cb_itrans_prob_place->setEnabled(true);
-        break;
-    case 2:
-        itrans->setProbType(spnp::ImmediateTransition::FUNCTION);
-        break;
-    }
-}
-
 void PetriProperties::on_stackedWidget_currentChanged(int arg1)
 {
     if(arg1 == 2)
     {
         fillITransPlacesNames();
-    }
-}
-
-void PetriProperties::on_cb_itrans_prob_place_currentTextChanged(const QString &arg1)
-{
-    (void)arg1;
-    if(!mounting)
-    {
-        spnp::ImmediateTransition* itrans = static_cast<spnp::ImmediateTransition*>(this->netData->getTransition(itemDataID));
-        QString data = this->ui->cb_itrans_prob_place->currentData().toString();
-        itrans->setPlaceId(data.toStdString());
     }
 }
