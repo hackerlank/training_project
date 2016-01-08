@@ -324,7 +324,7 @@ void PetriScene::insertItemToPosition(QPointF position)
         spnp::TimedTransition* _ttrans = new spnp::TimedTransition();
         item = new TTransItem(_ttrans->id, myItemMenu);
         this->currentNet->add(_ttrans);
-        //update label
+        item->updateLabel(_ttrans);
         break;
     }
     default:
