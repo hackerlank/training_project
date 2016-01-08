@@ -316,7 +316,7 @@ void PetriScene::insertItemToPosition(QPointF position)
         spnp::ImmediateTransition *_itrans = new spnp::ImmediateTransition();
         item = new ImTransItem(_itrans->id, myItemMenu);
         this->currentNet->add(_itrans);
-        //update label
+        item->updateLabel(_itrans);
         break;
     }
     case IPetriItem::TTrans:
