@@ -141,15 +141,21 @@ std::string spnp::ImmediateTransition::c_str(IData *data) const
         switch (this->probType)
         {
         case spnp::ImmediateTransition::CONSTANT:
+        {
             ss << "probval(\"" << getName() << "\", " << this->value << ");\n";
             break;
+        }
         case spnp::ImmediateTransition::PLACE_DEPENDENT:
+        {
             spnp::Net* net = static_cast<Net*>(data);
-            ss << "probdep(\"" << getName() <<"\", " << this->value << ", " << net->getPlace(this->placeId)->getName() << ");\n";
+            ss << "probdep(\"" << getName() <<"\", " <<this->value << ", " << net->getPlace(this->placeId)->getName() << ");\n";
             break;
+        }
         case spnp::ImmediateTransition::FUNCTION:
+        {
             ss << "probfun(\"" << getName() << "\", " << this->getValue() << ");\n";
             break;
+        }
         default:
             break;
         }

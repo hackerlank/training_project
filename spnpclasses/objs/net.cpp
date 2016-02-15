@@ -219,7 +219,7 @@ std::vector<spnp::Arc *> *spnp::Net::getArcs() const
 
 std::string spnp::Net::c_str(IData *data) const
 {
-    (void)data;
+    //(void)data;
     std::stringstream ss;
     if(places->size()>0)
     {
@@ -237,7 +237,8 @@ std::string spnp::Net::c_str(IData *data) const
         for (int i = 0, total = transitions->size(); i < total; ++i)
         {
             spnp::ImmediateTransition* it = transitions->at(i);
-            ss << it->c_str();
+            //TODO : verificar
+            ss << it->c_str(const_cast<spnp::Net*>(this));
         }
     }
 

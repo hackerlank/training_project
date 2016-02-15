@@ -253,29 +253,15 @@ void PetriProperties::on_le_itrans_guard_textEdited(const QString &arg1)
     it->setGuard(arg1.toStdString());
 }
 
+//campo de texto
 void PetriProperties::on_le_itrans_prob_value_textEdited(const QString &arg1)
 {
-    //int index = this->ui->cb_itrans_prob->currentIndex();
-
     spnp::ImmediateTransition* itrans = static_cast<spnp::ImmediateTransition*>(this->netData->getTransition(itemDataID));
-    this->ui->cb_itrans_prob_place->setEnabled(false);
+    //this->ui->cb_itrans_prob_place->setEnabled(false);
     itrans->setValue(arg1.toStdString());
-    /*
-    switch (index)
-    {
-    case 0:
-    case 2:
-
-
-        break;
-    case 1://places
-
-        break;
-    default:
-        break;
-    }*/
 }
 
+//opção do combobox
 void PetriProperties::on_cb_itrans_prob_currentTextChanged(const QString &arg1)
 {
     (void)arg1;
@@ -290,10 +276,14 @@ void PetriProperties::on_cb_itrans_prob_currentTextChanged(const QString &arg1)
         itrans->setProbType(spnp::ImmediateTransition::CONSTANT);
         break;
     case 1:
+    {
         itrans->setProbType(spnp::ImmediateTransition::PLACE_DEPENDENT);
         this->fillITransPlacesNames();
         this->ui->cb_itrans_prob_place->setEnabled(true);
+        QString data = this->ui->cb_itrans_prob_place->currentData().toString();
+        itrans->setPlaceId(data.toStdString());
         break;
+    }
     case 2:
         itrans->setProbType(spnp::ImmediateTransition::FUNCTION);
         break;

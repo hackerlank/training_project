@@ -28,7 +28,7 @@ PetriView::PetriView(QWidget *parent)
 
 
     this->_numScheduledScalings = 0;
-
+    //TODO menus
     //this->createMenus();
 
     //right click : what to do.
