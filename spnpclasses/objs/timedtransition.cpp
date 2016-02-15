@@ -93,7 +93,12 @@ std::string spnp::TimedTransition::c_str(IData *data) const
     (void)data;
     std::stringstream ss;
 
+    ss << "rateval(\"" << getName() << "\","<< this->getValue() << ");\n";
 
+    if(this->guard.compare("")!=0)
+    {
+        ss << "guard(\"" << getName() << "\", " << this->getGuard() << ");\n";
+    }
 
     return ss.str();
 }
