@@ -237,10 +237,10 @@ std::string spnp::Net::c_str(IData *data) const
         for (int i = 0, total = transitions->size(); i < total; ++i)
         {
             spnp::ImmediateTransition* it = transitions->at(i);
-            //TODO : verificar
             ss << it->c_str(const_cast<spnp::Net*>(this));
         }
     }
+    //TODO : arcos
 
     return ss.str();
 }
