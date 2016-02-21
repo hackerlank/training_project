@@ -159,10 +159,13 @@ void MainWindow::on_actionEscrever_triggered()
 {
     Cspl* cspl = new Cspl();
     SaveLoadFile slf;
-    spnp::Net *n = this->ui->widget->getCurrentProject()->getNets()->at(0);
-    if(n!=nullptr)
+    if(this->ui->widget->getCurrentProject() != nullptr)
     {
-      slf.saveFile("teste.c", cspl->to_ascii_c(n));
+        spnp::Net *n = this->ui->widget->getCurrentProject()->getNets()->at(0);
+        if(n!=nullptr)
+        {
+          slf.saveFile("teste.c", cspl->to_ascii_c(n));
+        }
     }
     delete cspl;
 }
