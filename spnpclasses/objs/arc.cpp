@@ -1,5 +1,7 @@
 #include "arc.h"
 
+#include "objs/net.h"
+
 spnp::Arc::Arc():AbstractData()
 {
     this->place = -1;
@@ -110,7 +112,26 @@ void spnp::Arc::setIsInhibitor(const bool b)
 
 std::string spnp::Arc::c_str(IData *data) const
 {
-    throw;
+    (void)data;
+    std::stringstream ss;
+    /*ss << "place(\"" << getName() << "\");\n";
+    if(this->tokens.compare("0")!=0)
+    {
+        ss<< "init(\"" << getName() << "\"," << this->tokens << ");\n";
+    }*/
+
+    spnp::Net* net = static_cast<Net*>(data);
+
+    if(this->fromPlaceToTransition)
+    {
+        ss << "oarc(\"" << net->getTransition(transition)->getName() << "\", \"" << net->getPlace(place)->getName() << "\");\n";
+    }
+    else
+    {
+        ss << "iarc(\"" << net->getTransition(transition)->getName() << "\", \"" << net->getPlace(place)->getName() << "\");\n";
+    }
+
+    return ss.str();
 }
 
 std::string spnp::Arc::getClassNodeName()

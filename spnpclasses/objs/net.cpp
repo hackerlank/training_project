@@ -241,6 +241,15 @@ std::string spnp::Net::c_str(IData *data) const
         }
     }
     //TODO : arcos
+    if(arcs->size()>0)
+    {
+        ss << "/* Arc */\n";
+        for(int i=0, total = arcs->size(); i<total; ++i)
+        {
+            spnp::Arc* arc = arcs->at(i);
+            ss << arc->c_str(const_cast<spnp::Net*>(this));
+        }
+    }
 
     return ss.str();
 }
