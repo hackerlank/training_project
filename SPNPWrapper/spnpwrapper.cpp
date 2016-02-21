@@ -47,9 +47,9 @@ int SPNPWrapper::setEnvVar(std::string var)
     if(p!=0)
     {
         std::cout << "PAU!" << std::endl;
-        return EXIT_FAILURE;
+        return false;
     }
-    return EXIT_SUCCESS;
+    return true;
 }
 
 int SPNPWrapper::addSystemVars()
@@ -72,9 +72,11 @@ int SPNPWrapper::addSystemVars()
         //TODO verificar aqui
         out = out && setEnvVar("SPNP_DIRECTORY="+this->dir);
         out = out && setEnvVar("PATH="+this->path);
+
+        std::cout << "\nPATH=" << this->path << std::endl;
         /*std::fstream file("wvars.ini");
 
-        /* wvars.txt
+        // * wvars.txt
          * SPNP_DIRECTORY=F:/spnp
          * PATH=F:/spnp/bin
          * //SPN=F:/spnp/molloy
