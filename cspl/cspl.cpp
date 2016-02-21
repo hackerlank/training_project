@@ -98,7 +98,9 @@ void Cspl::addAc_Init()
 {
     ss << "void ac_init() {\n";
 
-    //TODO adicionar init
+    //TODO automatizar
+    ss << "/* Information on the net structure */\n";
+    ss << "pr_net_info();\n";
 
     ss << "}\n";
 }
@@ -107,7 +109,9 @@ void Cspl::addAc_Reach()
 {
     ss << "void ac_reach() {\n";
 
-    //TODO adicionar reach
+    //TODO automatizar reach
+    ss << "/* Information on the reachability graph */\n";
+    ss << "pr_rg_info();\n";
 
     ss << "}\n";
 }
@@ -116,7 +120,9 @@ void Cspl::addAc_Final()
 {
     ss << "void ac_final() {\n";
 
-    //TODO adicionar final
+    //TODO automatizar final
+    ss << "int loop;\n";
+    ss << "solve(INFINITY);\n";
 
     ss << "}\n";
 }
