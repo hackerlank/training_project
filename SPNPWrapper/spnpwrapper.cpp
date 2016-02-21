@@ -9,7 +9,6 @@
 
 SPNPWrapper::SPNPWrapper()
 {
-
 }
 
 void SPNPWrapper::exec()
@@ -47,17 +46,20 @@ int SPNPWrapper::setEnvVar(std::string var)
 
 int SPNPWrapper::addSystemVars()
 {
+    //bool out = false;
     if(!changedSystemVars)
     {
 #ifdef LINUX
         std::fstream file("lvars.ini");
-        /*
+
+
          * PLATFORM=linux
          * DIR=/home/iago/estudo
          * //SPN=/home/iago/estudo/spnp/Examples/si
          */
 #elif WINDOWS
         std::fstream file("wvars.ini");
+
         /* wvars.txt
          * SPNP_DIRECTORY=F:/spnp
          * PATH=F:/spnp/bin

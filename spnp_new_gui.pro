@@ -7,4 +7,5 @@ SUBDIRS += \
     SaveLoadFile \
     PetriWidget \
     SPNPNewGui \
-    cspl
+    cspl \
+    SPNPWrapper

@@ -5,11 +5,11 @@
 
 #include <string>
 
-class SPNPW_PUBLIC SPNPWrapper
+class SPNPWRAPPER_PUBLIC SPNPWrapper
 {
 
 public:
-    SPNPWrapper();
+    SPNPWrapper(std::string );
     int work(std::string file);
 
 private:
@@ -21,7 +21,5 @@ private:
     int setEnvVar(std::string var);
     int addSystemVars();
 };
-
-
 
 #endif // SPNPWRAPPER_H

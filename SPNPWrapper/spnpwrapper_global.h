@@ -3,13 +3,13 @@
 
 #ifdef WINDOWS
     #ifdef SPNPWRAPPER_LIBRARY
-        #define SPNPW_PUBLIC __declspec(dllexport)
+        #define SPNPWRAPPER_PUBLIC __declspec(dllexport)
     #else
-        #define SPNPW_PUBLIC __declspec(dllimport)
+        #define SPNPWRAPPER_PUBLIC __declspec(dllimport)
     #endif
     #define DEPRECATED(func) __declspec(deprecated) func
 #elif LINUX
-    #define SPNPW_PUBLIC
+    #define SPNPWRAPPER_PUBLIC
     #define DEPRECATED(func) func __attribute__ ((deprecated))
 #endif
 
