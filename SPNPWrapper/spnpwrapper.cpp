@@ -7,8 +7,16 @@
 //file
 #include <fstream>
 
-SPNPWrapper::SPNPWrapper()
+SPNPWrapper::SPNPWrapper(std::string dir
+                         #ifdef WINDOWS
+                         ,std::string path
+                         #endif
+                         )
 {
+    this->dir = dir;
+#ifdef WINDOWS
+    this->path = path;
+#endif
 }
 
 void SPNPWrapper::exec()
@@ -46,11 +54,14 @@ int SPNPWrapper::setEnvVar(std::string var)
 
 int SPNPWrapper::addSystemVars()
 {
-    //bool out = false;
+    bool out = true;
     if(!changedSystemVars)
     {
 #ifdef LINUX
-        std::fstream file("lvars.ini");
+        out = out && setEnvVar("PLATFORM=linux");
+        //TODO verificar aqui
+        out = out && setEnvVar("DIR=" + this->dir);
+        /*std::fstream file("lvars.ini");
 
 
          * PLATFORM=linux
@@ -58,7 +69,10 @@ int SPNPWrapper::addSystemVars()
          * //SPN=/home/iago/estudo/spnp/Examples/si
          */
 #elif WINDOWS
-        std::fstream file("wvars.ini");
+        //TODO verificar aqui
+        out = out && setEnvVar("SPNP_DIRECTORY="+this->dir);
+        out = out && setEnvVar("PATH="+this->path);
+        /*std::fstream file("wvars.ini");
 
         /* wvars.txt
          * SPNP_DIRECTORY=F:/spnp
@@ -66,12 +80,14 @@ int SPNPWrapper::addSystemVars()
          * //SPN=F:/spnp/molloy
          */
 #endif
-        std::string str;
+        /*std::string str;
         while(std::getline(file, str))
         {
             if(setEnvVar(str) == EXIT_FAILURE)
                 return EXIT_FAILURE;
-        }
+        }*/
+        if(!out) return EXIT_FAILURE;
+
         changedSystemVars = true;
     }
     return EXIT_SUCCESS;

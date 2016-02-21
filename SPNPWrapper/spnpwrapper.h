@@ -9,7 +9,11 @@ class SPNPWRAPPER_PUBLIC SPNPWrapper
 {
 
 public:
-    SPNPWrapper(std::string );
+    SPNPWrapper(std::string dir
+        #ifdef WINDOWS
+            , std::string path
+        #endif
+            );
     int work(std::string file);
 
 private:
@@ -20,6 +24,11 @@ private:
     int changeFolder(std::string to);
     int setEnvVar(std::string var);
     int addSystemVars();
+
+    std::string dir;
+#ifdef WINDOWS
+    std::string path;
+#endif
 };
 
 #endif // SPNPWRAPPER_H
