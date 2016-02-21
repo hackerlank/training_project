@@ -155,6 +155,9 @@ void MainWindow::load()
 //TODO remover essa função no futuro
 #include "cspl.h"
 #include "saveloadfile.h"
+#include "spnpwrapper.h"
+
+#include <iostream>
 void MainWindow::on_actionEscrever_triggered()
 {
     Cspl* cspl = new Cspl();
@@ -164,7 +167,17 @@ void MainWindow::on_actionEscrever_triggered()
         spnp::Net *n = this->ui->widget->getCurrentProject()->getNets()->at(0);
         if(n!=nullptr)
         {
-          slf.saveFile("teste.c", cspl->to_ascii_c(n));
+          //TODO remove hard coded path
+          std::string file = "F:/temp/teste.c";
+          slf.saveFile(file, cspl->to_ascii_c(n));
+
+          std::string dir = AppSettings::Instance()->getSPNPFolder().toStdString();
+          SPNPWrapper* w = new SPNPWrapper(dir
+#ifdef WINDOWS
+                                     , dir+"/bin"
+#endif
+                                           );
+          w->work(file.substr(0, file.size()-2));
         }
     }
     delete cspl;
