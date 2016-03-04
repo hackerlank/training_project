@@ -69,6 +69,9 @@ void Cspl::addOptions()
     ss << "void options() {\n";
 
     //TODO adicionar opções do projeto
+    /* hard coded para estado absorvente */
+    ss << "iopt(IOP_SSMETHOD, VAL_POWER);\n";
+    /* fim hc */
 
     ss << "}\n";
 }
@@ -100,7 +103,7 @@ void Cspl::addAc_Init()
 
     //TODO automatizar
     ss << "/* Information on the net structure */\n";
-    ss << "pr_net_info();\n";
+    ss << "\tpr_net_info();\n";
 
     ss << "}\n";
 }
@@ -111,7 +114,7 @@ void Cspl::addAc_Reach()
 
     //TODO automatizar reach
     ss << "/* Information on the reachability graph */\n";
-    ss << "pr_rg_info();\n";
+    ss << "\tpr_rg_info();\n";
 
     ss << "}\n";
 }
@@ -120,16 +123,16 @@ void Cspl::addAc_Final()
 {
     /* hard coded 1 for testing */
     ss << "double outFunc0() {\n";
-    ss << "return(mark(\"P0\"));\n";
-    ss << "}\n";
+    ss << "\treturn(mark(\"P0\"));\n";
+    ss << "}\n\n";
     /* end hard coded 1 */
 
     ss << "void ac_final() {\n";
 
     //TODO automatizar final
-    ss << "int loop;\n";
-    ss << "solve(INFINITY);\n";
-    ss << "pr_expected(\"Expected # of tokens of the place P0 in steady-state\",outFunc0);\n";
+    ss << "\tint loop;\n";
+    ss << "\tsolve(INFINITY);\n";
+    ss << "\tpr_expected(\"Expected # of tokens of the place P0 in steady-state\",outFunc0);\n";
 
     ss << "}\n";
 }
