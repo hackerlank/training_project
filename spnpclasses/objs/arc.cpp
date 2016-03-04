@@ -129,21 +129,23 @@ std::string spnp::Arc::c_str(IData *data) const
 {
     (void)data;
     std::stringstream ss;
-    /*ss << "place(\"" << getName() << "\");\n";
-    if(this->tokens.compare("0")!=0)
-    {
-        ss<< "init(\"" << getName() << "\"," << this->tokens << ");\n";
-    }*/
 
     spnp::Net* net = static_cast<Net*>(data);
 
     if(this->fromPlaceToTransition)
     {
-        ss << "oarc(\"" << net->getTransition(transition)->getName() << "\", \"" << net->getPlace(place)->getName() << "\");\n";
+        if(this->multiplicity.compare("1")!=0)
+            ss << "oarc(\"" << net->getTransition(transition)->getName() << "\", \"" << net->getPlace(place)->getName() << "\");\n";
+        else
+            ss << "moarc(\"" << net->getTransition(transition)->getName() << "\", \"" << net->getPlace(place)->getName() << "\", " << this->multiplicity <<");\n";
+
     }
     else
     {
-        ss << "iarc(\"" << net->getTransition(transition)->getName() << "\", \"" << net->getPlace(place)->getName() << "\");\n";
+        if(this->multiplicity.compare("1")!=0)
+            ss << "iarc(\"" << net->getTransition(transition)->getName() << "\", \"" << net->getPlace(place)->getName() << "\");\n";
+        else
+            ss << "iarc(\"" << net->getTransition(transition)->getName() << "\", \"" << net->getPlace(place)->getName() << "\", " << this->multiplicity <<");\n";
     }
 
     return ss.str();
