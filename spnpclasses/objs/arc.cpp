@@ -145,7 +145,7 @@ std::string spnp::Arc::c_str(IData *data) const
         if(this->multiplicity.compare("1")!=0)
             ss << "iarc(\"" << net->getTransition(transition)->getName() << "\", \"" << net->getPlace(place)->getName() << "\");\n";
         else
-            ss << "iarc(\"" << net->getTransition(transition)->getName() << "\", \"" << net->getPlace(place)->getName() << "\", " << this->multiplicity <<");\n";
+            ss << "miarc(\"" << net->getTransition(transition)->getName() << "\", \"" << net->getPlace(place)->getName() << "\", " << this->multiplicity <<");\n";
     }
 
     return ss.str();
