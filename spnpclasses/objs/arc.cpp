@@ -134,7 +134,7 @@ std::string spnp::Arc::c_str(IData *data) const
 
     if(this->fromPlaceToTransition)
     {
-        if(this->multiplicity.compare("1")!=0)
+        if(this->multiplicity.compare("1")==0)
             ss << "oarc(\"" << net->getTransition(transition)->getName() << "\", \"" << net->getPlace(place)->getName() << "\");\n";
         else
             ss << "moarc(\"" << net->getTransition(transition)->getName() << "\", \"" << net->getPlace(place)->getName() << "\", " << this->multiplicity <<");\n";
@@ -142,7 +142,7 @@ std::string spnp::Arc::c_str(IData *data) const
     }
     else
     {
-        if(this->multiplicity.compare("1")!=0)
+        if(this->multiplicity.compare("1")==0)
             ss << "iarc(\"" << net->getTransition(transition)->getName() << "\", \"" << net->getPlace(place)->getName() << "\");\n";
         else
             ss << "miarc(\"" << net->getTransition(transition)->getName() << "\", \"" << net->getPlace(place)->getName() << "\", " << this->multiplicity <<");\n";
