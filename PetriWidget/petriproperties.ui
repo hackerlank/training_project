@@ -35,7 +35,7 @@
       </size>
      </property>
      <property name="currentIndex">
-      <number>0</number>
+      <number>7</number>
      </property>
      <widget class="QWidget" name="place">
       <layout class="QGridLayout" name="gridLayout_17">
@@ -599,6 +599,9 @@
           <widget class="QRadioButton" name="rb_arc_const">
            <property name="text">
             <string>Constante</string>
+           </property>
+           <property name="checked">
+            <bool>true</bool>
            </property>
           </widget>
          </item>

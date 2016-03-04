@@ -75,6 +75,7 @@ private:
     std::string itemDataID;
     spnp::Net *netData;
     IPetriItem* currentPetriItem;
+    IPetriArc* currentPetriArc;
     void loadPlace();
     void loadFPlace();
     void loadITrans();

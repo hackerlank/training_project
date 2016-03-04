@@ -54,6 +54,11 @@ void AbstractPetriArc::updatePosition()
     setLine(line);
 }
 
+void AbstractPetriArc::updateLabel(QString str)
+{
+    this->myLabel->setText(str);
+}
+
 void AbstractPetriArc::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
 {
     //avoiding warnings ;)

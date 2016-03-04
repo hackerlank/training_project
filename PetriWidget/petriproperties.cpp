@@ -1,10 +1,9 @@
 #include "petriproperties.h"
 #include "ui_petriproperties.h"
 
-#include "diagram/arcs/ipetriarc.h"
-
 #include "diagram/items/placeitem.h"
 #include "diagram/items/fplaceitem.h"
+#include "diagram/arcs/abstractpetriarc.h"
 
 PetriProperties::PetriProperties(QWidget *parent) :
     QWidget(parent),
@@ -14,6 +13,7 @@ PetriProperties::PetriProperties(QWidget *parent) :
     this->itemDataID = "";
     this->netData = nullptr;
     this->currentPetriItem = nullptr;
+    this->currentPetriArc = nullptr;
 
     this->mounting = false;
 }
@@ -66,12 +66,14 @@ void PetriProperties::onItemSelected(QGraphicsItem *item)
     else if(item->type() == IPetriArc::Type)
     {
         IPetriArc *arc = qgraphicsitem_cast<IPetriArc *>(item);
+        this->currentPetriArc = arc;
         this->setData(arc->getArcId());
 
         switch (arc->arcType())
         {
         case IPetriArc::Activator:
             this->ui->stackedWidget->setCurrentIndex(4);
+            this->loadArc();
             break;
         case IPetriArc::FActivator:
             this->ui->stackedWidget->setCurrentIndex(5);
@@ -164,7 +166,31 @@ void PetriProperties::loadTTrans()
 
 void PetriProperties::loadArc()
 {
+    spnp::Arc* arc = static_cast<spnp::Arc*>(this->netData->getArc(this->itemDataID));
 
+    spnp::Place* p = this->netData->getPlace(arc->getPlaceId());
+    spnp::ImmediateTransition *t = this->netData->getTransition(arc->getTransitionId());
+
+    std::string to = p->getName();
+    std::string from = t->getName();
+    if(arc->getFromPlaceToTransition())
+    {
+        from = p->getName();
+        to = t->getName();
+    }
+    this->ui->le_arc_from->setText(QString::fromStdString(from));
+    this->ui->le_arc_to->setText(QString::fromStdString(to));
+
+    if(arc->getIsConstant())
+    {
+        this->ui->rb_arc_const->setChecked(true);
+    }
+    else
+    {
+        this->ui->rb_arc_function->setChecked(true);
+    }
+
+    this->ui->le_arc_mult->setText(QString::fromStdString(arc->getMultiplicity()));
 }
 
 void PetriProperties::loadFArc()
@@ -326,12 +352,17 @@ void PetriProperties::on_le_ttrans_rate_textEdited(const QString &arg1)
 
 void PetriProperties::on_rb_arc_const_toggled(bool checked)
 {
-
+    spnp::Arc *arc = this->netData->getArc(itemDataID);
+    arc->setIsConstant(checked);
 }
 
 void PetriProperties::on_le_arc_mult_textEdited(const QString &arg1)
 {
+    spnp::Arc *arc = this->netData->getArc(itemDataID);
+    arc->setMultiplicity(arg1.toStdString());
 
+    AbstractPetriArc* apa = qgraphicsitem_cast<AbstractPetriArc*>(this->currentPetriArc);
+    apa->updateLabel(QString::fromStdString(arc->getMultiplicity()));
 }
 
 QString PetriProperties::clearArg(QString arg1)

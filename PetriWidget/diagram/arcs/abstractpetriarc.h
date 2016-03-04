@@ -29,8 +29,7 @@ public:
     virtual bool canConnect() override;
     void updatePosition() override;
 
-    virtual void updateLabel(spnp::IData *data) { }
-
+    virtual void updateLabel(QString str);
 protected:
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget=nullptr) override;
 
