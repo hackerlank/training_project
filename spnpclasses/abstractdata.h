@@ -1,7 +1,6 @@
 #ifndef ABSTRACTDATA_H
 #define ABSTRACTDATA_H
 
-#include "spnpclasses_global.h"
 #include "idata.h"
 
 namespace spnp
