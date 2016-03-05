@@ -24,7 +24,9 @@ SOURCES += \
     objs/timedtransition.cpp \
     abstractdata.cpp \
     abstractvisualdata.cpp \
-    objs/immediatetransition.cpp
+    objs/immediatetransition.cpp \
+    objs/option.cpp \
+    objs/outputoption.cpp
 
 HEADERS +=\
 	spnpclasses_global.h \
@@ -38,7 +40,9 @@ HEADERS +=\
     abstractdata.h \
     abstractvisualdata.h \
     idata.h \
-    objs/immediatetransition.h
+    objs/immediatetransition.h \
+    objs/option.h \
+    objs/outputoption.h
 
 unix {
     target.path = /usr/lib
