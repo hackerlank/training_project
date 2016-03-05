@@ -230,7 +230,8 @@ void XMLNode::setAttribute(std::string attName, float attValue)
 
 void XMLNode::setAttribute(std::string attName, bool attValue)
 {
-    this->setAttribute(attName, attValue ? "true" : "false");
+    std::string value = attValue ? "true" : "false";
+    this->setAttribute(attName, value);
 }
 
 void XMLNode::removeAttribute(std::string name)
