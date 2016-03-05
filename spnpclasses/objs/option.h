@@ -38,8 +38,22 @@ public:
         BEFORE_CTMC
     };
 
+    enum SimulationMethod
+    {
+        DISCRET_EVENT_INDEPENDENT,
+        DISCRET_EVENT_BATCH,
+        RESTART,
+        SPLITTING
+    };
+
+    enum RequiredConfidence
+    {
+        PERC_90,
+        PERC_95,
+        PERC_99
+    };
+
     Option();
-    Option(std::string name);
     ~Option();
 
     virtual XMLNode* toXML();
@@ -70,18 +84,32 @@ public:
     Option::SteadStateMethod steadyStateMethod;
     Option::TransientMethod transientMethod;
     int maxIterations;
-    int minPrecision;
-    int m0returnRate;
+    double minPrecision;
+    double m0returnRate;
     bool computeCumulativePRobabilities;
     bool steadyStateDetection;
     //elimination
     Option::VanishingMarkings vanishing;
 
     /* simulation */
+    Option::SimulationMethod simulationMethod;
+    bool isReplication;
+    double replicationOrErrorValue;
+    Option::RequiredConfidence confidence;
+    double lengthSimulation;
+    double fluidPlacesContent;
+    double firingTimeConflict;
+    double seed;
+    bool printReport;
+
+    //discret //based on simulation method
+    //first 2
+    bool outputUsual;
+    //last 2
+    //TODO
 
 protected:
     virtual std::string getClassNodeName();
-
 };
 }
 
