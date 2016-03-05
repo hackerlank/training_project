@@ -54,13 +54,10 @@ protected:
     std::string value;
 
     std::string placeId;
-
     bool vertical;
 
 private:
     virtual std::string getClassNodeName();
-
-
 };
 }
 #endif // TRANSITION_H

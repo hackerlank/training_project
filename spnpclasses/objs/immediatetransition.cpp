@@ -10,6 +10,7 @@ spnp::ImmediateTransition::ImmediateTransition():AbstractVisualData()
     this->value = "0.789";
     this->label = new Label();
     this->placeId = "";
+    this->vertical = true;
 }
 
 spnp::ImmediateTransition::ImmediateTransition(std::string name,
@@ -27,6 +28,8 @@ spnp::ImmediateTransition::ImmediateTransition(std::string name,
         this->label = label;
     else
         this->label = new Label();
+
+    this->vertical = true;
 }
 
 spnp::ImmediateTransition::~ImmediateTransition()
