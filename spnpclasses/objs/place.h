@@ -19,12 +19,12 @@ public:
     Label* getLabel() const;
 
     virtual std::string c_str(IData* data=nullptr) const;
+    virtual std::string getClassNodeName() override;
 protected:
     std::string tokens;
 
 private:
     Label* label;
-    virtual std::string getClassNodeName();
 };
 }
 

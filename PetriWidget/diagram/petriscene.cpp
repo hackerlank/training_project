@@ -101,7 +101,18 @@ void PetriScene::load(spnp::IData *data)
     for(unsigned int i=0, total=currentNet->getPlaces()->size(); i<total; ++i)
     {
         spnp::Place* place = currentNet->getPlaces()->at(i);
-        this->insertItemToPosition(place, QPointF(place->x, place->y));
+        //TODO setar tipo antes de inserir
+        if(place->getClassNodeName().compare("place") == 0)
+        {
+            myItemType = IPetriItem::PetriType::Place;
+            this->insertItemToPosition(place, QPointF(place->x, place->y));
+        }
+        else
+        {
+            //TODO verificar
+            spnp::FluidPlace* fp = static_cast<spnp::FluidPlace*>(currentNet->getPlaces()->at(i));
+            this->insertItemToPosition(fp, QPointF(fp->x, fp->y));
+        }
     }
     for(unsigned int i=0, total=currentNet->getTransitions()->size(); i<total; ++i)
     {

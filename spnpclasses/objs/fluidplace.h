@@ -22,10 +22,8 @@ public:
     void setBreakValue(std::string v);
 
     virtual std::string c_str(IData* data=nullptr) const;
-
+    virtual std::string getClassNodeName() override;
 private:
-    virtual std::string getClassNodeName();
-
     std::string boundValue;
     std::string breakValue;
 };

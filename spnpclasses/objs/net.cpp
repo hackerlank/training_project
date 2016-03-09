@@ -65,7 +65,6 @@ void spnp::Net::fromXML(XMLNode *xml)
         Place* p = new Place();
         p->fromXML(*it);
         this->places->push_back(p);
-        //delete (*it);
     }
     delete v;
 
@@ -75,7 +74,6 @@ void spnp::Net::fromXML(XMLNode *xml)
         FluidPlace* fp = new FluidPlace();
         fp->fromXML(*it);
         this->places->push_back(fp);
-        //delete (*it);
     }
     delete v;
 
@@ -85,7 +83,6 @@ void spnp::Net::fromXML(XMLNode *xml)
         TimedTransition* tt = new TimedTransition();
         tt->fromXML(*it);
         this->transitions->push_back(tt);
-        //delete (*it);
     }
     delete v;
 
@@ -95,7 +92,6 @@ void spnp::Net::fromXML(XMLNode *xml)
         ImmediateTransition* t = new ImmediateTransition();
         t->fromXML(*it);
         this->transitions->push_back(t);
-        //delete (*it);
     }
     delete v;
 
@@ -105,7 +101,6 @@ void spnp::Net::fromXML(XMLNode *xml)
         Arc* a = new Arc();
         a->fromXML(*it);
         this->arcs->push_back(a);
-        //delete (*it);
     }
     delete v;
 }
