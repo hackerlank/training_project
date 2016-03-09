@@ -110,14 +110,26 @@ void PetriScene::load(spnp::IData *data)
         else
         {
             //TODO verificar
-            spnp::FluidPlace* fp = static_cast<spnp::FluidPlace*>(currentNet->getPlaces()->at(i));
+            myItemType = IPetriItem::PetriType::FPlace;
+            spnp::FluidPlace* fp = static_cast<spnp::FluidPlace*>(place);
             this->insertItemToPosition(fp, QPointF(fp->x, fp->y));
         }
     }
     for(unsigned int i=0, total=currentNet->getTransitions()->size(); i<total; ++i)
     {
         spnp::ImmediateTransition* transition = currentNet->getTransitions()->at(i);
-        this->insertItemToPosition(transition, QPointF(transition->x, transition->y));
+        if(transition->getClassNodeName().compare("transition")==0)
+        {
+            myItemType = IPetriItem::PetriType::ITrans;
+            this->insertItemToPosition(transition, QPointF(transition->x, transition->y));
+        }
+        else
+        {
+            myItemType = IPetriItem::PetriType::TTrans;
+            spnp::TimedTransition* tt = static_cast<spnp::TimedTransition*>(transition);
+            this->insertItemToPosition(tt, QPointF(tt->x, tt->y));
+        }
+
     }
     for(unsigned int i=0, total=currentNet->getArcs()->size(); i<total; ++i)
     {
@@ -293,7 +305,23 @@ bool PetriScene::isItemOfType(int type)
 
 void PetriScene::insertItemToPosition(spnp::IData *data, QPointF position)
 {
-    IPetriItem *item = new PlaceItem(data->id, myItemMenu);
+    //verificar tipo
+    IPetriItem *item = nullptr;
+    switch (myItemType) {
+    case IPetriItem::Place:
+        item = new PlaceItem(data->id, myItemMenu);
+        break;
+    case IPetriItem::FPlace:
+        item = new FPlaceItem(data->id, myItemMenu);
+        break;
+    case IPetriItem::TTrans:
+        item = new TTransItem(data->id, myItemMenu);
+        break;
+    case IPetriItem::ITrans:
+        item = new ImTransItem(data->id, myItemMenu);
+        break;
+    }
+
     item->setPos(position);
     this->insertItem(item);
     PlaceItem* pi = qgraphicsitem_cast<PlaceItem*>(item);

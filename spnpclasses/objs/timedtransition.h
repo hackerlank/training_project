@@ -62,13 +62,13 @@ public:
 
     virtual std::string c_str(IData* data=nullptr) const;
 //o "rate" daqui é o mesmo q o "valor" do imediato
+
+    virtual std::string getClassNodeName() override;
 private:
     Distribution distribution;
     std::string distValue;
     Policy policy;
     Affected affected;
-
-    virtual std::string getClassNodeName();
 };
 }
 

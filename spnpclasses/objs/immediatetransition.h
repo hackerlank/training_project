@@ -44,7 +44,7 @@ public:
     void setPlaceId(std::string id);
 
     virtual std::string c_str(IData* data=nullptr) const;
-
+    virtual std::string getClassNodeName() override;
 protected:
     std::string priority;
     std::string guard;
@@ -55,9 +55,6 @@ protected:
 
     std::string placeId;
     bool vertical;
-
-private:
-    virtual std::string getClassNodeName();
 };
 }
 #endif // TRANSITION_H
