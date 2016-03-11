@@ -307,6 +307,8 @@ std::string XMLNode::getAttributeByName(std::string name) const
 
     for(auto iter = attributes->begin(); iter != attributes->end(); ++iter)
     {
+        //TODO verificar teste
+        //if(iter->first.compare(name)==0)
         if(iter->first == name)
         {
             out = iter->second;
