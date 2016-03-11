@@ -1,24 +1,26 @@
-<?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>AnalysisSimulationDialog</class>
- <widget class="QDialog" name="AnalysisSimulationDialog">
+ <author/>
+ <comment/>
+ <exportmacro/>
+ <class>OptionsDialog</class>
+ <widget name="OptionsDialog" class="QDialog">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>906</width>
-    <height>512</height>
+    <width>400</width>
+    <height>300</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Análise / Simulação</string>
+   <string>Dialog</string>
   </property>
-  <widget class="QDialogButtonBox" name="buttonBox">
+  <widget name="buttonBox" class="QDialogButtonBox">
    <property name="geometry">
     <rect>
-     <x>720</x>
-     <y>460</y>
-     <width>161</width>
+     <x>30</x>
+     <y>240</y>
+     <width>341</width>
      <height>32</height>
     </rect>
    </property>
@@ -30,12 +32,13 @@
    </property>
   </widget>
  </widget>
+ <pixmapfunction/>
  <resources/>
  <connections>
   <connection>
    <sender>buttonBox</sender>
    <signal>accepted()</signal>
-   <receiver>AnalysisSimulationDialog</receiver>
+   <receiver>OptionsDialog</receiver>
    <slot>accept()</slot>
    <hints>
     <hint type="sourcelabel">
@@ -51,7 +54,7 @@
   <connection>
    <sender>buttonBox</sender>
    <signal>rejected()</signal>
-   <receiver>AnalysisSimulationDialog</receiver>
+   <receiver>OptionsDialog</receiver>
    <slot>reject()</slot>
    <hints>
     <hint type="sourcelabel">
