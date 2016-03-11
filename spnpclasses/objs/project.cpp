@@ -7,6 +7,7 @@ spnp::Project::Project(std::string name):AbstractData(name)
     this->owner = "";
     this->commentary = "";
     this->date = "";
+    this->parameter = new Parameter();
 }
 
 spnp::Project::Project(std::string name, std::vector<Net *> *nets, std::string owner,
@@ -27,6 +28,7 @@ spnp::Project::~Project()
     }
     nets->clear();
     delete nets;
+    delete parameter;
 }
 
 void spnp::Project::addNet(Net *net)
@@ -93,6 +95,11 @@ void spnp::Project::fromXML(XMLNode *xml)
         net->fromXML(*it);
         this->nets->push_back(net);
     }
+    delete v;
+
+    v = xml->getChildrenByName("parameter");
+    this->parameter->fromXML(v->at(0));
+
     delete v;
 }
 

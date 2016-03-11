@@ -2,6 +2,7 @@
 #define PROJECT_H
 
 #include "objs/net.h"
+#include "objs/parameter.h"
 
 namespace spnp
 {
@@ -31,6 +32,7 @@ private:
     std::string owner;
     std::string commentary;
     std::string date;
+    Parameter* parameter;
 };
 }
 

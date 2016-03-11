@@ -65,9 +65,17 @@ public:
     virtual void fromXML(XMLNode *xml);
 
     virtual std::string c_str(IData* data=nullptr) const;
+
+    virtual std::string getClassNodeName();
 private:
-    std::map<int, int> ivalues;
-    std::map<int, int> fvalues;
+    std::map<int, int>* ivalues;
+    std::map<int, float>* fvalues;
+
+    std::string getIOptionName(int opt);
+    std::string getFOptionName(int opt);
+
+    Parameter::IOPTIONS getIValue(std::string str);
+    Parameter::FOPTIONS getFValue(std::string str);
 
     static const std::string fopt[2];
     static const std::string iopt[18];
