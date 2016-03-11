@@ -16,16 +16,19 @@ SOURCES += main.cpp\
         mainwindow.cpp \
     preferencesetupform.cpp \
     appsettings.cpp \
-    newprojectdialog.cpp
+    newprojectdialog.cpp \
+    analysissimulationdialog.cpp
 
 HEADERS  += mainwindow.h \
     preferencesetupform.h \
     appsettings.h \
-    newprojectdialog.h
+    newprojectdialog.h \
+    analysissimulationdialog.h
 
 FORMS    += mainwindow.ui \
     preferencesetupform.ui \
-    newprojectdialog.ui
+    newprojectdialog.ui \
+    analysissimulationdialog.ui
 
 unix{
     DEFINES += LINUX
