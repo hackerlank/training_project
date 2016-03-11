@@ -168,16 +168,20 @@ void MainWindow::on_actionEscrever_triggered()
         if(n!=nullptr)
         {
           //TODO remove hard coded path
-          std::string file = "F:/temp/teste.c";
-          slf.saveFile(file, cspl->to_ascii_c(n));
+          //std::string file = "F:/temp/teste.c";
+          QString file = QFileDialog::getSaveFileName(this, tr("_criar arquivo"), QDir::currentPath(), tr("código-fonte(*.c)"));
+          if(!file.isEmpty())
+          {
+              slf.saveFile(file.toStdString(), cspl->to_ascii_c(n));
 
-          std::string dir = AppSettings::Instance()->getSPNPFolder().toStdString();
-          SPNPWrapper* w = new SPNPWrapper(dir
-#ifdef WINDOWS
-                                     , dir+"/bin"
-#endif
-                                           );
-          w->work(file.substr(0, file.size()-2));
+              std::string dir = AppSettings::Instance()->getSPNPFolder().toStdString();
+              SPNPWrapper* w = new SPNPWrapper(dir
+    #ifdef WINDOWS
+                                         , dir+"/bin"
+    #endif
+                                               );
+              w->work(file.left(file.length()-2).toStdString());
+          }
         }
     }
     delete cspl;
