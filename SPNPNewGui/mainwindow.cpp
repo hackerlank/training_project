@@ -25,6 +25,9 @@ MainWindow::MainWindow(QWidget *parent) :
     this->npd = new NewProjectDialog(this);
     this->npd->setModal(true);
 
+    this->od = new OptionsDialog(this);
+    this->od->setModal(true);
+
     connect(this->npd, SIGNAL(startNewProject(spnp::Project*)),
             this, SLOT(startNewProject(spnp::Project*)));
 
@@ -185,4 +188,9 @@ void MainWindow::on_actionEscrever_triggered()
 void MainWindow::on_action_pathes_triggered()
 {
     this->psf->show();
+}
+
+void MainWindow::on_action_preferences_triggered()
+{
+    this->od->show();
 }

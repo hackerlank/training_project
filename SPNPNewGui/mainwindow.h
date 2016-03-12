@@ -4,6 +4,7 @@
 #include <QMainWindow>
 #include "pathsetupform.h"
 #include "newprojectdialog.h"
+#include "optionsdialog.h"
 
 #include "appsettings.h"
 namespace Ui {
@@ -39,10 +40,13 @@ private slots:
 
     void on_action_pathes_triggered();
 
+    void on_action_preferences_triggered();
+
 private:
     Ui::MainWindow *ui;
     PathSetupForm *psf;
     NewProjectDialog *npd;
+    OptionsDialog *od;
 
     void createMenus();
     void updateMenus();
