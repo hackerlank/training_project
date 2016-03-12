@@ -119,7 +119,7 @@
          </property>
          <layout class="QGridLayout" name="gridLayout_4">
           <item row="0" column="0">
-           <widget class="QRadioButton" name="radioButton">
+           <widget class="QRadioButton" name="rb_steadystate">
             <property name="text">
              <string>Steady-state</string>
             </property>
@@ -129,21 +129,21 @@
            </widget>
           </item>
           <item row="1" column="0">
-           <widget class="QRadioButton" name="radioButton_2">
+           <widget class="QRadioButton" name="rb_transient">
             <property name="text">
              <string>Transient</string>
             </property>
            </widget>
           </item>
           <item row="2" column="0">
-           <widget class="QRadioButton" name="radioButton_3">
+           <widget class="QRadioButton" name="rb_both">
             <property name="text">
              <string>Both</string>
             </property>
            </widget>
           </item>
           <item row="3" column="0">
-           <widget class="QCheckBox" name="checkBox">
+           <widget class="QCheckBox" name="cb_sensitivity">
             <property name="text">
              <string>Sensitivity</string>
             </property>
@@ -159,21 +159,21 @@
          </property>
          <layout class="QGridLayout" name="gridLayout_6">
           <item row="3" column="1">
-           <widget class="QLineEdit" name="lineEdit_8">
+           <widget class="QLineEdit" name="le_max_iter">
             <property name="text">
              <string>2000</string>
             </property>
            </widget>
           </item>
           <item row="4" column="1">
-           <widget class="QLineEdit" name="lineEdit_9">
+           <widget class="QLineEdit" name="le_min_prec">
             <property name="text">
              <string>0.000001</string>
             </property>
            </widget>
           </item>
           <item row="0" column="1">
-           <widget class="QComboBox" name="comboBox_2">
+           <widget class="QComboBox" name="combo_approach">
             <item>
              <property name="text">
               <string>CTMC</string>
@@ -222,7 +222,7 @@
            </widget>
           </item>
           <item row="2" column="1">
-           <widget class="QComboBox" name="comboBox_4">
+           <widget class="QComboBox" name="combo_transient_method">
             <item>
              <property name="text">
               <string>Standart Uniformization</string>
@@ -243,7 +243,7 @@
            </widget>
           </item>
           <item row="1" column="1">
-           <widget class="QComboBox" name="comboBox_3">
+           <widget class="QComboBox" name="combo_steadystate">
             <item>
              <property name="text">
               <string>Successive Over Relaxion</string>
@@ -275,14 +275,14 @@
            </spacer>
           </item>
           <item row="5" column="1">
-           <widget class="QLineEdit" name="lineEdit_10">
+           <widget class="QLineEdit" name="le_m0_ret_rate">
             <property name="text">
              <string>0.0</string>
             </property>
            </widget>
           </item>
           <item row="7" column="0">
-           <widget class="QCheckBox" name="checkBox_13">
+           <widget class="QCheckBox" name="cb_steadystate_detect">
             <property name="text">
              <string>Steady-state detection</string>
             </property>
@@ -292,7 +292,7 @@
            </widget>
           </item>
           <item row="6" column="0">
-           <widget class="QCheckBox" name="checkBox_12">
+           <widget class="QCheckBox" name="cb_compute">
             <property name="text">
              <string>Compute cumulative probabilities</string>
             </property>
@@ -324,7 +324,7 @@
          </property>
          <layout class="QGridLayout" name="gridLayout_5">
           <item row="0" column="0">
-           <widget class="QCheckBox" name="checkBox_8">
+           <widget class="QCheckBox" name="cb_absorbing_marking">
             <property name="enabled">
              <bool>false</bool>
             </property>
@@ -334,14 +334,14 @@
            </widget>
           </item>
           <item row="1" column="0">
-           <widget class="QCheckBox" name="checkBox_9">
+           <widget class="QCheckBox" name="cb_trans_van_loops">
             <property name="text">
              <string>Transient vanishingh loops</string>
             </property>
            </widget>
           </item>
           <item row="2" column="0">
-           <widget class="QCheckBox" name="checkBox_10">
+           <widget class="QCheckBox" name="cb_trans_ini_mark">
             <property name="text">
              <string>Transient initial marking</string>
             </property>
@@ -351,7 +351,7 @@
            </widget>
           </item>
           <item row="3" column="0">
-           <widget class="QCheckBox" name="checkBox_11">
+           <widget class="QCheckBox" name="cb_vanishing_ini_val">
             <property name="text">
              <string>Vanishing initial value</string>
             </property>
@@ -377,7 +377,7 @@
            </widget>
           </item>
           <item row="0" column="1">
-           <widget class="QComboBox" name="comboBox">
+           <widget class="QComboBox" name="combo_vanishing_mark">
             <item>
              <property name="text">
               <string>Eliminated during the reachability graph construction</string>
@@ -413,7 +413,7 @@
         </widget>
        </item>
        <item row="0" column="1" colspan="2">
-        <widget class="QComboBox" name="comboBox_8">
+        <widget class="QComboBox" name="combo_method_sim">
          <item>
           <property name="text">
            <string>Discrete event-simulation with independent replications</string>
@@ -446,7 +446,7 @@
          </property>
          <layout class="QGridLayout" name="gridLayout_9">
           <item row="0" column="0">
-           <widget class="QRadioButton" name="radioButton_4">
+           <widget class="QRadioButton" name="rb_num_repl">
             <property name="text">
              <string># replications</string>
             </property>
@@ -460,14 +460,14 @@
            </widget>
           </item>
           <item row="1" column="0">
-           <widget class="QRadioButton" name="radioButton_5">
+           <widget class="QRadioButton" name="rb_error_giv">
             <property name="text">
              <string>Error given</string>
             </property>
            </widget>
           </item>
           <item row="1" column="1">
-           <widget class="QLineEdit" name="lineEdit">
+           <widget class="QLineEdit" name="le_number_repl">
             <property name="text">
              <string>0</string>
             </property>
@@ -477,14 +477,14 @@
         </widget>
        </item>
        <item row="1" column="2" rowspan="2">
-        <widget class="QStackedWidget" name="stackedWidget">
+        <widget class="QStackedWidget" name="stacked_simulation">
          <property name="currentIndex">
           <number>0</number>
          </property>
          <widget class="QWidget" name="page">
           <layout class="QGridLayout" name="gridLayout_10">
            <item row="0" column="0">
-            <widget class="QCheckBox" name="checkBox_14">
+            <widget class="QCheckBox" name="cb_output_usual">
              <property name="text">
               <string>Output usual cumulative measures</string>
              </property>
@@ -498,7 +498,7 @@
          <widget class="QWidget" name="page_2">
           <layout class="QGridLayout" name="gridLayout_8">
            <item row="0" column="0" colspan="2">
-            <widget class="QCheckBox" name="checkBox_2">
+            <widget class="QCheckBox" name="cb_finish">
              <property name="text">
               <string>Finish each subpath for restart</string>
              </property>
@@ -525,14 +525,14 @@
             </widget>
            </item>
            <item row="1" column="2">
-            <widget class="QLineEdit" name="lineEdit_2">
+            <widget class="QLineEdit" name="le_a_num_pre_sim">
              <property name="text">
               <string>10</string>
              </property>
             </widget>
            </item>
            <item row="2" column="0" colspan="2">
-            <widget class="QCheckBox" name="checkBox_3">
+            <widget class="QCheckBox" name="cb_a_pre_sim">
              <property name="text">
               <string>Pre-simulation for importance splitting method</string>
              </property>
@@ -562,7 +562,7 @@
             </widget>
            </item>
            <item row="3" column="2">
-            <widget class="QLineEdit" name="lineEdit_11">
+            <widget class="QLineEdit" name="le_a_num_import">
              <property name="text">
               <string>6</string>
              </property>
@@ -576,7 +576,7 @@
             </widget>
            </item>
            <item row="4" column="1" colspan="2">
-            <widget class="QLineEdit" name="lineEdit_12"/>
+            <widget class="QLineEdit" name="le_a_1"/>
            </item>
            <item row="5" column="0">
             <widget class="QLabel" name="label_16">
@@ -586,7 +586,7 @@
             </widget>
            </item>
            <item row="5" column="1" colspan="2">
-            <widget class="QLineEdit" name="lineEdit_13"/>
+            <widget class="QLineEdit" name="le_a_2"/>
            </item>
            <item row="6" column="0">
             <widget class="QLabel" name="label_17">
@@ -596,7 +596,7 @@
             </widget>
            </item>
            <item row="6" column="1" colspan="2">
-            <widget class="QLineEdit" name="lineEdit_14"/>
+            <widget class="QLineEdit" name="le_a_3"/>
            </item>
            <item row="7" column="0">
             <widget class="QLabel" name="label_18">
@@ -606,7 +606,7 @@
             </widget>
            </item>
            <item row="7" column="1" colspan="2">
-            <widget class="QLineEdit" name="lineEdit_15"/>
+            <widget class="QLineEdit" name="le_a_4"/>
            </item>
            <item row="8" column="0">
             <widget class="QLabel" name="label_19">
@@ -616,7 +616,7 @@
             </widget>
            </item>
            <item row="8" column="1" colspan="2">
-            <widget class="QLineEdit" name="lineEdit_16"/>
+            <widget class="QLineEdit" name="le_a_5"/>
            </item>
            <item row="9" column="0">
             <widget class="QLabel" name="label_20">
@@ -626,7 +626,7 @@
             </widget>
            </item>
            <item row="9" column="1" colspan="2">
-            <widget class="QLineEdit" name="lineEdit_17"/>
+            <widget class="QLineEdit" name="le_a_6"/>
            </item>
           </layout>
          </widget>
@@ -640,7 +640,7 @@
             </widget>
            </item>
            <item row="0" column="2">
-            <widget class="QLineEdit" name="lineEdit_26">
+            <widget class="QLineEdit" name="le_stop_num">
              <property name="text">
               <string>60</string>
              </property>
@@ -654,14 +654,14 @@
             </widget>
            </item>
            <item row="1" column="2">
-            <widget class="QLineEdit" name="lineEdit_23">
+            <widget class="QLineEdit" name="le_b_num_pre_sim">
              <property name="text">
               <string>10</string>
              </property>
             </widget>
            </item>
            <item row="2" column="0" colspan="2">
-            <widget class="QCheckBox" name="checkBox_4">
+            <widget class="QCheckBox" name="cb_b_pre_sim">
              <property name="text">
               <string>Pre-simulation for importance splitting method</string>
              </property>
@@ -691,7 +691,7 @@
             </widget>
            </item>
            <item row="3" column="2">
-            <widget class="QLineEdit" name="lineEdit_19">
+            <widget class="QLineEdit" name="le_b_num_import">
              <property name="text">
               <string>6</string>
              </property>
@@ -705,7 +705,7 @@
             </widget>
            </item>
            <item row="4" column="1" colspan="2">
-            <widget class="QLineEdit" name="lineEdit_20"/>
+            <widget class="QLineEdit" name="le_b_1"/>
            </item>
            <item row="5" column="0">
             <widget class="QLabel" name="label_28">
@@ -715,7 +715,7 @@
             </widget>
            </item>
            <item row="5" column="1" colspan="2">
-            <widget class="QLineEdit" name="lineEdit_21"/>
+            <widget class="QLineEdit" name="le_b_2"/>
            </item>
            <item row="6" column="0">
             <widget class="QLabel" name="label_24">
@@ -725,7 +725,7 @@
             </widget>
            </item>
            <item row="6" column="1" colspan="2">
-            <widget class="QLineEdit" name="lineEdit_22"/>
+            <widget class="QLineEdit" name="le_b_3"/>
            </item>
            <item row="7" column="0">
             <widget class="QLabel" name="label_29">
@@ -735,7 +735,7 @@
             </widget>
            </item>
            <item row="7" column="1" colspan="2">
-            <widget class="QLineEdit" name="lineEdit_18"/>
+            <widget class="QLineEdit" name="le_b_4"/>
            </item>
            <item row="8" column="0">
             <widget class="QLabel" name="label_21">
@@ -745,7 +745,7 @@
             </widget>
            </item>
            <item row="8" column="1" colspan="2">
-            <widget class="QLineEdit" name="lineEdit_25"/>
+            <widget class="QLineEdit" name="le_b_5"/>
            </item>
            <item row="9" column="0">
             <widget class="QLabel" name="label_23">
@@ -755,7 +755,7 @@
             </widget>
            </item>
            <item row="9" column="1" colspan="2">
-            <widget class="QLineEdit" name="lineEdit_24"/>
+            <widget class="QLineEdit" name="le_b_6"/>
            </item>
           </layout>
          </widget>
@@ -769,7 +769,7 @@
          <property name="frameShadow">
           <enum>QFrame::Raised</enum>
          </property>
-         <layout class="QGridLayout" name="gridLayout_17">
+         <layout class="QGridLayout" name="gridLayout_13">
           <item row="0" column="0">
            <widget class="QLabel" name="label_10">
             <property name="text">
@@ -778,7 +778,7 @@
            </widget>
           </item>
           <item row="0" column="1">
-           <widget class="QComboBox" name="comboBox_17">
+           <widget class="QComboBox" name="combo_req_conf">
             <item>
              <property name="text">
               <string>90%</string>
@@ -804,7 +804,7 @@
            </widget>
           </item>
           <item row="1" column="1">
-           <widget class="QLineEdit" name="lineEdit_3">
+           <widget class="QLineEdit" name="le_length_it">
             <property name="text">
              <string>0.0</string>
             </property>
@@ -818,7 +818,7 @@
            </widget>
           </item>
           <item row="2" column="1">
-           <widget class="QLineEdit" name="lineEdit_4">
+           <widget class="QLineEdit" name="le_comp_fluid">
             <property name="text">
              <string>0.000001</string>
             </property>
@@ -832,28 +832,38 @@
            </widget>
           </item>
           <item row="3" column="1">
-           <widget class="QLineEdit" name="lineEdit_5">
+           <widget class="QLineEdit" name="le_comp_firing">
             <property name="text">
              <string>0.000001</string>
             </property>
            </widget>
           </item>
           <item row="4" column="0">
-           <widget class="QLabel" name="label_26">
-            <property name="text">
-             <string>Seed of the random generator</string>
+           <widget class="QSplitter" name="splitter">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
             </property>
+            <widget class="QLabel" name="label_26">
+             <property name="text">
+              <string>Seed of the random generator</string>
+             </property>
+            </widget>
+            <widget class="QPushButton" name="bt_seed">
+             <property name="text">
+              <string>new</string>
+             </property>
+            </widget>
            </widget>
           </item>
           <item row="4" column="1">
-           <widget class="QLineEdit" name="lineEdit_6">
+           <widget class="QLineEdit" name="le_seed">
             <property name="text">
              <string>52836</string>
             </property>
            </widget>
           </item>
-          <item row="5" column="0" colspan="2">
-           <widget class="QCheckBox" name="checkBox_29">
+          <item row="5" column="0">
+           <widget class="QCheckBox" name="cb_print">
             <property name="text">
              <string>Print the report in the .out file in simulation.</string>
             </property>
@@ -867,7 +877,7 @@
            </widget>
           </item>
           <item row="6" column="1">
-           <widget class="QLineEdit" name="lineEdit_7">
+           <widget class="QLineEdit" name="le_warm_up">
             <property name="text">
              <string>0.0</string>
             </property>
@@ -881,10 +891,7 @@
     </widget>
    </item>
    <item row="2" column="1">
-    <widget class="QDialogButtonBox" name="buttonBox">
-     <property name="orientation">
-      <enum>Qt::Horizontal</enum>
-     </property>
+    <widget class="QDialogButtonBox" name="bt_box">
      <property name="standardButtons">
       <set>QDialogButtonBox::Apply|QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
      </property>
@@ -902,60 +909,61 @@
   <tabstop>cb_prob</tabstop>
   <tabstop>cb_prob_dtmc</tabstop>
   <tabstop>cb_dot</tabstop>
-  <tabstop>radioButton</tabstop>
-  <tabstop>radioButton_2</tabstop>
-  <tabstop>radioButton_3</tabstop>
-  <tabstop>checkBox</tabstop>
-  <tabstop>checkBox_8</tabstop>
-  <tabstop>checkBox_9</tabstop>
-  <tabstop>checkBox_10</tabstop>
-  <tabstop>checkBox_11</tabstop>
-  <tabstop>comboBox_2</tabstop>
-  <tabstop>comboBox_3</tabstop>
-  <tabstop>comboBox_4</tabstop>
-  <tabstop>lineEdit_8</tabstop>
-  <tabstop>lineEdit_9</tabstop>
-  <tabstop>lineEdit_10</tabstop>
-  <tabstop>checkBox_12</tabstop>
-  <tabstop>checkBox_13</tabstop>
-  <tabstop>comboBox</tabstop>
-  <tabstop>comboBox_8</tabstop>
-  <tabstop>radioButton_4</tabstop>
-  <tabstop>radioButton_5</tabstop>
-  <tabstop>lineEdit</tabstop>
-  <tabstop>comboBox_17</tabstop>
-  <tabstop>lineEdit_3</tabstop>
-  <tabstop>lineEdit_4</tabstop>
-  <tabstop>lineEdit_5</tabstop>
-  <tabstop>lineEdit_6</tabstop>
-  <tabstop>checkBox_29</tabstop>
-  <tabstop>lineEdit_7</tabstop>
-  <tabstop>checkBox_14</tabstop>
-  <tabstop>checkBox_2</tabstop>
-  <tabstop>lineEdit_2</tabstop>
-  <tabstop>checkBox_3</tabstop>
-  <tabstop>lineEdit_11</tabstop>
-  <tabstop>lineEdit_12</tabstop>
-  <tabstop>lineEdit_13</tabstop>
-  <tabstop>lineEdit_14</tabstop>
-  <tabstop>lineEdit_15</tabstop>
-  <tabstop>lineEdit_16</tabstop>
-  <tabstop>lineEdit_17</tabstop>
-  <tabstop>lineEdit_26</tabstop>
-  <tabstop>lineEdit_23</tabstop>
-  <tabstop>checkBox_4</tabstop>
-  <tabstop>lineEdit_19</tabstop>
-  <tabstop>lineEdit_20</tabstop>
-  <tabstop>lineEdit_21</tabstop>
-  <tabstop>lineEdit_22</tabstop>
-  <tabstop>lineEdit_18</tabstop>
-  <tabstop>lineEdit_25</tabstop>
-  <tabstop>lineEdit_24</tabstop>
+  <tabstop>rb_steadystate</tabstop>
+  <tabstop>rb_transient</tabstop>
+  <tabstop>rb_both</tabstop>
+  <tabstop>cb_sensitivity</tabstop>
+  <tabstop>cb_absorbing_marking</tabstop>
+  <tabstop>cb_trans_van_loops</tabstop>
+  <tabstop>cb_trans_ini_mark</tabstop>
+  <tabstop>cb_vanishing_ini_val</tabstop>
+  <tabstop>combo_approach</tabstop>
+  <tabstop>combo_steadystate</tabstop>
+  <tabstop>combo_transient_method</tabstop>
+  <tabstop>le_max_iter</tabstop>
+  <tabstop>le_min_prec</tabstop>
+  <tabstop>le_m0_ret_rate</tabstop>
+  <tabstop>cb_compute</tabstop>
+  <tabstop>cb_steadystate_detect</tabstop>
+  <tabstop>combo_vanishing_mark</tabstop>
+  <tabstop>combo_method_sim</tabstop>
+  <tabstop>rb_num_repl</tabstop>
+  <tabstop>rb_error_giv</tabstop>
+  <tabstop>le_number_repl</tabstop>
+  <tabstop>combo_req_conf</tabstop>
+  <tabstop>le_length_it</tabstop>
+  <tabstop>le_comp_fluid</tabstop>
+  <tabstop>le_comp_firing</tabstop>
+  <tabstop>bt_seed</tabstop>
+  <tabstop>le_seed</tabstop>
+  <tabstop>cb_print</tabstop>
+  <tabstop>le_warm_up</tabstop>
+  <tabstop>cb_output_usual</tabstop>
+  <tabstop>cb_finish</tabstop>
+  <tabstop>le_a_num_pre_sim</tabstop>
+  <tabstop>cb_a_pre_sim</tabstop>
+  <tabstop>le_a_num_import</tabstop>
+  <tabstop>le_a_1</tabstop>
+  <tabstop>le_a_2</tabstop>
+  <tabstop>le_a_3</tabstop>
+  <tabstop>le_a_4</tabstop>
+  <tabstop>le_a_5</tabstop>
+  <tabstop>le_a_6</tabstop>
+  <tabstop>le_stop_num</tabstop>
+  <tabstop>le_b_num_pre_sim</tabstop>
+  <tabstop>cb_b_pre_sim</tabstop>
+  <tabstop>le_b_num_import</tabstop>
+  <tabstop>le_b_1</tabstop>
+  <tabstop>le_b_2</tabstop>
+  <tabstop>le_b_3</tabstop>
+  <tabstop>le_b_4</tabstop>
+  <tabstop>le_b_5</tabstop>
+  <tabstop>le_b_6</tabstop>
  </tabstops>
  <resources/>
  <connections>
   <connection>
-   <sender>buttonBox</sender>
+   <sender>bt_box</sender>
    <signal>accepted()</signal>
    <receiver>OptionsDialog</receiver>
    <slot>accept()</slot>
@@ -971,7 +979,7 @@
    </hints>
   </connection>
   <connection>
-   <sender>buttonBox</sender>
+   <sender>bt_box</sender>
    <signal>rejected()</signal>
    <receiver>OptionsDialog</receiver>
    <slot>reject()</slot>
