@@ -43,6 +43,8 @@ spnp::Option::Option()
     seed = 52836;
     printReport = false;
 
+    warmup = 0.0;
+
     //discret //based on simulation method
     //first 2
     outputUsual = true;
@@ -90,6 +92,7 @@ XMLNode *spnp::Option::toXML()
     n->setAttribute("firingTimeConflict", this->firingTimeConflict);
     n->setAttribute("seed", this->seed);
     n->setAttribute("printReport", this->printReport);
+    n->setAttribute("warmup", this->warmup);
     n->setAttribute("outputUsual", this->outputUsual);
 
     return n;
@@ -129,7 +132,9 @@ void spnp::Option::fromXML(XMLNode *xml)
     this->firingTimeConflict = xml->getAttributeD("firingTimeConflict");
     this->seed = xml->getAttributeD("seed");
     this->printReport = xml->getAttributeB("printReport");
+    this->warmup = xml->getAttributeD("warmup");
     this->outputUsual = xml->getAttributeB("outputUsual");
+
 }
 
 std::string spnp::Option::c_str(spnp::IData *data) const

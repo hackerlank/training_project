@@ -51,22 +51,9 @@ void OptionsDialog::loadOptions(spnp::Project *proj)
         this->ui->cb_trans_ini_mark->setChecked(opt->transientInitialMarking);
         this->ui->cb_vanishing_ini_val->setChecked(opt->vanishingInitialMarking);
 
-        int index = opt->approach == spnp::Option::Approach::CTMC ? 0 : 1;
-        this->ui->combo_approach->setCurrentIndex(index);
+        this->ui->combo_approach->setCurrentIndex(opt->approach);
 
-        switch (opt->steadyStateMethod) {
-        default:
-        case spnp::Option::SteadStateMethod::SUCCESSIVE_OVER_RELAXATION:
-            index = 0;
-            break;
-        case spnp::Option::SteadStateMethod::GAUSS_SEIDEL:
-            index = 1;
-            break;
-        case spnp::Option::SteadStateMethod::POWER:
-            index = 2;
-            break;
-        }
-        this->ui->combo_steadystate->setCurrentIndex(index);
+        this->ui->combo_steadystate->setCurrentIndex(opt->steadyStateMethod);
 
         index = opt->transientMethod  == spnp::Option::TransientMethod::STANDART_UNIFORMIZATION ? 0 : 1;
         this->ui->combo_transient_method->setCurrentIndex(index);
@@ -75,25 +62,40 @@ void OptionsDialog::loadOptions(spnp::Project *proj)
         this->ui->le_min_prec->setText(QString::number(opt->minPrecision));
         this->ui->le_m0_ret_rate->setText(QString::number(opt->m0returnRate));
 
-
         this->ui->cb_compute->setChecked(opt->computeCumulativeProbabilities);
         this->ui->cb_steadystate_detect->setChecked(opt->steadyStateDetection);
 
-        switch (opt->vanishing) {
-        default:
-        case spnp::Option::VanishingMarkings::DURING_CONSTRUCTION:
-            index = 0;
-            break;
-        case spnp::Option::VanishingMarkings::CONSIDERED_ORDINARY:
-            index = 1;
-            break;
-        case spnp::Option::VanishingMarkings::BEFORE_CTMC:
-            index = 2;
-            break;
-        }
-        this->ui->combo_vanishing_mark->setCurrentIndex(index);
+        this->ui->combo_vanishing_mark->setCurrentIndex(opt->vanishing);
 
         //simulação
+        switch (opt->simulationMethod) {
+        default:
+        case spnp::Option::SimulationMethod::DISCRET_EVENT_INDEPENDENT:
+        case spnp::Option::SimulationMethod::DISCRET_EVENT_BATCH:
+            this->ui->stacked_simulation->setCurrentIndex(0);
+            break;
+        case spnp::Option::SimulationMethod::RESTART:
+            this->ui->stacked_simulation->setCurrentIndex(1);
+            break;
+        case spnp::Option::SimulationMethod::SPLITTING:
+            this->ui->stacked_simulation->setCurrentIndex(2);
+            break;
+        }
+
+        this->ui->combo_method_sim->setCurrentIndex(opt->simulationMethod);
+
+        this->ui->rb_num_repl->setChecked(opt->isReplication);
+        this->ui->rb_error_giv->setChecked(!opt->isReplication);
+        this->ui->le_number_repl->setText(QString::number(opt->replicationOrErrorValue));
+
+        this->ui->combo_req_conf->setCurrentIndex(opt->confidence);
+
+        this->ui->le_length_it->setText(QString::number(opt->lengthSimulation));
+        this->ui->le_comp_fluid->setText(QString::number(opt->fluidPlacesContent));
+        this->ui->le_comp_firing->setText(QString::number(opt->firingTimeConflict));
+        this->ui->le_seed->setText(QString::number(opt->seed));
+        this->ui->cb_print->setChecked(opt->printReport);
+        this->ui->le_warm_up->setText(QString::number(opt->warmup));
     }
 }
 

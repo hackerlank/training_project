@@ -102,6 +102,8 @@ public:
     double seed;
     bool printReport;
 
+    double warmup;
+
     //discret //based on simulation method
     //first 2
     bool outputUsual;
