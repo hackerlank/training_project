@@ -6,14 +6,40 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>629</width>
+    <width>683</width>
     <height>469</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Dialog</string>
   </property>
-  <layout class="QGridLayout" name="gridLayout_8">
+  <layout class="QGridLayout" name="gridLayout_11">
+   <item row="0" column="0">
+    <widget class="QGroupBox" name="groupBox">
+     <property name="title">
+      <string>Tipo</string>
+     </property>
+     <layout class="QGridLayout" name="gridLayout">
+      <item row="0" column="0">
+       <widget class="QRadioButton" name="rb_analysis">
+        <property name="text">
+         <string>Análise numérica</string>
+        </property>
+        <property name="checked">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="1">
+       <widget class="QRadioButton" name="rb_simulation">
+        <property name="text">
+         <string>Simulação</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
    <item row="1" column="0" colspan="2">
     <widget class="QTabWidget" name="tb_all">
      <property name="currentIndex">
@@ -132,25 +158,40 @@
           <string>Parâmetros de solução</string>
          </property>
          <layout class="QGridLayout" name="gridLayout_6">
+          <item row="3" column="1">
+           <widget class="QLineEdit" name="lineEdit_8">
+            <property name="text">
+             <string>2000</string>
+            </property>
+           </widget>
+          </item>
+          <item row="4" column="1">
+           <widget class="QLineEdit" name="lineEdit_9">
+            <property name="text">
+             <string>0.000001</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <widget class="QComboBox" name="comboBox_2">
+            <item>
+             <property name="text">
+              <string>CTMC</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>DTMC</string>
+             </property>
+            </item>
+           </widget>
+          </item>
           <item row="0" column="0">
            <widget class="QLabel" name="label_2">
             <property name="text">
              <string>Approach</string>
             </property>
            </widget>
-          </item>
-          <item row="0" column="1">
-           <widget class="QComboBox" name="comboBox_2"/>
-          </item>
-          <item row="1" column="0">
-           <widget class="QLabel" name="label_3">
-            <property name="text">
-             <string>Steady-state method</string>
-            </property>
-           </widget>
-          </item>
-          <item row="1" column="1">
-           <widget class="QComboBox" name="comboBox_3"/>
           </item>
           <item row="2" column="0">
            <widget class="QLabel" name="label_4">
@@ -159,14 +200,39 @@
             </property>
            </widget>
           </item>
-          <item row="2" column="1">
-           <widget class="QComboBox" name="comboBox_4"/>
+          <item row="1" column="0">
+           <widget class="QLabel" name="label_3">
+            <property name="text">
+             <string>Steady-state method</string>
+            </property>
+           </widget>
+          </item>
+          <item row="5" column="0">
+           <widget class="QLabel" name="label_7">
+            <property name="text">
+             <string>M0 return rate</string>
+            </property>
+           </widget>
           </item>
           <item row="3" column="0">
            <widget class="QLabel" name="label_5">
             <property name="text">
              <string>Maximum # iterations</string>
             </property>
+           </widget>
+          </item>
+          <item row="2" column="1">
+           <widget class="QComboBox" name="comboBox_4">
+            <item>
+             <property name="text">
+              <string>Standart Uniformization</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Uniformization Fox &amp; Glynn</string>
+             </property>
+            </item>
            </widget>
           </item>
           <item row="4" column="0">
@@ -176,10 +242,52 @@
             </property>
            </widget>
           </item>
-          <item row="5" column="0">
-           <widget class="QLabel" name="label_7">
+          <item row="1" column="1">
+           <widget class="QComboBox" name="comboBox_3">
+            <item>
+             <property name="text">
+              <string>Successive Over Relaxion</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Gauss-Sidel</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Power</string>
+             </property>
+            </item>
+           </widget>
+          </item>
+          <item row="7" column="1">
+           <spacer name="horizontalSpacer_2">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>202</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+          <item row="5" column="1">
+           <widget class="QLineEdit" name="lineEdit_10">
             <property name="text">
-             <string>M0 return rate</string>
+             <string>0.0</string>
+            </property>
+           </widget>
+          </item>
+          <item row="7" column="0">
+           <widget class="QCheckBox" name="checkBox_13">
+            <property name="text">
+             <string>Steady-state detection</string>
+            </property>
+            <property name="checked">
+             <bool>true</bool>
             </property>
            </widget>
           </item>
@@ -205,50 +313,6 @@
              </size>
             </property>
            </spacer>
-          </item>
-          <item row="7" column="0">
-           <widget class="QCheckBox" name="checkBox_13">
-            <property name="text">
-             <string>Steady-state detection</string>
-            </property>
-            <property name="checked">
-             <bool>true</bool>
-            </property>
-           </widget>
-          </item>
-          <item row="7" column="1">
-           <spacer name="horizontalSpacer_2">
-            <property name="orientation">
-             <enum>Qt::Horizontal</enum>
-            </property>
-            <property name="sizeHint" stdset="0">
-             <size>
-              <width>202</width>
-              <height>20</height>
-             </size>
-            </property>
-           </spacer>
-          </item>
-          <item row="3" column="1">
-           <widget class="QLineEdit" name="lineEdit_8">
-            <property name="text">
-             <string>2000</string>
-            </property>
-           </widget>
-          </item>
-          <item row="4" column="1">
-           <widget class="QLineEdit" name="lineEdit_9">
-            <property name="text">
-             <string>0.000001</string>
-            </property>
-           </widget>
-          </item>
-          <item row="5" column="1">
-           <widget class="QLineEdit" name="lineEdit_10">
-            <property name="text">
-             <string>0.0</string>
-            </property>
-           </widget>
           </item>
          </layout>
         </widget>
@@ -313,7 +377,23 @@
            </widget>
           </item>
           <item row="0" column="1">
-           <widget class="QComboBox" name="comboBox"/>
+           <widget class="QComboBox" name="comboBox">
+            <item>
+             <property name="text">
+              <string>Eliminated during the reachability graph construction</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Considered as ordinary states</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Eliminated before generating the underlying CTMC</string>
+             </property>
+            </item>
+           </widget>
           </item>
          </layout>
         </widget>
@@ -333,7 +413,28 @@
         </widget>
        </item>
        <item row="0" column="1" colspan="2">
-        <widget class="QComboBox" name="comboBox_8"/>
+        <widget class="QComboBox" name="comboBox_8">
+         <item>
+          <property name="text">
+           <string>Discrete event-simulation with independent replications</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Discrete event-simulation with batches</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Restart</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Splitting</string>
+          </property>
+         </item>
+        </widget>
        </item>
        <item row="1" column="0" colspan="2">
         <widget class="QFrame" name="frame">
@@ -377,31 +478,287 @@
        </item>
        <item row="1" column="2" rowspan="2">
         <widget class="QStackedWidget" name="stackedWidget">
-         <property name="frameShape">
-          <enum>QFrame::Panel</enum>
-         </property>
          <property name="currentIndex">
           <number>0</number>
          </property>
          <widget class="QWidget" name="page">
-          <widget class="QCheckBox" name="checkBox_14">
-           <property name="geometry">
-            <rect>
-             <x>10</x>
-             <y>30</y>
-             <width>201</width>
-             <height>20</height>
-            </rect>
-           </property>
-           <property name="text">
-            <string>Output usual cumulative measures</string>
-           </property>
-           <property name="checked">
-            <bool>true</bool>
-           </property>
-          </widget>
+          <layout class="QGridLayout" name="gridLayout_10">
+           <item row="0" column="0">
+            <widget class="QCheckBox" name="checkBox_14">
+             <property name="text">
+              <string>Output usual cumulative measures</string>
+             </property>
+             <property name="checked">
+              <bool>true</bool>
+             </property>
+            </widget>
+           </item>
+          </layout>
          </widget>
-         <widget class="QWidget" name="page_2"/>
+         <widget class="QWidget" name="page_2">
+          <layout class="QGridLayout" name="gridLayout_8">
+           <item row="0" column="0" colspan="2">
+            <widget class="QCheckBox" name="checkBox_2">
+             <property name="text">
+              <string>Finish each subpath for restart</string>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="2">
+            <spacer name="horizontalSpacer_3">
+             <property name="orientation">
+              <enum>Qt::Horizontal</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>63</width>
+               <height>20</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+           <item row="1" column="0" colspan="2">
+            <widget class="QLabel" name="label_13">
+             <property name="text">
+              <string># of pre-simulation runs for importance splitting</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="2">
+            <widget class="QLineEdit" name="lineEdit_2">
+             <property name="text">
+              <string>10</string>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="0" colspan="2">
+            <widget class="QCheckBox" name="checkBox_3">
+             <property name="text">
+              <string>Pre-simulation for importance splitting method</string>
+             </property>
+             <property name="checked">
+              <bool>true</bool>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="2">
+            <spacer name="horizontalSpacer_4">
+             <property name="orientation">
+              <enum>Qt::Horizontal</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>63</width>
+               <height>20</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+           <item row="3" column="0" colspan="2">
+            <widget class="QLabel" name="label_14">
+             <property name="text">
+              <string># of importance splitting thresholds</string>
+             </property>
+            </widget>
+           </item>
+           <item row="3" column="2">
+            <widget class="QLineEdit" name="lineEdit_11">
+             <property name="text">
+              <string>6</string>
+             </property>
+            </widget>
+           </item>
+           <item row="4" column="0">
+            <widget class="QLabel" name="label_15">
+             <property name="text">
+              <string>1</string>
+             </property>
+            </widget>
+           </item>
+           <item row="4" column="1" colspan="2">
+            <widget class="QLineEdit" name="lineEdit_12"/>
+           </item>
+           <item row="5" column="0">
+            <widget class="QLabel" name="label_16">
+             <property name="text">
+              <string>2</string>
+             </property>
+            </widget>
+           </item>
+           <item row="5" column="1" colspan="2">
+            <widget class="QLineEdit" name="lineEdit_13"/>
+           </item>
+           <item row="6" column="0">
+            <widget class="QLabel" name="label_17">
+             <property name="text">
+              <string>3</string>
+             </property>
+            </widget>
+           </item>
+           <item row="6" column="1" colspan="2">
+            <widget class="QLineEdit" name="lineEdit_14"/>
+           </item>
+           <item row="7" column="0">
+            <widget class="QLabel" name="label_18">
+             <property name="text">
+              <string>4</string>
+             </property>
+            </widget>
+           </item>
+           <item row="7" column="1" colspan="2">
+            <widget class="QLineEdit" name="lineEdit_15"/>
+           </item>
+           <item row="8" column="0">
+            <widget class="QLabel" name="label_19">
+             <property name="text">
+              <string>5</string>
+             </property>
+            </widget>
+           </item>
+           <item row="8" column="1" colspan="2">
+            <widget class="QLineEdit" name="lineEdit_16"/>
+           </item>
+           <item row="9" column="0">
+            <widget class="QLabel" name="label_20">
+             <property name="text">
+              <string>6</string>
+             </property>
+            </widget>
+           </item>
+           <item row="9" column="1" colspan="2">
+            <widget class="QLineEdit" name="lineEdit_17"/>
+           </item>
+          </layout>
+         </widget>
+         <widget class="QWidget" name="page_3">
+          <layout class="QGridLayout" name="gridLayout_12">
+           <item row="0" column="0" colspan="2">
+            <widget class="QLabel" name="label_32">
+             <property name="text">
+              <string>Stop number of levels down for splitting</string>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="2">
+            <widget class="QLineEdit" name="lineEdit_26">
+             <property name="text">
+              <string>60</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="0" colspan="2">
+            <widget class="QLabel" name="label_30">
+             <property name="text">
+              <string># of pre-simulation runs for importance splitting</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="2">
+            <widget class="QLineEdit" name="lineEdit_23">
+             <property name="text">
+              <string>10</string>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="0" colspan="2">
+            <widget class="QCheckBox" name="checkBox_4">
+             <property name="text">
+              <string>Pre-simulation for importance splitting method</string>
+             </property>
+             <property name="checked">
+              <bool>true</bool>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="2">
+            <spacer name="horizontalSpacer_5">
+             <property name="orientation">
+              <enum>Qt::Horizontal</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>63</width>
+               <height>20</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+           <item row="3" column="0" colspan="2">
+            <widget class="QLabel" name="label_31">
+             <property name="text">
+              <string># of importance splitting thresholds</string>
+             </property>
+            </widget>
+           </item>
+           <item row="3" column="2">
+            <widget class="QLineEdit" name="lineEdit_19">
+             <property name="text">
+              <string>6</string>
+             </property>
+            </widget>
+           </item>
+           <item row="4" column="0">
+            <widget class="QLabel" name="label_22">
+             <property name="text">
+              <string>1</string>
+             </property>
+            </widget>
+           </item>
+           <item row="4" column="1" colspan="2">
+            <widget class="QLineEdit" name="lineEdit_20"/>
+           </item>
+           <item row="5" column="0">
+            <widget class="QLabel" name="label_28">
+             <property name="text">
+              <string>2</string>
+             </property>
+            </widget>
+           </item>
+           <item row="5" column="1" colspan="2">
+            <widget class="QLineEdit" name="lineEdit_21"/>
+           </item>
+           <item row="6" column="0">
+            <widget class="QLabel" name="label_24">
+             <property name="text">
+              <string>3</string>
+             </property>
+            </widget>
+           </item>
+           <item row="6" column="1" colspan="2">
+            <widget class="QLineEdit" name="lineEdit_22"/>
+           </item>
+           <item row="7" column="0">
+            <widget class="QLabel" name="label_29">
+             <property name="text">
+              <string>4</string>
+             </property>
+            </widget>
+           </item>
+           <item row="7" column="1" colspan="2">
+            <widget class="QLineEdit" name="lineEdit_18"/>
+           </item>
+           <item row="8" column="0">
+            <widget class="QLabel" name="label_21">
+             <property name="text">
+              <string>5</string>
+             </property>
+            </widget>
+           </item>
+           <item row="8" column="1" colspan="2">
+            <widget class="QLineEdit" name="lineEdit_25"/>
+           </item>
+           <item row="9" column="0">
+            <widget class="QLabel" name="label_23">
+             <property name="text">
+              <string>6</string>
+             </property>
+            </widget>
+           </item>
+           <item row="9" column="1" colspan="2">
+            <widget class="QLineEdit" name="lineEdit_24"/>
+           </item>
+          </layout>
+         </widget>
         </widget>
        </item>
        <item row="2" column="0" colspan="2">
@@ -421,7 +778,23 @@
            </widget>
           </item>
           <item row="0" column="1">
-           <widget class="QComboBox" name="comboBox_17"/>
+           <widget class="QComboBox" name="comboBox_17">
+            <item>
+             <property name="text">
+              <string>90%</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>95%</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>99%</string>
+             </property>
+            </item>
+           </widget>
           </item>
           <item row="1" column="0">
            <widget class="QLabel" name="label_11">
@@ -517,32 +890,6 @@
      </property>
     </widget>
    </item>
-   <item row="0" column="0">
-    <widget class="QGroupBox" name="groupBox">
-     <property name="title">
-      <string>Tipo</string>
-     </property>
-     <layout class="QGridLayout" name="gridLayout">
-      <item row="0" column="0">
-       <widget class="QRadioButton" name="rb_analysis">
-        <property name="text">
-         <string>Análise numérica</string>
-        </property>
-        <property name="checked">
-         <bool>true</bool>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="1">
-       <widget class="QRadioButton" name="rb_simulation">
-        <property name="text">
-         <string>Simulação</string>
-        </property>
-       </widget>
-      </item>
-     </layout>
-    </widget>
-   </item>
   </layout>
  </widget>
  <tabstops>
@@ -584,6 +931,26 @@
   <tabstop>checkBox_29</tabstop>
   <tabstop>lineEdit_7</tabstop>
   <tabstop>checkBox_14</tabstop>
+  <tabstop>checkBox_2</tabstop>
+  <tabstop>lineEdit_2</tabstop>
+  <tabstop>checkBox_3</tabstop>
+  <tabstop>lineEdit_11</tabstop>
+  <tabstop>lineEdit_12</tabstop>
+  <tabstop>lineEdit_13</tabstop>
+  <tabstop>lineEdit_14</tabstop>
+  <tabstop>lineEdit_15</tabstop>
+  <tabstop>lineEdit_16</tabstop>
+  <tabstop>lineEdit_17</tabstop>
+  <tabstop>lineEdit_26</tabstop>
+  <tabstop>lineEdit_23</tabstop>
+  <tabstop>checkBox_4</tabstop>
+  <tabstop>lineEdit_19</tabstop>
+  <tabstop>lineEdit_20</tabstop>
+  <tabstop>lineEdit_21</tabstop>
+  <tabstop>lineEdit_22</tabstop>
+  <tabstop>lineEdit_18</tabstop>
+  <tabstop>lineEdit_25</tabstop>
+  <tabstop>lineEdit_24</tabstop>
  </tabstops>
  <resources/>
  <connections>
