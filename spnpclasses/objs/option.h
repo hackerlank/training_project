@@ -108,7 +108,32 @@ public:
     //first 2
     bool outputUsual;
     //last 2
-    //TODO
+    //restart
+    bool isFinishEach;
+    int numPreSim;
+    bool isPreSim;
+    int numImport;
+
+    std::string a1;
+    std::string a2;
+    std::string a3;
+    std::string a4;
+    std::string a5;
+    std::string a6;
+
+    //split
+    int stopNum;
+    int numPreSimB;
+    bool isPreSimB;
+    int numImportB;
+
+    std::string b1;
+    std::string b2;
+    std::string b3;
+    std::string b4;
+    std::string b5;
+    std::string b6;
+
     virtual std::string getClassNodeName();
 };
 }

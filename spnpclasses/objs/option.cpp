@@ -49,7 +49,30 @@ spnp::Option::Option()
     //first 2
     outputUsual = true;
     //last 2
-    //TODO
+    isFinishEach = false;
+    numPreSim = 10;
+    isPreSim = true;
+    numImport = 6;
+
+    a1="";
+    a2="";
+    a3="";
+    a4="";
+    a5="";
+    a6="";
+
+    //split
+    stopNum = 60;
+    numPreSimB = 10;
+    isPreSimB = true;
+    numImportB = 6;
+
+    b1="";
+    b2="";
+    b3="";
+    b4="";
+    b5="";
+    b6="";
 }
 
 spnp::Option::~Option()
@@ -95,6 +118,30 @@ XMLNode *spnp::Option::toXML()
     n->setAttribute("warmup", this->warmup);
     n->setAttribute("outputUsual", this->outputUsual);
 
+    n->setAttribute("isFinishEach", this->isFinishEach);
+    n->setAttribute("numPreSim", this->numPreSim);
+    n->setAttribute("isPreSim", this->isPreSim);
+    n->setAttribute("numImport", this->numImport);
+
+    n->setAttribute("a1", this->a1);
+    n->setAttribute("a2", this->a2);
+    n->setAttribute("a3", this->a3);
+    n->setAttribute("a4", this->a4);
+    n->setAttribute("a5", this->a5);
+    n->setAttribute("a6", this->a6);
+
+    n->setAttribute("stopNum", this->stopNum);
+    n->setAttribute("numPreSimB", this->numPreSimB);
+    n->setAttribute("isPreSimB", this->isPreSimB);
+    n->setAttribute("numImportB", this->numImportB);
+
+    n->setAttribute("b1", this->b1);
+    n->setAttribute("b2", this->b2);
+    n->setAttribute("b3", this->b3);
+    n->setAttribute("b4", this->b4);
+    n->setAttribute("b5", this->b5);
+    n->setAttribute("b6", this->b6);
+
     return n;
 }
 
@@ -135,6 +182,29 @@ void spnp::Option::fromXML(XMLNode *xml)
     this->warmup = xml->getAttributeD("warmup");
     this->outputUsual = xml->getAttributeB("outputUsual");
 
+    this->isFinishEach = xml->getAttributeB("isFinishEach");
+    this->numPreSim = xml->getAttributeI("numPreSim");
+    this->isPreSim = xml->getAttributeB("isPreSim");
+    this->numImport = xml->getAttributeI("numImport");
+
+    this->a1 = xml->getAttributeS("a1");
+    this->a2 = xml->getAttributeS("a2");
+    this->a3 = xml->getAttributeS("a3");
+    this->a4 = xml->getAttributeS("a4");
+    this->a5 = xml->getAttributeS("a5");
+    this->a6 = xml->getAttributeS("a6");
+
+    this->stopNum = xml->getAttributeI("stopNum");
+    this->numPreSimB = xml->getAttributeI("numPreSimB");
+    this->isPreSimB = xml->getAttributeB("isPreSimB");
+    this->numImportB = xml->getAttributeI("numImportB");
+
+    this->b1 = xml->getAttributeS("b1");
+    this->b2 = xml->getAttributeS("b2");
+    this->b3 = xml->getAttributeS("b3");
+    this->b4 = xml->getAttributeS("b4");
+    this->b5 = xml->getAttributeS("b5");
+    this->b6 = xml->getAttributeS("b6");
 }
 
 std::string spnp::Option::c_str(spnp::IData *data) const
