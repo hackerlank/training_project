@@ -150,6 +150,19 @@ std::string spnp::Arc::c_str(IData *data) const
     return ss.str();
 }
 
+void spnp::Arc::operator=(const spnp::Arc &a)
+{
+    this->id = a.id;
+    this->name = a.name;
+    this->place = a.getPlaceId();
+    this->transition = a.getTransitionId();
+    this->fromPlaceToTransition = a.getFromPlaceToTransition();
+    this->multiplicity = a.getMultiplicity();
+    this->isConstant = a.getIsConstant();
+    this->isFluid = a.getIsFluid();
+    this->isInhibitor = a.getIsInhibitor();
+}
+
 std::string spnp::Arc::getClassNodeName()
 {
     return "arc";

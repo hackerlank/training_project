@@ -33,6 +33,8 @@ public:
 
     virtual std::string c_str(IData* data=nullptr) const;
 
+    void operator=(const Arc &a);
+    virtual std::string getClassNodeName();
 private:
     std::string place;
     std::string transition;
@@ -40,8 +42,6 @@ private:
     std::string multiplicity;
 
     bool isConstant;
-
-    virtual std::string getClassNodeName();
 
     bool isFluid;
     bool isInhibitor;
