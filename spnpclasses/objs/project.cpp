@@ -8,15 +8,18 @@ spnp::Project::Project(std::string name):AbstractData(name)
     this->commentary = "";
     this->date = "";
     this->parameter = new Parameter();
+    this->option = new Option();
 }
 
 spnp::Project::Project(std::string name, std::vector<Net *> *nets, std::string owner,
-                       std::string commentary, std::string date):AbstractData(name)
+                       std::string commentary, std::string date, Parameter *par, Option *opt):AbstractData(name)
 {
     this->nets = nets;
     this->owner = owner;
     this->commentary = commentary;
     this->date = date;
+    this->parameter = par;
+    this->option = opt;
 }
 
 spnp::Project::~Project()
@@ -29,6 +32,7 @@ spnp::Project::~Project()
     nets->clear();
     delete nets;
     delete parameter;
+    delete option;
 }
 
 void spnp::Project::addNet(Net *net)
@@ -78,6 +82,8 @@ XMLNode *spnp::Project::toXML()
     {
         node->addChild((*it)->toXML());
     }
+    node->addChild(this->parameter->toXML());
+    node->addChild(this->option->toXML());
 
     return node;
 }
@@ -99,14 +105,28 @@ void spnp::Project::fromXML(XMLNode *xml)
 
     v = xml->getChildrenByName("parameter");
     this->parameter->fromXML(v->at(0));
-
     delete v;
+
+    v = xml->getChildrenByName("option");
+    this->option->fromXML(v->at(0));
+    delete v;
+
 }
 
 std::string spnp::Project::c_str(IData *data) const
 {
     (void)data;
     throw;
+}
+
+spnp::Parameter *spnp::Project::getParameters() const
+{
+    return this->parameter;
+}
+
+spnp::Option *spnp::Project::getOptions() const
+{
+    return this->option;
 }
 
 std::string spnp::Project::getClassNodeName()

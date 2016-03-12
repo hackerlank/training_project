@@ -62,8 +62,8 @@ public:
     virtual std::string c_str(IData* data=nullptr) const;
 
     /* option files */
-    //output
     bool isNumericalAnalysis;
+    //output
     bool reachabilityGraphSet;
     bool markovChain;
     bool derivativeOfCTMC;
@@ -107,8 +107,6 @@ public:
     bool outputUsual;
     //last 2
     //TODO
-
-protected:
     virtual std::string getClassNodeName();
 };
 }

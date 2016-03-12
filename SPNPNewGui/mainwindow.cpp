@@ -84,6 +84,7 @@ void MainWindow::on_action_Novo_Projeto_triggered()
 void MainWindow::startNewProject(spnp::Project* project)
 {
     this->ui->widget->startProject(project);
+    this->ui->action_preferences->setEnabled(true);
 }
 
 void MainWindow::on_action_Fechar_triggered()
@@ -165,8 +166,7 @@ void MainWindow::on_actionEscrever_triggered()
         spnp::Net *n = this->ui->widget->getCurrentProject()->getNets()->at(0);
         if(n!=nullptr)
         {
-          //TODO remove hard coded path
-          //std::string file = "F:/temp/teste.c";
+          //TODO remove dialog >>>> save same project folder
           QString file = QFileDialog::getSaveFileName(this, tr("_criar arquivo"), QDir::currentPath(), tr("código-fonte(*.c)"));
           if(!file.isEmpty())
           {
@@ -193,4 +193,9 @@ void MainWindow::on_action_pathes_triggered()
 void MainWindow::on_action_preferences_triggered()
 {
     this->od->show();
+    spnp::Project* proj = this->ui->widget->getCurrentProject();
+    if(proj != nullptr)
+    {
+        this->od->loadOptions(proj);
+    }
 }

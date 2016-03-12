@@ -15,7 +15,7 @@
   </property>
   <layout class="QGridLayout" name="gridLayout_8">
    <item row="1" column="0" colspan="2">
-    <widget class="QTabWidget" name="tabWidget">
+    <widget class="QTabWidget" name="tb_all">
      <property name="currentIndex">
       <number>0</number>
      </property>
@@ -37,42 +37,42 @@
        </property>
        <layout class="QGridLayout" name="gridLayout_3">
         <item row="0" column="0">
-         <widget class="QCheckBox" name="checkBox_2">
+         <widget class="QCheckBox" name="cb_reach">
           <property name="text">
            <string>Reachbility graph/set</string>
           </property>
          </widget>
         </item>
         <item row="1" column="0">
-         <widget class="QCheckBox" name="checkBox_3">
+         <widget class="QCheckBox" name="cb_markov_chain">
           <property name="text">
            <string>Markov chain</string>
           </property>
          </widget>
         </item>
         <item row="2" column="0">
-         <widget class="QCheckBox" name="checkBox_4">
+         <widget class="QCheckBox" name="cb_der_ctmc">
           <property name="text">
            <string>Derivative of CTMC</string>
           </property>
          </widget>
         </item>
         <item row="3" column="0">
-         <widget class="QCheckBox" name="checkBox_5">
+         <widget class="QCheckBox" name="cb_prob">
           <property name="text">
            <string>Probabilities</string>
           </property>
          </widget>
         </item>
         <item row="4" column="0">
-         <widget class="QCheckBox" name="checkBox_6">
+         <widget class="QCheckBox" name="cb_prob_dtmc">
           <property name="text">
            <string>Probabilities DTMC</string>
           </property>
          </widget>
         </item>
         <item row="5" column="0">
-         <widget class="QCheckBox" name="checkBox_7">
+         <widget class="QCheckBox" name="cb_dot">
           <property name="text">
            <string>Dot graph language</string>
           </property>
@@ -520,7 +520,7 @@
    <item row="0" column="0">
     <widget class="QGroupBox" name="groupBox">
      <property name="title">
-      <string>GroupBox</string>
+      <string>Tipo</string>
      </property>
      <layout class="QGridLayout" name="gridLayout">
       <item row="0" column="0">
@@ -545,6 +545,46 @@
    </item>
   </layout>
  </widget>
+ <tabstops>
+  <tabstop>rb_analysis</tabstop>
+  <tabstop>rb_simulation</tabstop>
+  <tabstop>tb_all</tabstop>
+  <tabstop>cb_reach</tabstop>
+  <tabstop>cb_markov_chain</tabstop>
+  <tabstop>cb_der_ctmc</tabstop>
+  <tabstop>cb_prob</tabstop>
+  <tabstop>cb_prob_dtmc</tabstop>
+  <tabstop>cb_dot</tabstop>
+  <tabstop>radioButton</tabstop>
+  <tabstop>radioButton_2</tabstop>
+  <tabstop>radioButton_3</tabstop>
+  <tabstop>checkBox</tabstop>
+  <tabstop>checkBox_8</tabstop>
+  <tabstop>checkBox_9</tabstop>
+  <tabstop>checkBox_10</tabstop>
+  <tabstop>checkBox_11</tabstop>
+  <tabstop>comboBox_2</tabstop>
+  <tabstop>comboBox_3</tabstop>
+  <tabstop>comboBox_4</tabstop>
+  <tabstop>lineEdit_8</tabstop>
+  <tabstop>lineEdit_9</tabstop>
+  <tabstop>lineEdit_10</tabstop>
+  <tabstop>checkBox_12</tabstop>
+  <tabstop>checkBox_13</tabstop>
+  <tabstop>comboBox</tabstop>
+  <tabstop>comboBox_8</tabstop>
+  <tabstop>radioButton_4</tabstop>
+  <tabstop>radioButton_5</tabstop>
+  <tabstop>lineEdit</tabstop>
+  <tabstop>comboBox_17</tabstop>
+  <tabstop>lineEdit_3</tabstop>
+  <tabstop>lineEdit_4</tabstop>
+  <tabstop>lineEdit_5</tabstop>
+  <tabstop>lineEdit_6</tabstop>
+  <tabstop>checkBox_29</tabstop>
+  <tabstop>lineEdit_7</tabstop>
+  <tabstop>checkBox_14</tabstop>
+ </tabstops>
  <resources/>
  <connections>
   <connection>

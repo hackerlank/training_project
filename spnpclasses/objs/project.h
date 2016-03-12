@@ -3,6 +3,7 @@
 
 #include "objs/net.h"
 #include "objs/parameter.h"
+#include "objs/option.h"
 
 namespace spnp
 {
@@ -10,8 +11,9 @@ class SPNPCLASSES_PUBLIC Project : public AbstractData
 {
 public:
     Project(std::string name);
-    Project(std::string name="", std::vector<Net*> *nets = new std::vector<Net*>(),
-            std::string owner="", std::string commentary="", std::string date="");
+    Project(std::string name = "",  std::vector<Net*> *nets = new std::vector<Net*>(),
+            std::string owner = "", std::string commentary = "", std::string date = "",
+            Parameter *par = new Parameter(), Option *opt = new Option());
     virtual ~Project();
 
     void addNet(Net* net);
@@ -25,6 +27,9 @@ public:
     virtual void fromXML(XMLNode *xml);
 
     virtual std::string c_str(IData* data=nullptr) const;
+
+    Parameter *getParameters() const;
+    Option *getOptions() const;
 private:
     virtual std::string getClassNodeName();
 
@@ -32,7 +37,8 @@ private:
     std::string owner;
     std::string commentary;
     std::string date;
-    Parameter* parameter;
+    Parameter *parameter;
+    Option *option;
 };
 }
 

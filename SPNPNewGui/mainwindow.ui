@@ -110,9 +110,6 @@
    <property name="text">
     <string>&amp;Caminhos</string>
    </property>
-   <property name="shortcut">
-    <string>Ctrl+Shift+P</string>
-   </property>
   </action>
   <action name="action_sair">
    <property name="text">
@@ -160,8 +157,14 @@
    </property>
   </action>
   <action name="action_preferences">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
    <property name="text">
     <string>&amp;Preferências</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+P</string>
    </property>
   </action>
  </widget>
