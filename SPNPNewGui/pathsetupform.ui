@@ -111,6 +111,14 @@
    </item>
   </layout>
  </widget>
+ <tabstops>
+  <tabstop>pb_spnp</tabstop>
+  <tabstop>pb_examples</tabstop>
+  <tabstop>pb_plots</tabstop>
+  <tabstop>le_spnp</tabstop>
+  <tabstop>le_plots</tabstop>
+  <tabstop>le_examples</tabstop>
+ </tabstops>
  <resources/>
  <connections>
   <connection>
