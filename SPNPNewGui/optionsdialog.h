@@ -3,7 +3,7 @@
 
 #include <QDialog>
 
-#include "objs/project.h"
+#include "objs/option.h"
 
 namespace Ui {
 class OptionsDialog;
@@ -17,13 +17,18 @@ public:
     explicit OptionsDialog(QWidget *parent = 0);
     ~OptionsDialog();
 
-    void loadOptions(spnp::Project* proj);
+    void loadOptions(spnp::Option *proj);
 
 private slots:
     void on_rb_analysis_toggled(bool checked);
 
+    void on_bt_box_accepted();
+
 private:
     Ui::OptionsDialog *ui;
+    spnp::Option *options;
+
+    void saveOptions();
 };
 
 #endif // OPTIONSDIALOG_H

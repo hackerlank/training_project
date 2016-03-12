@@ -6,6 +6,7 @@ OptionsDialog::OptionsDialog(QWidget *parent) :
     ui(new Ui::OptionsDialog)
 {
     ui->setupUi(this);
+    this->options = nullptr;
 }
 
 OptionsDialog::~OptionsDialog()
@@ -13,89 +14,91 @@ OptionsDialog::~OptionsDialog()
     delete ui;
 }
 
-void OptionsDialog::loadOptions(spnp::Project *proj)
+void OptionsDialog::loadOptions(spnp::Option *opt)
 {
-    spnp::Option *opt = proj->getOptions();
+    this->options = opt;
     this->ui->tab_sim->setEnabled(false);
-    if(opt!= nullptr)
+    if(options!= nullptr)
     {
-        this->ui->rb_analysis->setChecked(opt->isNumericalAnalysis);
-        this->ui->rb_simulation->setChecked(!opt->isNumericalAnalysis);
+        this->ui->rb_analysis->setChecked(options->isNumericalAnalysis);
+        this->ui->rb_simulation->setChecked(!options->isNumericalAnalysis);
         //opções
-        this->ui->cb_reach->setChecked(opt->reachabilityGraphSet);
-        this->ui->cb_markov_chain->setChecked(opt->markovChain);
-        this->ui->cb_der_ctmc->setChecked(opt->derivativeOfCTMC);
-        this->ui->cb_prob->setChecked(opt->probabilities);
-        this->ui->cb_prob_dtmc->setChecked(opt->probabilitiesDTMC);
-        this->ui->cb_dot->setChecked(opt->dotGraphLanguage);
+        this->ui->cb_reach->setChecked(options->reachabilityGraphSet);
+        this->ui->cb_markov_chain->setChecked(options->markovChain);
+        this->ui->cb_der_ctmc->setChecked(options->derivativeOfCTMC);
+        this->ui->cb_prob->setChecked(options->probabilities);
+        this->ui->cb_prob_dtmc->setChecked(options->probabilitiesDTMC);
+        this->ui->cb_dot->setChecked(options->dotGraphLanguage);
 
-        //análise
-        switch (opt->analysis) {
-        default:
-        case spnp::Option::AnalysisOptions::STEADY_STATE:
-            this->ui->rb_steadystate->setChecked(true);
-            break;
-        case spnp::Option::AnalysisOptions::TRANSIENT:
-            this->ui->rb_transient->setChecked(true);
-            break;
-        case spnp::Option::AnalysisOptions::BOTH:
-            this->ui->rb_both->setChecked(true);
-            break;
+        if(options->isNumericalAnalysis) //análise
+        {
+            switch (options->analysis) {
+            default:
+            case spnp::Option::AnalysisOptions::STEADY_STATE:
+                this->ui->rb_steadystate->setChecked(true);
+                break;
+            case spnp::Option::AnalysisOptions::TRANSIENT:
+                this->ui->rb_transient->setChecked(true);
+                break;
+            case spnp::Option::AnalysisOptions::BOTH:
+                this->ui->rb_both->setChecked(true);
+                break;
+            }
+            this->ui->cb_sensitivity->setChecked(options->sensitivity);
+
+            this->ui->cb_absorbing_marking->setChecked(options->absorbinMarking);
+
+            this->ui->cb_absorbing_marking->setChecked(options->absorbinMarking);
+            this->ui->cb_trans_van_loops->setChecked(options->trasientVanishingLoops);
+            this->ui->cb_trans_ini_mark->setChecked(options->transientInitialMarking);
+            this->ui->cb_vanishing_ini_val->setChecked(options->vanishingInitialMarking);
+
+            this->ui->combo_approach->setCurrentIndex(options->approach);
+
+            this->ui->combo_steadystate->setCurrentIndex(options->steadyStateMethod);
+
+            this->ui->combo_transient_method->setCurrentIndex(options->transientMethod);
+
+            this->ui->le_max_iter->setText(QString::number(options->maxIterations));
+            this->ui->le_min_prec->setText(QString::number(options->minPrecision));
+            this->ui->le_m0_ret_rate->setText(QString::number(options->m0returnRate));
+
+            this->ui->cb_compute->setChecked(options->computeCumulativeProbabilities);
+            this->ui->cb_steadystate_detect->setChecked(options->steadyStateDetection);
+
+            this->ui->combo_vanishing_mark->setCurrentIndex(options->vanishing);
         }
-        this->ui->cb_sensitivity->setChecked(opt->sensitivity);
+        else //simulação
+        {
+            switch (options->simulationMethod) {
+            default:
+            case spnp::Option::SimulationMethod::DISCRET_EVENT_INDEPENDENT:
+            case spnp::Option::SimulationMethod::DISCRET_EVENT_BATCH:
+                this->ui->stacked_simulation->setCurrentIndex(0);
+                break;
+            case spnp::Option::SimulationMethod::RESTART:
+                this->ui->stacked_simulation->setCurrentIndex(1);
+                break;
+            case spnp::Option::SimulationMethod::SPLITTING:
+                this->ui->stacked_simulation->setCurrentIndex(2);
+                break;
+            }
 
-        this->ui->cb_absorbing_marking->setChecked(opt->absorbinMarking);
+            this->ui->combo_method_sim->setCurrentIndex(options->simulationMethod);
 
-        this->ui->cb_absorbing_marking->setChecked(opt->absorbinMarking);
-        this->ui->cb_trans_van_loops->setChecked(opt->trasientVanishingLoops);
-        this->ui->cb_trans_ini_mark->setChecked(opt->transientInitialMarking);
-        this->ui->cb_vanishing_ini_val->setChecked(opt->vanishingInitialMarking);
+            this->ui->rb_num_repl->setChecked(options->isReplication);
+            this->ui->rb_error_giv->setChecked(!options->isReplication);
+            this->ui->le_number_repl->setText(QString::number(options->replicationOrErrorValue));
 
-        this->ui->combo_approach->setCurrentIndex(opt->approach);
+            this->ui->combo_req_conf->setCurrentIndex(options->confidence);
 
-        this->ui->combo_steadystate->setCurrentIndex(opt->steadyStateMethod);
-
-        index = opt->transientMethod  == spnp::Option::TransientMethod::STANDART_UNIFORMIZATION ? 0 : 1;
-        this->ui->combo_transient_method->setCurrentIndex(index);
-
-        this->ui->le_max_iter->setText(QString::number(opt->maxIterations));
-        this->ui->le_min_prec->setText(QString::number(opt->minPrecision));
-        this->ui->le_m0_ret_rate->setText(QString::number(opt->m0returnRate));
-
-        this->ui->cb_compute->setChecked(opt->computeCumulativeProbabilities);
-        this->ui->cb_steadystate_detect->setChecked(opt->steadyStateDetection);
-
-        this->ui->combo_vanishing_mark->setCurrentIndex(opt->vanishing);
-
-        //simulação
-        switch (opt->simulationMethod) {
-        default:
-        case spnp::Option::SimulationMethod::DISCRET_EVENT_INDEPENDENT:
-        case spnp::Option::SimulationMethod::DISCRET_EVENT_BATCH:
-            this->ui->stacked_simulation->setCurrentIndex(0);
-            break;
-        case spnp::Option::SimulationMethod::RESTART:
-            this->ui->stacked_simulation->setCurrentIndex(1);
-            break;
-        case spnp::Option::SimulationMethod::SPLITTING:
-            this->ui->stacked_simulation->setCurrentIndex(2);
-            break;
+            this->ui->le_length_it->setText(QString::number(options->lengthSimulation));
+            this->ui->le_comp_fluid->setText(QString::number(options->fluidPlacesContent));
+            this->ui->le_comp_firing->setText(QString::number(options->firingTimeConflict));
+            this->ui->le_seed->setText(QString::number(options->seed));
+            this->ui->cb_print->setChecked(options->printReport);
+            this->ui->le_warm_up->setText(QString::number(options->warmup));
         }
-
-        this->ui->combo_method_sim->setCurrentIndex(opt->simulationMethod);
-
-        this->ui->rb_num_repl->setChecked(opt->isReplication);
-        this->ui->rb_error_giv->setChecked(!opt->isReplication);
-        this->ui->le_number_repl->setText(QString::number(opt->replicationOrErrorValue));
-
-        this->ui->combo_req_conf->setCurrentIndex(opt->confidence);
-
-        this->ui->le_length_it->setText(QString::number(opt->lengthSimulation));
-        this->ui->le_comp_fluid->setText(QString::number(opt->fluidPlacesContent));
-        this->ui->le_comp_firing->setText(QString::number(opt->firingTimeConflict));
-        this->ui->le_seed->setText(QString::number(opt->seed));
-        this->ui->cb_print->setChecked(opt->printReport);
-        this->ui->le_warm_up->setText(QString::number(opt->warmup));
     }
 }
 
@@ -103,4 +106,79 @@ void OptionsDialog::on_rb_analysis_toggled(bool checked)
 {
     this->ui->tab_an->setEnabled(checked);
     this->ui->tab_sim->setEnabled(!checked);
+}
+
+void OptionsDialog::saveOptions()
+{
+    if(this->options!=nullptr)
+    {
+        options->isNumericalAnalysis = ui->rb_analysis->isChecked();
+        //opções
+        options->reachabilityGraphSet = ui->cb_reach->isChecked();
+        options->markovChain = ui->cb_markov_chain->isChecked();
+        options->derivativeOfCTMC = ui->cb_der_ctmc->isChecked();
+        options->probabilities = ui->cb_prob->isChecked();
+        options->probabilitiesDTMC = ui->cb_prob_dtmc->isChecked();
+        options->dotGraphLanguage = ui->cb_dot->isChecked();
+
+        if(options->isNumericalAnalysis) //análise
+        {
+            if(this->ui->rb_steadystate->isChecked())
+            {
+                options->analysis = spnp::Option::AnalysisOptions::STEADY_STATE;
+            }
+            else if(this->ui->rb_transient->isChecked())
+            {
+                options->analysis = spnp::Option::AnalysisOptions::TRANSIENT;
+            }
+            else
+            {
+                options->analysis = spnp::Option::AnalysisOptions::BOTH;
+            }
+
+            options->sensitivity = ui->cb_sensitivity->isChecked();
+
+            options->absorbinMarking = ui->cb_absorbing_marking->isChecked();
+
+            options->absorbinMarking = ui->cb_absorbing_marking->isChecked();
+            options->trasientVanishingLoops = ui->cb_trans_van_loops->isChecked();
+            options->transientInitialMarking = ui->cb_trans_ini_mark->isChecked();
+            options->vanishingInitialMarking = ui->cb_vanishing_ini_val->isChecked();
+
+            options->approach = static_cast<spnp::Option::Approach>(ui->combo_approach->currentIndex());
+            options->steadyStateMethod = static_cast<spnp::Option::SteadStateMethod>(ui->combo_steadystate->currentIndex());
+            options->transientMethod = static_cast<spnp::Option::TransientMethod>(this->ui->combo_transient_method->currentIndex());
+
+            options->maxIterations = ui->le_max_iter->text().toInt();
+            options->minPrecision = ui->le_min_prec->text().toDouble();
+            options->m0returnRate = ui->le_m0_ret_rate->text().toDouble();
+
+            options->computeCumulativeProbabilities = ui->cb_compute->isChecked();
+            options->steadyStateDetection = ui->cb_steadystate_detect->isChecked();
+
+            options->vanishing = static_cast<spnp::Option::VanishingMarkings>(ui->combo_vanishing_mark->currentIndex());
+        }
+        else //simulação
+        {
+            options->simulationMethod = static_cast<spnp::Option::SimulationMethod>(ui->combo_method_sim->currentIndex());
+
+            this->ui->rb_num_repl->setChecked(options->isReplication);
+            this->ui->rb_error_giv->setChecked(!options->isReplication);
+            this->ui->le_number_repl->setText(QString::number(options->replicationOrErrorValue));
+
+            this->ui->combo_req_conf->setCurrentIndex(options->confidence);
+
+            this->ui->le_length_it->setText(QString::number(options->lengthSimulation));
+            this->ui->le_comp_fluid->setText(QString::number(options->fluidPlacesContent));
+            this->ui->le_comp_firing->setText(QString::number(options->firingTimeConflict));
+            this->ui->le_seed->setText(QString::number(options->seed));
+            this->ui->cb_print->setChecked(options->printReport);
+            this->ui->le_warm_up->setText(QString::number(options->warmup));
+        }
+    }
+}
+
+void OptionsDialog::on_bt_box_accepted()
+{
+    this->saveOptions();
 }

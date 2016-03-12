@@ -196,6 +196,6 @@ void MainWindow::on_action_preferences_triggered()
     spnp::Project* proj = this->ui->widget->getCurrentProject();
     if(proj != nullptr)
     {
-        this->od->loadOptions(proj);
+        this->od->loadOptions(proj->getOptions());
     }
 }
