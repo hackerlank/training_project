@@ -27,7 +27,7 @@ spnp::Option::Option()
     maxIterations = 2000;
     minPrecision = 0.000001;
     m0returnRate = 0.0;
-    computeCumulativePRobabilities = true;
+    computeCumulativeProbabilities = true;
     steadyStateDetection = true;
     //elimination
     vanishing = Option::VanishingMarkings::DURING_CONSTRUCTION;
@@ -78,7 +78,7 @@ XMLNode *spnp::Option::toXML()
     n->setAttribute("maxIterations", this->maxIterations);
     n->setAttribute("minPrecision", this->minPrecision);
     n->setAttribute("m0returnRate", this->m0returnRate);
-    n->setAttribute("computeCumulativePRobabilities", this->computeCumulativePRobabilities);
+    n->setAttribute("computeCumulativeProbabilities", this->computeCumulativeProbabilities);
     n->setAttribute("steadyStateDetection", this->steadyStateDetection);
     n->setAttribute("vanishing", static_cast<int>(this->vanishing));
     n->setAttribute("simulationMethod", static_cast<int>(this->simulationMethod));
@@ -117,7 +117,7 @@ void spnp::Option::fromXML(XMLNode *xml)
     this->maxIterations = xml->getAttributeI("maxIterations");
     this->minPrecision = xml->getAttributeD("minPrecision");
     this->m0returnRate = xml->getAttributeD("m0returnRate");
-    this->computeCumulativePRobabilities = xml->getAttributeB("computeCumulativePRobabilities");
+    this->computeCumulativeProbabilities = xml->getAttributeB("computeCumulativeProbabilities");
     this->steadyStateDetection = xml->getAttributeB("steadyStateDetection");
     this->vanishing = static_cast<VanishingMarkings>(xml->getAttributeI("vanishing"));
     this->simulationMethod = static_cast<SimulationMethod>(xml->getAttributeI("simulationMethod"));

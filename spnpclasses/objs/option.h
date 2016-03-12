@@ -86,7 +86,7 @@ public:
     int maxIterations;
     double minPrecision;
     double m0returnRate;
-    bool computeCumulativePRobabilities;
+    bool computeCumulativeProbabilities;
     bool steadyStateDetection;
     //elimination
     Option::VanishingMarkings vanishing;
