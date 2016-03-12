@@ -64,7 +64,7 @@
     <property name="title">
      <string>_&amp;Editar</string>
     </property>
-    <addaction name="action_preferencias"/>
+    <addaction name="action_pathes"/>
    </widget>
    <widget class="QMenu" name="menuSobre">
     <property name="title">
@@ -104,9 +104,9 @@
     <string>Ctrl+W</string>
    </property>
   </action>
-  <action name="action_preferencias">
+  <action name="action_pathes">
    <property name="text">
-    <string>&amp;Preferências</string>
+    <string>&amp;Caminhos</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+Shift+P</string>

@@ -2,7 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-#include "preferencesetupform.h"
+#include "pathsetupform.h"
 #include "newprojectdialog.h"
 
 #include "appsettings.h"
@@ -21,8 +21,6 @@ public:
     bool isLocked();
 
 private slots:
-    void on_action_preferencias_triggered();
-
     void on_action_sair_triggered();
 
     void on_action_Novo_Projeto_triggered();
@@ -39,9 +37,11 @@ private slots:
 
     void on_actionEscrever_triggered();
 
+    void on_action_pathes_triggered();
+
 private:
     Ui::MainWindow *ui;
-    PreferenceSetupForm *psf;
+    PathSetupForm *psf;
     NewProjectDialog *npd;
 
     void createMenus();

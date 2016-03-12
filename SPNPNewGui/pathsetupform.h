@@ -9,13 +9,13 @@ namespace Ui {
 class PreferenceSetupForm;
 }
 
-class PreferenceSetupForm : public QDialog
+class PathSetupForm : public QDialog
 {
     Q_OBJECT
 
 public:
-    explicit PreferenceSetupForm(QWidget *parent = 0);
-    ~PreferenceSetupForm();
+    explicit PathSetupForm(QWidget *parent = 0);
+    ~PathSetupForm();
 
 private slots:
     void on_pb_spnp_clicked();

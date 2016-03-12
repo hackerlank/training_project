@@ -14,24 +14,24 @@ TEMPLATE = app
 
 SOURCES += main.cpp\
         mainwindow.cpp \
-    preferencesetupform.cpp \
     appsettings.cpp \
     newprojectdialog.cpp \
     analysissimulationdialog.cpp \
-    optionsdialog.cpp
+    optionsdialog.cpp \
+    pathsetupform.cpp
 
 HEADERS  += mainwindow.h \
-    preferencesetupform.h \
     appsettings.h \
     newprojectdialog.h \
     analysissimulationdialog.h \
-    optionsdialog.h
+    optionsdialog.h \
+    pathsetupform.h
 
 FORMS    += mainwindow.ui \
-    preferencesetupform.ui \
     newprojectdialog.ui \
     analysissimulationdialog.ui \
-    optionsdialog.ui
+    optionsdialog.ui \
+    pathsetupform.ui
 
 unix{
     DEFINES += LINUX

@@ -1,4 +1,4 @@
-#include "preferencesetupform.h"
+#include "pathsetupform.h"
 #include "ui_preferencesetupform.h"
 
 #include "appsettings.h"
@@ -7,7 +7,7 @@
 #include <QFileInfo>
 #include <QMessageBox>
 
-PreferenceSetupForm::PreferenceSetupForm(QWidget *parent) :
+PathSetupForm::PathSetupForm(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::PreferenceSetupForm)
 {
@@ -18,13 +18,13 @@ PreferenceSetupForm::PreferenceSetupForm(QWidget *parent) :
     this->loadOptions();
 }
 
-PreferenceSetupForm::~PreferenceSetupForm()
+PathSetupForm::~PathSetupForm()
 {
     delete ui;
     delete this->fileDialog;
 }
 
-void PreferenceSetupForm::on_pb_spnp_clicked()
+void PathSetupForm::on_pb_spnp_clicked()
 {
     QString _path = this->ui->le_spnp->text();
     if(_path.isEmpty())
@@ -58,7 +58,7 @@ void PreferenceSetupForm::on_pb_spnp_clicked()
     }
 }
 
-void PreferenceSetupForm::on_pb_examples_clicked()
+void PathSetupForm::on_pb_examples_clicked()
 {
     QString path = this->fileDialog->getExistingDirectory(this, tr("_pasta de exemplos do SPNP..."),
                                                       #ifdef WINDOWS
@@ -102,7 +102,7 @@ void PreferenceSetupForm::on_pb_examples_clicked()
     }
 }
 
-void PreferenceSetupForm::on_pb_plots_clicked()
+void PathSetupForm::on_pb_plots_clicked()
 {
     QString path = this->fileDialog->getExistingDirectory(this, tr("_pasta de gráficos..."),
                                                       #ifdef WINDOWS
@@ -146,7 +146,7 @@ void PreferenceSetupForm::on_pb_plots_clicked()
     }
 }
 
-void PreferenceSetupForm::on_bb_ok_cancel_clicked(QAbstractButton *button)
+void PathSetupForm::on_bb_ok_cancel_clicked(QAbstractButton *button)
 {
     QDialogButtonBox::StandardButton qab = this->ui->bb_ok_cancel->standardButton(button);
     switch (qab)
@@ -165,14 +165,14 @@ void PreferenceSetupForm::on_bb_ok_cancel_clicked(QAbstractButton *button)
     }
 }
 
-void PreferenceSetupForm::loadOptions()
+void PathSetupForm::loadOptions()
 {
     this->ui->le_spnp->setText(AppSettings::Instance()->getSPNPFolder());
     this->ui->le_examples->setText(AppSettings::Instance()->getExamples());
     this->ui->le_plots->setText(AppSettings::Instance()->getGraphs());
 }
 
-void PreferenceSetupForm::saveOptions()
+void PathSetupForm::saveOptions()
 {
     QString spnp = this->ui->le_spnp->text();
 
@@ -188,7 +188,7 @@ void PreferenceSetupForm::saveOptions()
     }
 }
 
-void PreferenceSetupForm::showError(QString title, QString message)
+void PathSetupForm::showError(QString title, QString message)
 {
     QMessageBox box;
     box.critical(this, title, message);

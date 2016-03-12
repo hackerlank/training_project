@@ -19,7 +19,7 @@ MainWindow::MainWindow(QWidget *parent) :
     this->restoreState(AppSettings::Instance()->getState(), AppSettings::VERSION);
     this->ui->widget->setLocked(AppSettings::Instance()->isLocked());
 
-    this->psf = new PreferenceSetupForm(this);
+    this->psf = new PathSetupForm(this);
     this->psf->setModal(true);
 
     this->npd = new NewProjectDialog(this);
@@ -43,11 +43,6 @@ MainWindow::~MainWindow()
 bool MainWindow::isLocked()
 {
     return this->ui->widget->isLocked();
-}
-
-void MainWindow::on_action_preferencias_triggered()
-{
-    this->psf->show();
 }
 
 void MainWindow::on_action_sair_triggered()
@@ -185,4 +180,9 @@ void MainWindow::on_actionEscrever_triggered()
         }
     }
     delete cspl;
+}
+
+void MainWindow::on_action_pathes_triggered()
+{
+    this->psf->show();
 }
