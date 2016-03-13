@@ -18,20 +18,23 @@ SOURCES += main.cpp\
     newprojectdialog.cpp \
     analysissimulationdialog.cpp \
     optionsdialog.cpp \
-    pathsetupform.cpp
+    pathsetupform.cpp \
+    parametersform.cpp
 
 HEADERS  += mainwindow.h \
     appsettings.h \
     newprojectdialog.h \
     analysissimulationdialog.h \
     optionsdialog.h \
-    pathsetupform.h
+    pathsetupform.h \
+    parametersform.h
 
 FORMS    += mainwindow.ui \
     newprojectdialog.ui \
     analysissimulationdialog.ui \
     optionsdialog.ui \
-    pathsetupform.ui
+    pathsetupform.ui \
+    parametersform.ui
 
 unix{
     DEFINES += LINUX
