@@ -98,6 +98,34 @@ void OptionsDialog::loadOptions(spnp::Option *opt)
             this->ui->le_seed->setText(QString::number(options->seed));
             this->ui->cb_print->setChecked(options->printReport);
             this->ui->le_warm_up->setText(QString::number(options->warmup));
+
+            //todo daqui
+            this->ui->cb_output_usual->setChecked(options->outputUsual);
+
+            this->ui->cb_finish->setChecked(options->isFinishEach);
+            this->ui->le_a_num_pre_sim->setText(QString::number(options->numPreSim));
+            this->ui->cb_a_pre_sim->setChecked(options->isPreSim);
+            this->ui->le_a_num_import->setText(QString::number(options->numImport));
+
+            this->ui->le_a_1->setText(options->a1);
+            this->ui->le_a_2->setText(options->a2);
+            this->ui->le_a_3->setText(options->a3);
+            this->ui->le_a_4->setText(options->a4);
+            this->ui->le_a_5->setText(options->a5);
+            this->ui->le_a_6->setText(options->a6);
+
+            //split
+            this->ui->le_stop_num->setText(QString::number(options->stopNum));
+            this->ui->le_b_num_pre_sim->setText(QString::number(options->numPreSimB));
+            this->ui->cb_b_pre_sim->setChecked(options->isPreSimB);
+            this->ui->le_b_num_import->setText(QString::number(options->numImportB));
+
+            this->ui->le_b_1->setText(options->b1);
+            this->ui->le_b_2->setText(options->b2);
+            this->ui->le_b_3->setText(options->b3);
+            this->ui->le_b_4->setText(options->b4);
+            this->ui->le_b_5->setText(options->b5);
+            this->ui->le_b_6->setText(options->b6);
         }
     }
 }
@@ -162,18 +190,18 @@ void OptionsDialog::saveOptions()
         {
             options->simulationMethod = static_cast<spnp::Option::SimulationMethod>(ui->combo_method_sim->currentIndex());
 
-            this->ui->rb_num_repl->setChecked(options->isReplication);
-            this->ui->rb_error_giv->setChecked(!options->isReplication);
-            this->ui->le_number_repl->setText(QString::number(options->replicationOrErrorValue));
+            options->isReplication = ui->rb_num_repl->isChecked();
+            options->replicationOrErrorValue = ui->le_number_repl->text().toDouble();
 
-            this->ui->combo_req_conf->setCurrentIndex(options->confidence);
+            options->confidence = static_cast<spnp::Option::RequiredConfidence>(ui->combo_req_conf->currentIndex());
 
-            this->ui->le_length_it->setText(QString::number(options->lengthSimulation));
-            this->ui->le_comp_fluid->setText(QString::number(options->fluidPlacesContent));
-            this->ui->le_comp_firing->setText(QString::number(options->firingTimeConflict));
-            this->ui->le_seed->setText(QString::number(options->seed));
-            this->ui->cb_print->setChecked(options->printReport);
-            this->ui->le_warm_up->setText(QString::number(options->warmup));
+            options->lengthSimulation = ui->le_length_it->text().toDouble();
+            options->fluidPlacesContent = ui->le_comp_fluid->text().toDouble();
+            options->firingTimeConflict = ui->le_comp_firing->text().toDouble();
+            options->seed = ui->le_seed->text().toDouble();
+
+            options->printReport = ui->cb_print->isChecked();
+            options->warmup = ui->le_warm_up->text().toDouble();
         }
     }
 }
