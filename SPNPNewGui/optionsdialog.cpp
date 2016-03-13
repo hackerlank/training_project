@@ -107,12 +107,12 @@ void OptionsDialog::loadOptions(spnp::Option *opt)
             this->ui->cb_a_pre_sim->setChecked(options->isPreSim);
             this->ui->le_a_num_import->setText(QString::number(options->numImport));
 
-            this->ui->le_a_1->setText(options->a1);
-            this->ui->le_a_2->setText(options->a2);
-            this->ui->le_a_3->setText(options->a3);
-            this->ui->le_a_4->setText(options->a4);
-            this->ui->le_a_5->setText(options->a5);
-            this->ui->le_a_6->setText(options->a6);
+            this->ui->le_a_1->setText(QString::fromStdString(options->a1));
+            this->ui->le_a_2->setText(QString::fromStdString(options->a2));
+            this->ui->le_a_3->setText(QString::fromStdString(options->a3));
+            this->ui->le_a_4->setText(QString::fromStdString(options->a4));
+            this->ui->le_a_5->setText(QString::fromStdString(options->a5));
+            this->ui->le_a_6->setText(QString::fromStdString(options->a6));
 
             //split
             this->ui->le_stop_num->setText(QString::number(options->stopNum));
@@ -120,12 +120,12 @@ void OptionsDialog::loadOptions(spnp::Option *opt)
             this->ui->cb_b_pre_sim->setChecked(options->isPreSimB);
             this->ui->le_b_num_import->setText(QString::number(options->numImportB));
 
-            this->ui->le_b_1->setText(options->b1);
-            this->ui->le_b_2->setText(options->b2);
-            this->ui->le_b_3->setText(options->b3);
-            this->ui->le_b_4->setText(options->b4);
-            this->ui->le_b_5->setText(options->b5);
-            this->ui->le_b_6->setText(options->b6);
+            this->ui->le_b_1->setText(QString::fromStdString(options->b1));
+            this->ui->le_b_2->setText(QString::fromStdString(options->b2));
+            this->ui->le_b_3->setText(QString::fromStdString(options->b3));
+            this->ui->le_b_4->setText(QString::fromStdString(options->b4));
+            this->ui->le_b_5->setText(QString::fromStdString(options->b5));
+            this->ui->le_b_6->setText(QString::fromStdString(options->b6));
         }
     }
 }
