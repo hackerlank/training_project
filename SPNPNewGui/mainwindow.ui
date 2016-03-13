@@ -2,6 +2,9 @@
 <ui version="4.0">
  <class>MainWindow</class>
  <widget class="QMainWindow" name="MainWindow">
+  <property name="enabled">
+   <bool>true</bool>
+  </property>
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -73,16 +76,16 @@
      <string>_&amp;sobre</string>
     </property>
    </widget>
-   <widget class="QMenu" name="menuTeste">
+   <widget class="QMenu" name="menuA_n_lise">
     <property name="title">
-     <string>teste</string>
+     <string>A&amp;nálise</string>
     </property>
-    <addaction name="actionEscrever"/>
+    <addaction name="actionAnalisar"/>
    </widget>
    <addaction name="menu_arquivo"/>
    <addaction name="menuAaa"/>
+   <addaction name="menuA_n_lise"/>
    <addaction name="menuSobre"/>
-   <addaction name="menuTeste"/>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
   <widget class="QToolBar" name="mainToolBar">
@@ -151,11 +154,6 @@
     <string>Salvar &amp;como...</string>
    </property>
   </action>
-  <action name="actionEscrever">
-   <property name="text">
-    <string>escrever</string>
-   </property>
-  </action>
   <action name="action_preferences">
    <property name="enabled">
     <bool>false</bool>
@@ -165,6 +163,14 @@
    </property>
    <property name="shortcut">
     <string>Ctrl+P</string>
+   </property>
+  </action>
+  <action name="actionAnalisar">
+   <property name="text">
+    <string>&amp;Analisar</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+T</string>
    </property>
   </action>
  </widget>

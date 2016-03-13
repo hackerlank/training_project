@@ -28,6 +28,9 @@ MainWindow::MainWindow(QWidget *parent) :
     this->od = new OptionsDialog(this);
     this->od->setModal(true);
 
+    this->asd = new AnalysisSimulationDialog(this);
+    this->asd->setModal(true);
+
     connect(this->npd, SIGNAL(startNewProject(spnp::Project*)),
             this, SLOT(startNewProject(spnp::Project*)));
 
@@ -151,18 +154,35 @@ void MainWindow::load()
     }
 }
 
+void MainWindow::on_action_pathes_triggered()
+{
+    this->psf->show();
+}
+
+void MainWindow::on_action_preferences_triggered()
+{
+    this->od->show();
+    spnp::Project* proj = this->ui->widget->getCurrentProject();
+    if(proj != nullptr)
+    {
+        this->od->loadOptions(proj->getOptions());
+    }
+}
+
 //TODO remover essa função no futuro
 #include "cspl.h"
 #include "saveloadfile.h"
 #include "spnpwrapper.h"
 
 #include <iostream>
-void MainWindow::on_actionEscrever_triggered()
+void MainWindow::on_actionAnalisar_triggered()
 {
     Cspl* cspl = new Cspl();
     SaveLoadFile slf;
     if(this->ui->widget->getCurrentProject() != nullptr)
     {
+        this->asd->show();
+        return;
         spnp::Net *n = this->ui->widget->getCurrentProject()->getNets()->at(0);
         if(n!=nullptr)
         {
@@ -183,19 +203,4 @@ void MainWindow::on_actionEscrever_triggered()
         }
     }
     delete cspl;
-}
-
-void MainWindow::on_action_pathes_triggered()
-{
-    this->psf->show();
-}
-
-void MainWindow::on_action_preferences_triggered()
-{
-    this->od->show();
-    spnp::Project* proj = this->ui->widget->getCurrentProject();
-    if(proj != nullptr)
-    {
-        this->od->loadOptions(proj->getOptions());
-    }
 }

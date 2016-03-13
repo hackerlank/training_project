@@ -5,6 +5,7 @@
 #include "pathsetupform.h"
 #include "newprojectdialog.h"
 #include "optionsdialog.h"
+#include "analysissimulationdialog.h"
 
 #include "appsettings.h"
 namespace Ui {
@@ -36,17 +37,18 @@ private slots:
 
     void on_action_Abrir_Projeto_triggered();
 
-    void on_actionEscrever_triggered();
-
     void on_action_pathes_triggered();
 
     void on_action_preferences_triggered();
+
+    void on_actionAnalisar_triggered();
 
 private:
     Ui::MainWindow *ui;
     PathSetupForm *psf;
     NewProjectDialog *npd;
     OptionsDialog *od;
+    AnalysisSimulationDialog *asd;
 
     void createMenus();
     void updateMenus();
@@ -58,6 +60,8 @@ private:
     QAction* recentFileActs[AppSettings::MaxRecentFiles];
 
     std::string currentFile;
+
+
 };
 
 #endif // MAINWINDOW_H

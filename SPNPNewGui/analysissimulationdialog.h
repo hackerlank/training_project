@@ -2,6 +2,7 @@
 #define ANALYSISSIMULATIONDIALOG_H
 
 #include <QDialog>
+#include "highlighter.h"
 
 namespace Ui {
 class AnalysisSimulationDialog;
@@ -17,6 +18,7 @@ public:
 
 private:
     Ui::AnalysisSimulationDialog *ui;
+    Highlighter *hl;
 };
 
 #endif // ANALYSISSIMULATIONDIALOG_H

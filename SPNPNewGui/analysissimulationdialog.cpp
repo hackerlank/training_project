@@ -6,9 +6,11 @@ AnalysisSimulationDialog::AnalysisSimulationDialog(QWidget *parent) :
     ui(new Ui::AnalysisSimulationDialog)
 {
     ui->setupUi(this);
+    this->hl = new Highlighter(this->ui->text_edit->document());
 }
 
 AnalysisSimulationDialog::~AnalysisSimulationDialog()
 {
     delete ui;
+    delete hl;
 }
