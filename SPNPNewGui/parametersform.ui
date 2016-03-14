@@ -6,52 +6,268 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>796</width>
-    <height>528</height>
+    <width>800</width>
+    <height>450</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Form</string>
   </property>
-  <widget class="QToolBox" name="toolBox">
-   <property name="geometry">
-    <rect>
-     <x>70</x>
-     <y>122</y>
-     <width>391</width>
-     <height>281</height>
-    </rect>
-   </property>
-   <property name="currentIndex">
-    <number>0</number>
-   </property>
-   <widget class="QWidget" name="page">
-    <property name="geometry">
-     <rect>
-      <x>0</x>
-      <y>0</y>
-      <width>391</width>
-      <height>227</height>
-     </rect>
-    </property>
-    <attribute name="label">
-     <string>Page 1</string>
-    </attribute>
-   </widget>
-   <widget class="QWidget" name="page_2">
-    <property name="geometry">
-     <rect>
-      <x>0</x>
-      <y>0</y>
-      <width>69</width>
-      <height>69</height>
-     </rect>
-    </property>
-    <attribute name="label">
-     <string>Page 2</string>
-    </attribute>
-   </widget>
-  </widget>
+  <layout class="QGridLayout" name="gridLayout">
+   <item row="0" column="0" rowspan="4">
+    <widget class="QScrollArea" name="scrollArea">
+     <property name="widgetResizable">
+      <bool>true</bool>
+     </property>
+     <widget class="QWidget" name="scrollAreaWidgetContents">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>-251</y>
+        <width>326</width>
+        <height>681</height>
+       </rect>
+      </property>
+      <layout class="QGridLayout" name="gridLayout_2">
+       <item row="0" column="0">
+        <widget class="QToolBox" name="toolBox">
+         <property name="currentIndex">
+          <number>21</number>
+         </property>
+         <widget class="QWidget" name="expected_1">
+          <property name="geometry">
+           <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>308</width>
+            <height>69</height>
+           </rect>
+          </property>
+          <attribute name="label">
+           <string>Expected # of tokens of a given place in steady-state</string>
+          </attribute>
+         </widget>
+         <widget class="QWidget" name="expected_2">
+          <property name="geometry">
+           <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>308</width>
+            <height>69</height>
+           </rect>
+          </property>
+          <attribute name="label">
+           <string>Expected # of tokens of a given place at time t</string>
+          </attribute>
+         </widget>
+         <widget class="QWidget" name="expected_3">
+          <property name="geometry">
+           <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>308</width>
+            <height>69</height>
+           </rect>
+          </property>
+          <attribute name="label">
+           <string>Expected # of tokens of all places in steady-state</string>
+          </attribute>
+         </widget>
+         <widget class="QWidget" name="expected_4">
+          <property name="geometry">
+           <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>308</width>
+            <height>69</height>
+           </rect>
+          </property>
+          <attribute name="label">
+           <string>Expected # of tokens of all places at time t</string>
+          </attribute>
+         </widget>
+         <widget class="QWidget" name="throughput_1">
+          <property name="geometry">
+           <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>308</width>
+            <height>69</height>
+           </rect>
+          </property>
+          <attribute name="label">
+           <string>Throughput of the given transition in steady-state</string>
+          </attribute>
+         </widget>
+         <widget class="QWidget" name="throughput_2">
+          <property name="geometry">
+           <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>308</width>
+            <height>69</height>
+           </rect>
+          </property>
+          <attribute name="label">
+           <string>Throughput of the given transition at time t</string>
+          </attribute>
+         </widget>
+         <widget class="QWidget" name="throughput_3">
+          <property name="geometry">
+           <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>308</width>
+            <height>69</height>
+           </rect>
+          </property>
+          <attribute name="label">
+           <string>Throughput of all transitions in steady-state</string>
+          </attribute>
+         </widget>
+         <widget class="QWidget" name="throughput_4">
+          <property name="geometry">
+           <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>308</width>
+            <height>69</height>
+           </rect>
+          </property>
+          <attribute name="label">
+           <string>Throughput of all transitions in time t</string>
+          </attribute>
+         </widget>
+         <widget class="QWidget" name="utilization_1">
+          <attribute name="label">
+           <string>Utilization for a given transition in steady-state</string>
+          </attribute>
+         </widget>
+         <widget class="QWidget" name="utilization_2">
+          <attribute name="label">
+           <string>Utilization for a given transition at time t</string>
+          </attribute>
+         </widget>
+         <widget class="QWidget" name="utilization_3">
+          <attribute name="label">
+           <string>Utilization for all transitions in steady-state</string>
+          </attribute>
+         </widget>
+         <widget class="QWidget" name="utilization_4">
+          <attribute name="label">
+           <string>Utilization for all transitions at time t</string>
+          </attribute>
+         </widget>
+         <widget class="QWidget" name="prob_1">
+          <attribute name="label">
+           <string>Probability that the given place is empty in steady-state</string>
+          </attribute>
+         </widget>
+         <widget class="QWidget" name="prob_2">
+          <attribute name="label">
+           <string>Probability that the given place is empty at time t</string>
+          </attribute>
+         </widget>
+         <widget class="QWidget" name="prob_3">
+          <attribute name="label">
+           <string>Probability that all places are empty in steady-state</string>
+          </attribute>
+         </widget>
+         <widget class="QWidget" name="prob_4">
+          <attribute name="label">
+           <string>Probability that all places are empty at time t</string>
+          </attribute>
+         </widget>
+         <widget class="QWidget" name="expected_b1">
+          <attribute name="label">
+           <string>Expected reward rate in steady-state</string>
+          </attribute>
+         </widget>
+         <widget class="QWidget" name="expected_b2">
+          <attribute name="label">
+           <string>Expected reward rate at time t</string>
+          </attribute>
+         </widget>
+         <widget class="QWidget" name="expected_b3">
+          <attribute name="label">
+           <string>Expected accumulated rate until absorption</string>
+          </attribute>
+         </widget>
+         <widget class="QWidget" name="expected_b4">
+          <attribute name="label">
+           <string>Expected accumulated reward by time t</string>
+          </attribute>
+         </widget>
+         <widget class="QWidget" name="ss_analysis">
+          <attribute name="label">
+           <string>Steady-state analysis, default measures</string>
+          </attribute>
+         </widget>
+         <widget class="QWidget" name="variable_value">
+          <attribute name="label">
+           <string>Value of a variable (pr_value)</string>
+          </attribute>
+         </widget>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </widget>
+   </item>
+   <item row="0" column="1">
+    <spacer name="verticalSpacer">
+     <property name="orientation">
+      <enum>Qt::Vertical</enum>
+     </property>
+     <property name="sizeHint" stdset="0">
+      <size>
+       <width>20</width>
+       <height>181</height>
+      </size>
+     </property>
+    </spacer>
+   </item>
+   <item row="0" column="2" rowspan="4">
+    <widget class="QGroupBox" name="groupBox">
+     <property name="minimumSize">
+      <size>
+       <width>350</width>
+       <height>0</height>
+      </size>
+     </property>
+     <property name="title">
+      <string>Saídas selecionadas</string>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="1">
+    <widget class="QPushButton" name="btAdd">
+     <property name="text">
+      <string>Adicionar</string>
+     </property>
+    </widget>
+   </item>
+   <item row="2" column="1">
+    <widget class="QPushButton" name="bt_remove">
+     <property name="text">
+      <string>Remover</string>
+     </property>
+    </widget>
+   </item>
+   <item row="3" column="1">
+    <spacer name="verticalSpacer_2">
+     <property name="orientation">
+      <enum>Qt::Vertical</enum>
+     </property>
+     <property name="sizeHint" stdset="0">
+      <size>
+       <width>20</width>
+       <height>181</height>
+      </size>
+     </property>
+    </spacer>
+   </item>
+  </layout>
  </widget>
  <resources/>
  <connections/>
