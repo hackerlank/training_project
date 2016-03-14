@@ -1,5 +1,6 @@
 #include "pathsetupform.h"
-#include "ui_preferencesetupform.h"
+
+#include "ui_pathsetupform.h"
 
 #include "appsettings.h"
 
