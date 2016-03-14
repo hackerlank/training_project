@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>619</width>
+    <width>851</width>
     <height>512</height>
    </rect>
   </property>
@@ -25,7 +25,7 @@
       </attribute>
       <layout class="QGridLayout" name="gridLayout_3">
        <item row="0" column="0">
-        <widget class="QWidget" name="w_param" native="true"/>
+        <widget class="ParametersForm" name="w_param" native="true"/>
        </item>
       </layout>
      </widget>
@@ -103,6 +103,14 @@ p, li { white-space: pre-wrap; }
    </item>
   </layout>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>ParametersForm</class>
+   <extends>QWidget</extends>
+   <header>parametersform.h</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections>
   <connection>
