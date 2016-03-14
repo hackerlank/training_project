@@ -8,4 +8,5 @@ SUBDIRS += \
     HighLighter \
     SaveLoadFile \
     PetriWidget \
-    SPNPNewGui
+    SPNPNewGui \
+    QAccordion

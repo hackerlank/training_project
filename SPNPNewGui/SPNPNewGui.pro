@@ -45,6 +45,7 @@ unix{
     LIBS += -L$$OUT_PWD/../PetriWidget/ -lPetriWidget
     LIBS += -L$$OUT_PWD/../cspl/ -lcspl
     LIBS += -L$$OUT_PWD/../SPNPWrapper/ -lSPNPWrapper
+    LIBS += -L$$OUT_PWD/../QAccordion/ -lQAccordion
 }
 
 win32{
@@ -70,6 +71,9 @@ win32{
 
     CONFIG(release, debug|release): LIBS += -L$$OUT_PWD/../SPNPWrapper/release/ -lSPNPWrapper
     else:CONFIG(debug, debug|release): LIBS += -L$$OUT_PWD/../SPNPWrapper/debug/ -lSPNPWrapper
+
+    CONFIG(release, debug|release): LIBS += -L$$OUT_PWD/../QAccordion/release/ -lQAccordion
+    else:CONFIG(debug, debug|release): LIBS += -L$$OUT_PWD/../QAccordion/debug/ -lQAccordion
 }
 
 INCLUDEPATH += $$PWD/../HighLighter
@@ -92,3 +96,6 @@ DEPENDPATH += $$PWD/../cspl
 
 INCLUDEPATH += $$PWD/../SPNPWrapper
 DEPENDPATH += $$PWD/../SPNPWrapper
+
+INCLUDEPATH += $$PWD/../QAccordion
+DEPENDPATH += $$PWD/../QAccordion
