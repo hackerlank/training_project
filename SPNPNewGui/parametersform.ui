@@ -14,7 +14,7 @@
    <string>Form</string>
   </property>
   <layout class="QGridLayout" name="gridLayout">
-   <item row="0" column="0" rowspan="4">
+   <item row="0" column="0">
     <widget class="QScrollArea" name="scrollArea">
      <property name="widgetResizable">
       <bool>true</bool>
@@ -24,7 +24,7 @@
        <rect>
         <x>0</x>
         <y>-251</y>
-        <width>326</width>
+        <width>407</width>
         <height>681</height>
        </rect>
       </property>
@@ -32,136 +32,473 @@
        <item row="0" column="0">
         <widget class="QToolBox" name="toolBox">
          <property name="currentIndex">
-          <number>21</number>
+          <number>12</number>
          </property>
          <widget class="QWidget" name="expected_1">
           <property name="geometry">
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>308</width>
+            <width>389</width>
             <height>69</height>
            </rect>
           </property>
           <attribute name="label">
            <string>Expected # of tokens of a given place in steady-state</string>
           </attribute>
+          <layout class="QHBoxLayout" name="horizontalLayout_2">
+           <item>
+            <widget class="QLabel" name="label">
+             <property name="text">
+              <string>Lugar</string>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QComboBox" name="comboBox"/>
+           </item>
+           <item>
+            <widget class="QPushButton" name="pushButton">
+             <property name="text">
+              <string>Adicionar</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
          </widget>
          <widget class="QWidget" name="expected_2">
           <property name="geometry">
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>308</width>
+            <width>389</width>
             <height>69</height>
            </rect>
           </property>
           <attribute name="label">
            <string>Expected # of tokens of a given place at time t</string>
           </attribute>
+          <attribute name="toolTip">
+           <string>Para usar loop: valor inicial, valor de parada, incremento</string>
+          </attribute>
+          <layout class="QGridLayout" name="gridLayout_3">
+           <item row="0" column="0">
+            <widget class="QLabel" name="label_3">
+             <property name="text">
+              <string>Valor de t:</string>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="1">
+            <widget class="QLineEdit" name="lineEdit"/>
+           </item>
+           <item row="0" column="2">
+            <spacer name="verticalSpacer">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>20</width>
+               <height>19</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+           <item row="1" column="0">
+            <widget class="QLabel" name="label_4">
+             <property name="text">
+              <string>Lugar:</string>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="1">
+            <widget class="QComboBox" name="comboBox_2"/>
+           </item>
+           <item row="1" column="2">
+            <widget class="QPushButton" name="pushButton_2">
+             <property name="text">
+              <string>Adicionar</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
          </widget>
          <widget class="QWidget" name="expected_3">
           <property name="geometry">
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>308</width>
+            <width>389</width>
             <height>69</height>
            </rect>
           </property>
           <attribute name="label">
            <string>Expected # of tokens of all places in steady-state</string>
           </attribute>
+          <widget class="QPushButton" name="pushButton_3">
+           <property name="geometry">
+            <rect>
+             <x>150</x>
+             <y>20</y>
+             <width>75</width>
+             <height>23</height>
+            </rect>
+           </property>
+           <property name="text">
+            <string>Adicionar</string>
+           </property>
+          </widget>
          </widget>
          <widget class="QWidget" name="expected_4">
           <property name="geometry">
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>308</width>
+            <width>389</width>
             <height>69</height>
            </rect>
           </property>
           <attribute name="label">
            <string>Expected # of tokens of all places at time t</string>
           </attribute>
+          <attribute name="toolTip">
+           <string>Para usar loop: valor inicial, valor de parada, incremento</string>
+          </attribute>
+          <layout class="QHBoxLayout" name="horizontalLayout_3">
+           <item>
+            <widget class="QLabel" name="label_2">
+             <property name="text">
+              <string>Valor de t:</string>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLineEdit" name="lineEdit_2"/>
+           </item>
+           <item>
+            <widget class="QPushButton" name="pushButton_4">
+             <property name="text">
+              <string>Adicionar</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
          </widget>
          <widget class="QWidget" name="throughput_1">
           <property name="geometry">
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>308</width>
+            <width>389</width>
             <height>69</height>
            </rect>
           </property>
           <attribute name="label">
            <string>Throughput of the given transition in steady-state</string>
           </attribute>
+          <layout class="QHBoxLayout" name="horizontalLayout">
+           <item>
+            <widget class="QLabel" name="label_5">
+             <property name="text">
+              <string>Transição:</string>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QComboBox" name="comboBox_6"/>
+           </item>
+           <item>
+            <widget class="QPushButton" name="pushButton_5">
+             <property name="text">
+              <string>Adicionar</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
          </widget>
          <widget class="QWidget" name="throughput_2">
           <property name="geometry">
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>308</width>
+            <width>389</width>
             <height>69</height>
            </rect>
           </property>
           <attribute name="label">
            <string>Throughput of the given transition at time t</string>
           </attribute>
+          <attribute name="toolTip">
+           <string>Para usar loop: valor inicial, valor de parada, incremento</string>
+          </attribute>
+          <layout class="QGridLayout" name="gridLayout_4">
+           <item row="0" column="0">
+            <widget class="QLabel" name="label_6">
+             <property name="text">
+              <string>Valor de t:</string>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="1">
+            <widget class="QLineEdit" name="lineEdit_4"/>
+           </item>
+           <item row="0" column="2">
+            <spacer name="verticalSpacer_2">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>20</width>
+               <height>19</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+           <item row="1" column="0">
+            <widget class="QLabel" name="label_7">
+             <property name="text">
+              <string>Transição:</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="1">
+            <widget class="QComboBox" name="comboBox_3"/>
+           </item>
+           <item row="1" column="2">
+            <widget class="QPushButton" name="pushButton_6">
+             <property name="text">
+              <string>Adicionar</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
          </widget>
          <widget class="QWidget" name="throughput_3">
           <property name="geometry">
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>308</width>
+            <width>389</width>
             <height>69</height>
            </rect>
           </property>
           <attribute name="label">
            <string>Throughput of all transitions in steady-state</string>
           </attribute>
+          <widget class="QPushButton" name="pushButton_7">
+           <property name="geometry">
+            <rect>
+             <x>150</x>
+             <y>20</y>
+             <width>75</width>
+             <height>23</height>
+            </rect>
+           </property>
+           <property name="text">
+            <string>Adicionar</string>
+           </property>
+          </widget>
          </widget>
          <widget class="QWidget" name="throughput_4">
           <property name="geometry">
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>308</width>
+            <width>389</width>
             <height>69</height>
            </rect>
           </property>
           <attribute name="label">
            <string>Throughput of all transitions in time t</string>
           </attribute>
+          <attribute name="toolTip">
+           <string>Para usar loop: valor inicial, valor de parada, incremento</string>
+          </attribute>
+          <layout class="QHBoxLayout" name="horizontalLayout_5">
+           <item>
+            <widget class="QLabel" name="label_8">
+             <property name="text">
+              <string>Valor de t:</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLineEdit" name="lineEdit_5"/>
+           </item>
+           <item>
+            <widget class="QPushButton" name="pushButton_8">
+             <property name="text">
+              <string>Adicionar</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
          </widget>
          <widget class="QWidget" name="utilization_1">
           <attribute name="label">
            <string>Utilization for a given transition in steady-state</string>
           </attribute>
+          <layout class="QHBoxLayout" name="horizontalLayout_6">
+           <item>
+            <widget class="QLabel" name="label_9">
+             <property name="text">
+              <string>Nome da transição:</string>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QComboBox" name="comboBox_4"/>
+           </item>
+           <item>
+            <widget class="QPushButton" name="pushButton_9">
+             <property name="text">
+              <string>Adicionar</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
          </widget>
          <widget class="QWidget" name="utilization_2">
           <attribute name="label">
            <string>Utilization for a given transition at time t</string>
           </attribute>
+          <attribute name="toolTip">
+           <string>Para usar loop: valor inicial, valor de parada, incremento</string>
+          </attribute>
+          <layout class="QGridLayout" name="gridLayout_7">
+           <item row="0" column="0">
+            <widget class="QLabel" name="label_10">
+             <property name="text">
+              <string>Valor de t:</string>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="1">
+            <widget class="QLineEdit" name="lineEdit_6"/>
+           </item>
+           <item row="0" column="2">
+            <spacer name="verticalSpacer_3">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>20</width>
+               <height>19</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+           <item row="1" column="0">
+            <widget class="QLabel" name="label_11">
+             <property name="text">
+              <string>Transição:</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="1">
+            <widget class="QComboBox" name="comboBox_5"/>
+           </item>
+           <item row="1" column="2">
+            <widget class="QPushButton" name="pushButton_10">
+             <property name="text">
+              <string>Adicionar</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
          </widget>
          <widget class="QWidget" name="utilization_3">
           <attribute name="label">
            <string>Utilization for all transitions in steady-state</string>
           </attribute>
+          <widget class="QPushButton" name="pushButton_11">
+           <property name="geometry">
+            <rect>
+             <x>150</x>
+             <y>20</y>
+             <width>75</width>
+             <height>23</height>
+            </rect>
+           </property>
+           <property name="text">
+            <string>Adicionar</string>
+           </property>
+          </widget>
          </widget>
          <widget class="QWidget" name="utilization_4">
           <attribute name="label">
            <string>Utilization for all transitions at time t</string>
           </attribute>
+          <attribute name="toolTip">
+           <string>Para usar loop: valor inicial, valor de parada, incremento</string>
+          </attribute>
+          <layout class="QHBoxLayout" name="horizontalLayout_4">
+           <item>
+            <widget class="QLabel" name="label_12">
+             <property name="text">
+              <string>Valor de t:</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLineEdit" name="lineEdit_3"/>
+           </item>
+           <item>
+            <widget class="QPushButton" name="pushButton_12">
+             <property name="text">
+              <string>Adicionar</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
          </widget>
          <widget class="QWidget" name="prob_1">
           <attribute name="label">
            <string>Probability that the given place is empty in steady-state</string>
           </attribute>
+          <layout class="QHBoxLayout" name="horizontalLayout_7">
+           <item>
+            <widget class="QLabel" name="label_13">
+             <property name="text">
+              <string>Lugar:</string>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QComboBox" name="comboBox_7"/>
+           </item>
+           <item>
+            <widget class="QPushButton" name="pushButton_13">
+             <property name="text">
+              <string>Adicionar</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
          </widget>
          <widget class="QWidget" name="prob_2">
           <attribute name="label">
@@ -215,19 +552,6 @@
     </widget>
    </item>
    <item row="0" column="1">
-    <spacer name="verticalSpacer">
-     <property name="orientation">
-      <enum>Qt::Vertical</enum>
-     </property>
-     <property name="sizeHint" stdset="0">
-      <size>
-       <width>20</width>
-       <height>181</height>
-      </size>
-     </property>
-    </spacer>
-   </item>
-   <item row="0" column="2" rowspan="4">
     <widget class="QGroupBox" name="groupBox">
      <property name="minimumSize">
       <size>
@@ -239,33 +563,6 @@
       <string>Saídas selecionadas</string>
      </property>
     </widget>
-   </item>
-   <item row="1" column="1">
-    <widget class="QPushButton" name="btAdd">
-     <property name="text">
-      <string>Adicionar</string>
-     </property>
-    </widget>
-   </item>
-   <item row="2" column="1">
-    <widget class="QPushButton" name="bt_remove">
-     <property name="text">
-      <string>Remover</string>
-     </property>
-    </widget>
-   </item>
-   <item row="3" column="1">
-    <spacer name="verticalSpacer_2">
-     <property name="orientation">
-      <enum>Qt::Vertical</enum>
-     </property>
-     <property name="sizeHint" stdset="0">
-      <size>
-       <width>20</width>
-       <height>181</height>
-      </size>
-     </property>
-    </spacer>
    </item>
   </layout>
  </widget>
