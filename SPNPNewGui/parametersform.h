@@ -15,6 +15,9 @@ public:
     explicit ParametersForm(QWidget *parent = 0);
     ~ParametersForm();
 
+private slots:
+    void on_bt_place_steady_clicked();
+
 private:
     Ui::ParametersForm *ui;
 };

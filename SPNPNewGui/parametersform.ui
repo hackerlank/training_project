@@ -23,9 +23,9 @@
       <property name="geometry">
        <rect>
         <x>0</x>
-        <y>-251</y>
-        <width>407</width>
-        <height>681</height>
+        <y>-343</y>
+        <width>408</width>
+        <height>773</height>
        </rect>
       </property>
       <layout class="QGridLayout" name="gridLayout_2">
@@ -42,8 +42,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>389</width>
-            <height>69</height>
+            <width>390</width>
+            <height>73</height>
            </rect>
           </property>
           <attribute name="label">
@@ -64,7 +64,7 @@
             <widget class="QComboBox" name="comboBox"/>
            </item>
            <item>
-            <widget class="QPushButton" name="pushButton">
+            <widget class="QPushButton" name="bt_place_steady">
              <property name="text">
               <string>Adicionar</string>
              </property>
@@ -77,8 +77,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>389</width>
-            <height>69</height>
+            <width>377</width>
+            <height>78</height>
            </rect>
           </property>
           <attribute name="label">
@@ -132,7 +132,7 @@
             <widget class="QComboBox" name="comboBox_2"/>
            </item>
            <item row="1" column="2">
-            <widget class="QPushButton" name="pushButton_2">
+            <widget class="QPushButton" name="bt_place_time">
              <property name="text">
               <string>Adicionar</string>
              </property>
@@ -145,14 +145,14 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>389</width>
-            <height>69</height>
+            <width>390</width>
+            <height>73</height>
            </rect>
           </property>
           <attribute name="label">
            <string>Expected # of tokens of all places in steady-state</string>
           </attribute>
-          <widget class="QPushButton" name="pushButton_3">
+          <widget class="QPushButton" name="bt_places_steady">
            <property name="geometry">
             <rect>
              <x>150</x>
@@ -171,8 +171,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>389</width>
-            <height>69</height>
+            <width>390</width>
+            <height>73</height>
            </rect>
           </property>
           <attribute name="label">
@@ -200,7 +200,7 @@
             </widget>
            </item>
            <item>
-            <widget class="QPushButton" name="pushButton_4">
+            <widget class="QPushButton" name="bt_places_time">
              <property name="text">
               <string>Adicionar</string>
              </property>
@@ -213,8 +213,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>389</width>
-            <height>69</height>
+            <width>390</width>
+            <height>73</height>
            </rect>
           </property>
           <attribute name="label">
@@ -235,7 +235,7 @@
             <widget class="QComboBox" name="comboBox_6"/>
            </item>
            <item>
-            <widget class="QPushButton" name="pushButton_5">
+            <widget class="QPushButton" name="bt_t_tran_steady">
              <property name="text">
               <string>Adicionar</string>
              </property>
@@ -248,8 +248,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>389</width>
-            <height>69</height>
+            <width>377</width>
+            <height>78</height>
            </rect>
           </property>
           <attribute name="label">
@@ -297,7 +297,7 @@
             <widget class="QComboBox" name="comboBox_3"/>
            </item>
            <item row="1" column="2">
-            <widget class="QPushButton" name="pushButton_6">
+            <widget class="QPushButton" name="bt_t_tran_time">
              <property name="text">
               <string>Adicionar</string>
              </property>
@@ -310,14 +310,14 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>389</width>
-            <height>69</height>
+            <width>390</width>
+            <height>73</height>
            </rect>
           </property>
           <attribute name="label">
            <string>Throughput of all transitions in steady-state</string>
           </attribute>
-          <widget class="QPushButton" name="pushButton_7">
+          <widget class="QPushButton" name="bt_t_trans_steady">
            <property name="geometry">
             <rect>
              <x>150</x>
@@ -336,8 +336,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>389</width>
-            <height>69</height>
+            <width>390</width>
+            <height>73</height>
            </rect>
           </property>
           <attribute name="label">
@@ -362,7 +362,7 @@
             </widget>
            </item>
            <item>
-            <widget class="QPushButton" name="pushButton_8">
+            <widget class="QPushButton" name="bt_t_trans_time">
              <property name="text">
               <string>Adicionar</string>
              </property>
@@ -375,8 +375,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>389</width>
-            <height>69</height>
+            <width>390</width>
+            <height>73</height>
            </rect>
           </property>
           <attribute name="label">
@@ -397,7 +397,7 @@
             <widget class="QComboBox" name="comboBox_4"/>
            </item>
            <item>
-            <widget class="QPushButton" name="pushButton_9">
+            <widget class="QPushButton" name="bt_u_tran_steady">
              <property name="text">
               <string>Adicionar</string>
              </property>
@@ -410,8 +410,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>389</width>
-            <height>69</height>
+            <width>377</width>
+            <height>78</height>
            </rect>
           </property>
           <attribute name="label">
@@ -459,7 +459,7 @@
             <widget class="QComboBox" name="comboBox_5"/>
            </item>
            <item row="1" column="2">
-            <widget class="QPushButton" name="pushButton_10">
+            <widget class="QPushButton" name="bt_u_tran_time">
              <property name="text">
               <string>Adicionar</string>
              </property>
@@ -472,14 +472,14 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>389</width>
-            <height>69</height>
+            <width>390</width>
+            <height>73</height>
            </rect>
           </property>
           <attribute name="label">
            <string>Utilization for all transitions in steady-state</string>
           </attribute>
-          <widget class="QPushButton" name="pushButton_11">
+          <widget class="QPushButton" name="bt_u_trans_steady">
            <property name="geometry">
             <rect>
              <x>150</x>
@@ -498,8 +498,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>389</width>
-            <height>69</height>
+            <width>390</width>
+            <height>73</height>
            </rect>
           </property>
           <attribute name="label">
@@ -524,7 +524,7 @@
             </widget>
            </item>
            <item>
-            <widget class="QPushButton" name="pushButton_12">
+            <widget class="QPushButton" name="bt_u_trans_time">
              <property name="text">
               <string>Adicionar</string>
              </property>
@@ -537,8 +537,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>389</width>
-            <height>69</height>
+            <width>390</width>
+            <height>73</height>
            </rect>
           </property>
           <attribute name="label">
@@ -559,7 +559,7 @@
             <widget class="QComboBox" name="comboBox_7"/>
            </item>
            <item>
-            <widget class="QPushButton" name="pushButton_13">
+            <widget class="QPushButton" name="bt_prob_place_steady">
              <property name="text">
               <string>Adicionar</string>
              </property>
@@ -572,8 +572,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>372</width>
-            <height>73</height>
+            <width>377</width>
+            <height>84</height>
            </rect>
           </property>
           <attribute name="label">
@@ -624,7 +624,7 @@
             <widget class="QComboBox" name="comboBox_8"/>
            </item>
            <item row="2" column="2">
-            <widget class="QPushButton" name="pushButton_14">
+            <widget class="QPushButton" name="bt_prob_place_time">
              <property name="text">
               <string>Adicionar</string>
              </property>
@@ -637,14 +637,14 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>389</width>
-            <height>69</height>
+            <width>390</width>
+            <height>73</height>
            </rect>
           </property>
           <attribute name="label">
            <string>Probability that all places are empty in steady-state</string>
           </attribute>
-          <widget class="QPushButton" name="pushButton_15">
+          <widget class="QPushButton" name="bt_prob_places_steady">
            <property name="geometry">
             <rect>
              <x>150</x>
@@ -663,8 +663,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>389</width>
-            <height>69</height>
+            <width>390</width>
+            <height>73</height>
            </rect>
           </property>
           <attribute name="label">
@@ -689,7 +689,7 @@
             </widget>
            </item>
            <item>
-            <widget class="QPushButton" name="pushButton_16">
+            <widget class="QPushButton" name="bt_prob_places_time">
              <property name="text">
               <string>Adicionar</string>
              </property>
@@ -702,8 +702,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>389</width>
-            <height>69</height>
+            <width>390</width>
+            <height>73</height>
            </rect>
           </property>
           <attribute name="label">
@@ -724,7 +724,7 @@
             <widget class="QComboBox" name="comboBox_9"/>
            </item>
            <item>
-            <widget class="QPushButton" name="pushButton_17">
+            <widget class="QPushButton" name="bt_reward_steady">
              <property name="text">
               <string>Adicionar</string>
              </property>
@@ -737,8 +737,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>389</width>
-            <height>69</height>
+            <width>377</width>
+            <height>78</height>
            </rect>
           </property>
           <attribute name="label">
@@ -789,7 +789,7 @@
             <widget class="QComboBox" name="comboBox_10"/>
            </item>
            <item row="1" column="2">
-            <widget class="QPushButton" name="pushButton_18">
+            <widget class="QPushButton" name="bt_reward_time">
              <property name="text">
               <string>Adicionar</string>
              </property>
@@ -802,8 +802,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>250</width>
-            <height>41</height>
+            <width>390</width>
+            <height>73</height>
            </rect>
           </property>
           <attribute name="label">
@@ -824,7 +824,7 @@
             <widget class="QComboBox" name="comboBox_11"/>
            </item>
            <item>
-            <widget class="QPushButton" name="pushButton_19">
+            <widget class="QPushButton" name="bt_acc_abs">
              <property name="text">
               <string>Adicionar</string>
              </property>
@@ -837,8 +837,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>389</width>
-            <height>69</height>
+            <width>377</width>
+            <height>78</height>
            </rect>
           </property>
           <attribute name="label">
@@ -886,7 +886,7 @@
             <widget class="QComboBox" name="comboBox_12"/>
            </item>
            <item row="1" column="2">
-            <widget class="QPushButton" name="pushButton_20">
+            <widget class="QPushButton" name="bt_acc_time">
              <property name="text">
               <string>Adicionar</string>
              </property>
@@ -899,8 +899,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>389</width>
-            <height>69</height>
+            <width>390</width>
+            <height>73</height>
            </rect>
           </property>
           <attribute name="label">
@@ -908,7 +908,7 @@
           </attribute>
           <layout class="QGridLayout" name="gridLayout_9">
            <item row="0" column="0">
-            <widget class="QPushButton" name="pushButton_21">
+            <widget class="QPushButton" name="bt_steady_measures">
              <property name="text">
               <string>Adicionar</string>
              </property>
@@ -921,8 +921,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>389</width>
-            <height>69</height>
+            <width>390</width>
+            <height>73</height>
            </rect>
           </property>
           <attribute name="label">
@@ -943,7 +943,7 @@
             <widget class="QComboBox" name="comboBox_13"/>
            </item>
            <item>
-            <widget class="QPushButton" name="pushButton_22">
+            <widget class="QPushButton" name="bt_variable">
              <property name="text">
               <string>Adicionar</string>
              </property>

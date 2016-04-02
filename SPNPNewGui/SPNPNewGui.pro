@@ -19,7 +19,8 @@ SOURCES += main.cpp\
     analysissimulationdialog.cpp \
     optionsdialog.cpp \
     pathsetupform.cpp \
-    parametersform.cpp
+    parametersform.cpp \
+    parameteroptiondata.cpp
 
 HEADERS  += mainwindow.h \
     appsettings.h \
@@ -27,7 +28,8 @@ HEADERS  += mainwindow.h \
     analysissimulationdialog.h \
     optionsdialog.h \
     pathsetupform.h \
-    parametersform.h
+    parametersform.h \
+    parameteroptiondata.h
 
 FORMS    += mainwindow.ui \
     newprojectdialog.ui \
