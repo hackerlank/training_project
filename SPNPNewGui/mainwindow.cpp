@@ -182,8 +182,9 @@ void MainWindow::on_actionAnalisar_triggered()
     if(this->ui->widget->getCurrentProject() != nullptr)
     {
         this->asd->show();
-        return;
         spnp::Net *n = this->ui->widget->getCurrentProject()->getNets()->at(0);
+        this->asd->setNetData(n);
+        return;
         if(n!=nullptr)
         {
           //TODO remove dialog >>>> save same project folder

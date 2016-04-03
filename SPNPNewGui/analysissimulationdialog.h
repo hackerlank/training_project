@@ -3,7 +3,7 @@
 
 #include <QDialog>
 #include "highlighter.h"
-
+#include "objs/net.h"
 namespace Ui {
 class AnalysisSimulationDialog;
 }
@@ -15,6 +15,8 @@ class AnalysisSimulationDialog : public QDialog
 public:
     explicit AnalysisSimulationDialog(QWidget *parent = 0);
     ~AnalysisSimulationDialog();
+
+    void setNetData(spnp::Net *net);
 
 private:
     Ui::AnalysisSimulationDialog *ui;

@@ -14,3 +14,8 @@ AnalysisSimulationDialog::~AnalysisSimulationDialog()
     delete ui;
     delete hl;
 }
+
+void AnalysisSimulationDialog::setNetData(spnp::Net *net)
+{
+    this->ui->w_param->setNetData(net);
+}
