@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>800</width>
-    <height>450</height>
+    <height>709</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -23,9 +23,9 @@
       <property name="geometry">
        <rect>
         <x>0</x>
-        <y>-343</y>
-        <width>408</width>
-        <height>773</height>
+        <y>0</y>
+        <width>424</width>
+        <height>689</height>
        </rect>
       </property>
       <layout class="QGridLayout" name="gridLayout_2">
@@ -35,15 +35,15 @@
           <string/>
          </property>
          <property name="currentIndex">
-          <number>21</number>
+          <number>0</number>
          </property>
          <widget class="QWidget" name="expected_1">
           <property name="geometry">
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>390</width>
-            <height>73</height>
+            <width>406</width>
+            <height>77</height>
            </rect>
           </property>
           <attribute name="label">
@@ -61,7 +61,7 @@
             </widget>
            </item>
            <item>
-            <widget class="QComboBox" name="comboBox"/>
+            <widget class="QComboBox" name="cb_place_steady"/>
            </item>
            <item>
             <widget class="QPushButton" name="bt_place_steady">
@@ -77,8 +77,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>377</width>
-            <height>78</height>
+            <width>389</width>
+            <height>69</height>
            </rect>
           </property>
           <attribute name="label">
@@ -96,7 +96,7 @@
             </widget>
            </item>
            <item row="0" column="1">
-            <widget class="QLineEdit" name="lineEdit">
+            <widget class="QLineEdit" name="le_place_time">
              <property name="toolTip">
               <string>Para usar loop: valor inicial, valor de parada, incremento</string>
              </property>
@@ -129,7 +129,7 @@
             </widget>
            </item>
            <item row="1" column="1">
-            <widget class="QComboBox" name="comboBox_2"/>
+            <widget class="QComboBox" name="cb_place_time"/>
            </item>
            <item row="1" column="2">
             <widget class="QPushButton" name="bt_place_time">
@@ -145,34 +145,30 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>390</width>
-            <height>73</height>
+            <width>389</width>
+            <height>69</height>
            </rect>
           </property>
           <attribute name="label">
            <string>Expected # of tokens of all places in steady-state</string>
           </attribute>
-          <widget class="QPushButton" name="bt_places_steady">
-           <property name="geometry">
-            <rect>
-             <x>150</x>
-             <y>20</y>
-             <width>75</width>
-             <height>23</height>
-            </rect>
-           </property>
-           <property name="text">
-            <string>Adicionar</string>
-           </property>
-          </widget>
+          <layout class="QGridLayout" name="gridLayout_10">
+           <item row="0" column="0">
+            <widget class="QPushButton" name="bt_places_steady">
+             <property name="text">
+              <string>Adicionar</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
          </widget>
          <widget class="QWidget" name="expected_4">
           <property name="geometry">
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>390</width>
-            <height>73</height>
+            <width>389</width>
+            <height>69</height>
            </rect>
           </property>
           <attribute name="label">
@@ -190,7 +186,7 @@
             </widget>
            </item>
            <item>
-            <widget class="QLineEdit" name="lineEdit_2">
+            <widget class="QLineEdit" name="le_time">
              <property name="toolTip">
               <string>Para usar loop: valor inicial, valor de parada, incremento</string>
              </property>
@@ -213,8 +209,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>390</width>
-            <height>73</height>
+            <width>389</width>
+            <height>69</height>
            </rect>
           </property>
           <attribute name="label">
@@ -232,7 +228,7 @@
             </widget>
            </item>
            <item>
-            <widget class="QComboBox" name="comboBox_6"/>
+            <widget class="QComboBox" name="cb_t_tran_steady"/>
            </item>
            <item>
             <widget class="QPushButton" name="bt_t_tran_steady">
@@ -248,8 +244,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>377</width>
-            <height>78</height>
+            <width>389</width>
+            <height>69</height>
            </rect>
           </property>
           <attribute name="label">
@@ -264,7 +260,7 @@
             </widget>
            </item>
            <item row="0" column="1">
-            <widget class="QLineEdit" name="lineEdit_4">
+            <widget class="QLineEdit" name="le_t_tran_time">
              <property name="toolTip">
               <string>Para usar loop: valor inicial, valor de parada, incremento</string>
              </property>
@@ -294,7 +290,7 @@
             </widget>
            </item>
            <item row="1" column="1">
-            <widget class="QComboBox" name="comboBox_3"/>
+            <widget class="QComboBox" name="cb_t_tran_time"/>
            </item>
            <item row="1" column="2">
             <widget class="QPushButton" name="bt_t_tran_time">
@@ -310,34 +306,30 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>390</width>
-            <height>73</height>
+            <width>389</width>
+            <height>69</height>
            </rect>
           </property>
           <attribute name="label">
            <string>Throughput of all transitions in steady-state</string>
           </attribute>
-          <widget class="QPushButton" name="bt_t_trans_steady">
-           <property name="geometry">
-            <rect>
-             <x>150</x>
-             <y>20</y>
-             <width>75</width>
-             <height>23</height>
-            </rect>
-           </property>
-           <property name="text">
-            <string>Adicionar</string>
-           </property>
-          </widget>
+          <layout class="QGridLayout" name="gridLayout_11">
+           <item row="0" column="0">
+            <widget class="QPushButton" name="bt_t_trans_steady">
+             <property name="text">
+              <string>Adicionar</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
          </widget>
          <widget class="QWidget" name="throughput_4">
           <property name="geometry">
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>390</width>
-            <height>73</height>
+            <width>389</width>
+            <height>69</height>
            </rect>
           </property>
           <attribute name="label">
@@ -352,7 +344,7 @@
             </widget>
            </item>
            <item>
-            <widget class="QLineEdit" name="lineEdit_5">
+            <widget class="QLineEdit" name="le_t_trans_time">
              <property name="toolTip">
               <string>Para usar loop: valor inicial, valor de parada, incremento</string>
              </property>
@@ -375,8 +367,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>390</width>
-            <height>73</height>
+            <width>389</width>
+            <height>69</height>
            </rect>
           </property>
           <attribute name="label">
@@ -394,7 +386,7 @@
             </widget>
            </item>
            <item>
-            <widget class="QComboBox" name="comboBox_4"/>
+            <widget class="QComboBox" name="cb_u_tran_steady"/>
            </item>
            <item>
             <widget class="QPushButton" name="bt_u_tran_steady">
@@ -410,8 +402,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>377</width>
-            <height>78</height>
+            <width>389</width>
+            <height>69</height>
            </rect>
           </property>
           <attribute name="label">
@@ -426,7 +418,7 @@
             </widget>
            </item>
            <item row="0" column="1">
-            <widget class="QLineEdit" name="lineEdit_6">
+            <widget class="QLineEdit" name="le_u_tran_time">
              <property name="toolTip">
               <string>Para usar loop: valor inicial, valor de parada, incremento</string>
              </property>
@@ -456,7 +448,7 @@
             </widget>
            </item>
            <item row="1" column="1">
-            <widget class="QComboBox" name="comboBox_5"/>
+            <widget class="QComboBox" name="cb_u_tran_time"/>
            </item>
            <item row="1" column="2">
             <widget class="QPushButton" name="bt_u_tran_time">
@@ -472,34 +464,30 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>390</width>
-            <height>73</height>
+            <width>389</width>
+            <height>69</height>
            </rect>
           </property>
           <attribute name="label">
            <string>Utilization for all transitions in steady-state</string>
           </attribute>
-          <widget class="QPushButton" name="bt_u_trans_steady">
-           <property name="geometry">
-            <rect>
-             <x>150</x>
-             <y>20</y>
-             <width>75</width>
-             <height>23</height>
-            </rect>
-           </property>
-           <property name="text">
-            <string>Adicionar</string>
-           </property>
-          </widget>
+          <layout class="QGridLayout" name="gridLayout_12">
+           <item row="0" column="0">
+            <widget class="QPushButton" name="bt_u_trans_steady">
+             <property name="text">
+              <string>Adicionar</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
          </widget>
          <widget class="QWidget" name="utilization_4">
           <property name="geometry">
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>390</width>
-            <height>73</height>
+            <width>389</width>
+            <height>69</height>
            </rect>
           </property>
           <attribute name="label">
@@ -514,7 +502,7 @@
             </widget>
            </item>
            <item>
-            <widget class="QLineEdit" name="lineEdit_3">
+            <widget class="QLineEdit" name="le_u_trans_time">
              <property name="toolTip">
               <string>Para usar loop: valor inicial, valor de parada, incremento</string>
              </property>
@@ -537,8 +525,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>390</width>
-            <height>73</height>
+            <width>389</width>
+            <height>69</height>
            </rect>
           </property>
           <attribute name="label">
@@ -556,7 +544,7 @@
             </widget>
            </item>
            <item>
-            <widget class="QComboBox" name="comboBox_7"/>
+            <widget class="QComboBox" name="cb_prob_place_steady"/>
            </item>
            <item>
             <widget class="QPushButton" name="bt_prob_place_steady">
@@ -572,8 +560,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>377</width>
-            <height>84</height>
+            <width>372</width>
+            <height>73</height>
            </rect>
           </property>
           <attribute name="label">
@@ -588,7 +576,7 @@
             </widget>
            </item>
            <item row="0" column="1">
-            <widget class="QLineEdit" name="lineEdit_7">
+            <widget class="QLineEdit" name="le_prob_place_time">
              <property name="toolTip">
               <string>Para usar loop: valor inicial, valor de parada, incremento</string>
              </property>
@@ -621,7 +609,7 @@
             </widget>
            </item>
            <item row="1" column="1" rowspan="2">
-            <widget class="QComboBox" name="comboBox_8"/>
+            <widget class="QComboBox" name="cb_prob_place_time"/>
            </item>
            <item row="2" column="2">
             <widget class="QPushButton" name="bt_prob_place_time">
@@ -637,34 +625,30 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>390</width>
-            <height>73</height>
+            <width>389</width>
+            <height>69</height>
            </rect>
           </property>
           <attribute name="label">
            <string>Probability that all places are empty in steady-state</string>
           </attribute>
-          <widget class="QPushButton" name="bt_prob_places_steady">
-           <property name="geometry">
-            <rect>
-             <x>150</x>
-             <y>20</y>
-             <width>75</width>
-             <height>23</height>
-            </rect>
-           </property>
-           <property name="text">
-            <string>Adicionar</string>
-           </property>
-          </widget>
+          <layout class="QGridLayout" name="gridLayout_13">
+           <item row="0" column="0">
+            <widget class="QPushButton" name="bt_prob_places_steady">
+             <property name="text">
+              <string>Adicionar</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
          </widget>
          <widget class="QWidget" name="prob_4">
           <property name="geometry">
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>390</width>
-            <height>73</height>
+            <width>389</width>
+            <height>69</height>
            </rect>
           </property>
           <attribute name="label">
@@ -679,7 +663,7 @@
             </widget>
            </item>
            <item>
-            <widget class="QLineEdit" name="lineEdit_8">
+            <widget class="QLineEdit" name="le_prob_places_time">
              <property name="toolTip">
               <string>Para usar loop: valor inicial, valor de parada, incremento</string>
              </property>
@@ -702,8 +686,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>390</width>
-            <height>73</height>
+            <width>389</width>
+            <height>69</height>
            </rect>
           </property>
           <attribute name="label">
@@ -721,7 +705,7 @@
             </widget>
            </item>
            <item>
-            <widget class="QComboBox" name="comboBox_9"/>
+            <widget class="QComboBox" name="cb_reward_steady"/>
            </item>
            <item>
             <widget class="QPushButton" name="bt_reward_steady">
@@ -737,8 +721,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>377</width>
-            <height>78</height>
+            <width>389</width>
+            <height>69</height>
            </rect>
           </property>
           <attribute name="label">
@@ -756,7 +740,7 @@
             </widget>
            </item>
            <item row="0" column="1">
-            <widget class="QLineEdit" name="lineEdit_9">
+            <widget class="QLineEdit" name="le_reward_time">
              <property name="toolTip">
               <string>Para usar loop: valor inicial, valor de parada, incremento</string>
              </property>
@@ -786,7 +770,7 @@
             </widget>
            </item>
            <item row="1" column="1">
-            <widget class="QComboBox" name="comboBox_10"/>
+            <widget class="QComboBox" name="cb_reward_time"/>
            </item>
            <item row="1" column="2">
             <widget class="QPushButton" name="bt_reward_time">
@@ -802,8 +786,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>390</width>
-            <height>73</height>
+            <width>389</width>
+            <height>69</height>
            </rect>
           </property>
           <attribute name="label">
@@ -821,7 +805,7 @@
             </widget>
            </item>
            <item>
-            <widget class="QComboBox" name="comboBox_11"/>
+            <widget class="QComboBox" name="cb_acc_abs"/>
            </item>
            <item>
             <widget class="QPushButton" name="bt_acc_abs">
@@ -837,8 +821,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>377</width>
-            <height>78</height>
+            <width>389</width>
+            <height>69</height>
            </rect>
           </property>
           <attribute name="label">
@@ -853,7 +837,7 @@
             </widget>
            </item>
            <item row="0" column="1">
-            <widget class="QLineEdit" name="lineEdit_10">
+            <widget class="QLineEdit" name="le_acc_time">
              <property name="toolTip">
               <string>Para usar loop: valor inicial, valor de parada, incremento</string>
              </property>
@@ -883,7 +867,7 @@
             </widget>
            </item>
            <item row="1" column="1">
-            <widget class="QComboBox" name="comboBox_12"/>
+            <widget class="QComboBox" name="cb_acc_time"/>
            </item>
            <item row="1" column="2">
             <widget class="QPushButton" name="bt_acc_time">
@@ -899,8 +883,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>390</width>
-            <height>73</height>
+            <width>389</width>
+            <height>69</height>
            </rect>
           </property>
           <attribute name="label">
@@ -921,8 +905,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>390</width>
-            <height>73</height>
+            <width>389</width>
+            <height>69</height>
            </rect>
           </property>
           <attribute name="label">
@@ -940,7 +924,7 @@
             </widget>
            </item>
            <item>
-            <widget class="QComboBox" name="comboBox_13"/>
+            <widget class="QComboBox" name="cb_variable"/>
            </item>
            <item>
             <widget class="QPushButton" name="bt_variable">
