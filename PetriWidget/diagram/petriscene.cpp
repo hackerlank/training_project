@@ -1,5 +1,5 @@
 #include "petriscene.h"
-
+#include <QMenu>
 #include <QTextCursor>
 #include <QGraphicsSceneMouseEvent>
 #include <QPainter>
@@ -16,10 +16,9 @@
 
 #include "objs/net.h"
 
-PetriScene::PetriScene(QMenu *itemMenu, QObject *parent)
+PetriScene::PetriScene(QObject *parent)
     :QGraphicsScene(parent)
 {
-    this->myItemMenu = itemMenu;
     myMode = MoveItem;
     myItemType = IPetriItem::Place;
     myArcType = IPetriArc::Activator;
@@ -29,6 +28,7 @@ PetriScene::PetriScene(QMenu *itemMenu, QObject *parent)
     myItemColor = Qt::white;
     myTextColor = Qt::black;
     myLineColor = Qt::black;
+    this->myItemMenu = new QMenu();
 
     this->setBackgroundBrush(QBrush(0xAACACA));
 }
@@ -311,12 +311,13 @@ void PetriScene::insertItemToPosition(spnp::IData *data, QPointF position)
 {
     //verificar tipo
     IPetriItem *item = nullptr;
+
     switch (myItemType) {
     case IPetriItem::Place:
-        item = new PlaceItem(data->id, myItemMenu);
+        item = new PlaceItem(data->id);
         break;
     case IPetriItem::FPlace:
-        item = new FPlaceItem(data->id, myItemMenu);
+        item = new FPlaceItem(data->id);
         break;
     case IPetriItem::TTrans:
         item = new TTransItem(data->id, myItemMenu);
@@ -343,7 +344,7 @@ void PetriScene::insertItemToPosition(QPointF position)
         spnp::Place *_place = new spnp::Place();
         _place->x = position.x();
         _place->y = position.y();
-        item = new PlaceItem(_place->id, myItemMenu);
+        item = new PlaceItem(_place->id);
         this->currentNet->add(_place);
         item->updateLabel(_place);
         break;
@@ -353,7 +354,7 @@ void PetriScene::insertItemToPosition(QPointF position)
         spnp::FluidPlace *_fplace = new spnp::FluidPlace();
         _fplace->x = position.x();
         _fplace->y = position.y();
-        item = new FPlaceItem(_fplace->id, myItemMenu);
+        item = new FPlaceItem(_fplace->id);
         this->currentNet->add(_fplace);
         item->updateLabel(_fplace);
         break;

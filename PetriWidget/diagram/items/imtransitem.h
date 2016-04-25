@@ -15,6 +15,7 @@ public:
 protected:
     virtual void drawItem() override;
     void mouseMoveEvent(QGraphicsSceneMouseEvent *event) override;
+    virtual void onContextMenu(QAction* act) override;
 };
 
 #endif // ITRANSITEM_H

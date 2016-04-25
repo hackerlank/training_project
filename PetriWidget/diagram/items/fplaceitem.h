@@ -6,7 +6,7 @@
 class FPlaceItem : public AbstractPetriItem
 {
 public:
-    FPlaceItem(std::string id, QMenu *contextMenu, QGraphicsItem *parent=nullptr);
+    FPlaceItem(std::string id, QGraphicsItem *parent=nullptr);
     virtual ~FPlaceItem();
 
     virtual void updateLabel(spnp::IData *data) override;

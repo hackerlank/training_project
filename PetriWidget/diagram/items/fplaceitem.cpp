@@ -7,8 +7,8 @@
 
 #include "petrilabelitem.h"
 
-FPlaceItem::FPlaceItem(std::string id, QMenu *contextMenu, QGraphicsItem *parent)
-    :AbstractPetriItem(id, contextMenu, parent)
+FPlaceItem::FPlaceItem(std::string id, QGraphicsItem *parent)
+    :AbstractPetriItem(id, nullptr, parent)
 {
     myPetriType = IPetriItem::FPlace;
 

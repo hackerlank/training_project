@@ -5,7 +5,6 @@
 
 #include <QGraphicsScene>
 #include <QGraphicsSceneContextMenuEvent>
-#include <QMenu>
 #include <QPainter>
 
 AbstractPetriItem::AbstractPetriItem(std::string id, QMenu *contextMenu, QGraphicsItem *parent)
@@ -74,7 +73,14 @@ void AbstractPetriItem::contextMenuEvent(QGraphicsSceneContextMenuEvent *event)
 {
     scene()->clearSelection();
     setSelected(true);
-    myContextMenu->exec(event->screenPos());
+    if(myContextMenu!=nullptr)
+    {
+        QAction* act = myContextMenu->exec(event->screenPos());
+        if(act)
+        {
+            this->onContextMenu(act);
+        }
+    }
 }
 
 QVariant AbstractPetriItem::itemChange(QGraphicsItem::GraphicsItemChange change, const QVariant &value)

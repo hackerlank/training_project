@@ -12,7 +12,7 @@ public:
     enum { Type = UserType + 15 };
     enum PetriType { Place, FPlace, ITrans, TTrans };
 
-    IPetriItem(std::string id, QMenu *contextMenu, QGraphicsItem *parent):QGraphicsPolygonItem(parent)
+    IPetriItem(std::string id, QMenu *contextMenu=nullptr, QGraphicsItem *parent=nullptr):QGraphicsPolygonItem(parent)
     {
         this->myContextMenu = contextMenu;
         this->petriItemId = id;

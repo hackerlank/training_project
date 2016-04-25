@@ -5,8 +5,7 @@
 PetriView::PetriView(QWidget *parent)
     :QGraphicsView(parent)
 {
-
-    this->scene = new PetriScene(/*itemMenu*/nullptr, this);
+    this->scene = new PetriScene(this);
     this->setScene(scene);
     //this->ui->graphicsView->setScene(this->scene);
 

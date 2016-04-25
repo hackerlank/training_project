@@ -47,3 +47,8 @@ void ImTransItem::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
     _data->x = event->pos().x();
     _data->y = event->pos().y();*/
 }
+
+void ImTransItem::onContextMenu(QAction *act)
+{
+
+}

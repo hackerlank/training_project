@@ -7,6 +7,7 @@
 #include "diagram/items/petritextitem.h"
 
 #include <QGraphicsScene>
+#include <QMenu>
 
 class QGraphicsSceneMouseEvent;
 class QMenu;
@@ -22,7 +23,7 @@ class PetriScene : public QGraphicsScene
 public:
     enum Mode { InsItem, InsArc, InsText, MoveItem, RemoveItem };
 
-    explicit PetriScene(QMenu *itemMenu, QObject *parent=nullptr);
+    explicit PetriScene(QObject *parent=nullptr);
     QFont font() const { return myFont; }
     QColor textColor() const { return myTextColor; }
     QColor itemColor() const { return myItemColor; }
@@ -59,9 +60,9 @@ protected:
 private:
     bool isItemOfType(int type);
 
+    QMenu* myItemMenu;
     IPetriItem::PetriType myItemType;
     IPetriArc::ArcType myArcType;
-    QMenu *myItemMenu;
     Mode myMode;
     bool leftButtonDown;
     QPointF startPoint;

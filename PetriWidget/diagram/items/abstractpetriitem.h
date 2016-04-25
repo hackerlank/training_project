@@ -17,10 +17,12 @@ class QStyleOptionGraphicsItem;
 class QWidget;
 class QPolygonF;
 
+#include <QMenu>
+
 class AbstractPetriItem : public IPetriItem
 {
 public:
-    AbstractPetriItem(std::string id, QMenu *contextMenu, QGraphicsItem *parent=nullptr);
+    AbstractPetriItem(std::string id, QMenu *contextMenu=nullptr, QGraphicsItem *parent=nullptr);
     virtual ~AbstractPetriItem();
 
     virtual void removeArc(IPetriArc *arc) override;
@@ -47,6 +49,8 @@ protected:
     virtual void drawItem() override;
 
     void setLabel(std::string txt);
+
+    virtual void onContextMenu(QAction* act) { }
 };
 
 #endif // PETRIITEM_H
