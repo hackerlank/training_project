@@ -50,5 +50,8 @@ void ImTransItem::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
 
 void ImTransItem::onContextMenu(QAction *act)
 {
+    if(act->data().toBool())
+    {
 
+    }
 }

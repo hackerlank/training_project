@@ -1,9 +1,9 @@
 #include "petriscene.h"
-#include <QMenu>
+
 #include <QTextCursor>
 #include <QGraphicsSceneMouseEvent>
 #include <QPainter>
-
+#include <QMenu>
 #include "diagram/arcs/ipetriarc.h"
 #include "diagram/items/placeitem.h"
 #include "diagram/items/fplaceitem.h"
@@ -29,6 +29,9 @@ PetriScene::PetriScene(QObject *parent)
     myTextColor = Qt::black;
     myLineColor = Qt::black;
     this->myItemMenu = new QMenu();
+    QAction *act = new QAction(tr("Girar"),this->myItemMenu);
+    act->setData(QVariant(true));
+    this->myItemMenu->addAction(act);
 
     this->setBackgroundBrush(QBrush(0xAACACA));
 }

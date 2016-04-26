@@ -44,5 +44,8 @@ void TTransItem::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
 
 void TTransItem::onContextMenu(QAction *act)
 {
+    if(act->data().toBool())
+    {
 
+    }
 }
