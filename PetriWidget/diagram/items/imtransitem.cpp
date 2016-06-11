@@ -1,8 +1,12 @@
 #include "imtransitem.h"
 
 #include <QPainter>
+#include <QGraphicsSceneMouseEvent>
 
-ImTransItem::ImTransItem(QMenu *contextMenu, QGraphicsItem *parent):AbstractPetriItem(contextMenu, parent)
+#include "objs/immediatetransition.h"
+
+ImTransItem::ImTransItem(std::string id, QMenu *contextMenu, QGraphicsItem *parent)
+    :AbstractPetriItem(id, contextMenu, parent)
 {
     myPetriType = IPetriItem::ITrans;
     drawItem();
@@ -19,6 +23,12 @@ void ImTransItem::paint(QPainter *painter, const QStyleOptionGraphicsItem *optio
     AbstractPetriItem::paint(painter, option, widget);
 }
 
+void ImTransItem::updateLabel(spnp::IData *data)
+{
+    spnp::ImmediateTransition *it = static_cast<spnp::ImmediateTransition*>(data);
+    this->setLabel(it->getName());
+}
+
 void ImTransItem::drawItem()
 {
     const int vert = 30;
@@ -27,4 +37,21 @@ void ImTransItem::drawItem()
     path.addRect(-hor/2, -vert/2, hor, vert);
     myPolygon = path.toFillPolygon();
     AbstractPetriItem::drawItem();
+}
+
+void ImTransItem::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
+{
+    QGraphicsItem::mouseMoveEvent(event);
+    //TODO verificar
+    /*spnp::ImmediateTransition *_data = static_cast<spnp::ImmediateTransition*>(this->getData());
+    _data->x = event->pos().x();
+    _data->y = event->pos().y();*/
+}
+
+void ImTransItem::onContextMenu(QAction *act)
+{
+    if(act->data().toBool())
+    {
+
+    }
 }

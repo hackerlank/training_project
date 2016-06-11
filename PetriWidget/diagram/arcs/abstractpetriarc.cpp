@@ -9,14 +9,14 @@
 
 const qreal Pi = 3.14;
 
-AbstractPetriArc::AbstractPetriArc(IPetriItem *startItem, IPetriItem *endItem, QGraphicsItem *parent)
-    :IPetriArc(startItem, endItem, parent)
+AbstractPetriArc::AbstractPetriArc(std::string id, IPetriItem *startItem, IPetriItem *endItem, QGraphicsItem *parent)
+    :IPetriArc(id, startItem, endItem, parent)
 {
     setFlag(QGraphicsItem::ItemIsSelectable, true);
     this->myColor = Qt::black;
     setPen(QPen(this->getPenColor(), 2, Qt::SolidLine, Qt::RoundCap, Qt::RoundJoin));
 
-    this->myLabel = new PetriLabelItem("Name", this);
+    this->myLabel = new PetriLabelItem("1", this);
     this->updateLabelPosition();
 }
 
@@ -52,6 +52,11 @@ void AbstractPetriArc::updatePosition()
 {
     QLineF line(mapFromItem(myStartItem, 0, 0), mapFromItem(myEndItem, 0, 0));
     setLine(line);
+}
+
+void AbstractPetriArc::updateLabel(QString str)
+{
+    this->myLabel->setText(str);
 }
 
 void AbstractPetriArc::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)

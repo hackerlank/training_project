@@ -9,19 +9,22 @@ class SPNPCLASSES_PUBLIC Place : public AbstractVisualData
 {
 public:
     Place();
-    Place(int id, std::string name, double tokens=0., Label* label = nullptr, int x=0, int y=0);
+    Place(std::string name, std::string tokens="0", Label* label = nullptr, int x=0, int y=0);
     virtual ~Place();
     virtual XMLNode* toXML();
     virtual void fromXML(XMLNode *xml);
 
-    double getTokens() const;
-    void setToken(const double d);
+    std::string getToken() const;
+    void setToken(const std::string d);
     Label* getLabel() const;
-private:
-    double tokens;
 
+    virtual std::string c_str(IData* data=nullptr) const;
+    virtual std::string getClassNodeName() override;
+protected:
+    std::string tokens;
+
+private:
     Label* label;
-    virtual std::string getClassNodeName();
 };
 }
 

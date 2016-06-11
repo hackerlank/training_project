@@ -1,9 +1,10 @@
 #include "petriscene.h"
 
-#include "diagram/arcs/ipetriarc.h"
 #include <QTextCursor>
 #include <QGraphicsSceneMouseEvent>
-
+#include <QPainter>
+#include <QMenu>
+#include "diagram/arcs/ipetriarc.h"
 #include "diagram/items/placeitem.h"
 #include "diagram/items/fplaceitem.h"
 #include "diagram/items/ttransitem.h"
@@ -13,24 +14,32 @@
 #include "diagram/arcs/inhibitorarcitem.h"
 #include "diagram/arcs/factivatorarcitem.h"
 
-PetriScene::PetriScene(QMenu *itemMenu, QObject *parent)
+#include "objs/net.h"
+
+PetriScene::PetriScene(QObject *parent)
     :QGraphicsScene(parent)
 {
-    this->myItemMenu = itemMenu;
     myMode = MoveItem;
     myItemType = IPetriItem::Place;
     myArcType = IPetriArc::Activator;
     line = nullptr;
     textItem = nullptr;
+    this->currentNet = nullptr;
     myItemColor = Qt::white;
     myTextColor = Qt::black;
     myLineColor = Qt::black;
+    this->myItemMenu = new QMenu();
+    QAction *act = new QAction(tr("Girar"),this->myItemMenu);
+    act->setData(QVariant(true));
+    this->myItemMenu->addAction(act);
+
+    this->setBackgroundBrush(QBrush(0xAACACA));
 }
 
 void PetriScene::setLineColor(const QColor &color)
 {
     myLineColor = color;
-    if(isItemChange(IPetriArc::Type))
+    if(isItemOfType(IPetriArc::Type))
     {
         IPetriArc *item = qgraphicsitem_cast<IPetriArc*>(selectedItems().first());
         item->setColor(myLineColor);
@@ -41,7 +50,7 @@ void PetriScene::setLineColor(const QColor &color)
 void PetriScene::setTextColor(const QColor &color)
 {
     myTextColor = color;
-    if(isItemChange(PetriTextItem::Type))
+    if(isItemOfType(PetriTextItem::Type))
     {
         PetriTextItem *item = qgraphicsitem_cast<PetriTextItem*>(selectedItems().first());
         item->setDefaultTextColor(myTextColor);
@@ -51,7 +60,7 @@ void PetriScene::setTextColor(const QColor &color)
 void PetriScene::setItemColor(const QColor &color)
 {
     myItemColor = color;
-    if(isItemChange(IPetriItem::Type))
+    if(isItemOfType(IPetriItem::Type))
     {
         IPetriItem *item = qgraphicsitem_cast<IPetriItem*>(selectedItems().first());
         item->setBrush(myItemColor);
@@ -61,11 +70,75 @@ void PetriScene::setItemColor(const QColor &color)
 void PetriScene::setFont(const QFont &font)
 {
     myFont = font;
-    if(isItemChange(PetriTextItem::Type))
+    if(isItemOfType(PetriTextItem::Type))
     {
         QGraphicsTextItem *item = qgraphicsitem_cast<QGraphicsTextItem*>(selectedItems().first());
         if(item)
             item->setFont(myFont);
+    }
+}
+/*
+void PetriScene::drawBackground(QPainter *painter, const QRectF &rect)
+{
+    painter->fillRect(rect, 0xFFECCC);
+    QPen pen;
+    painter->setPen(pen);
+
+    qreal left = int(rect.left()) - (int(rect.left()) % gridSize);
+    qreal top = int(rect.top()) - (int(rect.top()) % gridSize);
+    QVector<QPointF> points;
+    for (qreal x = left; x < rect.right(); x += gridSize){
+        for (qreal y = top; y < rect.bottom(); y += gridSize){
+            points.append(QPointF(x,y));
+        }
+    }
+    painter->drawPoints(points.data(), points.size());
+}*/
+
+void PetriScene::load(spnp::IData *data)
+{
+    this->currentNet = static_cast<spnp::Net*>(data);
+    this->clear();
+
+
+    for(unsigned int i=0, total=currentNet->getPlaces()->size(); i<total; ++i)
+    {
+        spnp::Place* place = currentNet->getPlaces()->at(i);
+        //TODO setar tipo antes de inserir
+        if(place->getClassNodeName().compare("place") == 0)
+        {
+            myItemType = IPetriItem::PetriType::Place;
+            this->insertItemToPosition(place, QPointF(place->x, place->y));
+        }
+        else
+        {
+            //TODO verificar
+            myItemType = IPetriItem::PetriType::FPlace;
+            spnp::FluidPlace* fp = static_cast<spnp::FluidPlace*>(place);
+            this->insertItemToPosition(fp, QPointF(fp->x, fp->y));
+        }
+    }
+    for(unsigned int i=0, total=currentNet->getTransitions()->size(); i<total; ++i)
+    {
+        spnp::ImmediateTransition* transition = currentNet->getTransitions()->at(i);
+        if(transition->getClassNodeName().compare("transition")==0)
+        {
+            myItemType = IPetriItem::PetriType::ITrans;
+            this->insertItemToPosition(transition, QPointF(transition->x, transition->y));
+        }
+        else
+        {
+            myItemType = IPetriItem::PetriType::TTrans;
+            spnp::TimedTransition* tt = static_cast<spnp::TimedTransition*>(transition);
+            this->insertItemToPosition(tt, QPointF(tt->x, tt->y));
+        }
+
+    }
+    for(unsigned int i=0, total=currentNet->getArcs()->size(); i<total; ++i)
+    {
+        spnp::Arc* arc = currentNet->getArcs()->at(i);
+        //TODO inserir arco
+        //this->insertArc(arc, QPointF(arc->x, arc->y));
     }
 }
 
@@ -105,7 +178,7 @@ void PetriScene::mousePressEvent(QGraphicsSceneMouseEvent *mouseEvent)
     switch (myMode)
     {
     case InsItem:
-        this->insertItem(mouseEvent->scenePos());
+        this->insertItemToPosition(mouseEvent->scenePos());
         break;
     case InsArc:
         this->insertArc(mouseEvent->scenePos());
@@ -120,6 +193,9 @@ void PetriScene::mousePressEvent(QGraphicsSceneMouseEvent *mouseEvent)
         break;
     }
     QGraphicsScene::mousePressEvent(mouseEvent);
+    //aqui porque deve ser após a seleção de um item
+    if(myMode == MoveItem)
+        this->itemSelection();
 }
 
 void PetriScene::mouseMoveEvent(QGraphicsSceneMouseEvent *mouseEvent)
@@ -132,6 +208,11 @@ void PetriScene::mouseMoveEvent(QGraphicsSceneMouseEvent *mouseEvent)
     else if(myMode == MoveItem)
     {
         QGraphicsScene::mouseMoveEvent(mouseEvent);
+        QList<QGraphicsItem*> items = this->selectedItems();
+        for(int i =0; i<items.size(); ++i)
+        {
+            repositionItem(items.at(i));
+        }
     }
 }
 
@@ -153,10 +234,14 @@ void PetriScene::mouseReleaseEvent(QGraphicsSceneMouseEvent *mouseEvent)
         removeItem(line);
         delete line;
 
+        while(startItems.count() > 0 && startItems.first()->type() != IPetriItem::Type)
+            startItems.removeFirst();
+
+        while(endItems.count() > 0 && endItems.first()->type() != IPetriItem::Type)
+            endItems.removeFirst();
+
         if(startItems.count() > 0 &&
-                endItems.count() > 0 &&
-                startItems.first()->type() == IPetriItem::Type &&
-                endItems.first()->type() == IPetriItem::Type)
+                endItems.count() > 0)
         {
             IPetriItem *start = qgraphicsitem_cast<IPetriItem*>(startItems.first());
             IPetriItem *end = qgraphicsitem_cast<IPetriItem*>(endItems.first());
@@ -164,27 +249,49 @@ void PetriScene::mouseReleaseEvent(QGraphicsSceneMouseEvent *mouseEvent)
             if(start != end &&
                     ((start->isPlace() && end->isTransition()) || (start->isTransition() && end->isPlace())))
             {
+                IPetriItem *__place = start->isPlace() ? start : end;
+                IPetriItem *__trans = start->isPlace() ? end : start;
+                spnp::Arc* _arc = nullptr;
+
                 IPetriArc *arc = nullptr;
-                switch (myArcType) {
+
+                switch (myArcType)
+                {
                 case IPetriArc::Activator:
-                    arc = new ActivatorArcItem(start,end);
+                {
+                    _arc = new spnp::Arc("arco", __place->getPetriItemId(), __trans->getPetriItemId(),
+                                         start->isPlace());
+                    arc = new ActivatorArcItem(_arc->id, start, end);
+
                     break;
+                }
                 case IPetriArc::Inhibitor:
-                    arc = new InhibitorArcItem(start, end);
+                {
+                    _arc = new spnp::Arc("arco", __place->getPetriItemId(), __trans->getPetriItemId(),
+                                         start->isPlace());
+                    _arc->setIsInhibitor(true);
+                    arc = new InhibitorArcItem(_arc->id, start, end);
                     break;
+                }
                 case IPetriArc::FActivator:
-                    arc = new FActivatorArcItem(start, end);
+                {
+                    _arc = new spnp::Arc("arcoF", __place->getPetriItemId(), __trans->getPetriItemId(),
+                                         start->isPlace());
+                    _arc->setIsFluid(true);
+                    arc = new FActivatorArcItem(_arc->id, start, end);
                     break;
+                }
                 default:
                     break;
                 }
-
+                currentNet->add(_arc);
                 arc->setColor(myLineColor);
                 start->addArc(arc);
                 end->addArc(arc);
                 arc->setZValue(-1000.0);
                 addItem(arc);
                 arc->updatePosition();
+
                 emit arcInserted(arc);
             }
         }
@@ -193,7 +300,7 @@ void PetriScene::mouseReleaseEvent(QGraphicsSceneMouseEvent *mouseEvent)
     QGraphicsScene::mouseReleaseEvent(mouseEvent);
 }
 
-bool PetriScene::isItemChange(int type)
+bool PetriScene::isItemOfType(int type)
 {
     foreach (QGraphicsItem *item, selectedItems())
     {
@@ -203,29 +310,90 @@ bool PetriScene::isItemChange(int type)
     return false;//horrível dois returns :'(
 }
 
-void PetriScene::insertItem(QPointF position)
+void PetriScene::insertItemToPosition(spnp::IData *data, QPointF position)
+{
+    //verificar tipo
+    IPetriItem *item = nullptr;
+
+    switch (myItemType) {
+    case IPetriItem::Place:
+        item = new PlaceItem(data->id);
+        break;
+    case IPetriItem::FPlace:
+        item = new FPlaceItem(data->id);
+        break;
+    case IPetriItem::TTrans:
+        item = new TTransItem(data->id, myItemMenu);
+        break;
+    case IPetriItem::ITrans:
+        item = new ImTransItem(data->id, myItemMenu);
+        break;
+    }
+
+    item->setPos(position);
+    this->insertItem(item);
+    PlaceItem* pi = qgraphicsitem_cast<PlaceItem*>(item);
+    pi->updateLabel(data);
+}
+
+void PetriScene::insertItemToPosition(QPointF position)
 {
     IPetriItem *item = nullptr;
+
     switch (myItemType)
     {
     case IPetriItem::Place:
-        item = new PlaceItem(myItemMenu);
+    {
+        spnp::Place *_place = new spnp::Place();
+        _place->x = position.x();
+        _place->y = position.y();
+        item = new PlaceItem(_place->id);
+        this->currentNet->add(_place);
+        item->updateLabel(_place);
         break;
+    }
     case IPetriItem::FPlace:
-        item = new FPlaceItem(myItemMenu);
+    {
+        spnp::FluidPlace *_fplace = new spnp::FluidPlace();
+        _fplace->x = position.x();
+        _fplace->y = position.y();
+        item = new FPlaceItem(_fplace->id);
+        this->currentNet->add(_fplace);
+        item->updateLabel(_fplace);
         break;
+    }
     case IPetriItem::ITrans:
-        item = new ImTransItem(myItemMenu);
+    {
+        spnp::ImmediateTransition *_itrans = new spnp::ImmediateTransition();
+        _itrans->x = position.x();
+        _itrans->y = position.y();
+        item = new ImTransItem(_itrans->id, myItemMenu);
+        this->currentNet->add(_itrans);
+        item->updateLabel(_itrans);
         break;
+    }
     case IPetriItem::TTrans:
-        item = new TTransItem(myItemMenu);
+    {
+        spnp::TimedTransition* _ttrans = new spnp::TimedTransition();
+        _ttrans->x = position.x();
+        _ttrans->y = position.y();
+        item = new TTransItem(_ttrans->id, myItemMenu);
+        this->currentNet->add(_ttrans);
+        item->updateLabel(_ttrans);
         break;
+    }
     default:
         break;
     }
+    item->setPos(position);
+    insertItem(item);
+}
+
+void PetriScene::insertItem(IPetriItem *item)
+{
     item->setBrush(myItemColor);
     addItem(item);
-    item->setPos(position);
+    repositionItem(item);
     emit itemInserted(item);
 }
 
@@ -262,6 +430,7 @@ void PetriScene::deleteItem()
             IPetriArc *arc = qgraphicsitem_cast<IPetriArc*>(item);
             arc->startItem()->removeArc(arc);
             arc->endItem()->removeArc(arc);
+            currentNet->removeArc(arc->getArcId());
             delete item;
         }
     }
@@ -269,9 +438,34 @@ void PetriScene::deleteItem()
     foreach (QGraphicsItem *item, this->selectedItems())
     {
         if (item->type() == IPetriItem::Type)
-            qgraphicsitem_cast<IPetriItem *>(item)->removeArcs();
+        {
+            IPetriItem *ipi = qgraphicsitem_cast<IPetriItem *>(item);
+            //TODO otimizar
+            currentNet->removePlace(ipi->getPetriItemId());
+            currentNet->removeTransition(ipi->getPetriItemId());
+            ipi->removeArcs();
+        }
+
         this->removeItem(item);
         delete item;
     }
     emit itemDeleted();
+}
+
+void PetriScene::itemSelection()
+{
+    if(this->selectedItems().size() > 0)
+    {
+        emit itemSelected(this->selectedItems().at(0));
+    }
+    else
+        emit itemSelected(nullptr);
+}
+
+void PetriScene::repositionItem(QGraphicsItem *item)
+{
+    int x = round(item->pos().x()/gridSize)*gridSize;
+    int y = round(item->pos().y()/gridSize)*gridSize;
+
+    item->setPos(x, y);
 }

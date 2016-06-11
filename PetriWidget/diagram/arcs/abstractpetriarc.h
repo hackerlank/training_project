@@ -19,7 +19,7 @@ class QPainterPath;
 class AbstractPetriArc : public IPetriArc
 {
 public:
-    AbstractPetriArc(IPetriItem *startItem, IPetriItem *endItem, QGraphicsItem *parent=nullptr);
+    AbstractPetriArc(std::string id, IPetriItem *startItem, IPetriItem *endItem, QGraphicsItem *parent=nullptr);
     virtual ~AbstractPetriArc();
 
     QRectF boundingRect() const override;
@@ -29,6 +29,7 @@ public:
     virtual bool canConnect() override;
     void updatePosition() override;
 
+    virtual void updateLabel(QString str);
 protected:
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget=nullptr) override;
 

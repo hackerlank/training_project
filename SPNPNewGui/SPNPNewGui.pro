@@ -5,7 +5,7 @@
 #-------------------------------------------------
 
 QT      += core gui
-CONFIG	+=c++14
+CONFIG	+= c++14
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 TARGET = SPNPNewGui
@@ -13,11 +13,30 @@ TEMPLATE = app
 
 
 SOURCES += main.cpp\
-        mainwindow.cpp
+        mainwindow.cpp \
+    appsettings.cpp \
+    newprojectdialog.cpp \
+    analysissimulationdialog.cpp \
+    optionsdialog.cpp \
+    pathsetupform.cpp \
+    parametersform.cpp \
+    parameteroptiondata.cpp
 
-HEADERS  += mainwindow.h
+HEADERS  += mainwindow.h \
+    appsettings.h \
+    newprojectdialog.h \
+    analysissimulationdialog.h \
+    optionsdialog.h \
+    pathsetupform.h \
+    parametersform.h \
+    parameteroptiondata.h
 
-FORMS    += mainwindow.ui
+FORMS    += mainwindow.ui \
+    newprojectdialog.ui \
+    analysissimulationdialog.ui \
+    optionsdialog.ui \
+    pathsetupform.ui \
+    parametersform.ui
 
 unix{
     DEFINES += LINUX
@@ -26,6 +45,8 @@ unix{
     LIBS += -L$$OUT_PWD/../XMLParser/ -lXMLParser
     LIBS += -L$$OUT_PWD/../spnpclasses/ -lSPNPClasses
     LIBS += -L$$OUT_PWD/../PetriWidget/ -lPetriWidget
+    LIBS += -L$$OUT_PWD/../cspl/ -lcspl
+    LIBS += -L$$OUT_PWD/../SPNPWrapper/ -lSPNPWrapper
 }
 
 win32{
@@ -45,6 +66,12 @@ win32{
 
     CONFIG(release, debug|release): LIBS += -L$$OUT_PWD/../PetriWidget/release/ -lPetriWidget
     else:CONFIG(debug, debug|release): LIBS += -L$$OUT_PWD/../PetriWidget/debug/ -lPetriWidget
+
+    CONFIG(release, debug|release): LIBS += -L$$OUT_PWD/../cspl/release/ -lcspl
+    else:CONFIG(debug, debug|release): LIBS += -L$$OUT_PWD/../cspl/debug/ -lcspl
+
+    CONFIG(release, debug|release): LIBS += -L$$OUT_PWD/../SPNPWrapper/release/ -lSPNPWrapper
+    else:CONFIG(debug, debug|release): LIBS += -L$$OUT_PWD/../SPNPWrapper/debug/ -lSPNPWrapper
 }
 
 INCLUDEPATH += $$PWD/../HighLighter
@@ -61,3 +88,9 @@ DEPENDPATH += $$PWD/../spnpclasses
 
 INCLUDEPATH += $$PWD/../PetriWidget
 DEPENDPATH += $$PWD/../PetriWidget
+
+INCLUDEPATH += $$PWD/../cspl
+DEPENDPATH += $$PWD/../cspl
+
+INCLUDEPATH += $$PWD/../SPNPWrapper
+DEPENDPATH += $$PWD/../SPNPWrapper

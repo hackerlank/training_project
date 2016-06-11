@@ -1,10 +1,19 @@
 #include "fplaceitem.h"
 
 #include <QPainter>
+#include <QGraphicsSceneMouseEvent>
 
-FPlaceItem::FPlaceItem(QMenu *contextMenu, QGraphicsItem *parent):AbstractPetriItem(contextMenu, parent)
+#include "objs/fluidplace.h"
+
+#include "petrilabelitem.h"
+
+FPlaceItem::FPlaceItem(std::string id, QGraphicsItem *parent)
+    :AbstractPetriItem(id, nullptr, parent)
 {
     myPetriType = IPetriItem::FPlace;
+
+    this->tokenLabel = new PetriLabelItem("0", this, false);
+    this->tokenLabel->setPos(this->x() - this->tokenLabel->boundingRect().width()/2, this->x() - this->tokenLabel->boundingRect().height()/2);
 
     drawItem();
 }
@@ -12,6 +21,17 @@ FPlaceItem::FPlaceItem(QMenu *contextMenu, QGraphicsItem *parent):AbstractPetriI
 FPlaceItem::~FPlaceItem()
 {
 
+}
+
+void FPlaceItem::updateLabel(spnp::IData *data)
+{
+    spnp::FluidPlace *fplace = static_cast<spnp::FluidPlace*>(data);
+    this->setLabel(fplace->getName());
+}
+
+void FPlaceItem::updateToken(QString value)
+{
+    this->tokenLabel->setText(value);
 }
 
 void FPlaceItem::drawItem()
@@ -25,4 +45,13 @@ void FPlaceItem::drawItem()
     path.addEllipse(-inner/2, -inner/2, inner, inner);
     myPolygon = path.toFillPolygon();
     AbstractPetriItem::drawItem();
+}
+
+void FPlaceItem::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
+{
+    QGraphicsItem::mouseMoveEvent(event);
+    //TODO atualizar isso
+    /*spnp::FluidPlace *_data = static_cast<spnp::FluidPlace*>(this->getData());
+    _data->x = event->pos().x();
+    _data->y = event->pos().y();*/
 }

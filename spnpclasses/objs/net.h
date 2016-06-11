@@ -2,7 +2,7 @@
 #define NET_H
 
 #include "objs/place.h"
-#include "objs/transition.h"
+#include "objs/immediatetransition.h"
 #include "objs/arc.h"
 #include "objs/fluidplace.h"
 #include "objs/timedtransition.h"
@@ -13,9 +13,9 @@ class SPNPCLASSES_PUBLIC Net : public AbstractData
 {
 public:
     Net();
-    Net(int id, std::string name,
+    Net(std::string name,
         std::vector<Place*> *places = new std::vector<Place*>(),
-        std::vector<Transition*> *transitions = new std::vector<Transition*>(),
+        std::vector<ImmediateTransition*> *transitions = new std::vector<ImmediateTransition*>(),
         std::vector<Arc*> *arcs = new std::vector<Arc*>());
     virtual ~Net();
 
@@ -23,24 +23,26 @@ public:
     virtual void fromXML(XMLNode *xml);
 
     void add(Place* p);
-    void add(Transition* t);
+    void add(ImmediateTransition* t);
     void add(Arc* a);
 
-    void removePlace(int id);
-    void removeTransition(int id);
-    void removeArc(int id);
-/*
-    Place* getPlace(int id);
-    Transition* getTransition(int id);
-    Arc* getArc(int id);
-*/
+    void removePlace(std::string id);
+    void removeTransition(std::string id);
+    void removeArc(std::string id);
+
+    Place* getPlace(std::string id);
+    ImmediateTransition* getTransition(std::string id);
+    Arc* getArc(std::string id);
+
     std::vector<Place*> * getPlaces() const;
-    std::vector<Transition*> *getTransitions() const;
+    std::vector<ImmediateTransition*> *getTransitions() const;
     std::vector<Arc*> *getArcs() const;
+
+    virtual std::string c_str(IData* data=nullptr) const;
 
 private:
     std::vector<Place* > *places;
-    std::vector<Transition* > *transitions;
+    std::vector<ImmediateTransition* > *transitions;
     std::vector<Arc* > *arcs;
 
     virtual std::string getClassNodeName();

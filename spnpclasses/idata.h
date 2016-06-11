@@ -3,6 +3,7 @@
 
 #include "spnpclasses_global.h"
 #include "xmlparser.h"
+#include <sstream>
 
 namespace spnp
 {
@@ -18,7 +19,9 @@ namespace spnp
         virtual std::string getName() const { return this->name; }
         virtual void setName(std::string name) { this->name = name; }
 
-        int id;
+        virtual std::string c_str(IData* data=nullptr) const = 0;
+
+        std::string id;
     protected:
         std::string name;
     };

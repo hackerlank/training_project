@@ -4,7 +4,7 @@ spnp::Label::Label():AbstractVisualData()
 {
 }
 
-spnp::Label::Label(int id, std::string name, int x, int y):AbstractVisualData(id, name, x, y)
+spnp::Label::Label(std::string name, int x, int y):AbstractVisualData(name, x, y)
 {
 }
 
@@ -23,6 +23,12 @@ XMLNode *spnp::Label::toXML()
 void spnp::Label::fromXML(XMLNode *xml)
 {
     AbstractVisualData::fromXML(xml);
+}
+
+std::string spnp::Label::c_str(IData* data) const
+{
+    (void)data;
+    throw;
 }
 
 std::string spnp::Label::getClassNodeName()

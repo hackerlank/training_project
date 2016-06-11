@@ -6,7 +6,7 @@
 class FActivatorArcItem : public AbstractPetriArc
 {
 public:
-    FActivatorArcItem(IPetriItem *startItem, IPetriItem *endItem, QGraphicsItem *parent=nullptr);
+    FActivatorArcItem(std::string id, IPetriItem *startItem, IPetriItem *endItem, QGraphicsItem *parent=nullptr);
     virtual ~FActivatorArcItem();
 
 protected:
