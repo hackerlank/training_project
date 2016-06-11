@@ -41,19 +41,29 @@ class OutputFunction : public AbstractData
     };
 
 public:
-    OutputFunction(OutputFunction::TYPE type, std::string objId="", std::string option="");
+    OutputFunction(OutputFunction::TYPE type, int functionNumber, std::string objId="", std::string option="");
     ~OutputFunction();
 
     virtual XMLNode* toXML();
     virtual void fromXML(XMLNode *xml);
 
     virtual std::string c_str(IData* data=nullptr) const;
+
+    std::string getVariables();
+    std::string getFunction();
 protected:
     virtual std::string getClassNodeName();
 
     std::string objId;
     std::string option;
     OutputFunction::TYPE type;
+
+private:
+    void prepareData();
+
+    std::string vars;
+    int functionNumber;
+    std::string functionName;
 };
 }
 #endif // OUTPUTFUNCTION_H

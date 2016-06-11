@@ -112,7 +112,6 @@ void Cspl::addAc_Reach()
 {
     ss << "void ac_reach() {\n";
 
-    //TODO automatizar reach
     ss << "/* Information on the reachability graph */\n";
     ss << "\tpr_rg_info();\n";
 
@@ -121,18 +120,8 @@ void Cspl::addAc_Reach()
 
 void Cspl::addAc_Final()
 {
-    /* hard coded 1 for testing */
-    ss << "double outFunc0() {\n";
-    ss << "\treturn(mark(\"P0\"));\n";
-    ss << "}\n\n";
-    /* end hard coded 1 */
-
     ss << "void ac_final() {\n";
-
-    //TODO automatizar final
-    ss << "\tint loop;\n";
-    ss << "\tsolve(INFINITY);\n";
-    ss << "\tpr_expected(\"Expected # of tokens of the place P0 in steady-state\",outFunc0);\n";
+ss << "\tint loop;\n";
 
     ss << "}\n";
 }
