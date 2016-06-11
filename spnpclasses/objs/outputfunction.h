@@ -8,8 +8,9 @@ namespace spnp
 /**
  * @brief O tipo de saída de dado a ser analisado.
  */
-class OutputFunction : public AbstractData
+class SPNPCLASSES_PUBLIC OutputFunction : public AbstractData
 {
+public:
     enum TYPE
     {
         EXPECTED_TOKEN_PLACE_STEADY,
@@ -40,19 +41,20 @@ class OutputFunction : public AbstractData
         VARIABLE
     };
 
-public:
-    OutputFunction(OutputFunction::TYPE type, int functionNumber, std::string objId="", std::string option="");
+    OutputFunction(OutputFunction::TYPE type, std::string objId="", std::string option="");
     ~OutputFunction();
 
     virtual XMLNode* toXML();
     virtual void fromXML(XMLNode *xml);
-
+    void setFunctionNumber(int num);
     virtual std::string c_str(IData* data=nullptr) const;
 
     std::string getVariables();
     std::string getFunction();
 
     std::string getFinal();
+
+    std::string getDescription();
 protected:
     virtual std::string getClassNodeName();
 
@@ -69,6 +71,7 @@ private:
     std::string functionName;
     std::string functionString;
 
+    std::string descriptionString;
     std::string finalString;
 
     void prepareETPS();

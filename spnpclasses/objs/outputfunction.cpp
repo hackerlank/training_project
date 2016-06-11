@@ -1,17 +1,18 @@
 #include "outputfunction.h"
 
-spnp::OutputFunction::OutputFunction(OutputFunction::TYPE type, int functionNum, std::string objId, std::string option)
+spnp::OutputFunction::OutputFunction(OutputFunction::TYPE type, std::string objId, std::string option)
     :AbstractData()
 {
     this->objId = objId;
     this->option = option;
     this->type = type;
-    this->functionNumber = functionNum;
+    this->functionNumber = 0;
 
     this->vars = "";
     this->functionName = "";
     this->functionString = "";
     this->finalString = "";
+    this->descriptionString = "";
 
     this->prepareData();
 }
@@ -39,6 +40,11 @@ void spnp::OutputFunction::fromXML(XMLNode *xml)
     this->type = static_cast<OutputFunction::TYPE>(xml->getAttributeI("type"));
 }
 
+void spnp::OutputFunction::setFunctionNumber(int num)
+{
+    this->functionNumber = num;
+}
+
 std::string spnp::OutputFunction::c_str(spnp::IData *data) const
 {
     (void)data;
@@ -59,6 +65,11 @@ std::string spnp::OutputFunction::getFunction()
 std::string spnp::OutputFunction::getFinal()
 {
     return this->finalString;
+}
+
+std::string spnp::OutputFunction::getDescription()
+{
+    return this->descriptionString;
 }
 
 void spnp::OutputFunction::prepareFunction()
@@ -158,8 +169,10 @@ void spnp::OutputFunction::prepareETPS()
     this->functionString = "double " + this->functionName + "() {\n";
     this->functionString+= "\treturn(mark("+ objId +"));\n}\n";
 
+    this->descriptionString = "Expected # of tokens of the place " + objId + " in steady-state";
+
     this->finalString = "\tsolve(INFINITY);\n";
-    this->finalString += "pr_expected(\"Expected # of tokens of the place "+ objId + " in steady-state\","+ this->functionName +")";
+    this->finalString += "pr_expected(\""+ this->descriptionString +"\","+ this->functionName +")";
 }
 
 void spnp::OutputFunction::prepareETPT()
@@ -167,10 +180,14 @@ void spnp::OutputFunction::prepareETPT()
     this->functionString = "double " + this->functionName + "() {\n";
     this->functionString+= "\treturn(mark("+ objId +"));\n}\n";
 
+    this->descriptionString = "Expected # of tokens of the place " + objId + ": " + this->option;
+
     std::vector<std::string> data = this->split(this->option);
     this->finalString = "for(loop=" + data.at(0)+";loop<"+data.at(1)+";loop+="+data.at(2)+") {\n";
     this->finalString += "\tsolve((double) loop);\n";
     this->finalString += "\tpr_expected(\"Expected # of tokens of the place "+objId+"\","+this->functionName+");";
+
+
 }
 
 void spnp::OutputFunction::prepareETPsS()

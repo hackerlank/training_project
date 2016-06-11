@@ -1,7 +1,6 @@
 #include "parametersform.h"
-#include "ui_parametersform.h"
 
-#include "parameteroptiondata.h"
+#include "ui_parametersform.h"
 
 ParametersForm::ParametersForm(QWidget *parent) :
     QWidget(parent),
@@ -9,6 +8,7 @@ ParametersForm::ParametersForm(QWidget *parent) :
 {
     ui->setupUi(this);
     this->netData = nullptr;
+    this->outputs = new std::vector<spnp::OutputFunction>();
 }
 
 ParametersForm::~ParametersForm()
@@ -20,17 +20,6 @@ void ParametersForm::setNetData(spnp::Net *net)
 {
     this->netData = net;
     this->fillData();
-}
-
-void ParametersForm::on_bt_place_steady_clicked()
-{
-    std::string placeName = "test";
-    ParameterOptionData* pod = new ParameterOptionData(ParameterOptionData::TYPE::PLACE,
-                                                       ParameterOptionData::AMOUNT::SINGLE,
-                                                       ParameterOptionData::TIME::STEADY,
-                                                       placeName);
-    (void)pod;
-    //TODO : enviar
 }
 
 void ParametersForm::fillData()
@@ -78,4 +67,20 @@ void ParametersForm::fillTransitionNames(QComboBox *cb, std::vector<spnp::Immedi
             cb->addItem(placeName, data);
         }
     }
+}
+
+void ParametersForm::on_bt_place_steady_clicked()
+{
+    std::string data = this->ui->cb_place_steady->currentData().toString().toStdString();
+
+    spnp::OutputFunction out(spnp::OutputFunction::EXPECTED_TOKEN_PLACE_STEADY, data);
+    this->outputs->push_back(out);
+}
+
+void ParametersForm::on_bt_place_time_clicked()
+{
+    std::string data = this->ui->cb_place_time->currentData().toString().toStdString();
+    std::string opt = this->ui->le_place_time->text().toStdString();
+    spnp::OutputFunction out(spnp::OutputFunction::EXPECTED_TOKEN_PLACE_TIME, data, opt);
+    this->outputs->push_back(out);
 }

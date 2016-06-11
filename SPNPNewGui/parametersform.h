@@ -4,6 +4,9 @@
 #include <QWidget>
 #include <QComboBox>
 #include "objs/net.h"
+
+#include "objs/outputfunction.h"
+
 namespace Ui {
 class ParametersForm;
 }
@@ -21,10 +24,14 @@ public:
 private slots:
     void on_bt_place_steady_clicked();
 
+    void on_bt_place_time_clicked();
+
 private:
     Ui::ParametersForm *ui;
 
     spnp::Net* netData;
+
+    std::vector<spnp::OutputFunction> *outputs;
 
     void fillData();
     void fillPlacesNames(QComboBox* cb, std::vector<spnp::Place *> *places);
