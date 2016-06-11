@@ -1,6 +1,6 @@
 #include "option.h"
 
-spnp::Option::Option()
+spnp::Option::Option():AbstractData()
 {
     /* option files */
     //output

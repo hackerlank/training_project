@@ -2,7 +2,7 @@
 #define OUTPUTOPTION_H
 
 #include "abstractdata.h"
-
+//TODO rever a utilidade dessa classe
 namespace spnp
 {
 class SPNPCLASSES_PUBLIC OutputOption : public AbstractData

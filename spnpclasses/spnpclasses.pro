@@ -27,7 +27,8 @@ SOURCES += \
     objs/immediatetransition.cpp \
     objs/option.cpp \
     objs/outputoption.cpp \
-    objs/parameter.cpp
+    objs/parameter.cpp \
+    objs/outputfunction.cpp
 
 HEADERS +=\
 	spnpclasses_global.h \
@@ -44,7 +45,8 @@ HEADERS +=\
     objs/immediatetransition.h \
     objs/option.h \
     objs/outputoption.h \
-    objs/parameter.h
+    objs/parameter.h \
+    objs/outputfunction.h
 
 unix {
     target.path = /usr/lib

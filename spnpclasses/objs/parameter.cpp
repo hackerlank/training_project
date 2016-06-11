@@ -94,7 +94,7 @@ void spnp::Parameter::fromXML(XMLNode *xml)
 
 std::string spnp::Parameter::c_str(spnp::IData *data) const
 {
-    //TODO ver como é no original
+    //TODO fazer engenharia reversa
 }
 
 std::string spnp::Parameter::getClassNodeName()

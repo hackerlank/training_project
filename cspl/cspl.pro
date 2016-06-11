@@ -23,19 +23,20 @@ unix {
     target.path = /usr/lib
     INSTALLS += target
     DEFINES +=LINUX
+
+    LIBS += -L$$OUT_PWD/../spnpclasses/ -lSPNPClasses
+    LIBS += -L$$OUT_PWD/../XMLParser/ -lXMLParser
 }
 
 win32{
     DEFINES += WINDOWS
+
+    CONFIG(release, debug|release): LIBS += -L$$OUT_PWD/../spnpclasses/release/ -lSPNPClasses
+    CONFIG(debug, debug|release): LIBS += -L$$OUT_PWD/../spnpclasses/debug/ -lSPNPClasses
+
+    CONFIG(release, debug|release): LIBS += -L$$OUT_PWD/../XMLParser/release/ -lXMLParser
+    CONFIG(debug, debug|release): LIBS += -L$$OUT_PWD/../XMLParser/debug/ -lXMLParser
 }
-
-win32:CONFIG(release, debug|release): LIBS += -L$$OUT_PWD/../spnpclasses/release/ -lSPNPClasses
-else:win32:CONFIG(debug, debug|release): LIBS += -L$$OUT_PWD/../spnpclasses/debug/ -lSPNPClasses
-else:unix:!macx: LIBS += -L$$OUT_PWD/../spnpclasses/ -lSPNPClasses
-
-win32:CONFIG(release, debug|release): LIBS += -L$$OUT_PWD/../XMLParser/release/ -lXMLParser
-else:win32:CONFIG(debug, debug|release): LIBS += -L$$OUT_PWD/../XMLParser/debug/ -lXMLParser
-else:unix:!macx: LIBS += -L$$OUT_PWD/../XMLParser/ -lXMLParser
 
 INCLUDEPATH += $$PWD/../XMLParser
 DEPENDPATH += $$PWD/../XMLParser
