@@ -50,7 +50,7 @@ public:
     virtual std::string c_str(IData* data=nullptr) const;
 
     std::string getVariables();
-    std::string getFunction();
+    std::string getFunciont();
 protected:
     virtual std::string getClassNodeName();
 
@@ -60,10 +60,41 @@ protected:
 
 private:
     void prepareData();
+    void prepareFunction();
 
     std::string vars;
     int functionNumber;
     std::string functionName;
+    std::string functionString;
+
+    void prepareETPS();
+    void prepareETPT();
+    void prepareETPsS();
+    void prepareETPsT();
+
+    void prepareTTS();
+    void prepareTTT();
+    void prepareTTsS();
+    void prepareTTsT();
+
+    void prepareUTS();
+    void prepareUTT();
+    void prepareUTsS();
+    void prepareUTsT();
+
+    void preparePPS();
+    void preparePPT();
+    void preparePPsS();
+    void preparePPsT();
+
+    void prepareERS();
+    void prepareERT();
+    void prepareEAA();
+    void prepareEAT();
+    void prepareSD();
+    void prepareV();
+
+    void prepareNull();
 };
 }
 #endif // OUTPUTFUNCTION_H
