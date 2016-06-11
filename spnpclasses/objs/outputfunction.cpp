@@ -186,8 +186,6 @@ void spnp::OutputFunction::prepareETPT()
     this->finalString = "for(loop=" + data.at(0)+";loop<"+data.at(1)+";loop+="+data.at(2)+") {\n";
     this->finalString += "\tsolve((double) loop);\n";
     this->finalString += "\tpr_expected(\"Expected # of tokens of the place "+objId+"\","+this->functionName+");";
-
-
 }
 
 void spnp::OutputFunction::prepareETPsS()
