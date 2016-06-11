@@ -50,7 +50,9 @@ public:
     virtual std::string c_str(IData* data=nullptr) const;
 
     std::string getVariables();
-    std::string getFunciont();
+    std::string getFunction();
+
+    std::string getFinal();
 protected:
     virtual std::string getClassNodeName();
 
@@ -66,6 +68,8 @@ private:
     int functionNumber;
     std::string functionName;
     std::string functionString;
+
+    std::string finalString;
 
     void prepareETPS();
     void prepareETPT();
@@ -95,6 +99,8 @@ private:
     void prepareV();
 
     void prepareNull();
+
+    std::vector<std::string> split(std::string in);
 };
 }
 #endif // OUTPUTFUNCTION_H

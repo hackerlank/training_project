@@ -10,6 +10,8 @@ spnp::OutputFunction::OutputFunction(OutputFunction::TYPE type, int functionNum,
 
     this->vars = "";
     this->functionName = "";
+    this->functionString = "";
+    this->finalString = "";
 
     this->prepareData();
 }
@@ -46,12 +48,17 @@ std::string spnp::OutputFunction::c_str(spnp::IData *data) const
 
 std::string spnp::OutputFunction::getVariables()
 {
-
+    return this->vars;
 }
 
-std::string spnp::OutputFunction::getFunciont()
+std::string spnp::OutputFunction::getFunction()
 {
+    return this->functionString;
+}
 
+std::string spnp::OutputFunction::getFinal()
+{
+    return this->finalString;
 }
 
 void spnp::OutputFunction::prepareFunction()
@@ -148,12 +155,22 @@ void spnp::OutputFunction::prepareData()
 
 void spnp::OutputFunction::prepareETPS()
 {
+    this->functionString = "double " + this->functionName + "() {\n";
+    this->functionString+= "\treturn(mark("+ objId +"));\n}\n";
 
+    this->finalString = "\tsolve(INFINITY);\n";
+    this->finalString += "pr_expected(\"Expected # of tokens of the place "+ objId + " in steady-state\","+ this->functionName +")";
 }
 
 void spnp::OutputFunction::prepareETPT()
 {
+    this->functionString = "double " + this->functionName + "() {\n";
+    this->functionString+= "\treturn(mark("+ objId +"));\n}\n";
 
+    std::vector<std::string> data = this->split(this->option);
+    this->finalString = "for(loop=" + data.at(0)+";loop<"+data.at(1)+";loop+="+data.at(2)+") {\n";
+    this->finalString += "\tsolve((double) loop);\n";
+    this->finalString += "\tpr_expected(\"Expected # of tokens of the place "+objId+"\","+this->functionName+");";
 }
 
 void spnp::OutputFunction::prepareETPsS()
@@ -259,4 +276,21 @@ void spnp::OutputFunction::prepareV()
 void spnp::OutputFunction::prepareNull()
 {
 
+}
+
+std::vector<std::string> spnp::OutputFunction::split(std::string in)
+{
+    std::vector<std::string> out;
+    int index = -1;
+    do
+    {
+        index = in.find(',');
+        if(index>-1)
+        {
+            out.push_back(in.substr(0, index));
+            in = in.substr(index, in.size());
+        }
+    } while(index > -1);
+
+    return out;
 }
