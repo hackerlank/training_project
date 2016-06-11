@@ -33,7 +33,6 @@ void spnp::OutputFunction::fromXML(XMLNode *xml)
 std::string spnp::OutputFunction::c_str(spnp::IData *data) const
 {
     (void)data;
-
 }
 
 std::string spnp::OutputFunction::getClassNodeName()
