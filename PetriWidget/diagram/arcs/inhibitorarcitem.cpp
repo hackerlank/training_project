@@ -1,9 +1,9 @@
 #include "inhibitorarcitem.h"
 
-InhibitorArcItem::InhibitorArcItem(std::string id, IPetriItem *startItem, IPetriItem *endItem, QGraphicsItem *parent)
-    :AbstractPetriArc(id, startItem, endItem, parent)
+InhibitorArcItem::InhibitorArcItem(IPetriItem *startItem, IPetriItem *endItem, QGraphicsItem *parent)
+    :AbstractPetriArc(startItem, endItem, parent)
 {
-    this->myArcType = IPetriArc::Inhibitor;
+
 }
 
 InhibitorArcItem::~InhibitorArcItem()

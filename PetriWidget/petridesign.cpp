@@ -12,34 +12,12 @@ PetriDesign::PetriDesign(QWidget *parent) :
 
     connect(this->ui->widget, SIGNAL(sceneClicked()),
             this, SLOT(afterClickAction()));
-    connect(this->ui->widget, SIGNAL(itemSelected(QGraphicsItem*)),
-            this, SLOT(afterSelectionAction(QGraphicsItem*)));
 }
 
 PetriDesign::~PetriDesign()
 {
     delete ui;
     delete bGroup;
-}
-
-bool PetriDesign::isLocked()
-{
-    return this->ui->cb_lock->isChecked();
-}
-
-void PetriDesign::setLocked(bool l)
-{
-    this->ui->cb_lock->setChecked(l);
-}
-
-void PetriDesign::close()
-{
-    this->ui->widget->close();
-}
-
-void PetriDesign::load(spnp::IData *data)
-{
-    this->ui->widget->load(data);
 }
 
 void PetriDesign::on_bt_normal_clicked()
@@ -100,11 +78,6 @@ void PetriDesign::afterClickAction()
     {
         this->ui->bt_normal->click();
     }
-}
-
-void PetriDesign::afterSelectionAction(QGraphicsItem* item)
-{
-    emit this->itemSelected(item);
 }
 
 void PetriDesign::addButtonsToGroup()

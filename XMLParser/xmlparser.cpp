@@ -4,8 +4,6 @@
 #include <sstream>
 #include <iterator>
 
-#include "base64.h"
-
 XMLNode::XMLNode()
 {
     this->name = "-";
@@ -34,7 +32,7 @@ std::vector<XMLNode*> *XMLNode::getChildrenByName(std::string childName)
     std::vector<XMLNode*> *out = new std::vector<XMLNode*>();
     for(XMLNode *n : *(this->children))
     {
-        if(n!=nullptr && n->getName() == childName)
+        if(n->getName() == childName)
         {
             out->push_back(n);
         }
@@ -68,10 +66,10 @@ std::string XMLNode::toString()
     return out;
 }
 
-XMLNode *XMLNode::fromString(std::string str)
+XMLNode *XMLNode::fromString(std::ifstream &ifs)
 {
     //std::cout << ss.str() << std::endl;
-    std::ifstream ifs(str);
+
     std::string line;
     XMLNode* currentNode = nullptr;
     std::stack<XMLNode*> *xmlStack = new std::stack<XMLNode*>();
@@ -101,7 +99,6 @@ XMLNode *XMLNode::fromString(std::string str)
                 std::istream_iterator<std::string> begin(ss);
                 std::istream_iterator<std::string> end;
                 std::vector<std::string> vstrings(begin, end);
-                //\w+=(\'[^\']+\'|\'\')
 
                 //'desescapando' o nome
                 XMLNode* xNode = new XMLNode(xmlUnescape(vstrings[0]));
@@ -139,6 +136,8 @@ XMLNode *XMLNode::fromString(std::string str)
             currentContent += line;
         }
     }
+    //currentNode = xmlStack->top();
+    //xmlStack->pop();
     delete xmlStack;
     return currentNode;
 }
@@ -208,11 +207,6 @@ void XMLNode::setAttribute(std::string attName, long long attValue)
     this->setAttribute(attName, std::to_string(attValue));
 }
 
-void XMLNode::setAttribute(std::string attName, unsigned long long attValue)
-{
-    this->setAttribute(attName, std::to_string(attValue));
-}
-
 void XMLNode::setAttribute(std::string attName, double attValue)
 {
     this->setAttribute(attName, std::to_string(attValue));
@@ -230,8 +224,7 @@ void XMLNode::setAttribute(std::string attName, float attValue)
 
 void XMLNode::setAttribute(std::string attName, bool attValue)
 {
-    std::string value = attValue ? "true" : "false";
-    this->setAttribute(attName, value);
+    this->setAttribute(attName, attValue ? "true" : "false");
 }
 
 void XMLNode::removeAttribute(std::string name)
@@ -257,11 +250,6 @@ long XMLNode::getAttributeL(std::string name)
 long long XMLNode::getAttributeLL(std::string name)
 {
     return std::stoll(this->getAttributeByName(name));
-}
-
-unsigned long long XMLNode::getAttributeULL(std::string name)
-{
-    return std::stoull(this->getAttributeByName(name));
 }
 
 double XMLNode::getAttributeD(std::string name)
@@ -303,20 +291,10 @@ std::string XMLNode::closing()
 
 std::string XMLNode::getAttributeByName(std::string name) const
 {
-    std::string out = "";
-
-    for(auto iter = attributes->begin(); iter != attributes->end(); ++iter)
-    {
-        //TODO verificar teste
-        //if(iter->first.compare(name)==0)
-        if(iter->first == name)
-        {
-            out = iter->second;
-            break;
-        }
-    }
-
-    return out;
+    std::map<std::string, std::string>::iterator p;
+    p = this->attributes->find(name);
+    if(p == this->attributes->end()) return "";
+    else return p->second;
 }
 
 std::string XMLNode::stringReplace(std::string xml, std::vector<std::string> from, std::vector<std::string> to)
@@ -337,10 +315,13 @@ std::string XMLNode::stringReplace(std::string xml, std::vector<std::string> fro
 
 std::string XMLNode::xmlEscape(std::string xml)
 {
-    return base64_encode(reinterpret_cast<const unsigned char*>(xml.c_str()), xml.length());
+    return stringReplace(xml, UNESCAPED, ESCAPED);
 }
 
 std::string XMLNode::xmlUnescape(std::string xml)
 {
-    return base64_decode(xml);
+    return stringReplace(xml, ESCAPED, UNESCAPED);
 }
+
+const std::vector<std::string> XMLNode::UNESCAPED = { "<", ">" };
+const std::vector<std::string> XMLNode::ESCAPED = { "&lt;", "&gt;" };

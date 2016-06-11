@@ -16,7 +16,7 @@ DEFINES += HIGHLIGHTER_LIBRARY
 SOURCES += highlighter.cpp
 
 HEADERS += highlighter.h\
-	highlighter_global.h
+        highlighter_global.h
 
 unix {
     target.path = /usr/lib

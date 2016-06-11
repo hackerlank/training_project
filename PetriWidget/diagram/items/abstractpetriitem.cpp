@@ -5,11 +5,13 @@
 
 #include <QGraphicsScene>
 #include <QGraphicsSceneContextMenuEvent>
+#include <QMenu>
 #include <QPainter>
 
-AbstractPetriItem::AbstractPetriItem(std::string id, QMenu *contextMenu, QGraphicsItem *parent)
-    :IPetriItem(id, contextMenu, parent)
+AbstractPetriItem::AbstractPetriItem(QMenu *contextMenu, QGraphicsItem *parent):IPetriItem(parent)
 {
+    this->myContextMenu = contextMenu;
+
     //drawItem();
     setFlag(QGraphicsItem::ItemIsMovable, true);
     setFlag(QGraphicsItem::ItemIsSelectable, true);
@@ -73,14 +75,7 @@ void AbstractPetriItem::contextMenuEvent(QGraphicsSceneContextMenuEvent *event)
 {
     scene()->clearSelection();
     setSelected(true);
-    if(myContextMenu!=nullptr)
-    {
-        QAction* act = myContextMenu->exec(event->screenPos());
-        if(act)
-        {
-            this->onContextMenu(act);
-        }
-    }
+    myContextMenu->exec(event->screenPos());
 }
 
 QVariant AbstractPetriItem::itemChange(QGraphicsItem::GraphicsItemChange change, const QVariant &value)
@@ -98,9 +93,4 @@ QVariant AbstractPetriItem::itemChange(QGraphicsItem::GraphicsItemChange change,
 void AbstractPetriItem::drawItem()
 {
     setPolygon(myPolygon);
-}
-
-void AbstractPetriItem::setLabel(std::string txt)
-{
-    this->myLabel->setText(QString::fromStdString(txt));
 }

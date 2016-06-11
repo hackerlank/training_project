@@ -9,42 +9,27 @@ class SPNPCLASSES_PUBLIC Arc : public AbstractData
 {
 public:
     Arc();
-    Arc(std::string name, std::string place="", std::string transition="",
-        bool fromPlaceToTransition=false, std::string multiplicity="1", bool isFluid=false, bool isInhibitor=false,
-        bool isConstant=true);
+    Arc(int id, std::string name, int place=-1, int transition=-1, bool fromPlaceToTransition=false, double multiplicity=1.);
     virtual ~Arc();
     virtual XMLNode* toXML();
     virtual void fromXML(XMLNode *xml);
 
-    std::string getPlaceId() const;
-    std::string getTransitionId() const;
+    int getPlaceId() const;
+    int getTransitionId() const;
     bool getFromPlaceToTransition() const;
-    std::string getMultiplicity() const;
-    bool getIsFluid() const;
-    bool getIsInhibitor() const;
-    bool getIsConstant() const;
-    void setPlace(const std::string id);
-    void setTransition(const std::string id);
+    double getMultiplicity() const;
+
+    void setPlace(const int id);
+    void setTransition(const int id);
     void setFromPlaceToTransition(const bool b);
-    void setMultiplicity(const std::string m);
-    void setIsFluid(const bool b);
-    void setIsInhibitor(const bool b);
-    void setIsConstant(const bool b);
-
-    virtual std::string c_str(IData* data=nullptr) const;
-
-    void operator=(const Arc &a);
-    virtual std::string getClassNodeName();
+    void setMultiplicity(const double m);
 private:
-    std::string place;
-    std::string transition;
+    int place;
+    int transition;
     bool fromPlaceToTransition;
-    std::string multiplicity;
+    double multiplicity;
 
-    bool isConstant;
-
-    bool isFluid;
-    bool isInhibitor;
+    virtual std::string getClassNodeName();
 };
 }
 

@@ -1,14 +1,14 @@
 #include "abstractdata.h"
-#include <ctime>
+
 spnp::AbstractData::AbstractData()
 {
-    this->createID();
-    this->name = "Name_"+id;
+    this->id = -1;
+    this->name = "ad";
 }
 
-spnp::AbstractData::AbstractData(std::string name)
+spnp::AbstractData::AbstractData(int id, std::string name)
 {
-    this->createID();
+    this->id = id;
     this->name = name;
 }
 
@@ -28,12 +28,6 @@ XMLNode *spnp::AbstractData::toXML()
 
 void spnp::AbstractData::fromXML(XMLNode *xml)
 {
-    this->id = xml->getAttributeS("id");
+    this->id = xml->getAttributeI("id");
     this->name = xml->getAttributeS("name");
-}
-
-void spnp::AbstractData::createID()
-{
-    std::time_t result = std::time(nullptr);
-    this->id = std::to_string(result) + std::to_string(std::rand()%1001);
 }

@@ -12,12 +12,10 @@ TEMPLATE = lib
 
 DEFINES += XMLPARSER_LIBRARY
 
-SOURCES += xmlparser.cpp \
-    base64.cpp
+SOURCES += xmlparser.cpp
 
 HEADERS += xmlparser.h\
-        xmlparser_global.h \
-    base64.h
+        xmlparser_global.h
 
 unix {
     target.path = /usr/lib

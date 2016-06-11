@@ -2,15 +2,12 @@
 <ui version="4.0">
  <class>MainWindow</class>
  <widget class="QMainWindow" name="MainWindow">
-  <property name="enabled">
-   <bool>true</bool>
-  </property>
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>963</width>
-    <height>661</height>
+    <width>825</width>
+    <height>645</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -26,7 +23,7 @@
      <widget class="PetriEditor" name="widget" native="true">
       <property name="minimumSize">
        <size>
-        <width>945</width>
+        <width>807</width>
         <height>570</height>
        </size>
       </property>
@@ -39,55 +36,67 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>963</width>
+     <width>825</width>
      <height>21</height>
     </rect>
    </property>
    <widget class="QMenu" name="menu_arquivo">
     <property name="title">
-     <string>_&amp;Arquivo</string>
+     <string>&amp;arquivo</string>
     </property>
-    <widget class="QMenu" name="menu_Recente">
+    <widget class="QMenu" name="menu_novo">
      <property name="title">
-      <string>&amp;Recente</string>
+      <string>&amp;novo</string>
      </property>
+     <addaction name="action_rede"/>
+     <addaction name="action_projeto"/>
     </widget>
-    <addaction name="action_Novo_Projeto"/>
-    <addaction name="action_Abrir_Projeto"/>
-    <addaction name="action_Salvar_Projeto"/>
-    <addaction name="actionSalvar_como"/>
+    <widget class="QMenu" name="menu_abrir">
+     <property name="title">
+      <string>&amp;abrir</string>
+     </property>
+     <addaction name="action_rede_2"/>
+     <addaction name="action_projeto_2"/>
+    </widget>
+    <widget class="QMenu" name="menu_salvar_rede">
+     <property name="title">
+      <string>&amp;salvar</string>
+     </property>
+     <addaction name="action_rede_3"/>
+     <addaction name="action_projeto_3"/>
+    </widget>
+    <widget class="QMenu" name="menuSalvar_como">
+     <property name="title">
+      <string>salvar ... &amp;como</string>
+     </property>
+     <addaction name="action_rede_4"/>
+     <addaction name="action_projeto_4"/>
+    </widget>
+    <addaction name="menu_novo"/>
+    <addaction name="menu_abrir"/>
+    <addaction name="menu_salvar_rede"/>
+    <addaction name="menuSalvar_como"/>
     <addaction name="separator"/>
-    <addaction name="menu_Recente"/>
+    <addaction name="actionFechar"/>
     <addaction name="separator"/>
-    <addaction name="action_Fechar"/>
+    <addaction name="action_propriedades"/>
     <addaction name="separator"/>
     <addaction name="action_sair"/>
    </widget>
    <widget class="QMenu" name="menuAaa">
     <property name="title">
-     <string>_&amp;Editar</string>
+     <string>aaa</string>
     </property>
-    <addaction name="action_pathes"/>
-    <addaction name="separator"/>
-    <addaction name="action_preferences"/>
    </widget>
    <widget class="QMenu" name="menuSobre">
     <property name="title">
-     <string>_&amp;sobre</string>
+     <string>sobre</string>
     </property>
-   </widget>
-   <widget class="QMenu" name="menuA_n_lise">
-    <property name="title">
-     <string>A&amp;nálise</string>
-    </property>
-    <addaction name="actionAnalisar"/>
    </widget>
    <addaction name="menu_arquivo"/>
    <addaction name="menuAaa"/>
-   <addaction name="menuA_n_lise"/>
    <addaction name="menuSobre"/>
   </widget>
-  <widget class="QStatusBar" name="statusBar"/>
   <widget class="QToolBar" name="mainToolBar">
    <attribute name="toolBarArea">
     <enum>TopToolBarArea</enum>
@@ -95,82 +104,61 @@
    <attribute name="toolBarBreak">
     <bool>false</bool>
    </attribute>
-   <addaction name="action_Novo_Projeto"/>
-   <addaction name="action_Abrir_Projeto"/>
-   <addaction name="action_Salvar_Projeto"/>
-   <addaction name="separator"/>
-   <addaction name="action_Fechar"/>
   </widget>
-  <action name="action_Fechar">
+  <widget class="QStatusBar" name="statusBar"/>
+  <action name="action_rede">
    <property name="text">
-    <string>&amp;Fechar</string>
-   </property>
-   <property name="shortcut">
-    <string>Ctrl+W</string>
+    <string>&amp;rede</string>
    </property>
   </action>
-  <action name="action_pathes">
+  <action name="action_projeto">
    <property name="text">
-    <string>&amp;Caminhos</string>
+    <string>&amp;projeto</string>
+   </property>
+  </action>
+  <action name="action_rede_2">
+   <property name="text">
+    <string>&amp;rede</string>
+   </property>
+  </action>
+  <action name="action_projeto_2">
+   <property name="text">
+    <string>&amp;projeto</string>
+   </property>
+  </action>
+  <action name="action_rede_3">
+   <property name="text">
+    <string>&amp;rede</string>
+   </property>
+  </action>
+  <action name="action_projeto_3">
+   <property name="text">
+    <string>&amp;projeto</string>
+   </property>
+  </action>
+  <action name="action_rede_4">
+   <property name="text">
+    <string>&amp;rede</string>
+   </property>
+  </action>
+  <action name="action_projeto_4">
+   <property name="text">
+    <string>&amp;projeto</string>
+   </property>
+  </action>
+  <action name="actionFechar">
+   <property name="text">
+    <string>&amp;fechar</string>
+   </property>
+  </action>
+  <action name="action_propriedades">
+   <property name="text">
+    <string>&amp;propriedades</string>
    </property>
   </action>
   <action name="action_sair">
    <property name="text">
-    <string>&amp;Sair</string>
-   </property>
-   <property name="shortcut">
-    <string>Ctrl+Q</string>
-   </property>
-   <property name="menuRole">
-    <enum>QAction::QuitRole</enum>
-   </property>
-  </action>
-  <action name="action_Novo_Projeto">
-   <property name="text">
-    <string>&amp;Novo Projeto</string>
-   </property>
-   <property name="shortcut">
-    <string>Ctrl+N</string>
-   </property>
-  </action>
-  <action name="action_Abrir_Projeto">
-   <property name="text">
-    <string>&amp;Abrir Projeto</string>
-   </property>
-   <property name="shortcut">
-    <string>Ctrl+O</string>
-   </property>
-  </action>
-  <action name="action_Salvar_Projeto">
-   <property name="text">
-    <string>&amp;Salvar Projeto</string>
-   </property>
-   <property name="shortcut">
-    <string>Ctrl+S</string>
-   </property>
-  </action>
-  <action name="actionSalvar_como">
-   <property name="text">
-    <string>Salvar &amp;como...</string>
-   </property>
-  </action>
-  <action name="action_preferences">
-   <property name="enabled">
-    <bool>false</bool>
-   </property>
-   <property name="text">
-    <string>&amp;Preferências</string>
-   </property>
-   <property name="shortcut">
-    <string>Ctrl+P</string>
-   </property>
-  </action>
-  <action name="actionAnalisar">
-   <property name="text">
-    <string>&amp;Analisar</string>
-   </property>
-   <property name="shortcut">
-    <string>Ctrl+T</string>
+    <string>&amp;sair</string>
    </property>
   </action>
  </widget>

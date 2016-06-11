@@ -2,12 +2,12 @@
 
 spnp::Place::Place():AbstractVisualData()
 {
-    this->tokens = "0";
+    this->tokens = 1.;
     this->label = new Label();
 }
 
-spnp::Place::Place(std::string name, std::string tokens, Label *label, int x, int y)
-    :AbstractVisualData(name, x, y)
+spnp::Place::Place(int id, std::string name, double tokens, Label *label, int x, int y)
+    :AbstractVisualData(id, name, x, y)
 {
     this->tokens = tokens;
     if(label != nullptr)
@@ -34,7 +34,7 @@ XMLNode *spnp::Place::toXML()
 void spnp::Place::fromXML(XMLNode *xml)
 {
     AbstractVisualData::fromXML(xml);
-    this->tokens = xml->getAttributeS("tokens");
+    this->tokens = xml->getAttributeD("tokens");
 
     if(this->label != nullptr)
         delete this->label;
@@ -43,12 +43,12 @@ void spnp::Place::fromXML(XMLNode *xml)
     this->label->fromXML(xml->getChildAt(0));
 }
 
-std::string spnp::Place::getToken() const
+double spnp::Place::getTokens() const
 {
     return this->tokens;
 }
 
-void spnp::Place::setToken(const std::string d)
+void spnp::Place::setToken(const double d)
 {
     this->tokens = d;
 }
@@ -56,18 +56,6 @@ void spnp::Place::setToken(const std::string d)
 spnp::Label *spnp::Place::getLabel() const
 {
     return this->label;
-}
-
-std::string spnp::Place::c_str(IData* data) const
-{
-    (void)data;
-    std::stringstream ss;
-    ss << "place(\"" << getName() << "\");\n";
-    if(this->tokens.compare("0")!=0)
-    {
-        ss<< "init(\"" << getName() << "\"," << this->tokens << ");\n";
-    }
-    return ss.str();
 }
 
 std::string spnp::Place::getClassNodeName()

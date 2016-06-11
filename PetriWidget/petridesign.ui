@@ -43,10 +43,6 @@
         <property name="text">
          <string>_normal</string>
         </property>
-        <property name="icon">
-         <iconset resource="imgs.qrc">
-          <normaloff>:/icons/img/cursor.ico</normaloff>:/icons/img/cursor.ico</iconset>
-        </property>
         <property name="checkable">
          <bool>true</bool>
         </property>
@@ -58,11 +54,7 @@
       <item row="0" column="1">
        <widget class="QPushButton" name="bt_place">
         <property name="text">
-         <string>_place</string>
-        </property>
-        <property name="icon">
-         <iconset resource="imgs.qrc">
-          <normaloff>:/icons/img/place.ico</normaloff>:/icons/img/place.ico</iconset>
+         <string>_lugar</string>
         </property>
         <property name="checkable">
          <bool>true</bool>
@@ -72,11 +64,7 @@
       <item row="0" column="2">
        <widget class="QPushButton" name="bt_fplace">
         <property name="text">
-         <string>_fplace</string>
-        </property>
-        <property name="icon">
-         <iconset resource="imgs.qrc">
-          <normaloff>:/icons/img/fplace.ico</normaloff>:/icons/img/fplace.ico</iconset>
+         <string>_lugarF</string>
         </property>
         <property name="checkable">
          <bool>true</bool>
@@ -86,11 +74,7 @@
       <item row="0" column="3">
        <widget class="QPushButton" name="bt_ttrans">
         <property name="text">
-         <string>_TTrans</string>
-        </property>
-        <property name="icon">
-         <iconset resource="imgs.qrc">
-          <normaloff>:/icons/img/ttrans.ico</normaloff>:/icons/img/ttrans.ico</iconset>
+         <string>_transiçãoT</string>
         </property>
         <property name="checkable">
          <bool>true</bool>
@@ -100,11 +84,7 @@
       <item row="0" column="4">
        <widget class="QPushButton" name="bt_itrans">
         <property name="text">
-         <string>_ITrans</string>
-        </property>
-        <property name="icon">
-         <iconset resource="imgs.qrc">
-          <normaloff>:/icons/img/imtrans.ico</normaloff>:/icons/img/imtrans.ico</iconset>
+         <string>_transiçãoI</string>
         </property>
         <property name="checkable">
          <bool>true</bool>
@@ -124,11 +104,7 @@
       <item row="1" column="1">
        <widget class="QPushButton" name="bt_arc">
         <property name="text">
-         <string>_arc</string>
-        </property>
-        <property name="icon">
-         <iconset resource="imgs.qrc">
-          <normaloff>:/icons/img/arc.ico</normaloff>:/icons/img/arc.ico</iconset>
+         <string>_arco</string>
         </property>
         <property name="checkable">
          <bool>true</bool>
@@ -138,11 +114,7 @@
       <item row="1" column="2">
        <widget class="QPushButton" name="bt_iarc">
         <property name="text">
-         <string>_Iarc</string>
-        </property>
-        <property name="icon">
-         <iconset resource="imgs.qrc">
-          <normaloff>:/icons/img/inhibitor.ico</normaloff>:/icons/img/inhibitor.ico</iconset>
+         <string>_arcoI</string>
         </property>
         <property name="checkable">
          <bool>true</bool>
@@ -152,7 +124,7 @@
       <item row="1" column="3">
        <widget class="QPushButton" name="bt_farc">
         <property name="text">
-         <string>_Farc</string>
+         <string>_arcoF</string>
         </property>
         <property name="checkable">
          <bool>true</bool>
@@ -179,8 +151,6 @@
    <container>1</container>
   </customwidget>
  </customwidgets>
- <resources>
-  <include location="imgs.qrc"/>
- </resources>
+ <resources/>
  <connections/>
 </ui>

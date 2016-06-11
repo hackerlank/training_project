@@ -1,11 +1,11 @@
 #ifndef TIMEDTRANSITION_H
 #define TIMEDTRANSITION_H
 
-#include "objs/immediatetransition.h"
+#include "objs/transition.h"
 
 namespace spnp
 {
-class SPNPCLASSES_PUBLIC TimedTransition : public ImmediateTransition
+class SPNPCLASSES_PUBLIC TimedTransition : public Transition
 {
 public:
     enum Distribution
@@ -35,13 +35,12 @@ public:
         PRS,
         PRD
     };
+
     TimedTransition();
-    TimedTransition(std::string name,
+    TimedTransition(int id, std::string name,
                     std::string priority,
-                    std::string guard = "",
-                    ProbabilityType probType = ProbabilityType::CONSTANT,
-                    std::string value = "0.789",
                     Label* label=nullptr,
+                    std::string rate="0.25",
                     Distribution distribution = Distribution::Exponential,
                     std::string distValue="", Policy policy = Policy::PreemptiveRepeatDifferent,
                     Affected affected = Affected::PRS, int x=0, int y=0);
@@ -50,25 +49,13 @@ public:
     virtual XMLNode* toXML();
     virtual void fromXML(XMLNode *xml);
 
-    void setDistribution(Distribution d);
-    void setDistributionValue(std::string dv);
-    void setPolicy(Policy p);
-    void setAffected(Affected a);
-
-    Distribution getDistribution();
-    std::string getDistributionValue();
-    Policy getPolicy();
-    Affected getAffected();
-
-    virtual std::string c_str(IData* data=nullptr) const;
-//o "rate" daqui é o mesmo q o "valor" do imediato
-
-    virtual std::string getClassNodeName() override;
 private:
+    std::string rate;
     Distribution distribution;
     std::string distValue;
     Policy policy;
     Affected affected;
+    virtual std::string getClassNodeName();
 };
 }
 

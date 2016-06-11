@@ -14,7 +14,7 @@ DEFINES += SAVELOADFILE_LIBRARY
 SOURCES += saveloadfile.cpp
 
 HEADERS += saveloadfile.h\
-	saveloadfile_global.h
+        saveloadfile_global.h
 
 unix {
     target.path = /usr/lib

@@ -6,16 +6,11 @@
 class TTransItem : public AbstractPetriItem
 {
 public:
-    TTransItem(std::string id, QMenu *contextMenu, QGraphicsItem *parent = nullptr);
+    TTransItem(QMenu *contextMenu, QGraphicsItem *parent = nullptr);
     virtual ~TTransItem();
-
-    void updateLabel(spnp::IData *data) override;
 
 protected:
     virtual void drawItem() override;
-    void mouseMoveEvent(QGraphicsSceneMouseEvent *event) override;
-
-    virtual void onContextMenu(QAction* act) override;
 };
 
 #endif // TTRANS_H

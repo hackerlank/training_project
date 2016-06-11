@@ -6,7 +6,7 @@
 class InhibitorArcItem : public AbstractPetriArc
 {
 public:
-    InhibitorArcItem(std::string id, IPetriItem *startItem, IPetriItem *endItem, QGraphicsItem *parent=nullptr);
+    InhibitorArcItem(IPetriItem *startItem, IPetriItem *endItem, QGraphicsItem *parent=nullptr);
     virtual ~InhibitorArcItem();
 
     virtual bool canConnect() override;

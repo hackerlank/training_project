@@ -1,8 +1,8 @@
 #include "timedtransition.h"
 
-spnp::TimedTransition::TimedTransition():ImmediateTransition()
+spnp::TimedTransition::TimedTransition():Transition()
 {
-    this->value = "0.25";
+    this->rate = "0.25";
     this->distribution = Distribution::Exponential;
     this->distValue = "";
     this->policy = Policy::PreemptiveRepeatDifferent;
@@ -10,13 +10,12 @@ spnp::TimedTransition::TimedTransition():ImmediateTransition()
     this->label = new Label();
 }
 
-spnp::TimedTransition::TimedTransition(std::string name, std::string priority, std::string guard,
-                                       ProbabilityType probType, std::string value,
-                                       Label *label,
+spnp::TimedTransition::TimedTransition(int id, std::string name, std::string priority, Label *label, std::string rate,
                                        Distribution distribution, std::string distValue,
                                        Policy policy, Affected affected, int x, int y)
-    :ImmediateTransition(name, priority, guard, probType, value, label, x, y)
+    :Transition(id, name, priority, label, x, y)
 {
+    this->rate = rate;
     this->distribution = distribution;
     this->distValue = distValue;
     this->policy = policy;
@@ -30,77 +29,20 @@ spnp::TimedTransition::~TimedTransition()
 
 XMLNode *spnp::TimedTransition::toXML()
 {
-    XMLNode* node = ImmediateTransition::toXML();
+    XMLNode* node = Transition::toXML();
+    node->setAttribute("rate", this->rate);
     node->setAttribute("dist_value", this->distValue);
     node->setAttribute("dist", static_cast<int>(this->distribution));
-    node->setAttribute("policy", static_cast<int>(this->policy));
-    node->setAttribute("affected", static_cast<int>(this->affected));
 
     return node;
 }
 
 void spnp::TimedTransition::fromXML(XMLNode *xml)
 {
-    ImmediateTransition::fromXML(xml);
+    Transition::fromXML(xml);
+    this->rate = xml->getAttributeS("rate");
     this->distValue= xml->getAttributeS("dist_value");
     this->distribution = static_cast<Distribution>(xml->getAttributeI("dist"));
-    this->policy = static_cast<Policy>(xml->getAttributeI("policy"));
-    this->affected = static_cast<Affected>(xml->getAttributeI("affected"));
-}
-
-void spnp::TimedTransition::setDistribution(spnp::TimedTransition::Distribution d)
-{
-    this->distribution = d;
-}
-
-void spnp::TimedTransition::setDistributionValue(std::string dv)
-{
-    this->distValue = dv;
-}
-
-void spnp::TimedTransition::setPolicy(spnp::TimedTransition::Policy p)
-{
-    this->policy = p;
-}
-
-void spnp::TimedTransition::setAffected(spnp::TimedTransition::Affected a)
-{
-    this->affected = a;
-}
-
-spnp::TimedTransition::Distribution spnp::TimedTransition::getDistribution()
-{
-    return this->distribution;
-}
-
-std::string spnp::TimedTransition::getDistributionValue()
-{
-    return this->distValue;
-}
-
-spnp::TimedTransition::Policy spnp::TimedTransition::getPolicy()
-{
-    return this->policy;
-}
-
-spnp::TimedTransition::Affected spnp::TimedTransition::getAffected()
-{
-    return this->affected;
-}
-
-std::string spnp::TimedTransition::c_str(IData *data) const
-{
-    (void)data;
-    std::stringstream ss;
-
-    ss << "rateval(\"" << getName() << "\","<< this->getValue() << ");\n";
-
-    if(this->guard.compare("")!=0)
-    {
-        ss << "guard(\"" << getName() << "\", " << this->getGuard() << ");\n";
-    }
-
-    return ss.str();
 }
 
 std::string spnp::TimedTransition::getClassNodeName()

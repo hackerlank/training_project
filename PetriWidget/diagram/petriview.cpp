@@ -5,7 +5,7 @@
 PetriView::PetriView(QWidget *parent)
     :QGraphicsView(parent)
 {
-    this->scene = new PetriScene(this);
+    this->scene = new PetriScene(/*itemMenu*/nullptr, this);
     this->setScene(scene);
     //this->ui->graphicsView->setScene(this->scene);
 
@@ -27,13 +27,13 @@ PetriView::PetriView(QWidget *parent)
 
 
     this->_numScheduledScalings = 0;
-    //TODO menus
-    //this->createMenus();
+
+    this->createMenus();
 
     //right click : what to do.
-    /*this->setContextMenuPolicy(Qt::CustomContextMenu);
+    this->setContextMenuPolicy(Qt::CustomContextMenu);
     connect(this, SIGNAL(customContextMenuRequested(const QPoint&)),
-            this, SLOT(showContextMenu(const QPoint&)));*/
+            this, SLOT(showContextMenu(const QPoint&)));
 }
 
 PetriView::~PetriView()
@@ -44,16 +44,6 @@ PetriView::~PetriView()
 PetriScene *PetriView::getScene() const
 {
     return this->scene;
-}
-
-void PetriView::close()
-{
-    this->scene->clear();
-}
-
-void PetriView::load(spnp::IData *data)
-{
-    this->scene->load(data);
 }
 
 void PetriView::petriItemInserted(IPetriItem *item)
@@ -74,7 +64,8 @@ void PetriView::petriTextInserted(QGraphicsTextItem *item)
 
 void PetriView::petriItemSelected(QGraphicsItem *item)
 {
-    emit itemSelected(item);
+    //TODO aqui
+    (void)item;
     //this->scene->clearSelection();
     emit sceneClicked();
 }
@@ -93,7 +84,7 @@ void PetriView::petriArcInserted(IPetriArc *arc)
     this->scene->clearSelection();
     emit sceneClicked();
 }
-/*
+
 void PetriView::showContextMenu(const QPoint &pos)
 {
     // for most widgets
@@ -113,7 +104,6 @@ void PetriView::showContextMenu(const QPoint &pos)
             if(pItem->isTransition())
             {
                 selectedMenuItem = menuTransition.exec(globalPos);
-
             }
             else if(pItem->isPlace())
             {
@@ -127,7 +117,6 @@ void PetriView::showContextMenu(const QPoint &pos)
             break;
         }
         default:
-            //TODO tratar erro
             break;
         }
     }
@@ -145,11 +134,11 @@ void PetriView::showContextMenu(const QPoint &pos)
     {
         // nada foi escolhido
     }
-}*/
+}
 
 void PetriView::scalingTime(qreal x)
 {
-    //TODO TDD aqui
+    //TODO aqui
     (void)x;
     qreal factor = 1.0+ qreal(_numScheduledScalings) / 300.0;
     scale(factor, factor);
@@ -181,7 +170,7 @@ void PetriView::wheelEvent(QWheelEvent *event)
     connect(anim, SIGNAL (finished()), SLOT (animFinished()));
     anim->start();
 }
-/*
+
 void PetriView::createMenus()
 {
     //common
@@ -214,7 +203,6 @@ void PetriView::createMenus()
 
     //menuTransition
     QAction *rotateAction = new QAction(tr("_rotate"), this);
-    rotateAction->setCheckable(true);
     rotateAction->setStatusTip(tr("_rotate transition"));
     connect(rotateAction, SIGNAL(triggered(bool)),
             this, SLOT(rotate()));
@@ -222,11 +210,11 @@ void PetriView::createMenus()
     menuTransition.addAction(rotateAction);
     menuTransition.addSeparator();
     menuTransition.addAction(deleteAction);
-}*/
+}
 
 void PetriView::rotate()
 {
     //TODO rotacionar transição
     QGraphicsItem *item = this->scene->selectedItems().first();
-    item->setRotation(90);
+    (void)item;
 }

@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>945</width>
+    <width>807</width>
     <height>570</height>
    </rect>
   </property>
@@ -21,61 +21,29 @@
   </property>
   <layout class="QGridLayout" name="gridLayout">
    <item row="0" column="0">
-    <widget class="QSplitter" name="splitter">
-     <property name="midLineWidth">
-      <number>1</number>
+    <widget class="PetriDesign" name="widget" native="true">
+     <property name="minimumSize">
+      <size>
+       <width>493</width>
+       <height>0</height>
+      </size>
      </property>
-     <property name="orientation">
-      <enum>Qt::Horizontal</enum>
+    </widget>
+   </item>
+   <item row="0" column="1">
+    <widget class="PetriProperties" name="widget_2" native="true">
+     <property name="minimumSize">
+      <size>
+       <width>290</width>
+       <height>535</height>
+      </size>
      </property>
-     <property name="opaqueResize">
-      <bool>false</bool>
+     <property name="maximumSize">
+      <size>
+       <width>290</width>
+       <height>16777215</height>
+      </size>
      </property>
-     <property name="childrenCollapsible">
-      <bool>false</bool>
-     </property>
-     <widget class="QListWidget" name="lw_nets">
-      <property name="minimumSize">
-       <size>
-        <width>110</width>
-        <height>0</height>
-       </size>
-      </property>
-      <property name="maximumSize">
-       <size>
-        <width>200</width>
-        <height>16777215</height>
-       </size>
-      </property>
-      <property name="showDropIndicator" stdset="0">
-       <bool>false</bool>
-      </property>
-      <property name="alternatingRowColors">
-       <bool>true</bool>
-      </property>
-     </widget>
-     <widget class="PetriDesign" name="pd_design" native="true">
-      <property name="minimumSize">
-       <size>
-        <width>493</width>
-        <height>0</height>
-       </size>
-      </property>
-     </widget>
-     <widget class="PetriProperties" name="pp_prop" native="true">
-      <property name="minimumSize">
-       <size>
-        <width>290</width>
-        <height>535</height>
-       </size>
-      </property>
-      <property name="maximumSize">
-       <size>
-        <width>290</width>
-        <height>16777215</height>
-       </size>
-      </property>
-     </widget>
     </widget>
    </item>
   </layout>

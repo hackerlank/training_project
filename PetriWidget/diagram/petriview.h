@@ -16,9 +16,6 @@ public:
 
     PetriScene* getScene() const;
 
-    void close();
-    void load(spnp::IData *data);
-
 public slots:
     void petriItemInserted(IPetriItem *item);
     void petriTextInserted(QGraphicsTextItem *item);
@@ -26,13 +23,14 @@ public slots:
     void petriItemDeleted();
     void petriArcInserted(IPetriArc *arc);
 
+    //right click
+    void showContextMenu(const QPoint& pos);
     //zoom
     void scalingTime(qreal x);
     void animFinished();
 
 signals:
     void sceneClicked();
-    void itemSelected(QGraphicsItem *item);
 
 #ifndef QT_NO_WHEELEVENT
 protected:
@@ -46,7 +44,12 @@ private:
     //zoom
     int _numScheduledScalings;
 
-    QMenu itemMenu;
+    QMenu menuPlace;
+    QMenu menuTransition;
+    QMenu menuArc;
+    QMenu menuNet;
+
+    void createMenus();
 
 private slots:
     void rotate();

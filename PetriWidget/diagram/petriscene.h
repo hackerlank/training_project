@@ -1,13 +1,12 @@
 #ifndef PETRISCENE_H
 #define PETRISCENE_H
 
-#include "objs/net.h"
+//#include "diagram/items/abstractpetriitem.h"
 #include "diagram/items/ipetriitem.h"
 #include "diagram/arcs/ipetriarc.h"
 #include "diagram/items/petritextitem.h"
 
 #include <QGraphicsScene>
-#include <QMenu>
 
 class QGraphicsSceneMouseEvent;
 class QMenu;
@@ -23,7 +22,7 @@ class PetriScene : public QGraphicsScene
 public:
     enum Mode { InsItem, InsArc, InsText, MoveItem, RemoveItem };
 
-    explicit PetriScene(QObject *parent=nullptr);
+    explicit PetriScene(QMenu *itemMenu, QObject *parent=nullptr);
     QFont font() const { return myFont; }
     QColor textColor() const { return myTextColor; }
     QColor itemColor() const { return myItemColor; }
@@ -34,10 +33,6 @@ public:
     void setItemColor(const QColor &color);
 
     void setFont(const QFont &font);
-
-    //void drawBackground(QPainter *painter, const QRectF &rect) override;
-
-    void load(spnp::IData* data);
 
 public slots:
     void setMode(Mode mode);
@@ -58,11 +53,11 @@ protected:
     void mouseReleaseEvent(QGraphicsSceneMouseEvent *mouseEvent) override;
 
 private:
-    bool isItemOfType(int type);
+    bool isItemChange(int type);
 
-    QMenu* myItemMenu;
     IPetriItem::PetriType myItemType;
     IPetriArc::ArcType myArcType;
+    QMenu *myItemMenu;
     Mode myMode;
     bool leftButtonDown;
     QPointF startPoint;
@@ -73,19 +68,10 @@ private:
     QColor myItemColor;
     QColor myLineColor;
 
-    void insertItemToPosition(spnp::IData *data, QPointF position);
-    void insertItemToPosition(QPointF position);
-    void insertItem(IPetriItem *item);
+    void insertItem(QPointF position);
     void insertArc(QPointF position);
     void insertText(QPointF position);
     void deleteItem();
-    void itemSelection();
-
-    const int gridSize = 10;
-
-    void repositionItem(QGraphicsItem* item);
-
-    spnp::Net *currentNet;
 };
 
 #endif // PETRISCENE_H
