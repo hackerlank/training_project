@@ -15,12 +15,18 @@ ParametersForm::ParametersForm(QWidget *parent) :
 ParametersForm::~ParametersForm()
 {
     delete ui;
+    delete outputs;
 }
 
 void ParametersForm::setNetData(spnp::Net *net)
 {
     this->netData = net;
     this->fillData();
+}
+
+std::vector<spnp::OutputFunction> *ParametersForm::getOutputs()
+{
+    return this->outputs;
 }
 
 void ParametersForm::fillData()
@@ -49,7 +55,7 @@ void ParametersForm::fillPlacesNames(QComboBox *cb, std::vector<spnp::Place*> *p
         {
             spnp::Place* place = places->at(i);
             QString placeName = QString::fromStdString(place->getName());
-            QVariant data(QString::fromStdString(place->id));
+            QVariant data(QString::fromStdString(place->getName()));
             cb->addItem(placeName, data);
         }
     }
@@ -64,7 +70,7 @@ void ParametersForm::fillTransitionNames(QComboBox *cb, std::vector<spnp::Immedi
         {
             spnp::ImmediateTransition* transition = transitions->at(i);
             QString placeName = QString::fromStdString(transition->getName());
-            QVariant data(QString::fromStdString(transition->id));
+            QVariant data(QString::fromStdString(transition->getName()));
             cb->addItem(placeName, data);
         }
     }

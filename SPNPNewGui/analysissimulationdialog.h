@@ -18,9 +18,13 @@ public:
 
     void setNetData(spnp::Net *net);
 
+private slots:
+    void on_tabWidget_currentChanged(int index);
+
 private:
     Ui::AnalysisSimulationDialog *ui;
     Highlighter *hl;
+    spnp::Net *net;
 };
 
 #endif // ANALYSISSIMULATIONDIALOG_H

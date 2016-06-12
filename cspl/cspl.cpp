@@ -5,9 +5,10 @@ Cspl::Cspl()
 {
 }
 
-std::string Cspl::to_ascii_c(spnp::Net *input)
+std::string Cspl::to_ascii_c(spnp::Net *input, std::vector<spnp::OutputFunction> *of)
 {
     this->net = input;
+    this->of = of;
 
     addComment();
     ss<<"\n";
@@ -29,6 +30,14 @@ std::string Cspl::to_ascii_c(spnp::Net *input)
     ss<<"\n";
     addAc_Reach();
     ss<<"\n";
+
+    for(int i=0, size = this->of->size(); i<size; ++i)
+    {
+        spnp::OutputFunction out = of->at(i);
+        out.setFunctionNumber(i);
+        ss << out.getFunction();
+    }
+
     addAc_Final();
     ss<<"\n";
 
@@ -123,7 +132,12 @@ void Cspl::addAc_Final()
     ss << "void ac_final() {\n";
     ss << "\tint loop;\n";
 
-
+    for(int i=0, size=this->of->size(); i<size; ++i)
+    {
+        spnp::OutputFunction out = this->of->at(i);
+        out.setFunctionNumber(i);
+        ss << out.getFinal();
+    }
 
     ss << "}\n";
 }

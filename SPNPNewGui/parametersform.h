@@ -21,6 +21,8 @@ public:
 
     void setNetData(spnp::Net* net);
 
+    std::vector<spnp::OutputFunction> *getOutputs();
+
 private slots:
     void on_bt_place_steady_clicked();
 

@@ -185,13 +185,13 @@ void MainWindow::on_actionAnalisar_triggered()
         spnp::Net *n = this->ui->widget->getCurrentProject()->getNets()->at(0);
         this->asd->setNetData(n);
         return;
-        if(n!=nullptr)
+        /*if(n!=nullptr)
         {
           //TODO remove dialog >>>> save same project folder
           QString file = QFileDialog::getSaveFileName(this, tr("_criar arquivo"), QDir::currentPath(), tr("código-fonte(*.c)"));
           if(!file.isEmpty())
           {
-              slf.saveFile(file.toStdString(), cspl->to_ascii_c(n));
+              /*slf.saveFile(file.toStdString(), cspl->to_ascii_c(n));
 
               std::string dir = AppSettings::Instance()->getSPNPFolder().toStdString();
               SPNPWrapper* w = new SPNPWrapper(dir
@@ -199,9 +199,9 @@ void MainWindow::on_actionAnalisar_triggered()
                                          , dir+"/bin"
     #endif
                                                );
-              w->work(file.left(file.length()-2).toStdString());
-          }
-        }
+              w->work(file.left(file.length()-2).toStdString());*/
+//          }
+//        }
     }
     delete cspl;
 }

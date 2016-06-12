@@ -13,7 +13,6 @@ spnp::OutputFunction::OutputFunction(OutputFunction::TYPE type, std::string objI
     this->functionString = "";
     this->finalString = "";
     this->descriptionString = "";
-
     this->prepareData();
 }
 
@@ -43,6 +42,7 @@ void spnp::OutputFunction::fromXML(XMLNode *xml)
 void spnp::OutputFunction::setFunctionNumber(int num)
 {
     this->functionNumber = num;
+    this->prepareData();
 }
 
 std::string spnp::OutputFunction::c_str(spnp::IData *data) const
@@ -167,25 +167,26 @@ void spnp::OutputFunction::prepareData()
 void spnp::OutputFunction::prepareETPS()
 {
     this->functionString = "double " + this->functionName + "() {\n";
-    this->functionString+= "\treturn(mark("+ objId +"));\n}\n";
+    this->functionString+= "\treturn(mark(\""+ objId +"\"));\n}\n";
 
     this->descriptionString = "Expected # of tokens of the place " + objId + " in steady-state";
 
     this->finalString = "\tsolve(INFINITY);\n";
-    this->finalString += "pr_expected(\""+ this->descriptionString +"\","+ this->functionName +")";
+    this->finalString += "\tpr_expected(\""+ this->descriptionString +"\","+ this->functionName +")";
 }
 
 void spnp::OutputFunction::prepareETPT()
 {
     this->functionString = "double " + this->functionName + "() {\n";
-    this->functionString+= "\treturn(mark("+ objId +"));\n}\n";
+    this->functionString+= "\treturn(mark(\""+ objId +"\"));\n}\n";
 
     this->descriptionString = "Expected # of tokens of the place " + objId + ": " + this->option;
 
     std::vector<std::string> data = this->split(this->option);
-    this->finalString = "for(loop=" + data.at(0)+";loop<"+data.at(1)+";loop+="+data.at(2)+") {\n";
-    this->finalString += "\tsolve((double) loop);\n";
-    this->finalString += "\tpr_expected(\"Expected # of tokens of the place "+objId+"\","+this->functionName+");";
+    this->finalString = "\n\tfor(loop=" + data.at(0)+";loop<"+data.at(1)+";loop+="+data.at(2)+") {\n";
+    this->finalString += "\t\tsolve((double) loop);\n";
+    this->finalString += "\t\tpr_expected(\"Expected # of tokens of the place "+objId+"\","+this->functionName+");";
+    this->finalString += "\n\t}\n";
 }
 
 void spnp::OutputFunction::prepareETPsS()
