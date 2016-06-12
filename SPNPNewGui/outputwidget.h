@@ -16,6 +16,7 @@ public:
     ~OutputWidget();
 
     void setText(std::string txt);
+    std::string getId();
 signals:
     void removed(std::string id);
 

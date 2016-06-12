@@ -75,7 +75,6 @@ void ParametersForm::on_bt_place_steady_clicked()
     std::string data = this->ui->cb_place_steady->currentData().toString().toStdString();
 
     spnp::OutputFunction out(spnp::OutputFunction::EXPECTED_TOKEN_PLACE_STEADY, data);
-    this->outputs->push_back(out);
     this->createOutputButton(out);
 }
 
@@ -84,7 +83,8 @@ void ParametersForm::on_bt_place_time_clicked()
     std::string data = this->ui->cb_place_time->currentData().toString().toStdString();
     std::string opt = this->ui->le_place_time->text().toStdString();
     spnp::OutputFunction out(spnp::OutputFunction::EXPECTED_TOKEN_PLACE_TIME, data, opt);
-    this->outputs->push_back(out);
+
+    this->createOutputButton(out);
 }
 
 void ParametersForm::on_output_remove_clicked(std::string id)
@@ -94,6 +94,7 @@ void ParametersForm::on_output_remove_clicked(std::string id)
 
 void ParametersForm::createOutputButton(spnp::OutputFunction func)
 {
+    this->outputs->push_back(func);
     OutputWidget *ow = new OutputWidget(func.id);
     ow->setText(func.getDescription());
 
@@ -101,10 +102,34 @@ void ParametersForm::createOutputButton(spnp::OutputFunction func)
     if(l != nullptr)
     {
         l->addWidget(ow);
+        connect(ow, SIGNAL(removed(std::string)), this, SLOT(on_output_remove_clicked(std::string)));
     }
 }
 
 void ParametersForm::removeOutputButton(std::string id)
 {
+    QLayout* l = this->ui->scrollAreaWidgetContents_2->layout();
+    if(l != nullptr)
+    {
+        for(int i=0, size=l->count(); i<size; ++i)
+        {
+            OutputWidget *ow = qobject_cast<OutputWidget*>(l->itemAt(i)->widget());
+            if(ow->getId().compare(id)==0)
+            {
+                l->removeWidget(ow);
+                delete ow;
+                break;
+            }
+        }
 
+        for(int i=0, size = this->outputs->size(); i<size; ++i)
+        {
+            spnp::OutputFunction of = this->outputs->at(i);
+            if(of.id.compare(id)==0)
+            {
+                this->outputs->erase(this->outputs->begin()+i);
+                break;
+            }
+        }
+    }
 }

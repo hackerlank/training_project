@@ -6,6 +6,7 @@ OutputWidget::OutputWidget(std::string id, QWidget *parent) :
     ui(new Ui::OutputWidget)
 {
     ui->setupUi(this);
+    this->id = id;
 }
 
 OutputWidget::~OutputWidget()
@@ -16,6 +17,11 @@ OutputWidget::~OutputWidget()
 void OutputWidget::setText(std::string txt)
 {
     this->ui->lb_text->setText(QString::fromStdString(txt));
+}
+
+std::string OutputWidget::getId()
+{
+    return this->id;
 }
 
 void OutputWidget::on_pushButton_clicked()
