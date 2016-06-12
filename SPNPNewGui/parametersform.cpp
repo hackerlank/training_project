@@ -1,6 +1,7 @@
 #include "parametersform.h"
 
 #include "ui_parametersform.h"
+#include "outputwidget.h"
 
 ParametersForm::ParametersForm(QWidget *parent) :
     QWidget(parent),
@@ -75,6 +76,7 @@ void ParametersForm::on_bt_place_steady_clicked()
 
     spnp::OutputFunction out(spnp::OutputFunction::EXPECTED_TOKEN_PLACE_STEADY, data);
     this->outputs->push_back(out);
+    this->createOutputButton(out);
 }
 
 void ParametersForm::on_bt_place_time_clicked()
@@ -83,4 +85,26 @@ void ParametersForm::on_bt_place_time_clicked()
     std::string opt = this->ui->le_place_time->text().toStdString();
     spnp::OutputFunction out(spnp::OutputFunction::EXPECTED_TOKEN_PLACE_TIME, data, opt);
     this->outputs->push_back(out);
+}
+
+void ParametersForm::on_output_remove_clicked(std::string id)
+{
+    this->removeOutputButton(id);
+}
+
+void ParametersForm::createOutputButton(spnp::OutputFunction func)
+{
+    OutputWidget *ow = new OutputWidget(func.id);
+    ow->setText(func.getDescription());
+
+    QLayout* l = this->ui->scrollAreaWidgetContents_2->layout();
+    if(l != nullptr)
+    {
+        l->addWidget(ow);
+    }
+}
+
+void ParametersForm::removeOutputButton(std::string id)
+{
+
 }

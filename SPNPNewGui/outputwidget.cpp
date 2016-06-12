@@ -1,7 +1,7 @@
 #include "outputwidget.h"
 #include "ui_outputwidget.h"
 
-OutputWidget::OutputWidget(QWidget *parent) :
+OutputWidget::OutputWidget(std::string id, QWidget *parent) :
     QWidget(parent),
     ui(new Ui::OutputWidget)
 {
@@ -20,5 +20,5 @@ void OutputWidget::setText(std::string txt)
 
 void OutputWidget::on_pushButton_clicked()
 {
-
+    emit removed(this->id);
 }

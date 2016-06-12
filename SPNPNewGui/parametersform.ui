@@ -14,6 +14,42 @@
    <string>Form</string>
   </property>
   <layout class="QGridLayout" name="gridLayout">
+   <item row="0" column="1">
+    <widget class="QGroupBox" name="groupBox">
+     <property name="minimumSize">
+      <size>
+       <width>350</width>
+       <height>0</height>
+      </size>
+     </property>
+     <property name="title">
+      <string>Saídas selecionadas</string>
+     </property>
+     <layout class="QGridLayout" name="gridLayout_14">
+      <item row="0" column="0">
+       <widget class="QScrollArea" name="sa_output">
+        <property name="sizeAdjustPolicy">
+         <enum>QAbstractScrollArea::AdjustToContents</enum>
+        </property>
+        <property name="widgetResizable">
+         <bool>true</bool>
+        </property>
+        <widget class="QWidget" name="scrollAreaWidgetContents_2">
+         <property name="geometry">
+          <rect>
+           <x>0</x>
+           <y>0</y>
+           <width>366</width>
+           <height>656</height>
+          </rect>
+         </property>
+         <layout class="QVBoxLayout" name="verticalLayout"/>
+        </widget>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
    <item row="0" column="0">
     <widget class="QScrollArea" name="scrollArea">
      <property name="widgetResizable">
@@ -24,7 +60,7 @@
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>424</width>
+        <width>386</width>
         <height>689</height>
        </rect>
       </property>
@@ -42,7 +78,7 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>406</width>
+            <width>368</width>
             <height>77</height>
            </rect>
           </property>
@@ -77,8 +113,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>389</width>
-            <height>69</height>
+            <width>368</width>
+            <height>77</height>
            </rect>
           </property>
           <attribute name="label">
@@ -145,8 +181,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>389</width>
-            <height>69</height>
+            <width>368</width>
+            <height>77</height>
            </rect>
           </property>
           <attribute name="label">
@@ -167,8 +203,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>389</width>
-            <height>69</height>
+            <width>368</width>
+            <height>77</height>
            </rect>
           </property>
           <attribute name="label">
@@ -209,8 +245,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>389</width>
-            <height>69</height>
+            <width>368</width>
+            <height>77</height>
            </rect>
           </property>
           <attribute name="label">
@@ -244,8 +280,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>389</width>
-            <height>69</height>
+            <width>368</width>
+            <height>77</height>
            </rect>
           </property>
           <attribute name="label">
@@ -306,8 +342,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>389</width>
-            <height>69</height>
+            <width>368</width>
+            <height>77</height>
            </rect>
           </property>
           <attribute name="label">
@@ -328,8 +364,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>389</width>
-            <height>69</height>
+            <width>368</width>
+            <height>77</height>
            </rect>
           </property>
           <attribute name="label">
@@ -367,8 +403,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>389</width>
-            <height>69</height>
+            <width>368</width>
+            <height>77</height>
            </rect>
           </property>
           <attribute name="label">
@@ -402,8 +438,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>389</width>
-            <height>69</height>
+            <width>368</width>
+            <height>77</height>
            </rect>
           </property>
           <attribute name="label">
@@ -464,8 +500,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>389</width>
-            <height>69</height>
+            <width>368</width>
+            <height>77</height>
            </rect>
           </property>
           <attribute name="label">
@@ -486,8 +522,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>389</width>
-            <height>69</height>
+            <width>368</width>
+            <height>77</height>
            </rect>
           </property>
           <attribute name="label">
@@ -525,8 +561,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>389</width>
-            <height>69</height>
+            <width>368</width>
+            <height>77</height>
            </rect>
           </property>
           <attribute name="label">
@@ -560,8 +596,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>372</width>
-            <height>73</height>
+            <width>368</width>
+            <height>77</height>
            </rect>
           </property>
           <attribute name="label">
@@ -625,8 +661,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>389</width>
-            <height>69</height>
+            <width>368</width>
+            <height>77</height>
            </rect>
           </property>
           <attribute name="label">
@@ -647,8 +683,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>389</width>
-            <height>69</height>
+            <width>368</width>
+            <height>77</height>
            </rect>
           </property>
           <attribute name="label">
@@ -686,8 +722,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>389</width>
-            <height>69</height>
+            <width>368</width>
+            <height>77</height>
            </rect>
           </property>
           <attribute name="label">
@@ -721,8 +757,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>389</width>
-            <height>69</height>
+            <width>368</width>
+            <height>77</height>
            </rect>
           </property>
           <attribute name="label">
@@ -786,8 +822,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>389</width>
-            <height>69</height>
+            <width>368</width>
+            <height>77</height>
            </rect>
           </property>
           <attribute name="label">
@@ -821,8 +857,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>389</width>
-            <height>69</height>
+            <width>368</width>
+            <height>77</height>
            </rect>
           </property>
           <attribute name="label">
@@ -883,8 +919,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>389</width>
-            <height>69</height>
+            <width>368</width>
+            <height>77</height>
            </rect>
           </property>
           <attribute name="label">
@@ -905,8 +941,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>389</width>
-            <height>69</height>
+            <width>368</width>
+            <height>77</height>
            </rect>
           </property>
           <attribute name="label">
@@ -939,19 +975,6 @@
        </item>
       </layout>
      </widget>
-    </widget>
-   </item>
-   <item row="0" column="1">
-    <widget class="QGroupBox" name="groupBox">
-     <property name="minimumSize">
-      <size>
-       <width>350</width>
-       <height>0</height>
-      </size>
-     </property>
-     <property name="title">
-      <string>Saídas selecionadas</string>
-     </property>
     </widget>
    </item>
   </layout>
