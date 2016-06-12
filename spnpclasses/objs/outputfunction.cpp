@@ -303,7 +303,11 @@ std::vector<std::string> spnp::OutputFunction::split(std::string in)
         if(index>-1)
         {
             out.push_back(in.substr(0, index));
-            in = in.substr(index, in.size());
+            in = in.substr(index+1, in.size());
+        }
+        else
+        {
+            out.push_back(in);
         }
     } while(index > -1);
 
