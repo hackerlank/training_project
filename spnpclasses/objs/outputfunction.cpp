@@ -183,10 +183,13 @@ void spnp::OutputFunction::prepareETPT()
     this->descriptionString = "Expected # of tokens of the place " + objId + ": " + this->option;
 
     std::vector<std::string> data = this->split(this->option);
-    this->finalString = "\n\tfor(loop=" + data.at(0)+";loop<"+data.at(1)+";loop+="+data.at(2)+") {\n";
-    this->finalString += "\t\tsolve((double) loop);\n";
-    this->finalString += "\t\tpr_expected(\"Expected # of tokens of the place "+objId+"\","+this->functionName+");";
-    this->finalString += "\n\t}\n";
+    if(data.size()==3)
+    {
+        this->finalString = "\n\tfor(loop=" + data.at(0)+";loop<"+data.at(1)+";loop+="+data.at(2)+") {\n";
+        this->finalString += "\t\tsolve((double) loop);\n";
+        this->finalString += "\t\tpr_expected(\"Expected # of tokens of the place "+objId+"\","+this->functionName+");";
+        this->finalString += "\n\t}\n";
+    }
 }
 
 void spnp::OutputFunction::prepareETPsS()
