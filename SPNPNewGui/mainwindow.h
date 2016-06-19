@@ -43,6 +43,8 @@ private slots:
 
     void on_actionAnalisar_triggered();
 
+    void startingSimulation(std::string ascii);
+
 private:
     Ui::MainWindow *ui;
     PathSetupForm *psf;

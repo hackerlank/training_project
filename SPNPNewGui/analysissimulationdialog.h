@@ -18,13 +18,21 @@ public:
 
     void setNetData(spnp::Net *net);
 
+signals:
+    void startSimulation(std::string ascii_c);
+
 private slots:
     void on_tabWidget_currentChanged(int index);
+
+    void on_box_accepted();
 
 private:
     Ui::AnalysisSimulationDialog *ui;
     Highlighter *hl;
     spnp::Net *net;
+
+    std::string getProjectStr();
+    std::string ascii;
 };
 
 #endif // ANALYSISSIMULATIONDIALOG_H

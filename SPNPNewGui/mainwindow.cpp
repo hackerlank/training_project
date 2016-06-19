@@ -30,6 +30,8 @@ MainWindow::MainWindow(QWidget *parent) :
 
     this->asd = new AnalysisSimulationDialog(this);
     this->asd->setModal(true);
+    connect(this->asd, SIGNAL(startSimulation(std::string)),
+            this, SLOT(startingSimulation(std::string)));
 
     connect(this->npd, SIGNAL(startNewProject(spnp::Project*)),
             this, SLOT(startNewProject(spnp::Project*)));
@@ -177,13 +179,18 @@ void MainWindow::on_action_preferences_triggered()
 #include <iostream>
 void MainWindow::on_actionAnalisar_triggered()
 {
-    Cspl* cspl = new Cspl();
-    SaveLoadFile slf;
+    //Cspl* cspl = new Cspl();
+    //SaveLoadFile slf;
     if(this->ui->widget->getCurrentProject() != nullptr)
     {
-        this->asd->show();
         spnp::Net *n = this->ui->widget->getCurrentProject()->getNets()->at(0);
-        this->asd->setNetData(n);
+
+        if(n!=nullptr)
+        {
+            this->asd->show();
+            this->asd->setNetData(n);
+        }
+
         return;
         /*if(n!=nullptr)
         {
@@ -203,5 +210,10 @@ void MainWindow::on_actionAnalisar_triggered()
 //          }
 //        }
     }
-    delete cspl;
+    //delete cspl;
+}
+
+void MainWindow::startingSimulation(std::__cxx11::string ascii)
+{
+
 }
