@@ -213,7 +213,21 @@ void MainWindow::on_actionAnalisar_triggered()
     //delete cspl;
 }
 
-void MainWindow::startingSimulation(std::__cxx11::string ascii)
+void MainWindow::startingSimulation(std::string ascii)
 {
+    QString file = QFileDialog::getSaveFileName(this, tr("_criar arquivo"), QDir::currentPath(), tr("código-fonte(*.c)"));
+    if(!file.isEmpty())
+    {
+        SaveLoadFile slf;
+        slf.saveFile(file.toStdString(), ascii);
 
+        std::string dir = AppSettings::Instance()->getSPNPFolder().toStdString();
+        SPNPWrapper* w = new SPNPWrapper(dir
+                                 #ifdef WINDOWS
+                                         , dir+"/bin"
+                                 #endif
+                                         );
+        w->work(file.left(file.length()-2).toStdString());
+        delete w;
+    }
 }

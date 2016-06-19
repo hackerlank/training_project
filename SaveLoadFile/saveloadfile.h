@@ -11,7 +11,7 @@ class SL_PUBLIC SaveLoadFile
 public:
     SaveLoadFile();
 
-    void saveFile(std::string file, std::string text);
+    void saveFile(std::string direcotry, std::string text);
     std::string loadFile(std::string file);
 
     /*

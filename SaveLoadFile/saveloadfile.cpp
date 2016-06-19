@@ -6,9 +6,9 @@ SaveLoadFile::SaveLoadFile()
 {
 }
 
-void SaveLoadFile::saveFile(std::string file, std::string text)
+void SaveLoadFile::saveFile(std::string direcotry, std::string text)
 {
-    std::ofstream output(file, std::ofstream::out | std::ofstream::trunc);
+    std::ofstream output(direcotry, std::ofstream::out | std::ofstream::trunc);
     output << text;
     output.close();
 }
