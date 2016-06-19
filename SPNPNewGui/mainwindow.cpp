@@ -156,6 +156,41 @@ void MainWindow::load()
     }
 }
 
+#ifdef WINDOWS
+QString MainWindow::pathToDosPath(QString file)
+{
+    int index = file.indexOf(' ');
+    while(index>0)
+    {
+        int before = -1;
+        for(int i =index; i>-1; --i)
+        {
+            if(file.at(i)=='/')
+            {
+                before = i;
+                break;
+            }
+        }
+        int after = -1;
+        for(int i=index, total = file.size(); i<total; ++i)
+        {
+            if(file.at(i)=='/')
+            {
+                after = i-before;
+                break;
+            }
+        }
+        if(before > -1 && after > -1)
+        {
+            QString sub = file.mid(before+1, after-1);
+            QString sub2 = sub.left(6)+"~1";
+            file = file.replace(sub, sub2);
+        }
+        index = file.indexOf(' ');
+    }
+    return file;
+}
+#endif
 void MainWindow::on_action_pathes_triggered()
 {
     this->psf->show();
@@ -171,16 +206,10 @@ void MainWindow::on_action_preferences_triggered()
     }
 }
 
-//TODO remover essa função no futuro
-#include "cspl.h"
 #include "saveloadfile.h"
 #include "spnpwrapper.h"
-
-#include <iostream>
 void MainWindow::on_actionAnalisar_triggered()
 {
-    //Cspl* cspl = new Cspl();
-    //SaveLoadFile slf;
     if(this->ui->widget->getCurrentProject() != nullptr)
     {
         spnp::Net *n = this->ui->widget->getCurrentProject()->getNets()->at(0);
@@ -190,32 +219,15 @@ void MainWindow::on_actionAnalisar_triggered()
             this->asd->show();
             this->asd->setNetData(n);
         }
-
-        return;
-        /*if(n!=nullptr)
-        {
-          //TODO remove dialog >>>> save same project folder
-          QString file = QFileDialog::getSaveFileName(this, tr("_criar arquivo"), QDir::currentPath(), tr("código-fonte(*.c)"));
-          if(!file.isEmpty())
-          {
-              /*slf.saveFile(file.toStdString(), cspl->to_ascii_c(n));
-
-              std::string dir = AppSettings::Instance()->getSPNPFolder().toStdString();
-              SPNPWrapper* w = new SPNPWrapper(dir
-    #ifdef WINDOWS
-                                         , dir+"/bin"
-    #endif
-                                               );
-              w->work(file.left(file.length()-2).toStdString());*/
-//          }
-//        }
     }
-    //delete cspl;
 }
 
 void MainWindow::startingSimulation(std::string ascii)
 {
     QString file = QFileDialog::getSaveFileName(this, tr("_criar arquivo"), QDir::currentPath(), tr("código-fonte(*.c)"));
+#ifdef WINDOWS
+    file = this->pathToDosPath(file);
+#endif
     if(!file.isEmpty())
     {
         SaveLoadFile slf;

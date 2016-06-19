@@ -62,8 +62,9 @@ private:
     QAction* recentFileActs[AppSettings::MaxRecentFiles];
 
     std::string currentFile;
-
-
+#ifdef WINDOWS
+    QString pathToDosPath(QString file);
+#endif
 };
 
 #endif // MAINWINDOW_H
