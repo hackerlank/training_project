@@ -93,6 +93,13 @@ void ParametersForm::on_bt_place_time_clicked()
     this->createOutputButton(out);
 }
 
+void ParametersForm::on_bt_places_steady_clicked()
+{
+    spnp::OutputFunction out(spnp::OutputFunction::EXPECTED_TOKEN_PLACES_STEADY, "", "", this->netData);
+
+    this->createOutputButton(out);
+}
+
 void ParametersForm::on_output_remove_clicked(std::string id)
 {
     this->removeOutputButton(id);

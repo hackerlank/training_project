@@ -1,12 +1,13 @@
 #include "outputfunction.h"
 
-spnp::OutputFunction::OutputFunction(OutputFunction::TYPE type, std::string objId, std::string option)
+spnp::OutputFunction::OutputFunction(OutputFunction::TYPE type, std::string objId, std::string option, Net *net)
     :AbstractData()
 {
     this->objId = objId;
     this->option = option;
     this->type = type;
     this->functionNumber = 0;
+    this->net = net;
 
     this->vars = "";
     this->functionName = "";
@@ -172,7 +173,7 @@ void spnp::OutputFunction::prepareETPS()
     this->descriptionString = "Expected # of tokens of the place " + objId + " in steady-state";
 
     this->finalString = "\tsolve(INFINITY);\n";
-    this->finalString += "\tpr_expected(\""+ this->descriptionString +"\","+ this->functionName +")";
+    this->finalString += "\tpr_expected(\""+ this->descriptionString +"\","+ this->functionName +");\n";
 }
 
 void spnp::OutputFunction::prepareETPT()
@@ -194,7 +195,21 @@ void spnp::OutputFunction::prepareETPT()
 
 void spnp::OutputFunction::prepareETPsS()
 {
+    this->functionString = "";
+    this->finalString = "\tsolve(INFINITY);\n";
+    for(int i=0, size=this->net->getPlaces()->size(); i<size; ++i)
+    {
+        std::string fName = this->functionName + "_" + std::to_string(i);
+        spnp::Place*p = this->net->getPlaces()->at(i);
+        std::string oId = p->getName();
+        this->functionString += "double " + fName +"() {\n";
+        this->functionString+= "\treturn(mark(\""+ oId +"\"));\n}\n";
 
+        this->descriptionString = "Expected # of tokens of the place " + oId + " in steady-state";
+
+        this->finalString += "\tpr_expected(\""+ this->descriptionString +"\","+ fName +");\n";
+    }
+    this->descriptionString = "Expected # of tokens of all places in steady-state";
 }
 
 void spnp::OutputFunction::prepareETPsT()

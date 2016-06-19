@@ -30,6 +30,8 @@ private slots:
 
     void on_output_remove_clicked(std::string id);
 
+    void on_bt_places_steady_clicked();
+
 private:
     Ui::ParametersForm *ui;
 

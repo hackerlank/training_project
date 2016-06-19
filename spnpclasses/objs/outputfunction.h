@@ -1,7 +1,8 @@
 #ifndef OUTPUTFUNCTION_H
 #define OUTPUTFUNCTION_H
 
-#include "abstractdata.h"
+//#include "abstractdata.h"
+#include "objs/net.h"
 
 namespace spnp
 {
@@ -41,7 +42,7 @@ public:
         VARIABLE
     };
 
-    OutputFunction(OutputFunction::TYPE type, std::string objId="", std::string option="");
+    OutputFunction(OutputFunction::TYPE type, std::string objId="", std::string option="", spnp::Net *net=nullptr);
     ~OutputFunction();
 
     virtual XMLNode* toXML();
@@ -73,6 +74,8 @@ private:
 
     std::string descriptionString;
     std::string finalString;
+
+    spnp::Net *net;
 
     void prepareETPS();
     void prepareETPT();
