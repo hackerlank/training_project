@@ -58,6 +58,8 @@ XMLNode *spnp::Parameter::toXML()
         t->setAttribute("value", iter->second);
         node->addChild(t);
     }
+
+    return node;
 }
 
 void spnp::Parameter::fromXML(XMLNode *xml)

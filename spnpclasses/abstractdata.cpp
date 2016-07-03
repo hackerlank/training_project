@@ -19,7 +19,8 @@ spnp::AbstractData::~AbstractData()
 
 XMLNode *spnp::AbstractData::toXML()
 {
-    XMLNode* node = new XMLNode(this->getClassNodeName());
+    std::string className = this->getClassNodeName();
+    XMLNode* node = new XMLNode(className);
     node->setAttribute("id", this->id);
     node->setAttribute("name", this->name);
 
