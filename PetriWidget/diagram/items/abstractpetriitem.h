@@ -26,7 +26,7 @@ public:
     virtual ~AbstractPetriItem();
 
     virtual void removeArc(IPetriArc *arc) override;
-    virtual void removeArcs();
+    virtual void removeArcs(spnp::IData *net);
 
     QPolygonF polygon() const { return myPolygon; }
     virtual void addArc(IPetriArc *arc) override;

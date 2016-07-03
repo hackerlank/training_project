@@ -25,7 +25,7 @@ public:
     IPetriItem::PetriType petriType() const { return myPetriType; }
 
     virtual void removeArc(IPetriArc *arc) = 0;
-    virtual void removeArcs() = 0;
+    virtual void removeArcs(spnp::IData *net) = 0;
     virtual void addArc(IPetriArc* arc) = 0;
     virtual bool isPlace() = 0;
     virtual bool isTransition() = 0;

@@ -31,14 +31,16 @@ void AbstractPetriItem::removeArc(IPetriArc *arc)
     if(index != -1) arcs.removeAt(index);
 }
 
-void AbstractPetriItem::removeArcs()
+#include "objs/net.h"
+void AbstractPetriItem::removeArcs(spnp::IData *net)
 {
+    spnp::Net *n = static_cast<spnp::Net*>(net);
     foreach (IPetriArc *arc, arcs)
     {
         arc->startItem()->removeArc(arc);
         arc->endItem()->removeArc(arc);
         scene()->removeItem(arc);
-        delete arc;
+        n->removeArc(arc->getArcId());
     }
 }
 

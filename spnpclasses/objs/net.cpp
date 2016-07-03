@@ -214,7 +214,7 @@ std::vector<spnp::Arc *> *spnp::Net::getArcs() const
 
 std::string spnp::Net::c_str(IData *data) const
 {
-    //(void)data;
+    (void)data;
     std::stringstream ss;
     if(places->size()>0)
     {

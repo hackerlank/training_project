@@ -127,7 +127,6 @@ void spnp::Arc::setIsConstant(const bool b)
 
 std::string spnp::Arc::c_str(IData *data) const
 {
-    (void)data;
     std::stringstream ss;
 
     spnp::Net* net = static_cast<Net*>(data);
@@ -135,9 +134,16 @@ std::string spnp::Arc::c_str(IData *data) const
     if(this->fromPlaceToTransition)
     {
         if(this->multiplicity.compare("1")==0)
-            ss << "iarc(\"" << net->getTransition(transition)->getName() << "\", \"" << net->getPlace(place)->getName() << "\");\n";
+            ss << "iarc(\""
+               << net->getTransition(transition)->getName()
+               << "\", \"" << net->getPlace(place)->getName()
+               << "\");\n";
         else
-            ss << "miarc(\"" << net->getTransition(transition)->getName() << "\", \"" << net->getPlace(place)->getName() << "\", " << this->multiplicity <<");\n";
+            ss << "miarc(\""
+               << net->getTransition(transition)->getName()
+               << "\", \"" << net->getPlace(place)->getName()
+               << "\", "
+               << this->multiplicity <<");\n";
     }
     else
     {

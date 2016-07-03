@@ -10,10 +10,11 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 TARGET = SPNPNewGui
 TEMPLATE = app
+RC_ICONS = ../icons/net.ico
 
 
 SOURCES += main.cpp\
-        mainwindow.cpp \
+	mainwindow.cpp \
     appsettings.cpp \
     newprojectdialog.cpp \
     analysissimulationdialog.cpp \

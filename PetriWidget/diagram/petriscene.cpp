@@ -443,7 +443,7 @@ void PetriScene::deleteItem()
             //TODO otimizar
             currentNet->removePlace(ipi->getPetriItemId());
             currentNet->removeTransition(ipi->getPetriItemId());
-            ipi->removeArcs();
+            ipi->removeArcs(currentNet);
         }
 
         this->removeItem(item);
